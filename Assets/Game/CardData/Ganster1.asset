@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Ganster1
   m_EditorClassIdentifier: 
   cardName: 
-  cardType: 0
+  cardType: 0000000000000000
   corruption: 0
   health: 0
   damageMin: 0
   damageMax: 0
-  damageType: 0
+  damageType: 
