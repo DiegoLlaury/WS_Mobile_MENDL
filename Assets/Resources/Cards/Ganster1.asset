@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Ganster1
   m_EditorClassIdentifier: 
   cardName: Gaston
-  cardType: 00000000
+  cardType: 0000000001000000
   corruption: 0
   health: 15
   damageMin: 10
   damageMax: 15
-  damageType: 00000000
+  damageType: 0000000001000000
   cardImage: {fileID: -605624883, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}

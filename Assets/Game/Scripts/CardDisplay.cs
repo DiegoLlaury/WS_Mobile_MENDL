@@ -42,6 +42,7 @@ public class CardDisplay : MonoBehaviour
 
     private void UpdateCardDisplay()
     {
+        Debug.Log(cardData.cardType[0]);
         //Update the main card image color based on the first  card type
         cardImage.color = cardColors[(int)cardData.cardType[0]];
 
