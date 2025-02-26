@@ -14,6 +14,7 @@ namespace WS_DiegoCo
         public int damageMin;
         public int damageMax;
         public List<DamageType> damageType;
+        public Sprite cardImage;
         
         public enum CardType
         {
