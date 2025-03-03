@@ -1466,6 +1466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186966cb257aa584c9edeb83b1a0667a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   selectScale: 1.1
   cardPlay: {x: 0, y: 400}
   playPosition: {x: 0, y: 800, z: 0}

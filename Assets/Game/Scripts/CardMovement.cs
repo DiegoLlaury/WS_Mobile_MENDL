@@ -6,10 +6,11 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 {
     private RectTransform rectTransform;
     private Canvas canvas;
+    private CanvasGroup canvasGroup;
     private Vector2 originalLocalPointerPosition;
     private Vector3 originalPanelLocalPosition;
     private Vector3 originalScale;
-    private int currentState = 0;
+    public int currentState = 0;
     private Quaternion originalRotation;
     private Vector3 originalPosition;
 
@@ -113,14 +114,34 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
             {
                 rectTransform.position = eventData.position; // Use eventData.position instead of Input.mousePosition
 
-                if (rectTransform.localPosition.y > cardPlay.y)
-                {
-                    currentState = 3;
-                    playArrow.SetActive(true);
-                    rectTransform.localPosition = playPosition;
-                }
+                //if (rectTransform.localPosition.y > cardPlay.y)
+                //{
+                   
+                //    playArrow.SetActive(true);
+                //    rectTransform.localPosition = playPosition;
+                //}
             }
         }
+    }
+
+    //public void OnEndDrag(PointerEventData eventData)
+    //{
+    //    canvasGroup.alpha = 1f;
+    //    canvasGroup.blocksRaycasts = true;
+
+    //    if (!eventData.pointerEnter || !eventData.pointerEnter.GetComponent<EnemyDropZone>())
+    //    {
+    //        ResetCard(); // Si on ne drop pas sur un ennemi, la carte revient en main
+    //    }
+    //}
+
+    private void ResetCard()
+    {
+        Debug.Log("Test");
+        rectTransform.localScale = originalScale;
+        rectTransform.localRotation = originalRotation;
+        rectTransform.localPosition = originalPosition;
+        glowEffect.SetActive(false);
     }
 
     private void HandleHoverState()
