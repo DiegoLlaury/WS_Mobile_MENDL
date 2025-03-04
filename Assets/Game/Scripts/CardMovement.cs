@@ -3,18 +3,25 @@ using System.Collections;
 using UnityEngine.EventSystems;
 using WS_DiegoCo_Enemy;
 using WS_DiegoCo;
+using NUnit.Framework;
 
 public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private RectTransform rectTransform;
     private Canvas canvas;
     private CanvasGroup canvasGroup;
+    
     private Vector2 originalLocalPointerPosition;
     private Vector3 originalPanelLocalPosition;
     private Vector3 originalScale;
+
     public int currentState = 0;
+
     private Quaternion originalRotation;
     private Vector3 originalPosition;
+    private CardDisplay cardDisplay;
+
+    private Card cardData;
 
     [SerializeField] private float selectScale = 1.1f;
     [SerializeField] private GameObject glowEffect;
@@ -27,6 +34,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
         originalScale = rectTransform.localScale;
         originalPosition = rectTransform.localPosition;
         originalRotation = rectTransform.localRotation;
+        cardDisplay = GetComponent<CardDisplay>();
     }
 
     void Update()
@@ -129,26 +137,60 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
             canvasGroup.blocksRaycasts = true; // Block raycasts again
         }
 
-
-        if (eventData.pointerEnter != null) // Ensure something is under the pointer
+        if (eventData.pointerEnter == null)
         {
-            // Get the topmost GameObject in case we're hovering over a child object
-            GameObject targetObject = eventData.pointerEnter.transform.parent.parent.parent.gameObject;
-
-            // Try to get the EnemyDisplay script from the root object
-            EnemyDisplay enemy = targetObject.GetComponent<EnemyDisplay>();
-
-            if (enemy != null) // If an enemy was found
-            {
-                Debug.Log("Card dropped on enemy!");
-                // enemy.TakeDamage(cardData.attackPower); // Apply damage from card
-                
-            }
-            else
-            {
-                Debug.Log($"Pointer entered: {eventData.pointerEnter.transform.root.name}");
-            }
+            Debug.LogWarning("OnEndDrag: No object detected under the pointer.");
+            return;
         }
+
+        // Get the GameObject under the pointer
+        GameObject targetObject = eventData.pointerEnter.transform.parent.parent.parent.gameObject;
+
+        // Check if the object has EnemyDisplay
+        EnemyDisplay enemy = targetObject.GetComponent<EnemyDisplay>();
+        if (enemy == null)
+        {
+            Debug.LogWarning($"OnEndDrag: {targetObject.name} does not have an EnemyDisplay component.");
+            return;
+        }
+
+        // Check if the EnemyDisplay has an enemyData assigned
+        if (enemy.enemyData == null)
+        {
+            Debug.LogError($"OnEndDrag: EnemyDisplay on {targetObject.name} has NO enemyData assigned!");
+            return;
+        }
+        Debug.Log(cardDisplay);
+        Debug.Log(cardDisplay.cardData.effects);
+        foreach (CardEffect effect in cardDisplay.cardData.effects)
+        {
+          effect.ApplyEffect(enemy);
+        }
+            // Apply effect to the enemy
+        
+        Debug.Log($"Card dropped on {enemy.enemyData.enemyName}! Dealt 10 damage.");
+        //if (eventData.pointerEnter != null) // Ensure something is under the pointer
+        //{
+        //    // Get the topmost GameObject in case we're hovering over a child object
+        //    GameObject targetObject = eventData.pointerEnter.transform.parent.parent.parent.gameObject;
+
+        //    // Try to get the EnemyDisplay script from the root object
+        //    EnemyDisplay enemy = targetObject.GetComponent<EnemyDisplay>();
+
+        //    if (enemy != null) // If an enemy was found
+        //    {
+        //        Debug.Log("Card dropped on enemy!");
+        //        // enemy.TakeDamage(cardData.attackPower); // Apply damage from card
+        //        foreach (CardEffect effect in Card.cardData.effects)
+        //        {
+        //            effect.ApplyEffect(enemy);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Debug.Log($"Pointer entered: {eventData.pointerEnter.transform.root.name}");
+        //    }
+        //}
     }
 
     private void HandleHoverState()

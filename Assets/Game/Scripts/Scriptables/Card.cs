@@ -18,6 +18,8 @@ namespace WS_DiegoCo
         public int energy;
         public string effect;
         public Sprite cardImage;
+
+        public List<CardEffect> effects;
         
         public enum CardType
         {
