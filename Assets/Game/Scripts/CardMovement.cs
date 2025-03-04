@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
-
+using WS_DiegoCo_Enemy;
 using WS_DiegoCo;
 
 public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
@@ -23,6 +23,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
     {
         rectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
+        canvasGroup = GetComponent<CanvasGroup>();
         originalScale = rectTransform.localScale;
         originalPosition = rectTransform.localPosition;
         originalRotation = rectTransform.localRotation;
@@ -86,6 +87,11 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (canvasGroup != null)
+        {
+            canvasGroup.alpha = 0.5f; // Make the card semi-transparent
+            canvasGroup.blocksRaycasts = false; // Allow raycasts to pass through the card
+        }
         if (currentState == 1)
         {
             currentState = 2;
@@ -117,6 +123,13 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (canvasGroup != null)
+        {
+            canvasGroup.alpha = 1f; // Restore full visibility
+            canvasGroup.blocksRaycasts = true; // Block raycasts again
+        }
+
+
         if (eventData.pointerEnter != null) // Ensure something is under the pointer
         {
             // Get the topmost GameObject in case we're hovering over a child object
@@ -129,32 +142,13 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
             {
                 Debug.Log("Card dropped on enemy!");
                 // enemy.TakeDamage(cardData.attackPower); // Apply damage from card
+                
             }
             else
             {
                 Debug.Log($"Pointer entered: {eventData.pointerEnter.transform.root.name}");
             }
         }
-    }
-
-    //public void OnEndDrag(PointerEventData eventData)
-    //{
-    //    canvasGroup.alpha = 1f;
-    //    canvasGroup.blocksRaycasts = true;
-
-    //    if (!eventData.pointerEnter || !eventData.pointerEnter.GetComponent<EnemyDropZone>())
-    //    {
-    //        ResetCard(); // Si on ne drop pas sur un ennemi, la carte revient en main
-    //    }
-    //}
-
-    private void ResetCard()
-    {
-        Debug.Log("Test");
-        rectTransform.localScale = originalScale;
-        rectTransform.localRotation = originalRotation;
-        rectTransform.localPosition = originalPosition;
-        glowEffect.SetActive(false);
     }
 
     private void HandleHoverState()

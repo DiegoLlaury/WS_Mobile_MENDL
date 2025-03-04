@@ -13,27 +13,31 @@ public class CardDisplay : MonoBehaviour
 
     public Image cardImage;
     public TMP_Text nameText;
-    public TMP_Text healthText;
-    public TMP_Text damageText;
-    public Image[] typeImages;
-    
-    private Color[] cardColors = {
-        Color.red, //Fire
-        new Color(0.8f, 0.52f, 0.24f), //Earth
-        Color.blue, //Water
-        new Color(0.23f, 0.06f, 0.21f), //Dark
-        Color.yellow, //Light
-        Color.cyan //Air
-    };
+    public TMP_Text effectText;
 
-    private Color[] typeColors = {
-        Color.red, //Fire
-        new Color(0.8f, 0.52f, 0.24f), //Earth
-        Color.blue, //Water
-        new Color(0.47f, 0f, 0.4f), //Dark
-        Color.yellow, //Light
-        Color.cyan //Air
-    };
+    public TMP_Text healthText;
+    public TMP_Text defenseText;
+    public TMP_Text damageText;
+    public TMP_Text energyText;
+    public TMP_Text perceptionText;
+    public TMP_Text discretionText;
+
+    public Image[] typeImages;
+
+    private Dictionary<Card.StatType, TMP_Text> statTexts;
+
+    void Awake()
+    {
+        // Initialize dictionary for easy lookup
+        statTexts = new Dictionary<Card.StatType, TMP_Text>
+        {
+            { Card.StatType.health, healthText },
+            { Card.StatType.defense, defenseText },
+            { Card.StatType.damage, damageText },
+            { Card.StatType.discretion, discretionText },
+            { Card.StatType.perception, perceptionText }
+        };
+    }
 
     public void Start()
     {
@@ -43,12 +47,34 @@ public class CardDisplay : MonoBehaviour
     private void UpdateCardDisplay()
     {
         Debug.Log(cardData.cardType[0]);
-        //Update the main card image color based on the first  card type
-        cardImage.color = cardColors[(int)cardData.cardType[0]];
 
         nameText.text = cardData.cardName;
-        healthText.text = cardData.health.ToString();
-        damageText.text = $"{cardData.damageMin} - {cardData.damageMax}";
+        energyText.text = cardData.energy.ToString();
+
+        // Update stat text fields
+        string formattedEffect = cardData.effect;
+        foreach (var stat in statTexts)
+        {
+            string placeholder = "{" + stat.Key.ToString().ToLower() + "}"; // Example: "{health}"
+            string statValue = GetStatValue(stat.Key).ToString();
+            formattedEffect = formattedEffect.Replace(placeholder, statValue);
+        }
+
+        effectText.text = formattedEffect;
+
+        foreach (var stat in statTexts)
+        {
+            stat.Value.text = GetStatValue(stat.Key).ToString();
+            stat.Value.gameObject.SetActive(false);
+        }
+
+        foreach (WS_DiegoCo.Card.StatType statType in cardData.statType)
+        {
+            if (statTexts.ContainsKey(statType))
+            {
+                statTexts[statType].gameObject.SetActive(true);
+            }
+        }
 
         //Update type images
         for (int i = 0; i < typeImages.Length; i++)
@@ -56,12 +82,26 @@ public class CardDisplay : MonoBehaviour
             if (i < cardData.cardType.Count)
             {
                 typeImages[i].gameObject.SetActive(true);
-                typeImages[i].color = typeColors[(int)cardData.cardType[i]];
             }
             else
             {
                 typeImages[i].gameObject.SetActive(false);
             }
         }
+
+       
+    }
+
+    private int GetStatValue(Card.StatType statType)
+    {
+        return statType switch
+        {
+            Card.StatType.health => cardData.health,
+            Card.StatType.defense => cardData.defense,
+            Card.StatType.damage => cardData.damage,
+            Card.StatType.discretion => cardData.discretion,
+            Card.StatType.perception => cardData.perception,
+            _ => 0
+        };
     }
 }

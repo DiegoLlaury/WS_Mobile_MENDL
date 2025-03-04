@@ -9,41 +9,39 @@ namespace WS_DiegoCo
     {
         public string cardName;
         public List<CardType> cardType;
-        public bool corruption;
+        public List<StatType> statType;
         public int health;
-        public int damageMin;
-        public int damageMax;
-        public List<DamageType> damageType;
+        public int defense;
+        public int damage;
+        public int discretion;
+        public int perception;
+        public int energy;
+        public string effect;
         public Sprite cardImage;
         
         public enum CardType
         {
-            Fire,
+            Coeur,
             
-            Earth,
+            Pique,
            
-            Water,
+            Carreau,
             
-            Air,
-
-            Dark,
-
-            Light
+            Trefle
         }
 
-        public enum DamageType
+        public enum StatType
         {
-            Fire,
+            health,
 
-            Earth,
+            defense,
 
-            Water,
+            damage,
 
-            Air,
+            discretion,
 
-            Dark,
+            perception
 
-            Light
         }
     }
 }
