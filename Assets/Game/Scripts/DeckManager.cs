@@ -7,8 +7,11 @@ using Unity.VisualScripting;
 public class DeckManager : MonoBehaviour
 {
     public List<Card> deck = new List<Card>();
+    public List<Card> discardPile = new List<Card>();
     public int startCard = 4;
-    
+    public DropZone dropZone;
+    public HandManager handManager;
+
 
     private void Start()
     {
@@ -21,10 +24,12 @@ public class DeckManager : MonoBehaviour
         //Shuffle the deck
         ShuffleDeck();
 
-        HandManager hand = FindAnyObjectByType<HandManager>();
+        handManager = FindAnyObjectByType<HandManager>();
+
+        // Draw starting cards
         for (int i = 0; i < startCard; i++)
         {
-            DrawCard(hand);
+            DrawCard();
         }
     }
 
@@ -38,18 +43,34 @@ public class DeckManager : MonoBehaviour
             deck[randomIndex] = temp;
         }
     }
-    public void DrawCard(HandManager handManager)
+    public void DrawCard()
     {
         if (deck.Count == 0)
-        return;
+        {
+            RefillDeck();
+        }
 
-        int randomIndex = Random.Range(0, deck.Count);
-        Card nextCard = deck[randomIndex];
-        
-        //Add a card
-        handManager.AddCardToHand(nextCard);
+        if (deck.Count > 0)
+        {
+            Card nextCard = deck[0];
+            deck.RemoveAt(0);
+            handManager.AddCardToHand(nextCard);
+        }
+    }
 
-        //Remove from the deck
-        deck.RemoveAt(randomIndex);
+    private void RefillDeck()
+    {
+        if (discardPile.Count > 0)
+        {
+            deck.AddRange(discardPile);
+            discardPile.Clear();
+            ShuffleDeck();
+            Debug.Log("Deck refilled with discarded cards.");
+        }
+    }
+
+    public void DiscardCard(Card card)
+    {
+        discardPile.Add(card);
     }
 }

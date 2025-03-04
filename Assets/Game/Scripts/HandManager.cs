@@ -1,16 +1,13 @@
-using NUnit.Framework;
+
 using UnityEngine;
 using WS_DiegoCo;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 using TMPro;
-using UnityEngine.InputSystem.XR.Haptics;
 
 public class HandManager : MonoBehaviour
 {
     public DeckManager deck;
-    public CardMovement movement;
     public GameObject cardPrefab; //Assign card prefab in inspector
     public Transform handTransform; //Root of the hand position
     public Transform deckTransform;
@@ -21,95 +18,89 @@ public class HandManager : MonoBehaviour
     public float moveDuration = 0.5f;
 
     public List<GameObject> cardsInHand = new List<GameObject>(); //Hold a list of th card objects in our hand
-    private List<Vector3> cardsStartPos = new List<Vector3>();
-    private List<Vector3> cardsTargetPos = new List<Vector3>();
-    private List<Quaternion> cardsStartRot = new List<Quaternion>();
-    private List<Quaternion> cardsTargetRot = new List<Quaternion>();
+
+    private void Start()
+    {
+        UpdateCardPositions();
+    }
 
     public void AddCardToHand(Card cardData)
     {
-        Debug.Log("TEST");
+        Debug.Log("Drawing card...");
 
-        //Instantiate the card
-        
+        // Instantiate the card at the deck's position
         GameObject newCard = Instantiate(cardPrefab, deckTransform.position, Quaternion.identity, handTransform);
 
-        //Set the CardData of the instantiated card
-        newCard.GetComponent<CardDisplay>().cardData = cardData;
+        // Assign card data
+        CardDisplay display = newCard.GetComponent<CardDisplay>();
+        if (display != null)
+            display.cardData = cardData;
+        else
+            Debug.LogError("CardDisplay component missing on cardPrefab!");
 
+        // Add to hand
         cardsInHand.Add(newCard);
 
-        for (int i = 0; i < cardsInHand.Count-1; i++)
-        {
-            cardsTargetPos[i] = CalculateCardPosition(i);
-            cardsTargetRot[i] = CalculateCardRotation(i);
-        }
-
-        cardsStartPos.Add(new Vector3());
-        cardsStartRot.Add(new Quaternion());
-
-        cardsTargetPos.Add(CalculateCardPosition(cardsInHand.Count - 1));
-        cardsTargetRot.Add(CalculateCardRotation(cardsInHand.Count - 1));
-
-        // Calculer la position finale avant l'animation
-
-        StartCoroutine(MoveCardToHand());
+        // Recalculate positions and animate movement
+        UpdateCardPositions();
     }
 
-    private IEnumerator MoveCardToHand()
+    private void UpdateCardPositions()
     {
-        for (int i = 0; i < cardsInHand.Count; i++)
-        {
-            cardsStartPos[i] = cardsInHand[i].transform.position;
-            cardsStartRot[i] = cardsInHand[i].transform.rotation;
-        }
+        int cardCount = cardsInHand.Count;
+        if (cardCount == 0) return;
 
+        for (int i = 0; i < cardCount; i++)
+        {
+            Vector3 targetPos = CalculateCardPosition(i, cardCount);
+            Quaternion targetRot = CalculateCardRotation(i, cardCount);
+            StartCoroutine(AnimateCardMovement(cardsInHand[i], targetPos, targetRot));
+        }
+    }
+
+    private IEnumerator AnimateCardMovement(GameObject card, Vector3 targetPos, Quaternion targetRot)
+    {
         float elapsedTime = 0f;
+        Vector3 startPos = card.transform.position;
+        Quaternion startRot = card.transform.rotation;
 
         while (elapsedTime < moveDuration)
         {
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / moveDuration;
-            for (int i = 0; i < cardsInHand.Count; i++)
-            {
-                cardsInHand[i].transform.position = Vector3.Lerp(cardsStartPos[i], cardsTargetPos[i], t);
-                cardsInHand[i].transform.rotation = Quaternion.Lerp(cardsStartRot[i], cardsTargetRot[i], t);
-            }
+
+            card.transform.position = Vector3.Lerp(startPos, targetPos, t);
+            card.transform.rotation = Quaternion.Lerp(startRot, targetRot, t);
+
             yield return null;
         }
 
-        // S'assurer que la carte arrive bien à destination
-        for (int i = 0; i < cardsInHand.Count; i++)
-        {
-            cardsInHand[i].transform.position = cardsTargetPos[i];
-            cardsInHand[i].transform.rotation = cardsTargetRot[i];
-        }
+        card.transform.position = targetPos;
+        card.transform.rotation = targetRot;
     }
 
-    private void Update()
+    private Vector3 CalculateCardPosition(int index, int totalCards)
     {
-
-        
-    }
-    private Vector3 CalculateCardPosition(int cardIndex)
-    {
-        int cardCount = cardsInHand.Count;
-        if (cardCount == 0) return handTransform.position;
-
-        float horizontalOffset = cardSpacing * (cardIndex - (cardCount - 1) / 2f);
-
-        float normalizedPosition = (cardCount > 1) ? (2f * cardIndex / (cardCount - 1) - 1f) : 0f;
+        float horizontalOffset = cardSpacing * (index - (totalCards - 1) / 2f);
+        float normalizedPosition = (totalCards > 1) ? (2f * index / (totalCards - 1) - 1f) : 0f;
         float verticalOffset = verticalSpacing * (1 - normalizedPosition * normalizedPosition);
 
         return handTransform.position + new Vector3(horizontalOffset, verticalOffset, 0f);
     }
 
-    private Quaternion CalculateCardRotation(int cardIndex)
+    private Quaternion CalculateCardRotation(int index, int totalCards)
     {
-        int cardCount = cardsInHand.Count;
-        if (cardCount == 0) return Quaternion.Euler(0f, 0f, 0f);
-
-        float rotationAngle = (fanSpread * (cardIndex - (cardCount - 1) / 2f));
+        float rotationAngle = fanSpread * (index - (totalCards - 1) / 2f);
         return Quaternion.Euler(0f, 0f, rotationAngle);
+    }
+
+    public void RemoveCardFromHand(GameObject card)
+    {
+        if (cardsInHand.Contains(card))
+        {
+            cardsInHand.Remove(card);
+            Destroy(card);
+            UpdateCardPositions(); // Recalculate hand positions after removal
+        }
     }
 }
