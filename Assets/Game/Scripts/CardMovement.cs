@@ -2,7 +2,9 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
 
-public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
+using WS_DiegoCo;
+
+public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private RectTransform rectTransform;
     private Canvas canvas;
@@ -15,10 +17,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
     private Vector3 originalPosition;
 
     [SerializeField] private float selectScale = 1.1f;
-    [SerializeField] private Vector2 cardPlay;
-    [SerializeField] private Vector3 playPosition;
     [SerializeField] private GameObject glowEffect;
-    [SerializeField] private GameObject playArrow;
 
     void Awake()
     {
@@ -62,7 +61,6 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         rectTransform.localRotation = originalRotation;
         rectTransform.localPosition = originalPosition;
         glowEffect.SetActive(false);
-        playArrow.SetActive(false);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -113,13 +111,28 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
                     out localPointerPosition))
             {
                 rectTransform.position = eventData.position; // Use eventData.position instead of Input.mousePosition
+            }
+        }
+    }
 
-                //if (rectTransform.localPosition.y > cardPlay.y)
-                //{
-                   
-                //    playArrow.SetActive(true);
-                //    rectTransform.localPosition = playPosition;
-                //}
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        if (eventData.pointerEnter != null) // Ensure something is under the pointer
+        {
+            // Get the topmost GameObject in case we're hovering over a child object
+            GameObject targetObject = eventData.pointerEnter.transform.parent.parent.parent.gameObject;
+
+            // Try to get the EnemyDisplay script from the root object
+            EnemyDisplay enemy = targetObject.GetComponent<EnemyDisplay>();
+
+            if (enemy != null) // If an enemy was found
+            {
+                Debug.Log("Card dropped on enemy!");
+                // enemy.TakeDamage(cardData.attackPower); // Apply damage from card
+            }
+            else
+            {
+                Debug.Log($"Pointer entered: {eventData.pointerEnter.transform.root.name}");
             }
         }
     }
@@ -157,13 +170,6 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
     private void HandlePlayState()
     {
-        rectTransform.localPosition = playPosition;
-        rectTransform.localRotation = Quaternion.identity;
-
-        if (Input.touchCount > 0 && Input.touches[0].position.y < cardPlay.y)
-        {
-            currentState = 2;
-            playArrow.SetActive(false);
-        }
+      
     }
 }

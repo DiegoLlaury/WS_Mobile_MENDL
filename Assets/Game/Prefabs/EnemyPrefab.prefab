@@ -56,7 +56,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -360,10 +360,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5371290216997836188}
   - component: {fileID: 6277133503964553603}
-  - component: {fileID: 7310540548373284685}
+  - component: {fileID: 3001742903894381400}
   m_Layer: 0
   m_Name: EnemyPrefab
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -378,7 +378,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3340615060505500995}
@@ -428,9 +428,9 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 200, y: 400}
   m_EdgeRadius: 0
---- !u!114 &7310540548373284685
+--- !u!114 &3001742903894381400
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -443,7 +443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 7c61995196e4de64a8f7eca48fcbe5ef, type: 2}
-  enemyImageDisplay: {fileID: 0}
+  enemyImageDisplay: {fileID: 298784443, guid: 132358e9bf26b60458b731bf001e31db, type: 3}
   nameText: {fileID: 5486652391859542003}
   healthText: {fileID: 7739115986682599946}
   damageText: {fileID: 4282859809197799850}
