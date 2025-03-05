@@ -51,13 +51,19 @@ public class GameManager : MonoBehaviour
     public void EndEnemyTurn()
     {
         Debug.Log("Enemy Turn End");
+        Debug.Log($"Cards in hand before discarding: {handManager.cardsInHand.Count}");
 
-        // Discard all player cards
-        foreach (var card in handManager.cardsInHand.ToArray())
+        for (int i = handManager.cardsInHand.Count - 1; i >= 0; i--)
         {
+            GameObject card = handManager.cardsInHand[i];
+
+            Debug.Log($"Discarding card: {card.name}");
+
             handManager.RemoveCardFromHand(card);
             deckManager.DiscardCard(card.GetComponent<CardDisplay>().cardData);
         }
+
+        Debug.Log($"Cards in hand after discarding: {handManager.cardsInHand.Count}");
 
         StartPlayerTurn();
     }

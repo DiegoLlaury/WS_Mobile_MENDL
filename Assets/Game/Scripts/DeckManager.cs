@@ -25,11 +25,9 @@ public class DeckManager : MonoBehaviour
         ShuffleDeck();
 
         handManager = FindAnyObjectByType<HandManager>();
-
-        // Draw starting cards
-        DrawCard();
         
     }
+
 
     public void ShuffleDeck()
     {

@@ -46,7 +46,6 @@ public class CardDisplay : MonoBehaviour
 
     private void UpdateCardDisplay()
     {
-        Debug.Log(cardData.cardType[0]);
 
         nameText.text = cardData.cardName;
         energyText.text = cardData.energy.ToString();

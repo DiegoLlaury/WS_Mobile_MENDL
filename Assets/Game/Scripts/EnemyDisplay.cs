@@ -9,7 +9,6 @@ public class EnemyDisplay : MonoBehaviour
 {
 
     public Enemy enemyData;
-    public GameObject enemyPrefab;
     public Sprite enemyImageDisplay;
     public TMP_Text nameText;
     public TMP_Text healthText;
@@ -24,7 +23,6 @@ public class EnemyDisplay : MonoBehaviour
         
         enemyData.health = enemyData.maxHealth;
         enemyData.damage = enemyData.maxDamage;
-        GameObject newEnemy = Instantiate(enemyPrefab);
         UpdateEnemyDisplay();
     }
 

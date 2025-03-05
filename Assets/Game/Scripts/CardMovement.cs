@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
 using WS_DiegoCo_Enemy;
@@ -86,6 +86,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
         if (currentState == 1)
         {
             currentState = 2;
+
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 canvas.GetComponent<RectTransform>(),
                 eventData.position,
@@ -100,13 +101,10 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
     {
         if (currentState == 2)
         {
-            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                    canvas.GetComponent<RectTransform>(),
-                    eventData.position,
-                    eventData.pressEventCamera,
-                    out Vector2 localPointerPosition))
+            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.GetComponent<RectTransform>(), eventData.position, eventData.pressEventCamera, out Vector2 localPointerPosition))
             {
                 rectTransform.position = eventData.position;
+               
             }
         }
     }
@@ -148,11 +146,12 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
         {
             ApplyCardEffects(enemy);
             player.UseEnergy(cardData.energy);
+            HandleCardUsed();
             if (enemy.enemyData.health <= 0)
             {
                 enemyManager.RemoveEnemy(enemy);
             }
-            HandleCardUsed();
+            
         }
         else
         {
@@ -163,15 +162,22 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
 
     private void ApplyCardEffects(EnemyDisplay enemy)
     {
-        if (cardDisplay == null || cardDisplay.cardData == null)
+        if (enemy == null)
         {
-            Debug.LogError("ApplyCardEffects: Card data is missing!");
-            return;
+            Debug.LogError("ApplyCardEffects: Enemy is null!");
+            return; // Prevent further execution
         }
 
         foreach (CardEffect effect in cardDisplay.cardData.effects)
         {
-            effect.ApplyEffect(enemy);
+            if (effect is DamageEffect damageEffect)
+            {
+                damageEffect.ApplyEffect(enemy, cardData.damage); // Pass damage value
+            }
+            else
+            {
+                effect.ApplyEffect(enemy); // Keep other effects unchanged
+            }
         }
 
         Debug.Log($"Card {cardDisplay.cardData.cardName} applied effects to {enemy.enemyData.enemyName}.");
