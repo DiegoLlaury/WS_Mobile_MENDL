@@ -443,9 +443,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 7c61995196e4de64a8f7eca48fcbe5ef, type: 2}
+  enemyPrefab: {fileID: 4701164408246177508}
   enemyImageDisplay: {fileID: 298784443, guid: 132358e9bf26b60458b731bf001e31db, type: 3}
   nameText: {fileID: 5486652391859542003}
   healthText: {fileID: 7739115986682599946}
+  defenseText: {fileID: 0}
+  precisionText: {fileID: 0}
+  discretionText: {fileID: 0}
   damageText: {fileID: 4282859809197799850}
 --- !u!1 &5560518750635153969
 GameObject:

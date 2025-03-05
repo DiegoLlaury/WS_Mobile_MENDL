@@ -60,12 +60,24 @@ public class HandManager : MonoBehaviour
 
     private IEnumerator AnimateCardMovement(GameObject card, Vector3 targetPos, Quaternion targetRot)
     {
+        if (card == null)
+        {
+            Debug.LogWarning("AnimateCardMovement: Card is null before animation starts.");
+            yield break;
+        }
+
         float elapsedTime = 0f;
         Vector3 startPos = card.transform.position;
         Quaternion startRot = card.transform.rotation;
 
         while (elapsedTime < moveDuration)
         {
+            if (card == null) // Check if the card has been destroyed mid-animation
+            {
+                Debug.LogWarning("AnimateCardMovement: Card was destroyed mid-animation.");
+                yield break;
+            }
+
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / moveDuration;
 
@@ -74,9 +86,11 @@ public class HandManager : MonoBehaviour
 
             yield return null;
         }
-
-        card.transform.position = targetPos;
-        card.transform.rotation = targetRot;
+        if (card != null)
+        {
+            card.transform.position = targetPos;
+            card.transform.rotation = targetRot;
+        } // Final check before setting position{           
     }
 
     private Vector3 CalculateCardPosition(int index, int totalCards)
@@ -99,6 +113,7 @@ public class HandManager : MonoBehaviour
         if (cardsInHand.Contains(card))
         {
             cardsInHand.Remove(card);
+            StopCoroutine(AnimateCardMovement(card, Vector3.zero, Quaternion.identity)); // Stops animation for this card only
             Destroy(card);
             UpdateCardPositions(); // Recalculate hand positions after removal
         }

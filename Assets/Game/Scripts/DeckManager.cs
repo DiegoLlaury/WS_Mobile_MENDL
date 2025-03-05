@@ -27,13 +27,11 @@ public class DeckManager : MonoBehaviour
         handManager = FindAnyObjectByType<HandManager>();
 
         // Draw starting cards
-        for (int i = 0; i < startCard; i++)
-        {
-            DrawCard();
-        }
+        DrawCard();
+        
     }
 
-    private void ShuffleDeck()
+    public void ShuffleDeck()
     {
         for (int i = 0; i < deck.Count; i++)
         {
@@ -45,6 +43,9 @@ public class DeckManager : MonoBehaviour
     }
     public void DrawCard()
     {
+       for (int i = 0; i < startCard; i++)
+       {
+
         if (deck.Count == 0)
         {
             RefillDeck();
@@ -56,6 +57,8 @@ public class DeckManager : MonoBehaviour
             deck.RemoveAt(0);
             handManager.AddCardToHand(nextCard);
         }
+
+       }
     }
 
     private void RefillDeck()

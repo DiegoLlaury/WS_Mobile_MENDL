@@ -6,12 +6,14 @@ using WS_DiegoCo;
 using NUnit.Framework;
 using System;
 using Unity.VisualScripting;
+using WS_DiegoCo_Middle;
 
 public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private RectTransform rectTransform;
     private Canvas canvas;
     private CanvasGroup canvasGroup;
+    private PlayerEvent player;
     
     private Vector2 originalLocalPointerPosition;
     private Vector3 originalPanelLocalPosition;
@@ -25,6 +27,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
     private Card cardData;
     private DeckManager deckManager;
     private HandManager handManager;
+    private EnemyManager enemyManager;
 
 
     [SerializeField] private float selectScale = 1.1f;
@@ -39,6 +42,8 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
         cardDisplay = GetComponent<CardDisplay>();
         deckManager = FindAnyObjectByType<DeckManager>();
         handManager = FindAnyObjectByType<HandManager>();
+        player = FindAnyObjectByType<PlayerEvent>();
+        enemyManager = FindAnyObjectByType<EnemyManager>();
 
         if (cardDisplay != null)
         {
@@ -54,6 +59,9 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
     {
         if (currentState == 0)
         {
+            originalPosition = rectTransform.localPosition;
+            originalRotation = rectTransform.localRotation;
+            originalScale = rectTransform.localScale;
             currentState = 1;
             HandleHoverState();
         }
@@ -114,6 +122,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
         if (eventData.pointerEnter == null)
         {
             Debug.LogWarning("OnEndDrag: No object detected under the pointer.");
+            TransitionToState0();
             return;
         }
 
@@ -126,11 +135,23 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
             return;
         }
 
+        if (!player.CanPlayCard(cardData.energy))
+        {
+            Debug.LogWarning("Not enough energy to play this card!");
+            TransitionToState0();
+            return;
+        }
+
         // Check if the card is dropped on an enemy
         EnemyDisplay enemy = targetObject.GetComponentInParent<EnemyDisplay>();
         if (enemy != null)
         {
             ApplyCardEffects(enemy);
+            player.UseEnergy(cardData.energy);
+            if (enemy.enemyData.health <= 0)
+            {
+                enemyManager.RemoveEnemy(enemy);
+            }
             HandleCardUsed();
         }
         else

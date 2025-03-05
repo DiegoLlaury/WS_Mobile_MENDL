@@ -9,16 +9,22 @@ public class EnemyDisplay : MonoBehaviour
 {
 
     public Enemy enemyData;
-
+    public GameObject enemyPrefab;
     public Sprite enemyImageDisplay;
     public TMP_Text nameText;
     public TMP_Text healthText;
+    public TMP_Text defenseText;
+    public TMP_Text precisionText;
+    public TMP_Text discretionText;
     public TMP_Text damageText;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
         enemyData.health = enemyData.maxHealth;
+        enemyData.damage = enemyData.maxDamage;
+        GameObject newEnemy = Instantiate(enemyPrefab);
         UpdateEnemyDisplay();
     }
 

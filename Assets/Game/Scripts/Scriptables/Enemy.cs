@@ -9,9 +9,13 @@ namespace WS_DiegoCo_Enemy
         public string enemyName;
         public int maxHealth;
         public int health;
+        public int maxDefense;
         public int defense;
+        public int maxDamage;
         public int damage;
+        public int maxDiscretion;
         public int discretion;
+        public int maxPerception;
         public int perception;
         public Sprite enemyImage;
     }

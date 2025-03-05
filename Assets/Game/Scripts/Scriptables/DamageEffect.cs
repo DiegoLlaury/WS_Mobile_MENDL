@@ -1,12 +1,13 @@
 using UnityEngine;
+using WS_DiegoCo;
 
 [CreateAssetMenu(fileName = "New Damage Effect", menuName = "Card Effects/Damage")]
 public class DamageEffect : CardEffect
 {
-    public int damageAmount;
+    private Card carddata;
 
     public override void ApplyEffect(EnemyDisplay enemy)
     {
-        enemy.TakeDamage(damageAmount);
+        enemy.TakeDamage(carddata.damage);
     }
 }
