@@ -7,6 +7,8 @@ using NUnit.Framework;
 using System;
 using Unity.VisualScripting;
 using WS_DiegoCo_Middle;
+using static UnityEngine.EventSystems.EventTrigger;
+using System.Collections.Generic;
 
 public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -104,7 +106,6 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
             if (RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.GetComponent<RectTransform>(), eventData.position, eventData.pressEventCamera, out Vector2 localPointerPosition))
             {
                 rectTransform.position = eventData.position;
-               
             }
         }
     }
@@ -124,15 +125,6 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
             return;
         }
 
-        GameObject targetObject = eventData.pointerEnter.gameObject;
-
-        // Check if the card is dropped on the DropZone
-        if (targetObject.CompareTag("DropZone"))
-        {
-            HandleCardUsed();
-            return;
-        }
-
         if (!player.CanPlayCard(cardData.energy))
         {
             Debug.LogWarning("Not enough energy to play this card!");
@@ -140,24 +132,62 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
             return;
         }
 
-        // Check if the card is dropped on an enemy
-        EnemyDisplay enemy = targetObject.GetComponentInParent<EnemyDisplay>();
-        if (enemy != null)
+        EnemyDisplay enemy = GetEnemyUnderPointer(eventData);
+        bool isAttackCard = cardData.dropType.Contains(Card.DropType.Attack);
+        bool isSkillCard = cardData.dropType.Contains(Card.DropType.Competence);
+
+        Debug.Log(isAttackCard);
+        Debug.Log(isAttackCard);
+
+        if (isAttackCard)
         {
-            ApplyCardEffects(enemy);
+            if (enemy != null)
+            {
+                ApplyCardEffects(enemy);
+                player.UseEnergy(cardData.energy);
+                HandleCardUsed();
+
+                if (enemy.enemyData.health <= 0)
+                {
+                    enemyManager.RemoveEnemy(enemy);
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Attack card must target an enemy!");
+                TransitionToState0();
+            }
+        }
+        else if (isSkillCard)
+        {
+            Debug.Log("sa marche ?");
+            ApplyCardEffects(null); // No enemy needed
             player.UseEnergy(cardData.energy);
             HandleCardUsed();
-            if (enemy.enemyData.health <= 0)
-            {
-                enemyManager.RemoveEnemy(enemy);
-            }
-            
         }
         else
         {
-            Debug.LogWarning("OnEndDrag: Card was not placed on a valid target.");
+            Debug.LogWarning("Unknown card type!");
             TransitionToState0();
         }
+    }
+    private EnemyDisplay GetEnemyUnderPointer(PointerEventData eventData)
+    {
+        PointerEventData pointerData = new PointerEventData(EventSystem.current)
+        {
+            position = eventData.position
+        };
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerData, results);
+
+        foreach (RaycastResult result in results)
+        {
+            EnemyDisplay enemy = result.gameObject.GetComponent<EnemyDisplay>();
+            if (enemy != null) return enemy;
+        }
+
+        return null;
     }
 
     private void ApplyCardEffects(EnemyDisplay enemy)
@@ -170,14 +200,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
 
         foreach (CardEffect effect in cardDisplay.cardData.effects)
         {
-            if (effect is DamageEffect damageEffect)
-            {
-                damageEffect.ApplyEffect(enemy, cardData, player); // Pass damage value
-            }
-            else
-            {
-                effect.ApplyEffect(enemy, cardData, player); // Keep other effects unchanged
-            }
+            effect.ApplyEffect(enemy, cardData, player);
         }
 
         Debug.Log($"Card {cardDisplay.cardData.cardName} applied effects to {enemy.enemyData.enemyName}.");

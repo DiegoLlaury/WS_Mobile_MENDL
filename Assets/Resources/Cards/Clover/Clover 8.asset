@@ -22,9 +22,7 @@ MonoBehaviour:
   discretion: 0
   perception: 0
   energy: 1
-  effect: "Lancez un d\xE9, si le r\xE9sultat est inf\xE9rieur \xE0 3 r\xE9g\xE9nerez
-    [health], entre 3 et 5 gagnez {defense} de bouclier, est \xE9gal \xE0 6 gagnez
-    1 point d'\xE9nergie."
+  effect: "Lancez un d\xE9 pour une r\xE9compense al\xE9atoire."
   cardImage: {fileID: 0}
   effects:
   - {fileID: 11400000, guid: 6927cd7732c294b4d9c47360e7ba0884, type: 2}

@@ -22,8 +22,8 @@ MonoBehaviour:
   discretion: 0
   perception: 0
   energy: 1
-  effect: "Lancez un d\xE9, si le r\xE9sultat est pair infligez 2 fois ce r\xE9sultat
-    en d\xE9gats, s'il est impair, gagnez 2 fois le r\xE9sultat en points de vie."
+  effect: "Lancez un d\xE9 :\\n- pair : infligez 2 fois ce r\xE9sultat en d\xE9gats,
+    \\n- impair : gagnez 2 fois le r\xE9sultat en points de vie."
   cardImage: {fileID: 0}
   effects:
   - {fileID: 11400000, guid: 89eb57d0eee99454fbfd4553b60af3d2, type: 2}
