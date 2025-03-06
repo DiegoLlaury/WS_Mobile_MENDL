@@ -4,6 +4,7 @@ using TMPro;
 using System.Collections.Generic;
 using WS_DiegoCo_Middle;
 using WS_DiegoCo;
+using UnityEngine.Rendering;
 
 public class PlayerEvent : MonoBehaviour
 {
@@ -53,6 +54,44 @@ public class PlayerEvent : MonoBehaviour
             GameManager.Instance.CheckGameOver();
         }
     }
+
+    public void GainHealth(int health)
+    {
+        cardData.health = Mathf.Clamp(cardData.health, 0, cardData.maxHealth);
+        if (cardData.health < cardData.maxHealth)
+        {
+            cardData.health += health;
+            UpdatePlayerEvent();
+        }
+        else
+        {
+
+        }
+    }
+
+    public void GainShield(int shield)
+    {
+        
+    }
+
+    public void GainPerception(int perception)
+    {
+        cardData.perception += perception;
+        UpdatePlayerEvent();
+    }
+
+    public void GainInfiltration(int infiltration)
+    {
+        cardData.discretion += infiltration;
+        UpdatePlayerEvent();
+    }
+
+    public void GainEnergy(int energy)
+    {
+        currentEnergy += energy;
+        UpdatePlayerEvent();
+    }
+
     public void ApplyDebuff(Card.StatType stat, int amount)
     {
            switch (stat)

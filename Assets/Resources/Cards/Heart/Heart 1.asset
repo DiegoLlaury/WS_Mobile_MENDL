@@ -17,7 +17,7 @@ MonoBehaviour:
   statType: 02000000
   health: 0
   defense: 0
-  damage: 5
+  damage: 10
   discretion: 0
   perception: 0
   energy: 1

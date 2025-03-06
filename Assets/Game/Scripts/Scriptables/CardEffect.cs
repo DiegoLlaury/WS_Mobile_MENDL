@@ -1,12 +1,8 @@
 using UnityEngine;
+using WS_DiegoCo;
 
 public abstract class CardEffect : ScriptableObject, ICardEffect
 {
-    
-    public abstract void ApplyEffect(EnemyDisplay enemy);
 
-    public virtual void ApplyEffect(EnemyDisplay enemy, int value)
-    {
-        ApplyEffect(enemy);
-    }
+    public abstract void ApplyEffect(EnemyDisplay enemy, Card cardData, PlayerEvent player);
 }

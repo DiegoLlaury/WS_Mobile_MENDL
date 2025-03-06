@@ -172,11 +172,11 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
         {
             if (effect is DamageEffect damageEffect)
             {
-                damageEffect.ApplyEffect(enemy, cardData.damage); // Pass damage value
+                damageEffect.ApplyEffect(enemy, cardData, player); // Pass damage value
             }
             else
             {
-                effect.ApplyEffect(enemy); // Keep other effects unchanged
+                effect.ApplyEffect(enemy, cardData, player); // Keep other effects unchanged
             }
         }
 

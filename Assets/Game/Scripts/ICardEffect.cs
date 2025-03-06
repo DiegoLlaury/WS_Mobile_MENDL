@@ -1,8 +1,7 @@
 using UnityEngine;
+using WS_DiegoCo;
 
 public interface ICardEffect
 {
-    void ApplyEffect(EnemyDisplay enemy); // Apply effect on an enemy
-
-    
+    public void ApplyEffect(EnemyDisplay enemy, Card cardData, PlayerEvent player); // Apply effect on an enemy
 }

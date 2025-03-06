@@ -5,13 +5,10 @@ using WS_DiegoCo;
 public class DamageEffect : CardEffect
 {
     // Implementation of the original abstract method (fallback for missing parameters)
-    public override void ApplyEffect(EnemyDisplay enemy)
-    {
-        ApplyEffect(enemy, 0); // Default to 0 damage if no value is given
-    }
+
 
     // The new, more flexible method
-    public override void ApplyEffect(EnemyDisplay enemy, int damage)
+    public override void ApplyEffect(EnemyDisplay enemy, Card cardData, PlayerEvent player)
     {
         if (enemy == null)
         {
@@ -19,6 +16,6 @@ public class DamageEffect : CardEffect
             return;
         }
 
-        enemy.TakeDamage(damage);
+        enemy.TakeDamage(cardData.damage);
     }
 }

@@ -10,6 +10,7 @@ namespace WS_DiegoCo
         public string cardName;
         public List<CardType> cardType;
         public List<StatType> statType;
+        public List<DropType> dropType;
         public int health;
         public int defense;
         public int damage;
@@ -30,6 +31,13 @@ namespace WS_DiegoCo
             Carreau,
             
             Trefle
+        }
+
+        public enum DropType
+        {
+            Attack,
+
+            Competence
         }
 
         public enum StatType
