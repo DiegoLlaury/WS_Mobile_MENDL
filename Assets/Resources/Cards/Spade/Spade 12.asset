@@ -15,14 +15,14 @@ MonoBehaviour:
   cardName: Triple Damage
   cardType: 01000000
   statType: 02000000
-  dropType: 00000000
+  dropType: 01000000
   health: 0
   defense: 0
   damage: 0
   discretion: 0
   perception: 0
-  energy: 2
-  effect: "Lancez un d\xE9, infligez 3 fois le r\xE9sultat en d\xE9g\xE2ts."
+  energy: 0
+  effect: "Infligez {damage} d\xE9gats et Faiblesse pendant un tour."
   cardImage: {fileID: 0}
   effects:
   - {fileID: 11400000, guid: 3f113aee96f077f4e874d77bb7a614c7, type: 2}

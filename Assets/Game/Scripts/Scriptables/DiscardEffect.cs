@@ -24,7 +24,7 @@ public class DiscardEffect : CardEffect
     public int drawAmountAfterDiscard = 0;  // Used when drawing after discard
 
 
-    public override void ApplyEffect(EnemyDisplay enemy, Card cardData, PlayerEvent player, DeckManager deck, HandManager hand)
+    public override void ApplyEffect(EnemyDisplay enemy, Card cardData, PlayerEvent player, DeckManager deck, HandManager hand, GameManager gameManager, EnemyManager enemyManager)
     {
         List<GameObject> cardsToDiscard = new List<GameObject>();
 

@@ -8,12 +8,14 @@ using WS_DiegoCo;
     {
         Player,
 
-        Enemy
+        Enemy,
+
+        AllEnemies
     }
     public TargetDamage targetDamage;
 
     // The new, more flexible method
-    public override void ApplyEffect(EnemyDisplay enemy, Card cardData, PlayerEvent player, DeckManager deck, HandManager hand)
+    public override void ApplyEffect(EnemyDisplay enemy, Card cardData, PlayerEvent player, DeckManager deck, HandManager hand, GameManager gameManager, EnemyManager enemyManager)
     {
         switch (targetDamage)
         {
@@ -25,6 +27,12 @@ using WS_DiegoCo;
                 enemy.TakeDamage(cardData.damage);
                 break;
 
+            case TargetDamage.AllEnemies:
+                foreach (EnemyDisplay enemyObject in enemyManager.enemies)
+                {
+                    enemyObject.TakeDamage(cardData.damage);
+                }
+                break;
         }      
     }
  }

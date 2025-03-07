@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Pair Impair
   cardType: 03000000
-  statType: 0000000003000000
+  statType: 04000000
   dropType: 01000000
   health: 5
   defense: 0
   damage: 0
   discretion: 0
   perception: 8
-  energy: 1
+  energy: 3
   effect: "Lancez un d\xE9 : \\n- pair : gagnez {perception} perception, \\n- impair
     : gagnez 5 points de vie."
   cardImage: {fileID: 0}

@@ -38,7 +38,6 @@ public class CardDisplay : MonoBehaviour
             { Card.StatType.damage, damageText },
             { Card.StatType.discretion, discretionText },
             { Card.StatType.perception, perceptionText },
-            { Card.StatType.shield, shieldText }
         };
     }
 
@@ -100,7 +99,7 @@ public class CardDisplay : MonoBehaviour
         return statType switch
         {
             Card.StatType.health => cardData.health,
-            Card.StatType.shield => cardData.shield,
+            Card.StatType.defense => cardData.defense,
             Card.StatType.damage => cardData.damage,
             Card.StatType.discretion => cardData.discretion,
             Card.StatType.perception => cardData.perception,

@@ -16,7 +16,7 @@ public class DrawEffect : CardEffect
 
     public TypeDraw typeDraw;
 
-    public override void ApplyEffect(EnemyDisplay enemy, Card cardData, PlayerEvent player, DeckManager deck, HandManager hand)
+    public override void ApplyEffect(EnemyDisplay enemy, Card cardData, PlayerEvent player, DeckManager deck, HandManager hand, GameManager gameManager, EnemyManager enemyManager)
     {
         switch (typeDraw)
         {

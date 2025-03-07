@@ -12,7 +12,7 @@ namespace WS_DiegoCo
         public List<StatType> statType;
         public List<DropType> dropType;
         public int health;
-        public int shield;
+        public int defense;
         public int damage;
         public int discretion;
         public int perception;
@@ -50,10 +50,7 @@ namespace WS_DiegoCo
 
             discretion,
 
-            perception,
-
-            shield
-
+            perception
         }
     }
 }

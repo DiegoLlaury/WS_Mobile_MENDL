@@ -21,7 +21,7 @@ MonoBehaviour:
   damage: 0
   discretion: 0
   perception: 0
-  energy: 1
+  energy: 2
   effect: "Lancez un d\xE9 pour une r\xE9compense al\xE9atoire."
   cardImage: {fileID: 0}
   effects:
