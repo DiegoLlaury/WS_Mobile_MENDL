@@ -1,24 +1,10 @@
-using System.Collections.Generic;
 using UnityEngine;
-using WS_DiegoCo;
+using UnityEngine.EventSystems;
 
-
-public class DropZone : MonoBehaviour
+public class SkillDropZone : MonoBehaviour
 {
-    public List<Card> discardedCards = new List<Card>(); // List to store used cards
-
-    public void AddCardToDiscard(Card card)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        discardedCards.Add(card);
-    }
-
-    public List<Card> GetDiscardedCards()
-    {
-        return discardedCards;
-    }
-
-    public void ClearDiscardPile()
-    {
-        discardedCards.Clear();
+        Debug.Log($"Skill card entered drop zone: {other.name}");
     }
 }

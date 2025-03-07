@@ -8,8 +8,8 @@ public class DeckManager : MonoBehaviour
 {
     public List<Card> deck = new List<Card>();
     public List<Card> discardPile = new List<Card>();
-    public int startCard = 4;
-    public DropZone dropZone;
+    
+   
     public HandManager handManager;
 
 
@@ -39,9 +39,9 @@ public class DeckManager : MonoBehaviour
             deck[randomIndex] = temp;
         }
     }
-    public void DrawCard()
+    public void DrawCard(int cardNumber)
     {
-       for (int i = 0; i < startCard; i++)
+       for (int i = 0; i < cardNumber; i++)
        {
 
         if (deck.Count == 0)

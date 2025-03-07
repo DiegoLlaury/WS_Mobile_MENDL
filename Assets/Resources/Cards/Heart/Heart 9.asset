@@ -17,11 +17,11 @@ MonoBehaviour:
   statType: 0000000002000000
   dropType: 00000000
   health: 2
-  defense: 0
+  shield: 0
   damage: 3
   discretion: 0
   perception: 0
-  energy: 1
+  energy: 2
   effect: "Lancez un d\xE9 :\\n- pair : infligez 2 fois ce r\xE9sultat en d\xE9gats,
     \\n- impair : gagnez 2 fois le r\xE9sultat en points de vie."
   cardImage: {fileID: 0}

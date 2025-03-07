@@ -2029,7 +2029,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -2057,6 +2057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186966cb257aa584c9edeb83b1a0667a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentDraggedCard: {fileID: 0}
   currentState: 0
   cardDisplay: {fileID: 0}
   selectScale: 1.1
@@ -2095,6 +2096,7 @@ MonoBehaviour:
   energyText: {fileID: 7530014739039198172}
   perceptionText: {fileID: 6071570937065860154}
   discretionText: {fileID: 9007339535926441780}
+  shieldText: {fileID: 1492089743585057714}
   dropTypeText: {fileID: 8098459949794490172}
   typeImages:
   - {fileID: 6658767950475271517}

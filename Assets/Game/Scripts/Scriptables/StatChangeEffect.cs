@@ -8,7 +8,7 @@ public class StatChangeEffect : CardEffect
     public int amount;
 
 
-    public override void ApplyEffect(EnemyDisplay enemy, Card cardData, PlayerEvent player)
+    public override void ApplyEffect(EnemyDisplay enemy, Card cardData, PlayerEvent player, DeckManager deck, HandManager hand)
     {
       enemy.ModifyStat(affectedStat, amount);
     }

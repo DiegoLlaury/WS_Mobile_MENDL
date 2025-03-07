@@ -15,8 +15,9 @@ MonoBehaviour:
   cardName: Pistolet
   cardType: 01000000
   statType: 02000000
+  dropType: 00000000
   health: 0
-  defense: 0
+  shield: 0
   damage: 10
   discretion: 0
   perception: 0
@@ -24,4 +25,4 @@ MonoBehaviour:
   effect: Fait {damage} degat.
   cardImage: {fileID: -605624883, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   effects:
-  - {fileID: 11400000, guid: f17cf8b071756dd4d8742932fc287625, type: 2}
+  - {fileID: 11400000, guid: 7f9fb8b7684ec49489366f9448f95469, type: 2}

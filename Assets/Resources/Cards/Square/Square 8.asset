@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Infiltration Attack
   cardType: 02000000
   statType: 0300000002000000
-  dropType: 
+  dropType: 00000000
   health: 0
   defense: 0
   damage: 0

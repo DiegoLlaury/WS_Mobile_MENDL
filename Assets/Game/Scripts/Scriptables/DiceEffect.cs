@@ -17,7 +17,7 @@ public class DiceEffect : CardEffect
 
     public DiceType diceType;
 
-    public override void ApplyEffect(EnemyDisplay enemy, Card cardData, PlayerEvent player)
+    public override void ApplyEffect(EnemyDisplay enemy, Card cardData, PlayerEvent player, DeckManager deck, HandManager hand)
     {
         int diceRoll = Random.Range(1, 7); // Rolling a 6-sided die
         Debug.Log($"Rolled a {diceRoll}");
@@ -28,7 +28,7 @@ public class DiceEffect : CardEffect
                 if (diceRoll < 3)
                     player.GainHealth(cardData.health);
                 else if (diceRoll < 6)
-                    player.GainShield(cardData.defense);
+                    player.GainShield(cardData.shield);
                 else
                     player.GainEnergy(1);
                 break;

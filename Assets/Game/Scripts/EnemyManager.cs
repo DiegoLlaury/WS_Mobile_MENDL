@@ -9,6 +9,8 @@ public class EnemyManager : MonoBehaviour
     public CardMiddle cardMiddle;
     public static EnemyManager Instance;
     public List<EnemyDisplay> enemies = new List<EnemyDisplay>();
+    public EnemyDisplay randomEnemy;
+    private int enemyNum;
 
     void Awake()
     {
@@ -28,6 +30,13 @@ public class EnemyManager : MonoBehaviour
         {
             enemies.Add(enemy);
         }
+    }
+
+    public void GetRandomEnnemies()
+    {        
+       enemyNum = Random.Range(0, enemies.Count);
+       randomEnemy = enemies[enemyNum];
+        Debug.Log(enemies[enemyNum]);
     }
 
     public void RemoveEnemy(EnemyDisplay enemy)

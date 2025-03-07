@@ -26,15 +26,15 @@ public class HandManager : MonoBehaviour
 
     public void AddCardToHand(Card cardData)
     {
-        Debug.Log("Drawing card...");
-
         // Instantiate the card at the deck's position
         GameObject newCard = Instantiate(cardPrefab, deckTransform.position, Quaternion.identity, handTransform);
 
         // Assign card data
         CardDisplay display = newCard.GetComponent<CardDisplay>();
         if (display != null)
+        {
             display.cardData = cardData;
+        }     
         else
             Debug.LogError("CardDisplay component missing on cardPrefab!");
 

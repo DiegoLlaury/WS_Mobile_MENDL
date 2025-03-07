@@ -62,34 +62,39 @@ public class PlayerEvent : MonoBehaviour
         {
             cardData.health += health;
             UpdatePlayerEvent();
+            Debug.Log($"Player gain {health} health. Current health : {cardData.health}");
         }
         else
         {
-
+            Debug.Log("Your max health");
         }
     }
 
     public void GainShield(int shield)
     {
-        
+        cardData.shield += shield;
+        Debug.Log($"Player gain {shield} shield. Current shield : {cardData.shield}");
     }
 
     public void GainPerception(int perception)
     {
         cardData.perception += perception;
         UpdatePlayerEvent();
+        Debug.Log($"Player gain {perception} perception. Current perception : {cardData.perception}");
     }
 
     public void GainInfiltration(int infiltration)
     {
         cardData.discretion += infiltration;
         UpdatePlayerEvent();
+        Debug.Log($"Player gain {infiltration} discretion. Current discretion : {cardData.discretion}");
     }
 
     public void GainEnergy(int energy)
     {
         currentEnergy += energy;
         UpdatePlayerEvent();
+        Debug.Log($"Player gain {energy} energy. Current Energy : {currentEnergy}");
     }
 
     public void ApplyDebuff(Card.StatType stat, int amount)

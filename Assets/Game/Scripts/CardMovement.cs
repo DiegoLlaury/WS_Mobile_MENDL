@@ -1,27 +1,25 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.EventSystems;
-using WS_DiegoCo_Enemy;
+using UnityEngine.InputSystem;
+using UnityEngine.LightTransport;
 using WS_DiegoCo;
-using NUnit.Framework;
-using System;
-using Unity.VisualScripting;
-using WS_DiegoCo_Middle;
-using static UnityEngine.EventSystems.EventTrigger;
-using System.Collections.Generic;
 
-public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
+
+public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private RectTransform rectTransform;
     private Canvas canvas;
     private CanvasGroup canvasGroup;
     private PlayerEvent player;
+    public CardMovement currentDraggedCard;
     
     private Vector2 originalLocalPointerPosition;
     private Vector3 originalPanelLocalPosition;
     private Vector3 originalScale;
     private Quaternion originalRotation;
     private Vector3 originalPosition;
+    private int originalLayer;
     
     public int currentState = 0;
     [SerializeField]
@@ -40,18 +38,19 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
         rectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
         canvasGroup = GetComponent<CanvasGroup>();
-        
+
         cardDisplay = GetComponent<CardDisplay>();
+
         deckManager = FindAnyObjectByType<DeckManager>();
         handManager = FindAnyObjectByType<HandManager>();
         player = FindAnyObjectByType<PlayerEvent>();
         enemyManager = FindAnyObjectByType<EnemyManager>();
 
-        if (cardDisplay != null)
+        if (cardDisplay != null && cardDisplay.cardData != null)
         {
-            cardData = cardDisplay.cardData;
+            cardData = cardDisplay.cardData; // Make sure cardData is set properly
         }
-        
+
         originalScale = rectTransform.localScale;
         originalPosition = rectTransform.localPosition;
         originalRotation = rectTransform.localRotation;
@@ -77,26 +76,51 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
         }
     }
 
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if (currentState == 2)
+        {
+            TransitionToState0();
+        }
+    }
+
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (currentState == 2) return;
+
         if (canvasGroup != null)
         {
             canvasGroup.alpha = 0.5f;
             canvasGroup.blocksRaycasts = false;
+            canvasGroup.interactable = false;
         }
 
-        if (currentState == 1)
-        {
-            currentState = 2;
+        originalLayer = gameObject.layer; 
+        gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
 
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+        if (cardDisplay != null && cardDisplay.cardData != null)
+        {
+            Debug.Log($" Picked Up Card: {cardDisplay.cardData.cardName} (Instance ID: {cardDisplay.cardData.GetInstanceID()})");
+        }
+        else
+        {
+            Debug.LogError(" CardDisplay or CardData is NULL on Pointer Down!");
+        }
+
+        
+
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 canvas.GetComponent<RectTransform>(),
                 eventData.position,
                 eventData.pressEventCamera,
                 out originalLocalPointerPosition
-            );
-            originalPanelLocalPosition = rectTransform.localPosition;
-        }
+        );
+        
+        originalPanelLocalPosition = rectTransform.localPosition;
+        
+        currentState = 2;
+
+        currentDraggedCard = this; // Store the card being dragged
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -112,39 +136,51 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        EnemyDisplay enemy = GetEnemyUnderPointer(eventData);
+        GameObject dropZone = GetDropZoneUnderPointer(eventData);
+
         if (canvasGroup != null)
         {
             canvasGroup.alpha = 1f;
             canvasGroup.blocksRaycasts = true;
+            canvasGroup.interactable = true;
         }
 
-        if (eventData.pointerEnter == null)
-        {
-            Debug.LogWarning("OnEndDrag: No object detected under the pointer.");
-            TransitionToState0();
-            return;
-        }
+        gameObject.layer = originalLayer; 
 
-        if (!player.CanPlayCard(cardData.energy))
+        if (!player.CanPlayCard(cardDisplay.cardData.energy))
         {
             Debug.LogWarning("Not enough energy to play this card!");
             TransitionToState0();
             return;
         }
 
-        EnemyDisplay enemy = GetEnemyUnderPointer(eventData);
-        bool isAttackCard = cardData.dropType.Contains(Card.DropType.Attack);
-        bool isSkillCard = cardData.dropType.Contains(Card.DropType.Competence);
+        if (currentDraggedCard == null)
+        {
+            Debug.LogWarning("No card detected during drag.");
+            TransitionToState0();
+            return;
+        }
 
-        Debug.Log(isAttackCard);
-        Debug.Log(isAttackCard);
+        
+        Debug.Log($"Detected Drop Zone: {dropZone?.name}");
+
+        bool isAttackCard = false;
+        bool isSkillCard = false;
+
+        // Explicitly check each DropType in the list
+        foreach (var type in cardDisplay.cardData.dropType)
+        {
+            if (type == Card.DropType.Attack) isAttackCard = true;
+            if (type == Card.DropType.Competence) isSkillCard = true;
+        }
 
         if (isAttackCard)
         {
             if (enemy != null)
             {
-                ApplyCardEffects(enemy);
-                player.UseEnergy(cardData.energy);
+                ApplyCardEffects(enemy, cardDisplay.cardData, player, deckManager, handManager);
+                player.UseEnergy(cardDisplay.cardData.energy);
                 HandleCardUsed();
 
                 if (enemy.enemyData.health <= 0)
@@ -155,23 +191,63 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
             else
             {
                 Debug.LogWarning("Attack card must target an enemy!");
+                canvasGroup.blocksRaycasts = true;
                 TransitionToState0();
             }
         }
         else if (isSkillCard)
         {
-            Debug.Log("sa marche ?");
-            ApplyCardEffects(null); // No enemy needed
-            player.UseEnergy(cardData.energy);
-            HandleCardUsed();
+            
+            // Check if dropped on the Skill Zone
+            if (dropZone != null && dropZone.CompareTag("DropZone"))
+            {
+                enemyManager.GetRandomEnnemies();
+                ApplyCardEffects(enemyManager.randomEnemy, cardDisplay.cardData, player, deckManager, handManager);
+                player.UseEnergy(cardDisplay.cardData.energy);
+                HandleCardUsed();
+            }
+            else
+            {
+                Debug.LogWarning($"Skill card {cardDisplay.cardData.cardName} must be played on the Skill Zone.");
+                TransitionToState0();
+            }
         }
         else
         {
-            Debug.LogWarning("Unknown card type!");
+            Debug.LogError($"Card {cardData.cardName} has an unknown DropType!");
             TransitionToState0();
         }
+
+        
     }
     private EnemyDisplay GetEnemyUnderPointer(PointerEventData eventData)
+    {
+        if (eventData.pointerEnter != null)
+        {
+            EnemyDisplay enemy = eventData.pointerEnter.GetComponentInParent<EnemyDisplay>();
+            if (enemy != null)
+            {
+                return enemy;
+            }
+        }
+
+        // Backup detection using raycast
+        Ray ray = Camera.main.ScreenPointToRay(eventData.position);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            EnemyDisplay enemy = hit.collider.GetComponentInParent<EnemyDisplay>();
+          
+            if (enemy != null)
+            {
+                return enemy;
+            }
+        }
+
+        return null; // No enemy found
+    }
+
+    private GameObject GetDropZoneUnderPointer(PointerEventData eventData)
     {
         PointerEventData pointerData = new PointerEventData(EventSystem.current)
         {
@@ -183,14 +259,17 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
 
         foreach (RaycastResult result in results)
         {
-            EnemyDisplay enemy = result.gameObject.GetComponent<EnemyDisplay>();
-            if (enemy != null) return enemy;
+            Debug.Log($"Raycast Hit: {result.gameObject.name} (Layer: {result.gameObject.layer})"); // Debug check
+            if (result.gameObject.CompareTag("DropZone")) // 🔹 Ensure DropZone has correct tag
+            {
+                return result.gameObject;
+            }
         }
 
-        return null;
+        return null; // No drop zone detected
     }
 
-    private void ApplyCardEffects(EnemyDisplay enemy)
+    private void ApplyCardEffects(EnemyDisplay enemy, Card card, PlayerEvent playerEvent, DeckManager deck, HandManager hand)
     {
         if (enemy == null)
         {
@@ -200,7 +279,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
 
         foreach (CardEffect effect in cardDisplay.cardData.effects)
         {
-            effect.ApplyEffect(enemy, cardData, player);
+            effect.ApplyEffect(enemy, card, playerEvent, deck, hand);
         }
 
         Debug.Log($"Card {cardDisplay.cardData.cardName} applied effects to {enemy.enemyData.enemyName}.");
@@ -221,12 +300,21 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IE
         Destroy(gameObject);
     }
 
+    
+
     private void TransitionToState0()
     {
         currentState = 0;
         rectTransform.localScale = originalScale;
         rectTransform.localRotation = originalRotation;
         rectTransform.localPosition = originalPosition;
+        if (canvasGroup != null)
+        {
+            canvasGroup.alpha = 1f;
+            canvasGroup.blocksRaycasts = true;  // Re-enable raycasting
+            canvasGroup.interactable = true;
+        }
+
         glowEffect.SetActive(false);
     }
 

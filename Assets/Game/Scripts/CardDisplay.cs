@@ -21,6 +21,7 @@ public class CardDisplay : MonoBehaviour
     public TMP_Text energyText;
     public TMP_Text perceptionText;
     public TMP_Text discretionText;
+    public TMP_Text shieldText;
     public TMP_Text dropTypeText;
 
     public Image[] typeImages;
@@ -36,7 +37,8 @@ public class CardDisplay : MonoBehaviour
             { Card.StatType.defense, defenseText },
             { Card.StatType.damage, damageText },
             { Card.StatType.discretion, discretionText },
-            { Card.StatType.perception, perceptionText }
+            { Card.StatType.perception, perceptionText },
+            { Card.StatType.shield, shieldText }
         };
     }
 
@@ -98,7 +100,7 @@ public class CardDisplay : MonoBehaviour
         return statType switch
         {
             Card.StatType.health => cardData.health,
-            Card.StatType.defense => cardData.defense,
+            Card.StatType.shield => cardData.shield,
             Card.StatType.damage => cardData.damage,
             Card.StatType.discretion => cardData.discretion,
             Card.StatType.perception => cardData.perception,

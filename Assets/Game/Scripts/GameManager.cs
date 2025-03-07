@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public DeckManager deckManager;
     public EnemyManager enemyManager;
     public PlayerEvent player;
+    private int cardStart = 4;
 
 
     private bool isPlayerTurn = true;
@@ -36,7 +37,7 @@ public class GameManager : MonoBehaviour
         player.ResetEnergy();
         handManager.cardsInHand.Clear();
         deckManager.ShuffleDeck();
-        deckManager.DrawCard();
+        deckManager.DrawCard(cardStart);
     }
 
     public void EndPlayerTurn()
@@ -72,7 +73,7 @@ public class GameManager : MonoBehaviour
     {
         isPlayerTurn = true;
         player.ResetEnergy();
-        deckManager.DrawCard();
+        deckManager.DrawCard(cardStart);
     }
 
     public void CheckGameOver()

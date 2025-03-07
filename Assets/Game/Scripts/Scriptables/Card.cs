@@ -12,7 +12,7 @@ namespace WS_DiegoCo
         public List<StatType> statType;
         public List<DropType> dropType;
         public int health;
-        public int defense;
+        public int shield;
         public int damage;
         public int discretion;
         public int perception;
@@ -24,13 +24,13 @@ namespace WS_DiegoCo
         
         public enum CardType
         {
-            Coeur,
+            Heart,
             
-            Pique,
+            Spade,
            
-            Carreau,
+            Square,
             
-            Trefle
+            Clover
         }
 
         public enum DropType
@@ -50,7 +50,9 @@ namespace WS_DiegoCo
 
             discretion,
 
-            perception
+            perception,
+
+            shield
 
         }
     }
