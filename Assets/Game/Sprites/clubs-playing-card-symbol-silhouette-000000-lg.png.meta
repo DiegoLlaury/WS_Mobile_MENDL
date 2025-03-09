@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      clubs-playing-card-symbol-silhouette-000000-lg_0: -7681490127725818556
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bf32b52a431506429dc0c8b75505ade, type: 3}
-  m_Name: DrawInflitration
+  m_Script: {fileID: 11500000, guid: 8286df22d77560d44b7adf918644af7c, type: 3}
+  m_Name: Defense
   m_EditorClassIdentifier: 
-  numberOfCard: 0
-  typeDraw: 1
+  statusType: 0
+  value: 2
+  duration: 9999
+  applyToPlayer: 1
+  applyToEnemy: 0

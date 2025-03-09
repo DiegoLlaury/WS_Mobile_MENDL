@@ -13,8 +13,14 @@ public class StatChangeEffect : CardEffect
 
         discretion,
 
-        perception
-   }
+        perception,
+
+        GainPerceptionButLostDiscretion,
+
+        ReduceEnemyInfiltration,
+
+        GainHealthIfDiscrection
+    }
     public StatType statType;
 
     public override void ApplyEffect(EnemyDisplay enemy, Card cardData, PlayerEvent player, DeckManager deck, HandManager hand, GameManager gameManager, EnemyManager enemyManager)
@@ -35,6 +41,23 @@ public class StatChangeEffect : CardEffect
 
             case StatType.perception:
                 player.GainPerception(cardData.perception);
+                break;
+
+            case StatType.GainPerceptionButLostDiscretion:
+                player.GainPerception(cardData.perception);
+                player.cardData.discretion = 0;
+                break;
+
+            case StatType.ReduceEnemyInfiltration:
+                int reductionAmount = player.cardData.perception / 2;
+                enemy.ReduceInfiltration(reductionAmount);
+                break;
+
+            case StatType.GainHealthIfDiscrection:
+                if (player.cardData.discretion < 10)
+                {
+                    player.GainHealth(cardData.health);
+                }
                 break;
         }
     }

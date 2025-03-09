@@ -158,6 +158,9 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         {
             switch (effect.Key)
             {
+                case StatusEffect.StatusType.Shield:
+                    GainShield(effect.Value.value);
+                    break;
                 case StatusEffect.StatusType.Regeneration:
                     GainHealth(effect.Value.value);
                     break;
@@ -214,6 +217,6 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     {
         currentEnergy = maxEnergy;
         UpdatePlayerEvent();
-    }
+    }  
 }
 

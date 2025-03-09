@@ -78,20 +78,21 @@ public class CardDisplay : MonoBehaviour
             }
         }
 
-        //Update type images
-        for (int i = 0; i < typeImages.Length; i++)
+        foreach (Image img in typeImages)
         {
-            if (i < cardData.cardType.Count)
+            img.gameObject.SetActive(false); // Deactivate all type images first
+        }
+
+        foreach (WS_DiegoCo.Card.CardType type in cardData.cardType)
+        {
+            int typeIndex = (int)type; // Enum values should match the order in the prefab
+            if (typeIndex >= 0 && typeIndex < typeImages.Length)
             {
-                typeImages[i].gameObject.SetActive(true);
-            }
-            else
-            {
-                typeImages[i].gameObject.SetActive(false);
+                typeImages[typeIndex].gameObject.SetActive(true); // Activate only the correct image
             }
         }
 
-       
+
     }
 
     private int GetStatValue(Card.StatType statType)

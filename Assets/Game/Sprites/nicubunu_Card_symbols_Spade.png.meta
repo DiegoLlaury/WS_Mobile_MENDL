@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      nicubunu_Card_symbols_Spade_0: 9057139530236316031
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

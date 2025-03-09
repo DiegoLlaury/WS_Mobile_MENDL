@@ -2,27 +2,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using WS_DiegoCo;
 
-
 [CreateAssetMenu(fileName = "New Discard Effect", menuName = "Card Effects/Discard")]
 public class DiscardEffect : CardEffect
 {
-
     public enum DiscardType
     {
-        DiscardByType,      // Discard all cards of a specific type (e.g., Spades, Clubs, Diamonds)
-        DiscardRandom,      // Discard a random card
-        DiscardAll,         // Discard the entire hand
-        DiscardNumber      // Discard one
+        DiscardByType,  // Discard all cards of a specific type
+        DiscardRandom,  // Discard a random card
+        DiscardAll,     // Discard the entire hand
+        DiscardNumber   // Discard a specific number of random cards
     }
 
-    public int discardNumber;
+    public int discardNumber = 1;
     public DiscardType discardType;
     public Card.CardType targetCardType;
-    public int gainHealthPerCard = 0;    // Used when gaining health per discarded card
-    public int gainInfiltrationPerCard = 0; // Used when gaining infiltration per discarded card
-    public int gainPerceptionPerCard = 0;   // Used when gaining perception per discarded card
-    public int drawAmountAfterDiscard = 0;  // Used when drawing after discard
-
+    public int gainHealthPerCard = 0;
+    public int gainInfiltrationPerCard = 0;
+    public int gainPerceptionPerCard = 0;
+    public int drawAmountAfterDiscard = 0;
 
     public override void ApplyEffect(EnemyDisplay enemy, Card cardData, PlayerEvent player, DeckManager deck, HandManager hand, GameManager gameManager, EnemyManager enemyManager)
     {
@@ -31,24 +28,11 @@ public class DiscardEffect : CardEffect
         switch (discardType)
         {
             case DiscardType.DiscardByType:
-                // Find all cards of the specified type
-                foreach (GameObject cardObject in hand.cardsInHand)
-                {
-                    CardDisplay cardDisplay = cardObject.GetComponent<CardDisplay>();
-
-                    if (cardDisplay != null && cardDisplay.cardData.cardType.Contains(targetCardType))
-                    {
-                        cardsToDiscard.Add(cardObject);
-                    }
-                }
+                cardsToDiscard = GetCardsByType(hand, targetCardType);
                 break;
 
             case DiscardType.DiscardRandom:
-                if (hand.cardsInHand.Count > 0)
-                {
-                    int randomIndex = Random.Range(0, hand.cardsInHand.Count);
-                    cardsToDiscard.Add(hand.cardsInHand[randomIndex]);
-                }
+                cardsToDiscard = GetRandomCards(hand, 1);
                 break;
 
             case DiscardType.DiscardAll:
@@ -56,38 +40,67 @@ public class DiscardEffect : CardEffect
                 break;
 
             case DiscardType.DiscardNumber:
-                if (hand.cardsInHand.Count > 0)
-                {
-                    int randomIndex = Random.Range(0, hand.cardsInHand.Count);
-                    cardsToDiscard.Add(hand.cardsInHand[randomIndex]);
-                    deck.DrawCard(1); // Draw one card after discarding
-                }
+                cardsToDiscard = GetRandomCards(hand, discardNumber);
                 break;
         }
 
-        // Apply discard effect
-        foreach (GameObject card in cardsToDiscard)
+        int discardedCount = 0;
+
+        // Discard and move cards to discard pile
+        foreach (GameObject cardObj in cardsToDiscard)
         {
-            hand.RemoveCardFromHand(card);
+            CardDisplay display = cardObj.GetComponent<CardDisplay>();
+            if (display != null)
+            {
+                deck.DiscardCard(display.cardData); // Move the actual card data to the discard pile
+            }
+            hand.RemoveCardFromHand(cardObj); // Properly removes from hand
+            discardedCount++;
         }
 
-        int discardedCount = cardsToDiscard.Count;
-
-        // Apply rewards for discarded cards
+        // Apply bonuses for discarded cards
         if (gainHealthPerCard > 0) player.GainHealth(discardedCount * gainHealthPerCard);
         if (gainInfiltrationPerCard > 0) player.GainInfiltration(discardedCount * gainInfiltrationPerCard);
         if (gainPerceptionPerCard > 0) player.GainPerception(discardedCount * gainPerceptionPerCard);
 
-        // Draw cards after discard if needed
-        if (discardType == DiscardType.DiscardAll)
-        {
-            deck.DrawCard(discardedCount);
-        }
-        else if (drawAmountAfterDiscard > 0)
+        // Draw new cards if needed
+        if (drawAmountAfterDiscard > 0)
         {
             deck.DrawCard(drawAmountAfterDiscard);
         }
+        else if (discardType == DiscardType.DiscardAll)
+        {
+            deck.DrawCard(discardedCount);
+        }
 
         Debug.Log($"Discarded {discardedCount} cards. Effects applied.");
+    }
+
+    private List<GameObject> GetCardsByType(HandManager hand, Card.CardType type)
+    {
+        List<GameObject> result = new List<GameObject>();
+        //foreach (GameObject cardObj in hand.cardsInHand)
+        //{
+        //    CardDisplay display = cardObj.GetComponent<CardDisplay>();
+        //    if (display != null && display.cardData.cardType == type)
+        //    {
+        //        result.Add(cardObj);
+        //    }
+        //}
+        return result;
+    }
+
+    private List<GameObject> GetRandomCards(HandManager hand, int count)
+    {
+    //    List<GameObject> result = new List<GameObject>(hand.cardsInHand);
+        List<GameObject> selected = new List<GameObject>();
+
+    //    for (int i = 0; i < count && result.Count > 0; i++)
+    //    {
+    //        int randomIndex = Random.Range(0, result.Count);
+    //        selected.add(result[randomIndex]);
+    //        result.RemoveAt(randomIndex);
+    //    }
+        return selected;
     }
 }

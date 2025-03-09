@@ -10,7 +10,8 @@ public class StatusEffect : CardEffect
         Regeneration,
         Weakness,
         Strength,
-        Bleeding
+        Bleeding,
+        StrengthFromInfiltration
     }
 
     public StatusType statusType;
@@ -37,7 +38,7 @@ public class StatusEffect : CardEffect
         switch (status)
         {
             case StatusType.Shield:
-                target.GainShield(effectValue);
+                target.ApplyStatus(status, effectValue, effectDuration);
                 break;
             case StatusType.Regeneration:
                 target.ApplyStatus(status, effectValue, effectDuration);
@@ -51,6 +52,23 @@ public class StatusEffect : CardEffect
             case StatusType.Bleeding:
                 target.ApplyStatus(status, effectValue, effectDuration);
                 break;
+            case StatusType.StrengthFromInfiltration:
+                ApplyStrengthFromInfiltration(target);
+                break;
+        }
+    }
+
+    private void ApplyStrengthFromInfiltration(IStatusReceiver target)
+    {
+        if (target is PlayerEvent player)
+        {
+            int infiltration = player.cardData.discretion;
+            int strengthGain = infiltration / 4;
+
+            player.ApplyStatus(StatusType.Strength, strengthGain, 1); // 1 turn effect
+            player.TakeDamage(3);
+
+            Debug.Log($"Player gains {strengthGain} Strength from {infiltration} Infiltration and loses 3 HP.");
         }
     }
 }

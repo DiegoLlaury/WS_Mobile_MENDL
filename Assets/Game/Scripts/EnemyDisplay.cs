@@ -20,7 +20,9 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
 
     private int currentDefense = 0;
     private int strength = 0;
+    private bool isNextAttackHeal = false;
 
+    private PlayerEvent player;
     private Dictionary<StatusEffect.StatusType, (int value, int turnsRemaining)> activeEffects = new Dictionary<StatusEffect.StatusType, (int, int)>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,6 +30,8 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
     {  
         enemyData.health = enemyData.maxHealth;
         enemyData.damage = enemyData.maxDamage;
+        enemyData.discretion = enemyData.maxDiscretion;
+        enemyData.perception = enemyData.maxPerception;
         UpdateEnemyDisplay();
     }
 
@@ -37,6 +41,12 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         healthText.text = enemyData.health.ToString();
         damageText.text = enemyData.damage.ToString();
         enemyImageDisplay = enemyData.enemyImage;
+    }
+
+    public void SetNextAttackHeal()
+    {
+        isNextAttackHeal = true;
+        Debug.Log("Next attack will heal the player.");
     }
 
     public void TakeDamage(int damage, bool ignoreShield = false)
@@ -53,6 +63,12 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         {
             enemyData.health -= damage;
             Debug.Log($"Enemy {enemyData.enemyName} took {damage} damage. Remaining health: {enemyData.health}");
+        }
+
+        if(isNextAttackHeal == true)
+        {
+            player.GainHealth(damage);
+            isNextAttackHeal = false;
         }
 
         UpdateEnemyDisplay();
@@ -87,6 +103,12 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         }
         UpdateEnemyDisplay();
         Debug.Log($"Enemy {stat} changed by {amount}");
+    }
+
+    public void ReduceInfiltration(int value)
+    {
+        enemyData.discretion -= value;
+        UpdateEnemyDisplay();
     }
 
     public void ApplyStatus(StatusEffect.StatusType statusType, int value, int duration)

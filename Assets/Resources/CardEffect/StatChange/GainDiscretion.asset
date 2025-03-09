@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bf32b52a431506429dc0c8b75505ade, type: 3}
-  m_Name: DrawInflitration
+  m_Script: {fileID: 11500000, guid: 0e7f1f0b84269194a8af9019407e1df1, type: 3}
+  m_Name: GainDiscretion
   m_EditorClassIdentifier: 
-  numberOfCard: 0
-  typeDraw: 1
+  statType: 2
