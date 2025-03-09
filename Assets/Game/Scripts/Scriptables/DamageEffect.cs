@@ -10,7 +10,10 @@ using WS_DiegoCo;
 
         Enemy,
 
-        AllEnemies
+        AllEnemies,
+
+        DefenseAttack
+
     }
     public TargetDamage targetDamage;
 
@@ -32,6 +35,10 @@ using WS_DiegoCo;
                 {
                     enemyObject.TakeDamage(cardData.damage);
                 }
+                break;
+
+            case TargetDamage.DefenseAttack:
+                enemy.TakeDamage(player.currentDefense);
                 break;
         }      
     }

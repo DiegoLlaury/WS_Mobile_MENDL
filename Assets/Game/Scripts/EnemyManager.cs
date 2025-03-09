@@ -61,6 +61,7 @@ public class EnemyManager : MonoBehaviour
         {
             if (enemy.enemyData.health > 0)
             {
+                enemy.ProcessTurnEffects();
                 PerformEnemyAction(enemy);
                 yield return new WaitForSeconds(2f);
             }
@@ -89,6 +90,14 @@ public class EnemyManager : MonoBehaviour
                 GameManager.Instance.player.ApplyDebuff(Card.StatType.damage, -1);
                 Debug.Log($"{enemy.enemyData.enemyName} weakens the player!");
                 break;
+        }
+
+    }
+    public void ProcessEnemyEffects()
+    {
+        foreach (EnemyDisplay enemy in enemies)
+        {
+            enemy.ProcessTurnEffects();
         }
     }
 }

@@ -1,5 +1,7 @@
 using UnityEngine;
 using WS_DiegoCo_Middle;
+using System.Collections;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,9 +12,8 @@ public class GameManager : MonoBehaviour
     public DeckManager deckManager;
     public EnemyManager enemyManager;
     public PlayerEvent player;
+
     private int cardStart = 4;
-
-
     private bool isPlayerTurn = true;
 
     void Awake()
@@ -46,25 +47,23 @@ public class GameManager : MonoBehaviour
 
         isPlayerTurn = false;
 
+        player.ProcessTurnEffects();
+
         StartCoroutine(enemyManager.EnemyTurn());
     }
 
     public void EndEnemyTurn()
     {
         Debug.Log("Enemy Turn End");
-        Debug.Log($"Cards in hand before discarding: {handManager.cardsInHand.Count}");
+        enemyManager.ProcessEnemyEffects();
 
         for (int i = handManager.cardsInHand.Count - 1; i >= 0; i--)
         {
             GameObject card = handManager.cardsInHand[i];
-
             Debug.Log($"Discarding card: {card.name}");
-
             handManager.RemoveCardFromHand(card);
             deckManager.DiscardCard(card.GetComponent<CardDisplay>().cardData);
         }
-
-        Debug.Log($"Cards in hand after discarding: {handManager.cardsInHand.Count}");
 
         StartPlayerTurn();
     }

@@ -13,8 +13,8 @@ namespace WS_DiegoCo_Middle
         public List<StatType> statType;
         public int health;
         public int maxHealth;
-        public int maxShield;
-        public int shield;
+        public int maxDefense;
+        public int defense;
         public int maxDamage;
         public int damage;
         public int maxDiscretion;

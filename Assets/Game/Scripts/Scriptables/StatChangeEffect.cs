@@ -1,15 +1,41 @@
 using UnityEngine;
 using WS_DiegoCo;
 
-[CreateAssetMenu(fileName = "New Stat Effect", menuName = "Card Effects/Stat Change")]
+[CreateAssetMenu(fileName = "New Gain Effect", menuName = "Card Effects/Stat Gain")]
 public class StatChangeEffect : CardEffect
 {
-   public Card.StatType affectedStat;
-    public int amount;
+   
+   public enum StatType
+   {
+        health,
 
+        defense,
+
+        discretion,
+
+        perception
+   }
+    public StatType statType;
 
     public override void ApplyEffect(EnemyDisplay enemy, Card cardData, PlayerEvent player, DeckManager deck, HandManager hand, GameManager gameManager, EnemyManager enemyManager)
     {
-      enemy.ModifyStat(affectedStat, amount);
+        switch (statType)
+        {
+            case StatType.health:
+                player.GainHealth(cardData.health);
+                break;
+
+            case StatType.defense:
+                player.GainShield(cardData.defense);
+                break;
+
+            case StatType.discretion:
+                player.GainInfiltration(cardData.discretion);
+                break;
+
+            case StatType.perception:
+                player.GainPerception(cardData.perception);
+                break;
+        }
     }
 }

@@ -4,8 +4,9 @@ using TMPro;
 using WS_DiegoCo_Enemy;
 using System;
 using WS_DiegoCo;
+using System.Collections.Generic;
 
-public class EnemyDisplay : MonoBehaviour
+public class EnemyDisplay : MonoBehaviour, IStatusReceiver
 {
 
     public Enemy enemyData;
@@ -16,11 +17,15 @@ public class EnemyDisplay : MonoBehaviour
     public TMP_Text precisionText;
     public TMP_Text discretionText;
     public TMP_Text damageText;
-    
+
+    private int currentDefense = 0;
+    private int strength = 0;
+
+    private Dictionary<StatusEffect.StatusType, (int value, int turnsRemaining)> activeEffects = new Dictionary<StatusEffect.StatusType, (int, int)>();
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
-        
+    {  
         enemyData.health = enemyData.maxHealth;
         enemyData.damage = enemyData.maxDamage;
         UpdateEnemyDisplay();
@@ -34,11 +39,30 @@ public class EnemyDisplay : MonoBehaviour
         enemyImageDisplay = enemyData.enemyImage;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, bool ignoreShield = false)
     {
-        enemyData.health -= damage; // Modify the ScriptableObject's health
-        UpdateEnemyDisplay(); // Refresh UI
-        Debug.Log($"Enemy {enemyData.enemyName} took {damage} damage. Remaining health: {enemyData.health}");
+        if (!ignoreShield && currentDefense > 0)
+        {
+            int absorbed = Mathf.Min(damage, currentDefense);
+            currentDefense -= absorbed;
+            damage -= absorbed;
+            Debug.Log($"Enemy {enemyData.enemyName} shield absorbed {absorbed} damage. Remaining shield: {currentDefense}");
+        }
+
+        if (damage > 0)
+        {
+            enemyData.health -= damage;
+            Debug.Log($"Enemy {enemyData.enemyName} took {damage} damage. Remaining health: {enemyData.health}");
+        }
+
+        UpdateEnemyDisplay();
+    }
+
+    public void GainShield(int amount)
+    {
+        currentDefense += amount;
+        UpdateEnemyDisplay();
+        Debug.Log($"Enemy {enemyData.enemyName} gained {amount} shield. Current shield: {currentDefense}");
     }
 
     public void ModifyStat(Card.StatType stat, int amount)
@@ -63,5 +87,67 @@ public class EnemyDisplay : MonoBehaviour
         }
         UpdateEnemyDisplay();
         Debug.Log($"Enemy {stat} changed by {amount}");
+    }
+
+    public void ApplyStatus(StatusEffect.StatusType statusType, int value, int duration)
+    {
+        if (activeEffects.ContainsKey(statusType))
+        {
+            // Refresh duration or stack values
+            activeEffects[statusType] = (activeEffects[statusType].value + value, duration);
+        }
+        else
+        {
+            activeEffects.Add(statusType, (value, duration));
+        }
+        Debug.Log($"Enemy {enemyData.enemyName} applied status {statusType} with value {value} for {duration} turns.");
+    }
+
+    public void ProcessTurnEffects()
+    {
+        List<StatusEffect.StatusType> toRemove = new List<StatusEffect.StatusType>();
+
+        foreach (var effect in activeEffects)
+        {
+            switch (effect.Key)
+            {
+                case StatusEffect.StatusType.Regeneration:
+                    enemyData.health = Mathf.Min(enemyData.health + effect.Value.value, enemyData.maxHealth);
+                    Debug.Log($"Enemy {enemyData.enemyName} regenerated {effect.Value.value} HP.");
+                    break;
+
+                case StatusEffect.StatusType.Bleeding:
+                    TakeDamage(effect.Value.value, ignoreShield: true);
+                    Debug.Log($"Enemy {enemyData.enemyName} suffered {effect.Value.value} bleeding damage.");
+                    break;
+
+                case StatusEffect.StatusType.Weakness:
+                    Debug.Log($"Enemy {enemyData.enemyName} is weakened!");
+                    break;
+
+                case StatusEffect.StatusType.Strength:
+                    strength += effect.Value.value;
+                    Debug.Log($"Enemy {enemyData.enemyName} strength increased by {effect.Value.value}.");
+                    break;
+            }
+
+            // Reduce duration
+            int newTurns = effect.Value.turnsRemaining - 1;
+            if (newTurns <= 0)
+            {
+                toRemove.Add(effect.Key);
+            }
+            else
+            {
+                activeEffects[effect.Key] = (effect.Value.value, newTurns);
+            }
+        }
+
+        // Remove expired effects
+        foreach (var status in toRemove)
+        {
+            activeEffects.Remove(status);
+            Debug.Log($"Enemy {enemyData.enemyName} status {status} expired.");
+        }
     }
 }

@@ -9,8 +9,6 @@ public class DrawEffect : CardEffect
     {
         DrawANumber,
 
-        DrawHand,
-
         DrawInfiltration
     }
 
@@ -22,10 +20,6 @@ public class DrawEffect : CardEffect
         {
             case TypeDraw.DrawANumber:
                 deck.DrawCard(numberOfCard);
-                break;
-
-            case TypeDraw.DrawHand:
-                deck.DrawCard(hand.cardsInHand.Count);
                 break;
 
             case TypeDraw.DrawInfiltration:
