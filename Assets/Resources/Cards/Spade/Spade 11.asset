@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Spade 11
   m_EditorClassIdentifier: 
   cardName: Triple Damage
-  cardType: 01000000
+  cardType: 1
   statType: 02000000
   dropType: 00000000
   health: 0

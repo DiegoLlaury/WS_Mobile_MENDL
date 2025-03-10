@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Spade 4
   m_EditorClassIdentifier: 
   cardName: Triple Damage
-  cardType: 01000000
+  cardType: 1
   statType: 02000000
   dropType: 01000000
   health: 0
@@ -24,5 +24,4 @@ MonoBehaviour:
   energy: 2
   effect: Gagnez un bonus de force pour le prochain tour.
   cardImage: {fileID: 0}
-  effects:
-  - {fileID: 11400000, guid: 3f113aee96f077f4e874d77bb7a614c7, type: 2}
+  effects: []

@@ -105,6 +105,12 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         Debug.Log($"Enemy {stat} changed by {amount}");
     }
 
+    public void ReducePerception(int value)
+    {
+        enemyData.perception -= value;
+        UpdateEnemyDisplay();
+    }
+
     public void ReduceInfiltration(int value)
     {
         enemyData.discretion -= value;

@@ -28,7 +28,7 @@ public class DrawEffect : CardEffect
                 foreach (GameObject cardObject in hand.cardsInHand)
                 {
                     CardDisplay cardDisplay = cardObject.GetComponent<CardDisplay>();
-                    if (cardDisplay != null && cardData.cardType.Contains(Card.CardType.Square))
+                    if (cardDisplay != null && cardData.cardType == Card.CardType.Square)
                     {
                         count++;
                     }

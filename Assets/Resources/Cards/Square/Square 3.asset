@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Square 3
   m_EditorClassIdentifier: 
   cardName: Infiltration Attack
-  cardType: 02000000
+  cardType: 2
   statType: 03000000
   dropType: 01000000
   health: 0
   defense: 0
   damage: 0
-  discretion: 3
+  discretion: 8
   perception: 0
   energy: 1
   effect: Gagnez {discretion} infiltration.
   cardImage: {fileID: 0}
   effects:
-  - {fileID: 11400000, guid: 2668d6c1fa68d5540a6a6e47a01100f3, type: 2}
+  - {fileID: 11400000, guid: 313bc1cd219dc514b9c55bffa75291cd, type: 2}

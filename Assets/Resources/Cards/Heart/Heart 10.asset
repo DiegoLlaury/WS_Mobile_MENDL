@@ -25,4 +25,4 @@ MonoBehaviour:
   effect: Attaquez avec votre valeur de bouclier.
   cardImage: {fileID: -605624883, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   effects:
-  - {fileID: 11400000, guid: 7f9fb8b7684ec49489366f9448f95469, type: 2}
+  - {fileID: 11400000, guid: 1be1ad6d49f588547ac6511a10458b46, type: 2}

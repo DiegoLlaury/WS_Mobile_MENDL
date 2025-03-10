@@ -16,9 +16,9 @@ MonoBehaviour:
   cardType: 00000000
   statType: 0000000002000000
   dropType: 00000000
-  health: 0
+  health: 2
   defense: 0
-  damage: 0
+  damage: 3
   discretion: 0
   perception: 0
   energy: 2
@@ -27,3 +27,4 @@ MonoBehaviour:
   cardImage: {fileID: -605624883, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   effects:
   - {fileID: 11400000, guid: 7f9fb8b7684ec49489366f9448f95469, type: 2}
+  - {fileID: 11400000, guid: 5bb625690c2487d47bb9f7a80a94da6f, type: 2}

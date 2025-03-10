@@ -16,14 +16,14 @@ MonoBehaviour:
   cardType: 00000000
   statType: 
   dropType: 01000000
-  health: 0
-  defense: 0
+  health: 2
+  defense: 2
   damage: 0
   discretion: 0
   perception: 0
   energy: 2
-  effect: 'Si la statistique de PV est :\n paire : gagnez {defense} de bouclier,\n
-    impaire : gagnez {health} PV.'
+  effect: 'Si vos PV est :\n paire : gagnez {defense} de bouclier,\n impaire : gagnez
+    {health} PV.'
   cardImage: {fileID: -605624883, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   effects:
-  - {fileID: 11400000, guid: 7f9fb8b7684ec49489366f9448f95469, type: 2}
+  - {fileID: 11400000, guid: 08982c82217ee4941b2799698d339742, type: 2}

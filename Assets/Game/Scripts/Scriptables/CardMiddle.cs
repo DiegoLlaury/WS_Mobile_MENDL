@@ -15,12 +15,16 @@ namespace WS_DiegoCo_Middle
         public int maxHealth;
         public int maxDefense;
         public int defense;
-        public int maxDamage;
-        public int damage;
+        public int maxStrenght;
+        public int strenght;
         public int maxDiscretion;
         public int discretion;
         public int maxPerception;
         public int perception;
+        public int heart;
+        public int square;
+        public int spade;
+        public int clover;
         public Sprite cardImage;
 
        

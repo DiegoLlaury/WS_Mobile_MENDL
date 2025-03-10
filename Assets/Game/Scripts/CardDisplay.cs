@@ -83,16 +83,11 @@ public class CardDisplay : MonoBehaviour
             img.gameObject.SetActive(false); // Deactivate all type images first
         }
 
-        foreach (WS_DiegoCo.Card.CardType type in cardData.cardType)
+        int typeIndex = (int)cardData.cardType;
+        if (typeIndex >= 0 && typeIndex < typeImages.Length)
         {
-            int typeIndex = (int)type; // Enum values should match the order in the prefab
-            if (typeIndex >= 0 && typeIndex < typeImages.Length)
-            {
-                typeImages[typeIndex].gameObject.SetActive(true); // Activate only the correct image
-            }
+            typeImages[typeIndex].gameObject.SetActive(true);
         }
-
-
     }
 
     private int GetStatValue(Card.StatType statType)

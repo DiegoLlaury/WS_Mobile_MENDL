@@ -15,14 +15,18 @@ MonoBehaviour:
   cardName: Roger
   description: Mange des donuts
   statType: 
-  health: 50
-  maxHealth: 50
+  health: 40
+  maxHealth: 0
   maxDefense: 0
   defense: 0
-  maxDamage: 10
-  damage: 10
-  maxDiscretion: 5
-  discretion: 5
-  maxPerception: 10
-  perception: 10
+  maxStrenght: 0
+  strenght: 0
+  maxDiscretion: 0
+  discretion: 0
+  maxPerception: 0
+  perception: 0
+  heart: 8
+  square: 3
+  spade: 7
+  clover: 2
   cardImage: {fileID: -1872677635, guid: 847f3e08157367e458aec63415b2d664, type: 3}

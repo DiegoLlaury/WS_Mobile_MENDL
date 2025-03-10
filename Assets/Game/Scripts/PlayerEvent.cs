@@ -18,19 +18,22 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     public TMP_Text cloverText;
     public TMP_Text energyText;
     public TMP_Text defenseText;
+    public TMP_Text healthText;
+    public TMP_Text strenghtText;
+    public TMP_Text discretionText;
+    public TMP_Text perceptionText;
     
     public int maxEnergy = 3;
     private int currentEnergy;
     public int currentDefense;
     private Dictionary<StatusEffect.StatusType, (int value, int turnsRemaining)> activeEffects = new Dictionary<StatusEffect.StatusType, (int, int)>();
-    private int strength = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentEnergy = maxEnergy;
-        cardData.health = cardData.maxHealth;
-        cardData.damage = cardData.maxDamage;
+        cardData.health = cardData.heart * 5;
+        cardData.strenght = cardData.maxStrenght;
         cardData.discretion = cardData.maxDiscretion;
         cardData.perception = cardData.maxPerception;
         cardData.defense = currentDefense;
@@ -39,10 +42,10 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
 
     private void UpdatePlayerEvent()
     {
-        heartText.text = cardData.health.ToString();
-        spadeText.text = cardData.damage.ToString();
-        squareText.text = cardData.discretion.ToString();
-        cloverText.text = cardData.perception.ToString();
+        healthText.text = cardData.health.ToString();
+        strenghtText.text = cardData.strenght.ToString();
+        discretionText.text = cardData.discretion.ToString();
+        perceptionText.text = cardData.perception.ToString();
         energyText.text = currentEnergy.ToString();
         defenseText.text = currentDefense.ToString();
        
@@ -122,7 +125,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
                 cardData.health += amount;
                 break;
             case Card.StatType.damage:
-                cardData.damage += amount;
+                cardData.strenght += amount;
                 break;
             case Card.StatType.discretion:
                 cardData.discretion += amount;
@@ -171,7 +174,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
                     Debug.Log("Player is weakened!");
                     break;
                 case StatusEffect.StatusType.Strength:
-                    strength += effect.Value.value;
+                    cardData.strenght += effect.Value.value;
                     Debug.Log($"Player strength increased by {effect.Value.value}");
                     break;
             }

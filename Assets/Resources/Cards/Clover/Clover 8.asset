@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Clover 8
   m_EditorClassIdentifier: 
   cardName: Random Reward
-  cardType: 03000000
+  cardType: 3
   statType: 
   dropType: 01000000
   health: 0

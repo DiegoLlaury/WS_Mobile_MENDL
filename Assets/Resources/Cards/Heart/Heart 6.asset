@@ -16,13 +16,13 @@ MonoBehaviour:
   cardType: 00000000
   statType: 00000000
   dropType: 01000000
-  health: 0
+  health: 3
   defense: 0
   damage: 0
   discretion: 0
   perception: 0
   energy: 1
-  effect: "R\xE9g\xE9n\xE9rez {health} PV si infiltration est inf\xE9rieur \xE0 10."
+  effect: "R\xE9g\xE9n\xE9rez {health} PV si infiltration est sup\xE9rieur \xE0 10."
   cardImage: {fileID: -605624883, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   effects:
-  - {fileID: 11400000, guid: 7f9fb8b7684ec49489366f9448f95469, type: 2}
+  - {fileID: 11400000, guid: a0dafd3fce7cbf2459d8dcee5984a982, type: 2}

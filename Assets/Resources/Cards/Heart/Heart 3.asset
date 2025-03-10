@@ -25,4 +25,4 @@ MonoBehaviour:
   effect: "R\xE9g\xE9n\xE9rez {health} PV pendant 2 tours."
   cardImage: {fileID: -605624883, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   effects:
-  - {fileID: 11400000, guid: 7f9fb8b7684ec49489366f9448f95469, type: 2}
+  - {fileID: 11400000, guid: ed049323a3af88d4fb77a0441b350698, type: 2}

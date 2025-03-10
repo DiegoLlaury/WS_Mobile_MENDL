@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: Clover 11
   m_EditorClassIdentifier: 
   cardName: Pair Impair
-  cardType: 03000000
+  cardType: 3
   statType: 04000000
   dropType: 00000000
-  health: 5
+  health: 0
   defense: 0
   damage: 0
-  discretion: 0
-  perception: 8
+  discretion: 5
+  perception: 5
   energy: 1
   effect: "Gagnez {perception} perception ou {discretion} infiltration selon la parit\xE9
     de perception."
   cardImage: {fileID: 0}
   effects:
-  - {fileID: 11400000, guid: cd6acb83ffe3376468df2ba020ff15d2, type: 2}
+  - {fileID: 11400000, guid: 08ca0d952cee8a945b467946e50423f5, type: 2}

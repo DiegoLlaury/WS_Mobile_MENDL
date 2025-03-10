@@ -103,7 +103,7 @@ using WS_DiegoCo;
                 }
                 else
                 {
-                    player.TakeDamage(5);
+                    player.TakeDamage(cardData.damage);
                     Debug.Log("Unlucky! Took 5 damage instead.");
                 }
                 break;

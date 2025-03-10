@@ -8,7 +8,7 @@ namespace WS_DiegoCo
     public class Card : ScriptableObject
     {
         public string cardName;
-        public List<CardType> cardType;
+        public CardType cardType;
         public List<StatType> statType;
         public List<DropType> dropType;
         public int health;

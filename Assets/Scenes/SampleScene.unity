@@ -543,7 +543,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 100, y: 60.24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &209503842
 MonoBehaviour:
@@ -565,7 +565,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -931480734075170877, guid: 11009bc1759b31d4c907a9fd03f01663, type: 3}
+  m_Sprite: {fileID: 7222894579619754808, guid: ab422f9a1393e874a8844d863ce96790, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1250,7 +1250,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 9057139530236316031, guid: bb9825e631df0344b81954666528caa2, type: 3}
+  m_Sprite: {fileID: -503176371265989259, guid: b5408f5132379d244919c99c95b4fc31, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1478,6 +1478,7 @@ MonoBehaviour:
   deck: []
   discardPile: []
   handManager: {fileID: 1909766514}
+  playerStats: {fileID: 820137414}
 --- !u!1 &720136399
 GameObject:
   m_ObjectHideFlags: 0
@@ -1661,13 +1662,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardData: {fileID: 11400000, guid: 140fac9ef93cfb74291936cd7db189a3, type: 2}
-  heartText: {fileID: 315589949}
-  spadeText: {fileID: 1748694577}
-  squareText: {fileID: 1535183322}
-  cloverText: {fileID: 14005020}
+  heartText: {fileID: 0}
+  spadeText: {fileID: 0}
+  squareText: {fileID: 0}
+  cloverText: {fileID: 0}
   energyText: {fileID: 1890423815}
   defenseText: {fileID: 586910124}
+  healthText: {fileID: 315589949}
+  strenghtText: {fileID: 1748694577}
+  discretionText: {fileID: 1535183322}
+  perceptionText: {fileID: 14005020}
   maxEnergy: 3
+  currentDefense: 0
 --- !u!1 &837129494
 GameObject:
   m_ObjectHideFlags: 0
@@ -2789,7 +2795,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 100, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1767606123
 MonoBehaviour:
@@ -2811,7 +2817,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7681490127725818556, guid: d02425345c5355941a85d4ad2530523a, type: 3}
+  m_Sprite: {fileID: 595825646830552648, guid: 7d1e0acea7281804b995498a545b2a96, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

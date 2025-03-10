@@ -13,16 +13,17 @@ MonoBehaviour:
   m_Name: Clover 9
   m_EditorClassIdentifier: 
   cardName: Random Reward
-  cardType: 03000000
+  cardType: 3
   statType: 
   dropType: 01000000
   health: 0
-  defense: 0
+  defense: 3
   damage: 0
   discretion: 0
-  perception: 0
+  perception: 3
   energy: 1
   effect: Gagnez {perception} perception et {defense} defense.
   cardImage: {fileID: 0}
   effects:
-  - {fileID: 11400000, guid: 6927cd7732c294b4d9c47360e7ba0884, type: 2}
+  - {fileID: 11400000, guid: d586550180511cf469fe388d7fe9f14a, type: 2}
+  - {fileID: 11400000, guid: ef1cada5187404a4a949c3ea677c7c3c, type: 2}

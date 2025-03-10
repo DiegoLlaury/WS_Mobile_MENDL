@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Square 10
   m_EditorClassIdentifier: 
   cardName: Infiltration Attack
-  cardType: 02000000
+  cardType: 2
   statType: 03000000
   dropType: 01000000
   health: 0
@@ -25,4 +25,4 @@ MonoBehaviour:
   effect: Piochez 1 carte par carte infiltration dans votre main (max 3).
   cardImage: {fileID: 0}
   effects:
-  - {fileID: 11400000, guid: 2668d6c1fa68d5540a6a6e47a01100f3, type: 2}
+  - {fileID: 11400000, guid: ea99d56aee4039f44bf1a7b453c3ae58, type: 2}

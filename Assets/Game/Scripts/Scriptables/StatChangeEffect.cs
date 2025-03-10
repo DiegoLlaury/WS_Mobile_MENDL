@@ -19,6 +19,8 @@ public class StatChangeEffect : CardEffect
 
         ReduceEnemyInfiltration,
 
+        ReduceEnemyPerception,
+
         GainHealthIfDiscrection
     }
     public StatType statType;
@@ -53,8 +55,12 @@ public class StatChangeEffect : CardEffect
                 enemy.ReduceInfiltration(reductionAmount);
                 break;
 
+            case StatType.ReduceEnemyPerception:
+                enemy.ReducePerception(cardData.perception);
+                break;
+
             case StatType.GainHealthIfDiscrection:
-                if (player.cardData.discretion < 10)
+                if (player.cardData.discretion > 10)
                 {
                     player.GainHealth(cardData.health);
                 }

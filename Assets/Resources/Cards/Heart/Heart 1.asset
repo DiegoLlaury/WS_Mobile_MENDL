@@ -25,4 +25,4 @@ MonoBehaviour:
   effect: Gagnez {defense} de bouclier chaque tour. (Jouable une fois).
   cardImage: {fileID: -605624883, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   effects:
-  - {fileID: 11400000, guid: 7f9fb8b7684ec49489366f9448f95469, type: 2}
+  - {fileID: 11400000, guid: 3ce842a5d62227c418ad26c8683ebbf1, type: 2}

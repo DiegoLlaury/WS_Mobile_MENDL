@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Square 9
   m_EditorClassIdentifier: 
   cardName: Infiltration Attack
-  cardType: 02000000
+  cardType: 2
   statType: 03000000
   dropType: 01000000
   health: 0
@@ -25,4 +25,4 @@ MonoBehaviour:
   effect: Gagnez 1 de force par 2 d'infiltration, perdez 3 PV.
   cardImage: {fileID: 0}
   effects:
-  - {fileID: 11400000, guid: 2668d6c1fa68d5540a6a6e47a01100f3, type: 2}
+  - {fileID: 11400000, guid: 6ab1bb1c8f74f444dbd6218d95d7eda2, type: 2}

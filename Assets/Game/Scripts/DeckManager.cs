@@ -3,31 +3,73 @@ using System.Collections;
 using System.Collections.Generic;
 using WS_DiegoCo;
 using Unity.VisualScripting;
+using WS_DiegoCo_Middle;
 
 public class DeckManager : MonoBehaviour
 {
+    public enum CardType { Heart, Square, Spade, Clover }
+
     public List<Card> deck = new List<Card>();
-    public List<Card> discardPile = new List<Card>();
-    
-   
+    public List<Card> discardPile = new List<Card>();  
     public HandManager handManager;
-
-
+    public PlayerEvent playerStats;
     private void Start()
     {
-        //Load all card assets from the Ressources folder
-        Card[] cards = Resources.LoadAll<Card>("Cards");
-
-        //Add the loaded cards to the allCards list
-        deck.AddRange(cards);
-
-        //Shuffle the deck
-        ShuffleDeck();
-
         handManager = FindAnyObjectByType<HandManager>();
-        
+        //playerStats = FindAnyObjectByType<CardMiddle>();
+
+        if (playerStats == null)  //  Prevent errors if playerStats isn't found
+        {
+            Debug.LogError(" Error: CardMiddle (playerStats) is missing! Deck cannot be created.");
+            return;
+        }
+
+        LoadDeckFromPlayerStats();
+        //Shuffle the deck
+        ShuffleDeck();       
     }
 
+    private void LoadDeckFromPlayerStats()
+    {
+        deck.Clear();
+
+        // Load cards based on their type folders
+        Dictionary<Card.CardType, List<Card>> cardLibrary = new Dictionary<Card.CardType, List<Card>>();
+
+        foreach (Card.CardType type in System.Enum.GetValues(typeof(Card.CardType)))
+        {
+            Card[] loadedCards = Resources.LoadAll<Card>($"Cards/{type}");
+
+            if (loadedCards == null || loadedCards.Length == 0)
+            {
+                Debug.LogWarning($" No cards found in Resources/Cards/{type}!");
+                continue;
+            }
+
+            cardLibrary[type] = new List<Card>(loadedCards);
+        }
+
+        // Get card counts from playerStats
+        AddCardsToDeck(Card.CardType.Heart, playerStats.cardData.heart, cardLibrary);
+        AddCardsToDeck(Card.CardType.Square, playerStats.cardData.square, cardLibrary);
+        AddCardsToDeck(Card.CardType.Spade, playerStats.cardData.spade, cardLibrary);
+        AddCardsToDeck(Card.CardType.Clover, playerStats.cardData.clover, cardLibrary);
+    }
+
+    private void AddCardsToDeck(Card.CardType type, int count, Dictionary<Card.CardType, List<Card>> library)
+    {
+        if (!library.ContainsKey(type) || library[type].Count == 0)
+        {
+            Debug.LogWarning($" No valid cards available for {type}.");
+            return;
+        }
+
+        for (int i = 0; i < count; i++)
+        {
+            Card randomCard = library[type][Random.Range(0, library[type].Count)];
+            deck.Add(randomCard);
+        }
+    }
 
     public void ShuffleDeck()
     {
