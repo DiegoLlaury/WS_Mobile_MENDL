@@ -75,7 +75,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
 
         if (cardData.health <= 0)
         {
-            GameManager.Instance.CheckGameOver();
+            BattleManager.Instance.CheckGameOver();
         }
     }
 

@@ -28,6 +28,12 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {  
+        
+    }
+
+    public void Initialize(Enemy data)
+    {
+        enemyData = data;
         enemyData.health = enemyData.maxHealth;
         enemyData.damage = enemyData.maxDamage;
         enemyData.discretion = enemyData.maxDiscretion;

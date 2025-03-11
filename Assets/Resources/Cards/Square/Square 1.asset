@@ -19,10 +19,11 @@ MonoBehaviour:
   health: 0
   defense: 0
   damage: 0
-  discretion: 10
+  startingDamage: 0
+  discretion: 0
   perception: 0
   energy: 2
   effect: Gagnez {discretion} infiltration mais perdez toute perception.
   cardImage: {fileID: 0}
   effects:
-  - {fileID: 11400000, guid: 94a2f26e04fbffc4c8f88536ef018eb6, type: 2}
+  - {fileID: 11400000, guid: 6d96d19349dce6c458b332d43e952aed, type: 2}

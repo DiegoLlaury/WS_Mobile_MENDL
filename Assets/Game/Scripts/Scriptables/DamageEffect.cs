@@ -31,7 +31,7 @@ using WS_DiegoCo;
     public TargetDamage targetDamage;
 
     // The new, more flexible method
-    public override void ApplyEffect(EnemyDisplay enemy, Card cardData, PlayerEvent player, DeckManager deck, HandManager hand, GameManager gameManager, EnemyManager enemyManager)
+    public override void ApplyEffect(EnemyDisplay enemy, Card cardData, PlayerEvent player, DeckManager deck, HandManager hand, BattleManager battleManager, EnemyManager enemyManager)
     {
         switch (targetDamage)
         {
@@ -63,12 +63,12 @@ using WS_DiegoCo;
                 break;
 
             case TargetDamage.RandomEnemy:
-                for (int i = 0; i < 5; i++)
+                EnemyDisplay randomEnemy = enemyManager.GetRandomEnemy();
+                if (randomEnemy != null)
                 {
-                    enemyManager.GetRandomEnnemies();
-                    Debug.Log(enemyManager.randomEnemy);
-                    enemyManager.randomEnemy.TakeDamage(cardData.damage);
-                }  
+                    randomEnemy.TakeDamage(cardData.damage);
+                    Debug.Log($"Random enemy {randomEnemy.enemyData.enemyName} took {cardData.damage} damage.");
+                }
                 break;
 
             case TargetDamage.RegenerateNextAttack:

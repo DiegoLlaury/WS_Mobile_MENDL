@@ -1,6 +1,7 @@
 using UnityEngine;
 using WS_DiegoCo;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 [CreateAssetMenu(fileName = "New Dice Effect", menuName = "Card Effects/Dice")]
 public class DiceEffect : CardEffect
@@ -17,7 +18,7 @@ public class DiceEffect : CardEffect
 
     public DiceType diceType;
 
-    public override void ApplyEffect(EnemyDisplay enemy, Card cardData, PlayerEvent player, DeckManager deck, HandManager hand, GameManager gameManager, EnemyManager enemyManager)
+    public override void ApplyEffect(EnemyDisplay enemy, Card cardData, PlayerEvent player, DeckManager deck, HandManager hand, BattleManager battleManager, EnemyManager enemyManager)
     {
         int diceRoll = Random.Range(1, 7); // Rolling a 6-sided die
         Debug.Log($"Rolled a {diceRoll}");
@@ -52,7 +53,7 @@ public class DiceEffect : CardEffect
                 break;
 
             case DiceType.RandomReward:
-                ApplyRandomReward(player, diceRoll);
+                ApplyRandomReward(player, diceRoll, deck, cardData);
                 break;
 
             case DiceType.PerceptionOrHeal:
@@ -64,28 +65,29 @@ public class DiceEffect : CardEffect
         }
     }
 
-    private void ApplyRandomReward(PlayerEvent player, int diceRoll)
+    private void ApplyRandomReward(PlayerEvent player, int diceRoll, DeckManager deck, Card cardData)
     {
         // Example rewards based on the roll
         switch (diceRoll)
         {
             case 1:
-                player.GainHealth(5);
+                player.GainHealth(cardData.health);
                 break;
             case 2:
-                player.GainEnergy(2);
+                player.TakeDamage(cardData.damage);
                 break;
             case 3:
-                player.GainPerception(3);
+                player.GainShield(cardData.defense);
                 break;
             case 4:
-                player.GainShield(4);
+                player.GainPerception(cardData.perception);
                 break;
             case 5:
-                player.GainInfiltration(2);
+                player.GainInfiltration(cardData.discretion);
                 break;
             case 6:
-                player.GainHealth(10);
+                player.GainEnergy(3);
+                deck.DrawCard(2);
                 break;
         }
     }

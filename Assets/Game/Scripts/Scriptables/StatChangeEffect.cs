@@ -21,11 +21,13 @@ public class StatChangeEffect : CardEffect
 
         ReduceEnemyPerception,
 
-        GainHealthIfDiscrection
+        GainHealthIfDiscrection,
+
+        GainDiscretionButLostPerception
     }
     public StatType statType;
 
-    public override void ApplyEffect(EnemyDisplay enemy, Card cardData, PlayerEvent player, DeckManager deck, HandManager hand, GameManager gameManager, EnemyManager enemyManager)
+    public override void ApplyEffect(EnemyDisplay enemy, Card cardData, PlayerEvent player, DeckManager deck, HandManager hand, BattleManager battleManager, EnemyManager enemyManager)
     {
         switch (statType)
         {
@@ -46,7 +48,7 @@ public class StatChangeEffect : CardEffect
                 break;
 
             case StatType.GainPerceptionButLostDiscretion:
-                player.GainPerception(cardData.perception);
+                player.GainPerception(player.cardData.discretion);
                 player.cardData.discretion = 0;
                 break;
 
@@ -64,6 +66,11 @@ public class StatChangeEffect : CardEffect
                 {
                     player.GainHealth(cardData.health);
                 }
+                break;
+
+            case StatType.GainDiscretionButLostPerception:
+                player.GainInfiltration(player.cardData.perception);
+                player.cardData.perception = 0;
                 break;
         }
     }

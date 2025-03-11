@@ -28,7 +28,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
     private DeckManager deckManager;
     private HandManager handManager;
     private EnemyManager enemyManager;
-    private GameManager gameManager;
+    private BattleManager battleManager;
 
 
     [SerializeField] private float selectScale = 1.1f;
@@ -46,7 +46,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         handManager = FindAnyObjectByType<HandManager>();
         player = FindAnyObjectByType<PlayerEvent>();
         enemyManager = FindAnyObjectByType<EnemyManager>();
-        gameManager = FindAnyObjectByType<GameManager>();
+        battleManager = FindAnyObjectByType<BattleManager>();
 
         if (cardDisplay != null && cardDisplay.cardData != null)
         {
@@ -181,7 +181,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         {
             if (enemy != null)
             {
-                ApplyCardEffects(enemy, cardDisplay.cardData, player, deckManager, handManager, gameManager, enemyManager);
+                ApplyCardEffects(enemy, cardDisplay.cardData, player, deckManager, handManager, battleManager, enemyManager);
                 player.UseEnergy(cardDisplay.cardData.energy);
                 HandleCardUsed();
 
@@ -203,8 +203,9 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
             // Check if dropped on the Skill Zone
             if (dropZone != null && dropZone.CompareTag("DropZone"))
             {
-                enemyManager.GetRandomEnnemies();
-                ApplyCardEffects(enemyManager.randomEnemy, cardDisplay.cardData, player, deckManager, handManager, gameManager, enemyManager);
+                EnemyDisplay randomEnemy = enemyManager.GetRandomEnemy();
+                enemyManager.GetRandomEnemy();
+                ApplyCardEffects(randomEnemy, cardDisplay.cardData, player, deckManager, handManager, battleManager, enemyManager);
                 player.UseEnergy(cardDisplay.cardData.energy);
                 HandleCardUsed();
             }
@@ -271,7 +272,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         return null; // No drop zone detected
     }
 
-    private void ApplyCardEffects(EnemyDisplay enemy, Card card, PlayerEvent playerEvent, DeckManager deck, HandManager hand, GameManager gameManager, EnemyManager enemyManager)
+    private void ApplyCardEffects(EnemyDisplay enemy, Card card, PlayerEvent playerEvent, DeckManager deck, HandManager hand, BattleManager battleManager, EnemyManager enemyManager)
     {
         if (enemy == null)
         {
@@ -281,7 +282,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
         foreach (CardEffect effect in cardDisplay.cardData.effects)
         {
-            effect.ApplyEffect(enemy, card, playerEvent, deck, hand, gameManager, enemyManager);
+            effect.ApplyEffect(enemy, card, playerEvent, deck, hand, battleManager, enemyManager);
         }
 
         Debug.Log($"Card {cardDisplay.cardData.cardName} applied effects to {enemy.enemyData.enemyName}.");
