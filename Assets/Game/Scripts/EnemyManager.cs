@@ -56,15 +56,26 @@ public class EnemyManager : MonoBehaviour
     public IEnumerator EnemyTurn()
     {
         Debug.Log("Enemy Turn Start");
+        List<EnemyDisplay> enemiesToRemove = new List<EnemyDisplay>();
 
-        foreach (EnemyDisplay enemy in enemies.ToArray()) // Use ToArray to avoid modification errors
+        foreach (EnemyDisplay enemy in enemies) // Use ToArray to avoid modification errors
         {
             if (enemy.enemyData.health > 0)
             {
                 enemy.ProcessTurnEffects();
+                if (enemy.enemyData.health <= 0)
+                {
+                    enemiesToRemove.Add(enemy); // Mark for removal
+                    continue; // Skip further actions
+                }
+
                 PerformEnemyAction(enemy);
                 yield return new WaitForSeconds(2f);
             }
+        }
+        foreach (EnemyDisplay enemy in enemiesToRemove)
+        {
+            RemoveEnemy(enemy);
         }
 
         GameManager.Instance.EndEnemyTurn();

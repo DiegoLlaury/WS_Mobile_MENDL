@@ -79,28 +79,28 @@ public class DiscardEffect : CardEffect
     private List<GameObject> GetCardsByType(HandManager hand, Card.CardType type)
     {
         List<GameObject> result = new List<GameObject>();
-        //foreach (GameObject cardObj in hand.cardsInHand)
-        //{
-        //    CardDisplay display = cardObj.GetComponent<CardDisplay>();
-        //    if (display != null && display.cardData.cardType == type)
-        //    {
-        //        result.Add(cardObj);
-        //    }
-        //}
+        foreach (GameObject cardObj in hand.cardsInHand)
+        {
+            CardDisplay display = cardObj.GetComponent<CardDisplay>();
+            if (display != null && display.cardData.cardType == type)
+            {
+                result.Add(cardObj);
+            }
+        }
         return result;
     }
 
     private List<GameObject> GetRandomCards(HandManager hand, int count)
     {
-    //    List<GameObject> result = new List<GameObject>(hand.cardsInHand);
+        List<GameObject> result = new List<GameObject>(hand.cardsInHand);
         List<GameObject> selected = new List<GameObject>();
 
-    //    for (int i = 0; i < count && result.Count > 0; i++)
-    //    {
-    //        int randomIndex = Random.Range(0, result.Count);
-    //        selected.add(result[randomIndex]);
-    //        result.RemoveAt(randomIndex);
-    //    }
+        for (int i = 0; i < count && result.Count > 0; i++)
+        {
+           int randomIndex = Random.Range(0, result.Count);
+           selected.Add(result[randomIndex]);
+           result.RemoveAt(randomIndex);
+        }
         return selected;
     }
 }

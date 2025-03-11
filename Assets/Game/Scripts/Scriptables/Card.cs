@@ -14,6 +14,7 @@ namespace WS_DiegoCo
         public int health;
         public int defense;
         public int damage;
+        public int startingDamage;
         public int discretion;
         public int perception;
         public int energy;

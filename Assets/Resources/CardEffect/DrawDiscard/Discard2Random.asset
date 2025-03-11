@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d821d65dd005fb747a24b80a53d589ff, type: 3}
-  m_Name: DiscardSpade 4
+  m_Name: Discard2Random
   m_EditorClassIdentifier: 
-  discardNumber: 0
-  discardType: 0
+  discardNumber: 2
+  discardType: 1
   targetCardType: 1
-  gainHealthPerCard: 2
+  gainHealthPerCard: 0
   gainInfiltrationPerCard: 0
   gainPerceptionPerCard: 0
   drawAmountAfterDiscard: 0

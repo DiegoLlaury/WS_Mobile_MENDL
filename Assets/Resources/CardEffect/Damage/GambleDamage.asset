@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6424365809d787549b9b69fd8a276399, type: 3}
   m_Name: GambleDamage
   m_EditorClassIdentifier: 
-  targetDamage: 9
+  targetDamage: 10

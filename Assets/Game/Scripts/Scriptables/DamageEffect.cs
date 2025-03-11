@@ -12,6 +12,8 @@ using WS_DiegoCo;
 
         AllEnemies,
 
+        DoubleAttack,
+
         DefenseAttack,
 
         InfiltrationAttack,
@@ -46,6 +48,10 @@ using WS_DiegoCo;
                 {
                     enemyObject.TakeDamage(cardData.damage);
                 }
+                break;
+
+            case TargetDamage.DoubleAttack:
+                enemy.TakeDamage(cardData.damage * 2);
                 break;
 
             case TargetDamage.DefenseAttack:

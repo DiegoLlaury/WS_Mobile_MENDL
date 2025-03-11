@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d821d65dd005fb747a24b80a53d589ff, type: 3}
-  m_Name: DiscardSpade 3
+  m_Script: {fileID: 11500000, guid: 1bf32b52a431506429dc0c8b75505ade, type: 3}
+  m_Name: Draw2Card 1
   m_EditorClassIdentifier: 
-  discardNumber: 0
-  discardType: 0
-  targetCardType: 1
-  gainHealthPerCard: 2
-  gainInfiltrationPerCard: 0
-  gainPerceptionPerCard: 0
-  drawAmountAfterDiscard: 0
+  numberOfCard: 2
+  typeDraw: 0

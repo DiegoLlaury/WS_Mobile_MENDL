@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6424365809d787549b9b69fd8a276399, type: 3}
   m_Name: DefenseAttack
   m_EditorClassIdentifier: 
-  targetDamage: 3
+  targetDamage: 4

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using WS_DiegoCo_Middle;
 using WS_DiegoCo;
 using UnityEngine.Rendering;
+using System.Linq;
 
 public class PlayerEvent : MonoBehaviour, IStatusReceiver
 {
@@ -22,7 +23,9 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     public TMP_Text strenghtText;
     public TMP_Text discretionText;
     public TMP_Text perceptionText;
-    
+
+    [SerializeField] private int healthRatio = 5;
+
     public int maxEnergy = 3;
     private int currentEnergy;
     public int currentDefense;
@@ -32,7 +35,8 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     void Start()
     {
         currentEnergy = maxEnergy;
-        cardData.health = cardData.heart * 5;
+        cardData.maxHealth = cardData.heart * healthRatio;
+        cardData.health = cardData.maxHealth;
         cardData.strenght = cardData.maxStrenght;
         cardData.discretion = cardData.maxDiscretion;
         cardData.perception = cardData.maxPerception;
@@ -150,6 +154,18 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         {
             activeEffects.Add(statusType, (value, duration));
         }
+
+        if (statusType == StatusEffect.StatusType.Strength)
+        {
+            cardData.strenght += value;
+        }
+        else if (statusType == StatusEffect.StatusType.Weakness)
+        {
+            cardData.strenght -= value;
+        }
+
+        UpdatePlayerEvent();
+        CardDisplay.UpdateAllCards(cardData.strenght);
         Debug.Log($"Applied status {statusType} with value {value} for {duration} turns.");
     }
 
@@ -157,37 +173,49 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     {
         List<StatusEffect.StatusType> toRemove = new List<StatusEffect.StatusType>();
 
-        foreach (var effect in activeEffects)
+        foreach (var key in activeEffects.Keys.ToList())
         {
-            switch (effect.Key)
+            var effect = activeEffects[key];
+
+            switch (key)
             {
                 case StatusEffect.StatusType.Shield:
-                    GainShield(effect.Value.value);
+                    GainShield(effect.value);
                     break;
                 case StatusEffect.StatusType.Regeneration:
-                    GainHealth(effect.Value.value);
+                    GainHealth(effect.value);
                     break;
                 case StatusEffect.StatusType.Bleeding:
-                    TakeDamage(effect.Value.value, ignoreShield: true);
+                    TakeDamage(effect.value, ignoreShield: true);
                     break;
                 case StatusEffect.StatusType.Weakness:
-                    Debug.Log("Player is weakened!");
+                    cardData.strenght -= effect.value;
                     break;
                 case StatusEffect.StatusType.Strength:
-                    cardData.strenght += effect.Value.value;
-                    Debug.Log($"Player strength increased by {effect.Value.value}");
+                    cardData.strenght += effect.value;
+                    Debug.Log($"Player strength increased by {effect.value}");
                     break;
             }
 
             // Reduce duration
-            int newTurns = effect.Value.turnsRemaining - 1;
+            int newTurns = effect.turnsRemaining - 1;
             if (newTurns <= 0)
             {
-                toRemove.Add(effect.Key);
+                toRemove.Add(key);
+
+                // Remove effect from Strength/Weakness
+                if (key == StatusEffect.StatusType.Strength)
+                {
+                    cardData.strenght -= effect.value;
+                }
+                else if (key == StatusEffect.StatusType.Weakness)
+                {
+                    cardData.strenght += effect.value;
+                }
             }
             else
             {
-                activeEffects[effect.Key] = (effect.Value.value, newTurns);
+                activeEffects[key] = (effect.value, newTurns);
             }
         }
         // Remove expired effects
@@ -196,6 +224,9 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
             activeEffects.Remove(status);
             Debug.Log($"Status {status} expired.");
         }
+
+        UpdatePlayerEvent();
+        CardDisplay.UpdateAllCards(cardData.strenght);
     }
 
     public bool CanPlayCard(int cost)

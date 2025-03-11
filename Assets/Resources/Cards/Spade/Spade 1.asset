@@ -19,6 +19,7 @@ MonoBehaviour:
   health: 0
   defense: 0
   damage: 5
+  startingDamage: 5
   discretion: 0
   perception: 0
   energy: 2

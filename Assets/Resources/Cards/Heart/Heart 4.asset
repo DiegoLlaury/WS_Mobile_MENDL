@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Heart 4
   m_EditorClassIdentifier: 
   cardName: Pistolet
-  cardType: 00000000
+  cardType: 0
   statType: 0000000002000000
   dropType: 00000000
   health: 2
   defense: 0
   damage: 3
+  startingDamage: 3
   discretion: 0
   perception: 0
   energy: 2

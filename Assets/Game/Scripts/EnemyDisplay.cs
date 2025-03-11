@@ -5,6 +5,7 @@ using WS_DiegoCo_Enemy;
 using System;
 using WS_DiegoCo;
 using System.Collections.Generic;
+using System.Linq;
 
 public class EnemyDisplay : MonoBehaviour, IStatusReceiver
 {
@@ -19,7 +20,6 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
     public TMP_Text damageText;
 
     private int currentDefense = 0;
-    private int strength = 0;
     private bool isNextAttackHeal = false;
 
     private PlayerEvent player;
@@ -135,39 +135,42 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
     {
         List<StatusEffect.StatusType> toRemove = new List<StatusEffect.StatusType>();
 
-        foreach (var effect in activeEffects)
+        foreach (var key in activeEffects.Keys.ToList())
         {
-            switch (effect.Key)
+            var effect = activeEffects[key];
+
+            switch (key)
             {
                 case StatusEffect.StatusType.Regeneration:
-                    enemyData.health = Mathf.Min(enemyData.health + effect.Value.value, enemyData.maxHealth);
-                    Debug.Log($"Enemy {enemyData.enemyName} regenerated {effect.Value.value} HP.");
+                    enemyData.health = Mathf.Min(enemyData.health + effect.value, enemyData.maxHealth);
+                    Debug.Log($"Enemy {enemyData.enemyName} regenerated {effect.value} HP.");
                     break;
 
                 case StatusEffect.StatusType.Bleeding:
-                    TakeDamage(effect.Value.value, ignoreShield: true);
-                    Debug.Log($"Enemy {enemyData.enemyName} suffered {effect.Value.value} bleeding damage.");
+                    TakeDamage(effect.value, ignoreShield: true);
+                    Debug.Log($"Enemy {enemyData.enemyName} suffered {effect.value} bleeding damage.");
                     break;
 
                 case StatusEffect.StatusType.Weakness:
+                    enemyData.damage -= effect.value;
                     Debug.Log($"Enemy {enemyData.enemyName} is weakened!");
                     break;
 
                 case StatusEffect.StatusType.Strength:
-                    strength += effect.Value.value;
-                    Debug.Log($"Enemy {enemyData.enemyName} strength increased by {effect.Value.value}.");
+                    enemyData.damage += effect.value;
+                    Debug.Log($"Enemy {enemyData.enemyName} strength increased by {effect.value}.");
                     break;
             }
 
             // Reduce duration
-            int newTurns = effect.Value.turnsRemaining - 1;
+            int newTurns = effect.turnsRemaining - 1;
             if (newTurns <= 0)
             {
-                toRemove.Add(effect.Key);
+                toRemove.Add(key);
             }
             else
             {
-                activeEffects[effect.Key] = (effect.Value.value, newTurns);
+                activeEffects[key] = (effect.value, newTurns);
             }
         }
 

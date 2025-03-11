@@ -19,10 +19,11 @@ MonoBehaviour:
   health: 0
   defense: 0
   damage: 4
+  startingDamage: 4
   discretion: 0
   perception: 2
   energy: 1
-  effect: "Infligez {damage} d\xE9gats et gagnez {perception}."
+  effect: "Infligez {damage} d\xE9gats et gagnez {perception} perception."
   cardImage: {fileID: 0}
   effects:
   - {fileID: 11400000, guid: 7f9fb8b7684ec49489366f9448f95469, type: 2}

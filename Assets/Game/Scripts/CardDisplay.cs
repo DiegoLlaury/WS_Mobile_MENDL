@@ -4,12 +4,15 @@ using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 using WS_DiegoCo;
+using WS_DiegoCo_Middle;
 using System;
 
 public class CardDisplay : MonoBehaviour
 {
 
     public Card cardData;
+    private CardMiddle cardMiddle;
+    private PlayerEvent player;
 
     public Image cardImage;
     public TMP_Text nameText;
@@ -43,6 +46,13 @@ public class CardDisplay : MonoBehaviour
 
     public void Start()
     {
+        
+        player = FindAnyObjectByType<PlayerEvent>();
+        if (player == null)
+        {
+            Debug.LogError("PlayerEvent not found! Make sure a PlayerEvent exists in the scene.");
+        }
+        cardData.damage = cardData.startingDamage + player.cardData.strenght;
         UpdateCardDisplay();
     }
 
@@ -87,6 +97,23 @@ public class CardDisplay : MonoBehaviour
         if (typeIndex >= 0 && typeIndex < typeImages.Length)
         {
             typeImages[typeIndex].gameObject.SetActive(true);
+        }
+    }
+
+    public void UpdateDamage(int strength)
+    {
+        cardData.damage = cardData.startingDamage + strength;
+        Debug.Log("Damage Uodate, Card dammage : " + cardData.damage +", Player strength : "+ player.cardData.strenght);
+        UpdateCardDisplay();
+    }
+
+    public static void UpdateAllCards(int strength)
+    {
+        CardDisplay[] cards = FindObjectsByType<CardDisplay>(FindObjectsSortMode.None);
+        foreach (CardDisplay card in cards)
+        {
+            Debug.Log("hello");
+            card.UpdateDamage(strength);
         }
     }
 

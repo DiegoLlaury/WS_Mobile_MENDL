@@ -13,6 +13,7 @@ public class DeckManager : MonoBehaviour
     public List<Card> discardPile = new List<Card>();  
     public HandManager handManager;
     public PlayerEvent playerStats;
+
     private void Start()
     {
         handManager = FindAnyObjectByType<HandManager>();

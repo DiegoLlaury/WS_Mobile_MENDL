@@ -15,14 +15,15 @@ MonoBehaviour:
   cardName: Infiltration Attack
   cardType: 2
   statType: 03000000
-  dropType: 01000000
+  dropType: 00000000
   health: 0
   defense: 0
-  damage: 0
-  discretion: 3
+  damage: 5
+  startingDamage: 5
+  discretion: 0
   perception: 0
   energy: 2
-  effect: "Gagnez {discretion} infiltration par carte d\xE9fauss\xE9e."
+  effect: "Infligez \xE0 un ennemis deux fois {damage} de d\xE9gat."
   cardImage: {fileID: 0}
   effects:
-  - {fileID: 11400000, guid: 2668d6c1fa68d5540a6a6e47a01100f3, type: 2}
+  - {fileID: 11400000, guid: cfbd677566fd50c4da30943de0fa980a, type: 2}

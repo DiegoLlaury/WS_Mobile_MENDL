@@ -9,13 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d821d65dd005fb747a24b80a53d589ff, type: 3}
-  m_Name: DiscardSpade 5
+  m_Script: {fileID: 11500000, guid: 6424365809d787549b9b69fd8a276399, type: 3}
+  m_Name: DoubleAttack
   m_EditorClassIdentifier: 
-  discardNumber: 0
-  discardType: 0
-  targetCardType: 1
-  gainHealthPerCard: 2
-  gainInfiltrationPerCard: 0
-  gainPerceptionPerCard: 0
-  drawAmountAfterDiscard: 0
+  targetDamage: 3

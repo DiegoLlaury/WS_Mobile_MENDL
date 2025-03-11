@@ -22,7 +22,8 @@ MonoBehaviour:
   discretion: 0
   perception: 8
   energy: 1
-  effect: "D\xE9faussez une carte, piochez 2 cartes."
+  effect: "D\xE9faussez une carte al\xE9atoire, piochez 2 cartes."
   cardImage: {fileID: 0}
   effects:
-  - {fileID: 11400000, guid: cd6acb83ffe3376468df2ba020ff15d2, type: 2}
+  - {fileID: 11400000, guid: f4e922faaa5ace0459ae8c0db4b03a8c, type: 2}
+  - {fileID: 11400000, guid: b9b1283bfc33ff749b2f27d6aebbaa20, type: 2}

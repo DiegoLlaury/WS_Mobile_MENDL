@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Defense
   m_EditorClassIdentifier: 
   statusType: 0
-  value: 2
+  value: 1
   duration: 9999
   applyToPlayer: 1
   applyToEnemy: 0

@@ -16,13 +16,15 @@ MonoBehaviour:
   cardType: 3
   statType: 04000000
   dropType: 01000000
-  health: 5
+  health: 0
   defense: 0
   damage: 0
+  maxDamage: 0
   discretion: 0
-  perception: 8
+  perception: 2
   energy: 1
-  effect: "D\xE9faussez les cartes carreau pour gagner {perception} perception."
+  effect: "D\xE9faussez les cartes carreau pour gagner {perception} perception, par
+    carte d\xE9fauss\xE9."
   cardImage: {fileID: 0}
   effects:
-  - {fileID: 11400000, guid: cd6acb83ffe3376468df2ba020ff15d2, type: 2}
+  - {fileID: 11400000, guid: 41a1d427499a51344a527c63e1f6d6bf, type: 2}

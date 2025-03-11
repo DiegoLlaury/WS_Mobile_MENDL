@@ -24,4 +24,5 @@ MonoBehaviour:
   energy: 2
   effect: Gagnez un bonus de force pour le prochain tour.
   cardImage: {fileID: 0}
-  effects: []
+  effects:
+  - {fileID: 11400000, guid: 623ea3efbbe27024a816e79e1a15fd10, type: 2}

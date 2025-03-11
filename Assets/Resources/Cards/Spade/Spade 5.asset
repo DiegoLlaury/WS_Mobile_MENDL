@@ -18,7 +18,8 @@ MonoBehaviour:
   dropType: 00000000
   health: 0
   defense: 0
-  damage: 1
+  damage: 2
+  startingDamage: 1
   discretion: 0
   perception: 0
   energy: 1

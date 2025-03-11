@@ -40,7 +40,7 @@ public class HandManager : MonoBehaviour
 
         // Add to hand
         cardsInHand.Add(newCard);
-
+        //display.UpdateAllCards();
         // Recalculate positions and animate movement
         UpdateCardPositions();
     }
