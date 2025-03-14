@@ -10,7 +10,9 @@ namespace WS_DiegoCo_Event
     {
         public EventType eventType;
         public EventPlace eventPlace;
+        public EventDifficulty eventDifficulty;
         public int numberTurn;
+        public int currentTurn;
         public int conditionNumber;
         public List<Enemy> enemies;
         public bool boss;
@@ -39,6 +41,15 @@ namespace WS_DiegoCo_Event
             Bar,
             Entrepots,
             Diner
+        }
+
+        public enum EventDifficulty
+        {
+            Facile,
+
+            Moyen,
+
+            Difficile
         }
   
     }

@@ -78,6 +78,11 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         }
 
         UpdateEnemyDisplay();
+
+        if (enemyData.health <= 0)
+        {
+            BattleManager.Instance.CheckGameOver();
+        }
     }
 
     public void GainShield(int amount)

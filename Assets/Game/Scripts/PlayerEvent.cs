@@ -6,12 +6,15 @@ using WS_DiegoCo_Middle;
 using WS_DiegoCo;
 using UnityEngine.Rendering;
 using System.Linq;
+using WS_DiegoCo_Enemy;
 
 public class PlayerEvent : MonoBehaviour, IStatusReceiver
 {
 
     public CardMiddle cardData;
+    public GameManager game;
     private Card card;
+    private EnemyDisplay enemy;
 
     public TMP_Text heartText;
     public TMP_Text spadeText;
@@ -23,6 +26,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     public TMP_Text strenghtText;
     public TMP_Text discretionText;
     public TMP_Text perceptionText;
+    public TMP_Text currentTurnText;
 
     [SerializeField] private int healthRatio = 5;
 
@@ -41,6 +45,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         cardData.discretion = cardData.maxDiscretion;
         cardData.perception = cardData.maxPerception;
         cardData.defense = currentDefense;
+        game.currentEvent.currentTurn = game.currentEvent.numberTurn;
         UpdatePlayerEvent();
     }
 
@@ -52,7 +57,13 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         perceptionText.text = cardData.perception.ToString();
         energyText.text = currentEnergy.ToString();
         defenseText.text = currentDefense.ToString();
-       
+        currentTurnText.text = game.currentEvent.currentTurn.ToString();
+    }
+
+    public void TurnChange()
+    {
+        game.currentEvent.currentTurn--;
+        UpdatePlayerEvent();
     }
 
     public void TakeDamage(int damage, bool ignoreShield = false)
@@ -111,6 +122,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     {
         cardData.discretion += infiltration;
         UpdatePlayerEvent();
+        BattleManager.Instance.CheckGameOver();
         Debug.Log($"Player gain {infiltration} discretion. Current discretion : {cardData.discretion}");
     }
 
@@ -227,6 +239,14 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
 
         UpdatePlayerEvent();
         CardDisplay.UpdateAllCards(cardData.strenght);
+    }
+
+    public void RondeTest(EnemyDisplay enemy)
+    {
+        if (cardData.discretion < enemy.enemyData.perception)
+        {
+            Debug.Log("Infiltration Failed!");
+        }
     }
 
     public bool CanPlayCard(int cost)

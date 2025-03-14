@@ -12,11 +12,14 @@ public class BattleManager : MonoBehaviour
     public DeckManager deckManager;
     public EnemyManager enemyManager;
     public PlayerEvent player;
+    public InfiltrationMode infiltration;
+    public InvestigationMode investigation;
+    public GameManager game;
 
     private int cardStart = 4;
     private bool isPlayerTurn = true;
     private CardMiddle playerCard;
-    private EventBattle battleEvent;
+    private EventBattle currentEvent;
 
     void Awake()
     {
@@ -32,21 +35,7 @@ public class BattleManager : MonoBehaviour
 
     void Start()
     {
-        LoadGameData();
         StartBattle();
-    }
-
-    private void LoadGameData()
-    {
-        playerCard = GameManager.Instance.selectedCard;
-        battleEvent = GameManager.Instance.currentEvent;
-
-        if (playerCard == null || battleEvent == null)
-        {
-            Debug.LogError("Données du combat manquantes !");
-            return;
-        }
-        enemyManager.StartCombat(battleEvent);
     }
 
     private void StartBattle()
@@ -63,7 +52,8 @@ public class BattleManager : MonoBehaviour
 
         isPlayerTurn = false;
         player.ProcessTurnEffects();
-        StartCoroutine(enemyManager.EnemyTurn());
+        player.TurnChange();
+        StartCoroutine(enemyManager.EnemyTurn(game.currentEvent));
     }
 
     public void EndEnemyTurn()
@@ -90,13 +80,27 @@ public class BattleManager : MonoBehaviour
 
     public void CheckGameOver()
     {
-        if (playerCard.health <= 0)
+        switch (currentEvent.eventType)
         {
-            Debug.Log("Game Over! You lost.");
+            case EventBattle.EventType.Combat:
+                if (playerCard.health <= 0)
+                {
+                    Debug.Log("Game Over! You lost.");
+                }
+                else if (enemyManager.AllEnemiesDefeated())
+                {
+                    Debug.Log("Victory! All enemies are defeated.");
+                }
+                break;
+
+            case EventBattle.EventType.Infiltration:
+                infiltration.CheckGameOver();
+                break;
+
+            case EventBattle.EventType.Enquete:
+                investigation.CheckGameOver();
+                break;
         }
-        else if (enemyManager.AllEnemiesDefeated())
-        {
-            Debug.Log("Victory! All enemies are defeated.");
-        }
+        
     }
 }

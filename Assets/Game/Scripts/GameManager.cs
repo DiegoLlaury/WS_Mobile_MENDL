@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public CardMiddle selectedCard;
     public EventBattle currentEvent;
+    
 
     private void Awake()
     {
@@ -24,13 +25,30 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        StartBattle(selectedCard, currentEvent);
+        StartEvent(selectedCard, currentEvent);
     }
 
-    public void StartBattle(CardMiddle card, EventBattle eventData)
+    public void StartEvent(CardMiddle card, EventBattle eventData)
     {
         selectedCard = card;
         currentEvent = eventData;
-        UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
+        Debug.Log(currentEvent);
+        //UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
+
+        switch (currentEvent.eventType)
+        {
+            case EventBattle.EventType.Combat:
+                EnemyManager.Instance.StartCombat(eventData);
+                break;
+            case EventBattle.EventType.Infiltration:
+                InfiltrationMode.Instance.StartInfiltration(eventData);
+                break;
+            case EventBattle.EventType.Enquete:
+                InvestigationMode.Instance.StartInvestigation(eventData);
+                break;
+            default:
+                Debug.LogError("Unknown event type");
+                break;
+        }
     }
 }

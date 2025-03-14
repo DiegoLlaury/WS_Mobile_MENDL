@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1ef220b67029e442afdad0b4138c8a6, type: 3}
   m_Name: EventTest
   m_EditorClassIdentifier: 
-  eventType: 0
+  eventType: 1
   eventPlace: 0
-  numberTurn: 0
-  conditionNumber: 0
+  eventDifficulty: 1
+  numberTurn: 20
+  currentTurn: 19
+  conditionNumber: 20
   enemies:
   - {fileID: 11400000, guid: 7c61995196e4de64a8f7eca48fcbe5ef, type: 2}
   - {fileID: 11400000, guid: c2135fff4befa014281e9fed28922bfd, type: 2}

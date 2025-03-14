@@ -72,11 +72,6 @@ public class HandManager : MonoBehaviour
 
         while (elapsedTime < moveDuration)
         {
-            if (card == null) // Check if the card has been destroyed mid-animation
-            {
-                Debug.LogWarning("AnimateCardMovement: Card was destroyed mid-animation.");
-                yield break;
-            }
 
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / moveDuration;
