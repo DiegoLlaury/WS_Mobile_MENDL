@@ -16,6 +16,7 @@ public class EnemyManager : MonoBehaviour
 
     public Transform enemySpawnPoint;
     public GameObject enemyPrefab;
+    public GameManager game;
 
 
     public float fanSpread = 5f;
@@ -66,7 +67,7 @@ public class EnemyManager : MonoBehaviour
         EnemyDisplay enemyDisplay = newEnemyObj.GetComponent<EnemyDisplay>();
         if (enemyDisplay != null)
         {
-            enemyDisplay.Initialize(enemyData);
+            enemyDisplay.Initialize(enemyData, game.currentEvent.eventType);
             enemies.Add(enemyDisplay);
         }
         else
@@ -220,11 +221,12 @@ public class EnemyManager : MonoBehaviour
 
             case 1:
                 BattleManager.Instance.player.RondeTest(enemy);
+                Debug.Log($"{enemy.enemyData.enemyName} do a check");
                 break;
 
             case 2:
-                BattleManager.Instance.player.ApplyDebuff(Card.StatType.damage, -5);
-                Debug.Log($"{enemy.enemyData.enemyName} buffs its damage!");
+                BattleManager.Instance.player.ApplyDebuff(Card.StatType.discretion, -5);
+                Debug.Log($"{enemy.enemyData.enemyName} debuffs yours discretion!");
                 break;
         }
     }
@@ -237,10 +239,12 @@ public class EnemyManager : MonoBehaviour
         {
             case 0:
                 enemy.ModifyStat(Card.StatType.discretion, 6);
+                Debug.Log($"{enemy.enemyData.enemyName} gain discretion");
                 break;
 
             case 1:
                 BattleManager.Instance.player.ApplyDebuff(Card.StatType.perception, -2);
+                Debug.Log($"{enemy.enemyData.enemyName} debuff your perception!");
                 break;
         }
     }

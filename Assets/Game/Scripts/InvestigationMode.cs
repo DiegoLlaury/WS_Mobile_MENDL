@@ -8,7 +8,7 @@ public class InvestigationMode : MonoBehaviour
     public EnemyManager enemyManager;
     public PlayerEvent player;
     private EnemyDisplay suspectedMafioso;
-    public GameManager game;
+    private GameManager game;
     private int perceptionScore;
     private int requiredInfiltration;
 
@@ -22,6 +22,11 @@ public class InvestigationMode : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        game = GameManager.Instance;
     }
 
     public void StartInvestigation(EventBattle investigationEvent)

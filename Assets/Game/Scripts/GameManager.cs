@@ -4,7 +4,7 @@ using WS_DiegoCo_Event;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager Instance { get; private set; }
 
     public CardMiddle selectedCard;
     public EventBattle currentEvent;
@@ -26,6 +26,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartEvent(selectedCard, currentEvent);
+    }
+
+    public EventBattle GetEvent()
+    {
+        return currentEvent;
     }
 
     public void StartEvent(CardMiddle card, EventBattle eventData)

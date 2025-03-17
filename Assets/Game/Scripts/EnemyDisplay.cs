@@ -6,18 +6,27 @@ using System;
 using WS_DiegoCo;
 using System.Collections.Generic;
 using System.Linq;
+using WS_DiegoCo_Event;
 
 public class EnemyDisplay : MonoBehaviour, IStatusReceiver
 {
-
+    private EventBattle.EventType currentEventType;
+    private GameManager game;
     public Enemy enemyData;
+
+
     public Sprite enemyImageDisplay;
     public TMP_Text nameText;
     public TMP_Text healthText;
     public TMP_Text defenseText;
-    public TMP_Text precisionText;
+    public TMP_Text perceptionText;
     public TMP_Text discretionText;
     public TMP_Text damageText;
+
+
+    public GameObject combatStatPanel;
+    public GameObject infiltrationStatPanel;
+    public GameObject investigationStatPanel;
 
     private int currentDefense = 0;
     private bool isNextAttackHeal = false;
@@ -27,13 +36,15 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {  
-        
+    {
+        game = GameManager.Instance;
     }
 
-    public void Initialize(Enemy data)
+    public void Initialize(Enemy data, EventBattle.EventType eventType)
     {
         enemyData = data;
+        currentEventType = eventType;
+
         enemyData.health = enemyData.maxHealth;
         enemyData.damage = enemyData.maxDamage;
         enemyData.discretion = enemyData.maxDiscretion;
@@ -45,8 +56,15 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
     {
         nameText.text = enemyData.enemyName;
         healthText.text = enemyData.health.ToString();
+        defenseText.text = enemyData.defense.ToString();
         damageText.text = enemyData.damage.ToString();
+        perceptionText.text = enemyData.perception.ToString();
+        discretionText.text = enemyData.discretion.ToString();
         enemyImageDisplay = enemyData.enemyImage;
+
+        combatStatPanel.SetActive(currentEventType == EventBattle.EventType.Combat);
+        infiltrationStatPanel.SetActive(currentEventType == EventBattle.EventType.Infiltration);
+        investigationStatPanel.SetActive(currentEventType == EventBattle.EventType.Enquete);
     }
 
     public void SetNextAttackHeal()
@@ -77,7 +95,18 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
             isNextAttackHeal = false;
         }
 
+        if(game.currentEvent.eventType == EventBattle.EventType.Infiltration)
+        {
+            game.currentEvent.numberTurn = 1;
+        }
+        
+        if(game.currentEvent.eventType == EventBattle.EventType.Enquete)
+        {
+            Debug.Log("You failed !");
+        }
+
         UpdateEnemyDisplay();
+        player.Attack();
 
         if (enemyData.health <= 0)
         {

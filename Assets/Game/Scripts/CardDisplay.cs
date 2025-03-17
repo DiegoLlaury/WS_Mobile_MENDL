@@ -52,9 +52,17 @@ public class CardDisplay : MonoBehaviour
         {
             Debug.LogError("PlayerEvent not found! Make sure a PlayerEvent exists in the scene.");
         }
+
+        if (cardData.discretion > 10)
+        {
+            player.cardData.strenght += cardData.discretion / 2;  // Exemple : Gagne la moitié de la discrétion en Force
+            Debug.Log("Discrétion > 10 : Gain temporaire de Force.");
+        }
+
         cardData.damage = cardData.startingDamage + player.cardData.strenght;
         UpdateCardDisplay();
     }
+
 
     private void UpdateCardDisplay()
     {
@@ -112,7 +120,6 @@ public class CardDisplay : MonoBehaviour
         CardDisplay[] cards = FindObjectsByType<CardDisplay>(FindObjectsSortMode.None);
         foreach (CardDisplay card in cards)
         {
-            Debug.Log("hello");
             card.UpdateDamage(strength);
         }
     }

@@ -285,6 +285,8 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
             effect.ApplyEffect(enemy, card, playerEvent, deck, hand, battleManager, enemyManager);
         }
 
+        battleManager.CheckGameOver();
+
         Debug.Log($"Card {cardDisplay.cardData.cardName} applied effects to {enemy.enemyData.enemyName}.");
     }
 

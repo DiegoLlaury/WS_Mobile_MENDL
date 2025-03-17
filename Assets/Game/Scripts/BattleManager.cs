@@ -14,7 +14,7 @@ public class BattleManager : MonoBehaviour
     public PlayerEvent player;
     public InfiltrationMode infiltration;
     public InvestigationMode investigation;
-    public GameManager game;
+    private GameManager game;
 
     private int cardStart = 4;
     private bool isPlayerTurn = true;
@@ -35,6 +35,7 @@ public class BattleManager : MonoBehaviour
 
     void Start()
     {
+        game = GameManager.Instance;
         StartBattle();
     }
 
@@ -81,7 +82,7 @@ public class BattleManager : MonoBehaviour
 
     public void CheckGameOver()
     {
-        switch (currentEvent.eventType)
+        switch (game.currentEvent.eventType)
         {
             case EventBattle.EventType.Combat:
                 if (playerCard.health <= 0)

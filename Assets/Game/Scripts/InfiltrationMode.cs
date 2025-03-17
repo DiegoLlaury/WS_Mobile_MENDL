@@ -7,7 +7,7 @@ public class InfiltrationMode : MonoBehaviour
     public static InfiltrationMode Instance;
     public EnemyManager enemyManager;
     public PlayerEvent player;
-    public GameManager game;
+    private GameManager game;
     private int infiltrationScore;
     private int requiredInfiltration;
 
@@ -21,6 +21,11 @@ public class InfiltrationMode : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        game = GameManager.Instance;
     }
 
     public void StartInfiltration(EventBattle infiltrationEvent)

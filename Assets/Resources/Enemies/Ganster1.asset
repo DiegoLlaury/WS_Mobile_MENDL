@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Ganster Italien
   maxHealth: 50
-  health: 40
+  health: 50
   maxDefense: 0
   defense: 0
   maxDamage: 4
   damage: 4
-  maxDiscretion: 0
-  discretion: 0
-  maxPerception: 0
-  perception: 0
+  maxDiscretion: 3
+  discretion: 3
+  maxPerception: 5
+  perception: 5
   enemyImage: {fileID: -2081245629, guid: 132358e9bf26b60458b731bf001e31db, type: 3}

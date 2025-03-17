@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 using System.Collections.Generic;
 using WS_DiegoCo_Middle;
 using WS_DiegoCo;
@@ -12,7 +13,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
 {
 
     public CardMiddle cardData;
-    public GameManager game;
+    private GameManager game;
     private Card card;
     private EnemyDisplay enemy;
 
@@ -38,6 +39,8 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        game = FindFirstObjectByType<GameManager>();
+
         currentEnergy = maxEnergy;
         cardData.maxHealth = cardData.heart * healthRatio;
         cardData.health = cardData.maxHealth;
@@ -58,6 +61,11 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         energyText.text = currentEnergy.ToString();
         defenseText.text = currentDefense.ToString();
         currentTurnText.text = game.currentEvent.currentTurn.ToString();
+        if (cardData.discretion > 10)
+        {
+            cardData.strenght += cardData.discretion / 2;  // Exemple : Gagne la moitié de la discrétion en Force
+            Debug.Log("Discrétion > 10 : Gain temporaire de Force.");
+        }
     }
 
     public void TurnChange()
@@ -87,6 +95,17 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         if (cardData.health <= 0)
         {
             BattleManager.Instance.CheckGameOver();
+        }
+    }
+
+    public void Attack()
+    {
+        // Lors d'une attaque, perdre toute la discrétion
+        if (cardData.discretion > 0)
+        {
+            cardData.discretion = 0;
+            Debug.Log("Attaque effectuée : Discrétion remise à zéro.");
+            UpdatePlayerEvent();
         }
     }
 

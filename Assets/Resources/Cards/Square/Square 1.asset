@@ -23,7 +23,7 @@ MonoBehaviour:
   discretion: 0
   perception: 0
   energy: 2
-  effect: Gagnez {discretion} infiltration mais perdez toute perception.
+  effect: Perdez toute votre perception, pour chaque point perdu gagnez 1 de discretion.
   cardImage: {fileID: 0}
   effects:
   - {fileID: 11400000, guid: 6d96d19349dce6c458b332d43e952aed, type: 2}
