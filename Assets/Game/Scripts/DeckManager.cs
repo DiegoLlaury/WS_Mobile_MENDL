@@ -97,8 +97,7 @@ public class DeckManager : MonoBehaviour
             Card nextCard = deck[0];
             deck.RemoveAt(0);
             handManager.AddCardToHand(nextCard);
-        }
-
+        }   
        }
     }
 

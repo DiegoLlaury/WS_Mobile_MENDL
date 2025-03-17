@@ -39,7 +39,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        game = FindFirstObjectByType<GameManager>();
+        game = FindAnyObjectByType<GameManager>();
 
         currentEnergy = maxEnergy;
         cardData.maxHealth = cardData.heart * healthRatio;

@@ -35,16 +35,20 @@ public class BattleManager : MonoBehaviour
 
     void Start()
     {
+
         game = GameManager.Instance;
+       
         StartBattle();
+        Debug.Log("Test");
     }
 
     private void StartBattle()
     {
-        player.ResetEnergy();
+        
         handManager.cardsInHand.Clear();
         deckManager.ShuffleDeck();
-        deckManager.DrawCard(cardStart);
+        StartPlayerTurn();
+
     }
 
     public void EndPlayerTurn()

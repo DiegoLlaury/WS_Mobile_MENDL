@@ -43,6 +43,18 @@ public class EnemyManager : MonoBehaviour
         UpdateEnemiesPosition();
     }
 
+    //public void PrepareEnemyActions(EventBattle combatEvent)
+    //{
+    //    foreach (EnemyDisplay enemy in enemies)
+    //    {
+    //        enemy.nextAction = GetActionByProbability(combatEvent.eventDifficulty, combatEvent.eventType);
+    //        if (enemy.enemyData.perception >= 10) // Exemple de seuil pour révéler l'action
+    //        {
+    //            Debug.Log($"{enemy.enemyData.enemyName} prépare une action: {enemy.nextAction}");
+    //        }
+    //    }
+    //}
+
     public void StartCombat(EventBattle combatEvent)
     {
 
@@ -150,7 +162,6 @@ public class EnemyManager : MonoBehaviour
                 if (enemy.enemyData.health <= 0)
                 {
                     enemiesToRemove.Add(enemy);
-
                     continue;
                 }
                 switch (eventBattle.eventType)
@@ -182,9 +193,9 @@ public class EnemyManager : MonoBehaviour
 
     private void PerformActionBattle(EnemyDisplay enemy, EventBattle.EventDifficulty difficulty)
     {
-        int actionType = GetActionByProbability(difficulty, EventBattle.EventType.Combat);
+        int actionCombatType = GetActionByProbability(difficulty, EventBattle.EventType.Combat);
 
-        switch (actionType)
+        switch (actionCombatType)
         {
             case 0: // Attack
                 BattleManager.Instance.player.TakeDamage(enemy.enemyData.damage);
@@ -210,9 +221,9 @@ public class EnemyManager : MonoBehaviour
 
     private void PerformActionInfiltration(EnemyDisplay enemy, EventBattle.EventDifficulty difficulty)
     {
-        int actionType = GetActionByProbability(difficulty, EventBattle.EventType.Infiltration);
+        int actionInfiltrationType = GetActionByProbability(difficulty, EventBattle.EventType.Infiltration);
 
-        switch (actionType)
+        switch (actionInfiltrationType)
         {
             case 0:
                 enemy.ModifyStat(Card.StatType.perception, 5);
@@ -233,9 +244,9 @@ public class EnemyManager : MonoBehaviour
 
     private void PerformActionInvestigation(EnemyDisplay enemy, EventBattle.EventDifficulty difficulty)
     {
-        int actionType = GetActionByProbability(difficulty, EventBattle.EventType.Enquete);
+        int actionInvestigationType = GetActionByProbability(difficulty, EventBattle.EventType.Enquete);
 
-        switch (actionType)
+        switch (actionInvestigationType)
         {
             case 0:
                 enemy.ModifyStat(Card.StatType.discretion, 6);
