@@ -122,7 +122,6 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     {
         cardData.discretion += infiltration;
         UpdatePlayerEvent();
-        BattleManager.Instance.CheckGameOver();
         Debug.Log($"Player gain {infiltration} discretion. Current discretion : {cardData.discretion}");
     }
 

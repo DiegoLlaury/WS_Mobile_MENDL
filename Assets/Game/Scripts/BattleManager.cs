@@ -52,6 +52,7 @@ public class BattleManager : MonoBehaviour
 
         isPlayerTurn = false;
         player.ProcessTurnEffects();
+        CheckGameOver();
         player.TurnChange();
         StartCoroutine(enemyManager.EnemyTurn(game.currentEvent));
     }
