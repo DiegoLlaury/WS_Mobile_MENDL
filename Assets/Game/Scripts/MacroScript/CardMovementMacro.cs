@@ -147,6 +147,8 @@ public class CardMovementMacro : MonoBehaviour, IDragHandler, IPointerDownHandle
         if (currenEvent != null)
         {
             currenEvent.SetPlayer(cardData);
+            deckManagerMacro.StockCard(cardData);
+            handManagerMacro.RemoveCardFromHand(gameObject);
         }
         else
         {

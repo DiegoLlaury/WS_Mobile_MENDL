@@ -29,6 +29,7 @@ using WS_DiegoCo;
         GambleDamage            // NEW: 50% chance to deal damage or take damage
     }
     public TargetDamage targetDamage;
+    public int NumberOfdamage;
 
     // The new, more flexible method
     public override void ApplyEffect(EnemyDisplay enemy, Card cardData, PlayerEvent player, DeckManager deck, HandManager hand, BattleManager battleManager, EnemyManager enemyManager)
@@ -36,7 +37,7 @@ using WS_DiegoCo;
         switch (targetDamage)
         {
             case TargetDamage.Player:
-                player.TakeDamage(cardData.damage, ignoreShield: false);
+                player.cardData.health = Mathf.Clamp(cardData.health + NumberOfdamage, 0, player.cardData.maxHealth);
                 break;
 
             case TargetDamage.Enemy:
@@ -55,15 +56,27 @@ using WS_DiegoCo;
                 break;
 
             case TargetDamage.DefenseAttack:
+                if (player.currentDefense == 0)
+                {
+                    Debug.Log("You don't have discretion");
+                    shouldReturnToHand = true;
+                    return;
+                }
                 enemy.TakeDamage(player.currentDefense, ignoreShield: false);
                 break;
 
             case TargetDamage.InfiltrationAttack:
+                if (player.cardData.discretion == 0)
+                {
+                    Debug.Log("You don't have discretion, card will return to hand.");
+                    shouldReturnToHand = true;  // On active le retour
+                    return;
+                }
                 enemy.TakeDamage(player.cardData.discretion * 2, ignoreShield: false);
                 break;
 
             case TargetDamage.RandomEnemy:
-                for (int i = 0; i == 5; i++)
+                for (int i = 0; i <= 5; i++)
                 {
                     EnemyDisplay randomEnemy = enemyManager.GetRandomEnemy();
                     if (randomEnemy != null)
@@ -112,7 +125,7 @@ using WS_DiegoCo;
                 }
                 else
                 {
-                    player.TakeDamage(cardData.damage, ignoreShield: false);
+                    player.cardData.health = Mathf.Clamp(cardData.health + NumberOfdamage, 0, player.cardData.maxHealth);
                     Debug.Log("Unlucky! Took 5 damage instead.");
                 }
                 break;

@@ -20,6 +20,7 @@ public class StatusEffect : CardEffect
     public int duration;
     public bool applyToPlayer = false;
     public bool applyToEnemy = false;
+    public int NumberOfdamage;
 
     public override void ApplyEffect(EnemyDisplay enemy, Card cardData, PlayerEvent player, DeckManager deck, HandManager hand, BattleManager battleManager, EnemyManager enemyManager)
     {
@@ -70,7 +71,8 @@ public class StatusEffect : CardEffect
             int strengthGain = infiltration / 4;
 
             player.ApplyStatus(StatusType.Strength, strengthGain, 1); // 1 turn effect
-            player.TakeDamage(3);
+            
+            player.cardData.health = Mathf.Clamp(player.cardData.health + NumberOfdamage, 0, player.cardData.maxHealth);
 
             Debug.Log($"Player gains {strengthGain} Strength from {infiltration} Infiltration and loses 3 HP.");
         }

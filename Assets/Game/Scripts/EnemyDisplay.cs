@@ -37,6 +37,7 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
     {
         enemyData = data;
         currentEventType = eventType;
+        player = FindAnyObjectByType<PlayerEvent>();
 
         enemyData.health = enemyData.maxHealth;
         enemyData.damage = enemyData.maxDamage;
@@ -80,10 +81,6 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         {
             enemyData.health -= damage;
             Debug.Log($"Enemy {enemyData.enemyName} took {damage} damage. Remaining health: {enemyData.health}");
-            if (enemyData.health <= 0)
-            {
-                
-            }
         }
         if(isNextAttackHeal == true)
         {
@@ -93,7 +90,7 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
 
         if(GameManager.currentEvent.eventType == EventBattle.EventType.Infiltration)
         {
-            GameManager.currentEvent.numberTurn = 1;
+            GameManager.currentEvent.currentTurn = 2;
         }
         
         if(GameManager.currentEvent.eventType == EventBattle.EventType.Enquete)
@@ -138,13 +135,13 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
 
     public void ReducePerception(int value)
     {
-        enemyData.perception -= value;
+        enemyData.perception = Mathf.Clamp(enemyData.perception - value, enemyData.maxPerception, 50);
         UpdateEnemyDisplay();
     }
 
     public void ReduceInfiltration(int value)
     {
-        enemyData.discretion -= value;
+        enemyData.discretion = Mathf.Clamp(enemyData.discretion - value, enemyData.maxDiscretion, 50);
         UpdateEnemyDisplay();
     }
 
@@ -173,7 +170,7 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
             switch (key)
             {
                 case StatusEffect.StatusType.Regeneration:
-                    enemyData.health = Mathf.Min(enemyData.health + effect.value, enemyData.maxHealth);
+                    enemyData.health = Mathf.Clamp(enemyData.health + effect.value,0, enemyData.maxHealth);
                     Debug.Log($"Enemy {enemyData.enemyName} regenerated {effect.value} HP.");
                     break;
 

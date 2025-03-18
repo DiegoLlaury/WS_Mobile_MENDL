@@ -5,7 +5,7 @@ using WS_DiegoCo_Event;
 public static class GameManager 
 {
     //public static GameManager Instance { get; private set; }
-    private static CardMiddle selectedCard;
+    public static CardMiddle selectedCard;
     public static EventBattle currentEvent;
 
     public static void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)

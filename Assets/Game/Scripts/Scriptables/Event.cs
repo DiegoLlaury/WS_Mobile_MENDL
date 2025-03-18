@@ -51,7 +51,6 @@ namespace WS_DiegoCo_Event
 
             Difficile
         }
-  
     }
 }
 

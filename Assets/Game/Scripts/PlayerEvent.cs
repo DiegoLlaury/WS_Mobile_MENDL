@@ -30,6 +30,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
 
     [SerializeField] private int healthRatio = 5;
 
+    private bool discretionboost = false;
     public int maxEnergy = 3;
     private int currentEnergy;
     public int currentDefense;
@@ -39,7 +40,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        cardData = GameManager.selectedCard;
         currentEnergy = maxEnergy;
         cardData.maxHealth = cardData.heart * healthRatio;
         cardData.health = cardData.maxHealth;
@@ -60,11 +61,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         energyText.text = currentEnergy.ToString();
         defenseText.text = currentDefense.ToString();
         currentTurnText.text = GameManager.currentEvent.currentTurn.ToString();
-        if (cardData.discretion > 10)
-        {
-            cardData.strenght += cardData.discretion / 2;  // Exemple : Gagne la moitié de la discrétion en Force
-            Debug.Log("Discrétion > 10 : Gain temporaire de Force.");
-        }
+        
     }
 
     public void TurnChange()
@@ -91,7 +88,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
 
         if (damage > 0)
         {
-            cardData.health -= damage;
+            cardData.health  -= damage;
             Debug.Log($"Player took {damage} damage. Remaining health: {cardData.health}");
         }
 
@@ -108,7 +105,9 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         // Lors d'une attaque, perdre toute la discrétion
         if (cardData.discretion > 0)
         {
+            cardData.strenght -= cardData.discretion / 3;
             cardData.discretion = 0;
+            discretionboost = false;
             Debug.Log("Attaque effectuée : Discrétion remise à zéro.");
             UpdatePlayerEvent();
         }
@@ -116,16 +115,8 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
 
     public void GainHealth(int health)
     {
-        if (cardData.health < cardData.maxHealth)
-        {
-            cardData.health = Mathf.Min(cardData.health + health, cardData.maxHealth);
-            Debug.Log($"Player gained {health} health. Current health: {cardData.health}");
-            UpdatePlayerEvent();
-        }
-        else
-        {
-            Debug.Log("Health is already at max.");
-        }
+        cardData.health = Mathf.Clamp(cardData.health + health, 0, cardData.maxHealth);
+        Debug.Log($"Player gain {health} health. Current health : {cardData.health}");
     }
 
     public void GainShield(int defense)
@@ -137,17 +128,28 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
 
     public void GainPerception(int perception)
     {
-        cardData.perception += perception;
+        // Ajout normal de perception, en respectant la limite max
+        cardData.perception = Mathf.Clamp(cardData.perception + perception, cardData.maxPerception, 50);
         UpdatePlayerEvent();
-        Debug.Log($"Player gain {perception} perception. Current perception : {cardData.perception}");
+        Debug.Log($"Player gained {perception} perception. Current perception: {cardData.perception}");
     }
 
     public void GainInfiltration(int infiltration)
     {
-        cardData.discretion += infiltration;
+        // Ajout normal de discrétion, en respectant la limite max
+        cardData.discretion = Mathf.Clamp(cardData.discretion + infiltration, cardData.maxDiscretion, 50);
         UpdatePlayerEvent();
-        Debug.Log($"Player gain {infiltration} discretion. Current discretion : {cardData.discretion}");
+        Debug.Log($"Player gained {infiltration} discretion. Current discretion: {cardData.discretion}");
+
+        // Boost temporaire de Force si la discrétion dépasse 10 et que le boost n'a pas encore été appliqué
+        if (cardData.discretion > 10 && !discretionboost)
+        {
+            cardData.strenght += cardData.discretion / 3;
+            Debug.Log("Discretion > 10: Temporary Strength boost applied.");
+            discretionboost = true;
+        }
     }
+
 
     public void GainEnergy(int energy)
     {
@@ -160,17 +162,14 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     {
            switch (stat)
            {
-            case Card.StatType.health:
-                cardData.health += amount;
-                break;
             case Card.StatType.damage:
                 cardData.strenght += amount;
                 break;
             case Card.StatType.discretion:
-                cardData.discretion += amount;
+                GainInfiltration(amount);
                 break;
             case Card.StatType.perception:
-                cardData.perception += amount;
+                GainPerception(amount);
                 break;
            }
 

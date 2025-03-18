@@ -765,7 +765,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 7c61995196e4de64a8f7eca48fcbe5ef, type: 2}
-  game: {fileID: 0}
   enemyImageDisplay: {fileID: 298784443, guid: 132358e9bf26b60458b731bf001e31db, type: 3}
   nameText: {fileID: 5486652391859542003}
   healthText: {fileID: 7739115986682599946}

@@ -98,4 +98,20 @@ public class HandManagerMacro : MonoBehaviour
         float rotationAngle = fanSpread * (index - (totalCards - 1) / 2f);
         return Quaternion.Euler(0f, 0f, rotationAngle);
     }
+
+    public void RemoveCardFromHand(GameObject card)
+    {
+        Debug.Log($"Removing {card.name} from hand.");
+        if (cardsInHand.Contains(card))
+        {
+            cardsInHand.Remove(card);
+            StopCoroutine(AnimateCardMovement(card, Vector3.zero, Quaternion.identity)); // Stops animation for this card only
+            Destroy(card);
+            UpdateCardPositions(); // Recalculate hand positions after removal
+        }
+        else
+        {
+            Debug.LogWarning($"Tried to remove {card.name}, but it wasn't in hand.");
+        }
+    }
 }

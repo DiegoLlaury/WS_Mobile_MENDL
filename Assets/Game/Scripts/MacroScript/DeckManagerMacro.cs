@@ -8,7 +8,7 @@ public class DeckManagerMacro : MonoBehaviour
     public HandManagerMacro handManagerMacro;
 
     public List<CardMiddle> deck = new List<CardMiddle>();
-    public List<CardMiddle> discardPile = new List<CardMiddle>();
+    public List<CardMiddle> cardMiddleInEvent = new List<CardMiddle>();
 
     private int drawCard = 4;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -44,7 +44,7 @@ public class DeckManagerMacro : MonoBehaviour
 
             if (deck.Count == 0)
             {
-                RefillDeck();
+                //RefillDeck();
             }
 
             if (deck.Count > 0)
@@ -56,15 +56,23 @@ public class DeckManagerMacro : MonoBehaviour
         }
     }
 
-    private void RefillDeck()
+    //private void RefillDeck()
+    //{
+    //    if (discardPile.Count > 0)
+    //    {
+    //        deck.AddRange(discardPile);
+    //        discardPile.Clear();
+    //        ShuffleDeck();
+    //        Debug.Log("Deck refilled with discarded cards.");
+    //    }
+    //}
+    public void StockCard(CardMiddle card)
     {
-        if (discardPile.Count > 0)
-        {
-            deck.AddRange(discardPile);
-            discardPile.Clear();
-            ShuffleDeck();
-            Debug.Log("Deck refilled with discarded cards.");
-        }
+        cardMiddleInEvent.Add(card);
     }
 
+    public void UnstockCard(CardMiddle card)
+    {
+        cardMiddleInEvent.Remove(card);
+    }
 }

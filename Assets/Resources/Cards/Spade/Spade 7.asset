@@ -19,9 +19,10 @@ MonoBehaviour:
   health: 0
   defense: 0
   damage: 0
+  startingDamage: 0
   discretion: 0
   perception: 0
-  energy: 1
+  energy: 0
   effect: "Appliquez Faiblesse \xE0 la cible pendant un tour."
   cardImage: {fileID: 0}
   effects:
