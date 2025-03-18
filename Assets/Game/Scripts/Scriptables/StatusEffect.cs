@@ -11,7 +11,8 @@ public class StatusEffect : CardEffect
         Weakness,
         Strength,
         Bleeding,
-        StrengthFromInfiltration
+        StrengthFromInfiltration,
+        StrenghtNextTurn
     }
 
     public StatusType statusType;
@@ -55,6 +56,9 @@ public class StatusEffect : CardEffect
             case StatusType.StrengthFromInfiltration:
                 ApplyStrengthFromInfiltration(target);
                 break;
+            case StatusType.StrenghtNextTurn:
+                ApplyStrengthNextTurn(target, effectValue);
+                break;
         }
     }
 
@@ -69,6 +73,21 @@ public class StatusEffect : CardEffect
             player.TakeDamage(3);
 
             Debug.Log($"Player gains {strengthGain} Strength from {infiltration} Infiltration and loses 3 HP.");
+        }
+    }
+
+    private void ApplyStrengthNextTurn(IStatusReceiver target, int strengthGain)
+    {
+        if (target is PlayerEvent player)
+        {
+            // Ajoute un effet différé pour le prochain tour
+            player.AddTemporaryEffect(() =>
+            {
+                player.ApplyStatus(StatusType.Strength, strengthGain, 1);
+                Debug.Log($"Player gains {strengthGain} Strength for this turn.");
+            });
+
+            Debug.Log($"Player will gain {strengthGain} Strength next turn.");
         }
     }
 }

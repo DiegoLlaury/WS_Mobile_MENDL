@@ -13,7 +13,6 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
 {
 
     public CardMiddle cardData;
-    private GameManager game;
     private Card card;
     private EnemyDisplay enemy;
 
@@ -35,11 +34,11 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     private int currentEnergy;
     public int currentDefense;
     private Dictionary<StatusEffect.StatusType, (int value, int turnsRemaining)> activeEffects = new Dictionary<StatusEffect.StatusType, (int, int)>();
+    private List<System.Action> temporaryEffects = new List<System.Action>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        game = FindAnyObjectByType<GameManager>();
 
         currentEnergy = maxEnergy;
         cardData.maxHealth = cardData.heart * healthRatio;
@@ -48,7 +47,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         cardData.discretion = cardData.maxDiscretion;
         cardData.perception = cardData.maxPerception;
         cardData.defense = currentDefense;
-        game.currentEvent.currentTurn = game.currentEvent.numberTurn;
+        GameManager.currentEvent.currentTurn = GameManager.currentEvent.numberTurn;
         UpdatePlayerEvent();
     }
 
@@ -60,7 +59,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         perceptionText.text = cardData.perception.ToString();
         energyText.text = currentEnergy.ToString();
         defenseText.text = currentDefense.ToString();
-        currentTurnText.text = game.currentEvent.currentTurn.ToString();
+        currentTurnText.text = GameManager.currentEvent.currentTurn.ToString();
         if (cardData.discretion > 10)
         {
             cardData.strenght += cardData.discretion / 2;  // Exemple : Gagne la moitié de la discrétion en Force
@@ -70,7 +69,13 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
 
     public void TurnChange()
     {
-        game.currentEvent.currentTurn--;
+        foreach (var effect in temporaryEffects)
+        {
+            effect.Invoke();
+        }
+        temporaryEffects.Clear();  // Vide la liste après l'application
+
+        GameManager.currentEvent.currentTurn--;
         UpdatePlayerEvent();
     }
 
@@ -257,6 +262,12 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
 
         UpdatePlayerEvent();
         CardDisplay.UpdateAllCards(cardData.strenght);
+    }
+
+    public void AddTemporaryEffect(System.Action effect)
+    {
+        temporaryEffects.Add(effect);
+        Debug.Log("Temporary effect added for next turn.");
     }
 
     public void RondeTest(EnemyDisplay enemy)

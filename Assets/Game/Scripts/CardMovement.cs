@@ -164,9 +164,6 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
             return;
         }
 
-        
-        Debug.Log($"Detected Drop Zone: {dropZone?.name}");
-
         bool isAttackCard = false;
         bool isSkillCard = false;
 

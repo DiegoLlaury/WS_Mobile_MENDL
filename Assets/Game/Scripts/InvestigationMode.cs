@@ -8,7 +8,6 @@ public class InvestigationMode : MonoBehaviour
     public EnemyManager enemyManager;
     public PlayerEvent player;
     private EnemyDisplay suspectedMafioso;
-    private GameManager game;
     private int perceptionScore;
     private int requiredInfiltration;
 
@@ -22,11 +21,6 @@ public class InvestigationMode : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    private void Start()
-    {
-        game = GameManager.Instance;
     }
 
     public void StartInvestigation(EventBattle investigationEvent)
@@ -53,7 +47,7 @@ public class InvestigationMode : MonoBehaviour
         if (suspectedMafioso.enemyData.perception <= perceptionScore)
         {
             Debug.Log("Investigation Success! The mafioso has been found.");
-        }else if (game.currentEvent.currentTurn == 0)
+        }else if (GameManager.currentEvent.currentTurn == 0)
         {
             Debug.Log("You lost the investigation");
         }

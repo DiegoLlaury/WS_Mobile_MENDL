@@ -2,58 +2,42 @@ using UnityEngine;
 using WS_DiegoCo_Middle;
 using WS_DiegoCo_Event;
 
-public class GameManager : MonoBehaviour
+public static class GameManager 
 {
-    public static GameManager Instance { get; private set; }
+    //public static GameManager Instance { get; private set; }
+    private static CardMiddle selectedCard;
+    public static EventBattle currentEvent;
 
-    public CardMiddle selectedCard;
-    public EventBattle currentEvent;
-    
-
-    private void Awake()
+    public static void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
     {
-        if (Instance == null)
+        if (scene.name == "SampleScene")
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            switch (currentEvent.eventType)
+            {
+                case EventBattle.EventType.Combat:
+                    EnemyManager.Instance?.StartCombat(currentEvent);
+                    break;
+                case EventBattle.EventType.Infiltration:
+                    InfiltrationMode.Instance?.StartInfiltration(currentEvent);
+                    break;
+                case EventBattle.EventType.Enquete:
+                    InvestigationMode.Instance?.StartInvestigation(currentEvent);
+                    break;
+                default:
+                    Debug.LogError("Unknown event type");
+                    break;
+            }
+            // Se désinscrire après le lancement pour éviter des appels multiples
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
         }
-        else
-        {
-            Destroy(gameObject);
-        }
     }
 
-    private void Start()
-    {
-        StartEvent(selectedCard, currentEvent);
-    }
-
-    public EventBattle GetEvent()
-    {
-        return currentEvent;
-    }
-
-    public void StartEvent(CardMiddle card, EventBattle eventData)
+    public static void StartEvent(CardMiddle card, EventBattle eventData)
     {
         selectedCard = card;
         currentEvent = eventData;
-        Debug.Log(currentEvent);
-        //UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
 
-        switch (currentEvent.eventType)
-        {
-            case EventBattle.EventType.Combat:
-                EnemyManager.Instance.StartCombat(eventData);
-                break;
-            case EventBattle.EventType.Infiltration:
-                InfiltrationMode.Instance.StartInfiltration(eventData);
-                break;
-            case EventBattle.EventType.Enquete:
-                InvestigationMode.Instance.StartInvestigation(eventData);
-                break;
-            default:
-                Debug.LogError("Unknown event type");
-                break;
-        }
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
     }
 }

@@ -11,7 +11,6 @@ using WS_DiegoCo_Event;
 public class EnemyDisplay : MonoBehaviour, IStatusReceiver
 {
     private EventBattle.EventType currentEventType;
-    private GameManager game;
     public Enemy enemyData;
 
 
@@ -33,12 +32,6 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
 
     private PlayerEvent player;
     private Dictionary<StatusEffect.StatusType, (int value, int turnsRemaining)> activeEffects = new Dictionary<StatusEffect.StatusType, (int, int)>();
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        game = GameManager.Instance;
-    }
 
     public void Initialize(Enemy data, EventBattle.EventType eventType)
     {
@@ -87,31 +80,29 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         {
             enemyData.health -= damage;
             Debug.Log($"Enemy {enemyData.enemyName} took {damage} damage. Remaining health: {enemyData.health}");
+            if (enemyData.health <= 0)
+            {
+                
+            }
         }
-
         if(isNextAttackHeal == true)
         {
             player.GainHealth(damage);
             isNextAttackHeal = false;
         }
 
-        if(game.currentEvent.eventType == EventBattle.EventType.Infiltration)
+        if(GameManager.currentEvent.eventType == EventBattle.EventType.Infiltration)
         {
-            game.currentEvent.numberTurn = 1;
+            GameManager.currentEvent.numberTurn = 1;
         }
         
-        if(game.currentEvent.eventType == EventBattle.EventType.Enquete)
+        if(GameManager.currentEvent.eventType == EventBattle.EventType.Enquete)
         {
             Debug.Log("You failed !");
         }
 
         UpdateEnemyDisplay();
         player.Attack();
-
-        if (enemyData.health <= 0)
-        {
-            BattleManager.Instance.CheckGameOver();
-        }
     }
 
     public void GainShield(int amount)

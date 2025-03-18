@@ -16,7 +16,6 @@ public class EnemyManager : MonoBehaviour
 
     public Transform enemySpawnPoint;
     public GameObject enemyPrefab;
-    public GameManager game;
 
 
     public float fanSpread = 5f;
@@ -79,7 +78,7 @@ public class EnemyManager : MonoBehaviour
         EnemyDisplay enemyDisplay = newEnemyObj.GetComponent<EnemyDisplay>();
         if (enemyDisplay != null)
         {
-            enemyDisplay.Initialize(enemyData, game.currentEvent.eventType);
+            enemyDisplay.Initialize(enemyData, GameManager.currentEvent.eventType);
             enemies.Add(enemyDisplay);
         }
         else
@@ -156,14 +155,13 @@ public class EnemyManager : MonoBehaviour
 
         foreach (EnemyDisplay enemy in enemies)
         {
-            if (enemy.enemyData.health > 0)
+
+            enemy.ProcessTurnEffects();
+            if (enemy.enemyData.health <= 0)
             {
-                enemy.ProcessTurnEffects();
-                if (enemy.enemyData.health <= 0)
-                {
-                    enemiesToRemove.Add(enemy);
-                    continue;
-                }
+                enemiesToRemove.Add(enemy);
+                continue;
+            }
                 switch (eventBattle.eventType)
                 {
                     case EventBattle.EventType.Combat:
@@ -180,7 +178,7 @@ public class EnemyManager : MonoBehaviour
                 }
                 
                 yield return new WaitForSeconds(2f);
-            }
+
         }
 
         foreach (EnemyDisplay enemy in enemiesToRemove)

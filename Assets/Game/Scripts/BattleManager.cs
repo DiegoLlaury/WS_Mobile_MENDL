@@ -14,7 +14,6 @@ public class BattleManager : MonoBehaviour
     public PlayerEvent player;
     public InfiltrationMode infiltration;
     public InvestigationMode investigation;
-    private GameManager game;
 
     private int cardStart = 4;
     private bool isPlayerTurn = true;
@@ -35,9 +34,6 @@ public class BattleManager : MonoBehaviour
 
     void Start()
     {
-
-        game = GameManager.Instance;
-       
         StartBattle();
         Debug.Log("Test");
     }
@@ -59,7 +55,7 @@ public class BattleManager : MonoBehaviour
         player.ProcessTurnEffects();
         CheckGameOver();
         player.TurnChange();
-        StartCoroutine(enemyManager.EnemyTurn(game.currentEvent));
+        StartCoroutine(enemyManager.EnemyTurn(GameManager.currentEvent));
     }
 
     public void EndEnemyTurn()
@@ -86,10 +82,10 @@ public class BattleManager : MonoBehaviour
 
     public void CheckGameOver()
     {
-        switch (game.currentEvent.eventType)
+        switch (GameManager.currentEvent.eventType)
         {
             case EventBattle.EventType.Combat:
-                if (playerCard.health <= 0)
+                if (player.cardData.health <= 0)
                 {
                     Debug.Log("Game Over! You lost.");
                 }
