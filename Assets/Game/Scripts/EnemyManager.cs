@@ -23,7 +23,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private int buffPerception = 3;
     [SerializeField] private int debuffPerception = -2;
     [SerializeField] private int buffDiscretion = 3;
-    [SerializeField] private int DebuffDiscretion = 3;
+    [SerializeField] private int DebuffDiscretion = -3;
 
     public float fanSpread = 5f;
     public float enemiesSpacing = 100f;
