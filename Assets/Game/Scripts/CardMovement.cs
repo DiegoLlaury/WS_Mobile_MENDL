@@ -294,15 +294,20 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         else
         {
             player.UseEnergy(cardDisplay.cardData.energy);
-            HandleCardUsed();
+            HandleCardUsed(card);
         }
     }
 
-    private void HandleCardUsed()
+    private void HandleCardUsed(Card card)
     {
         if (deckManager != null && cardData != null)
         {
-            deckManager.DiscardCard(cardData);
+            deckManager.DiscardCard(card);
+        }
+        else
+        {
+            Debug.LogError(deckManager);
+            Debug.LogError(cardData);
         }
 
         if (handManager != null)

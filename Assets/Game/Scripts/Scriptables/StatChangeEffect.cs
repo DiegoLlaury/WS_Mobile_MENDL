@@ -62,9 +62,11 @@ public class StatChangeEffect : CardEffect
                 break;
 
             case StatType.GainHealthIfDiscrection:
-                if (player.cardData.discretion < 10)
+                Debug.Log("Hallo y a quelqu'un ???");
+                if (player.cardData.discretion <= 10)
                 {
                     shouldReturnToHand = true;
+                    Debug.Log("Pk");
                 }
                 else
                 {

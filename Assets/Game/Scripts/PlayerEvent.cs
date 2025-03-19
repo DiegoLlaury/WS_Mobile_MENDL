@@ -42,7 +42,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     {
         cardData = GameManager.selectedCard;
         currentEnergy = maxEnergy;
-        cardData.maxHealth = cardData.heart * healthRatio;
+        cardData.maxHealth = cardData.heart * healthRatio + cardData.maxHealth;
         cardData.health = cardData.maxHealth;
         cardData.strenght = cardData.maxStrenght;
         cardData.discretion = cardData.maxDiscretion;

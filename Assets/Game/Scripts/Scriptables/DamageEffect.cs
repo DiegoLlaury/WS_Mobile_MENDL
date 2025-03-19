@@ -71,8 +71,7 @@ using WS_DiegoCo;
                 if (player.cardData.discretion == 0)
                 {
                     Debug.Log("You don't have discretion, card will return to hand.");
-                    shouldReturnToHand = true;  // On active le retour
-                    
+                    shouldReturnToHand = true;  // On active le retour     
                 }
                 else
                 {

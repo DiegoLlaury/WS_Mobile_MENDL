@@ -45,6 +45,8 @@ public class HandManager : MonoBehaviour
         UpdateCardPositions();
     }
 
+
+
     private void UpdateCardPositions()
     {
         int cardCount = cardsInHand.Count;

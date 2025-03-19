@@ -33,6 +33,7 @@ public class DeckManager : MonoBehaviour
     private void LoadDeckFromPlayerStats()
     {
         deck.Clear();
+        Debug.Log($"Heart: {playerStats.cardData.heart}, Square: {playerStats.cardData.square}, Spade: {playerStats.cardData.spade}, Clover: {playerStats.cardData.clover}");
 
         // Load cards based on their type folders
         Dictionary<Card.CardType, List<Card>> cardLibrary = new Dictionary<Card.CardType, List<Card>>();
@@ -55,6 +56,11 @@ public class DeckManager : MonoBehaviour
         AddCardsToDeck(Card.CardType.Square, playerStats.cardData.square, cardLibrary);
         AddCardsToDeck(Card.CardType.Spade, playerStats.cardData.spade, cardLibrary);
         AddCardsToDeck(Card.CardType.Clover, playerStats.cardData.clover, cardLibrary);
+        Debug.Log($"Total cards in deck: {deck.Count}");
+        foreach (Card card in deck)
+        {
+            Debug.Log($"Card: {card.name} - Instance ID: {card.GetInstanceID()}");
+        }
     }
 
     private void AddCardsToDeck(Card.CardType type, int count, Dictionary<Card.CardType, List<Card>> library)
@@ -70,6 +76,7 @@ public class DeckManager : MonoBehaviour
             Card randomCard = library[type][Random.Range(0, library[type].Count)];
             deck.Add(randomCard);
         }
+        Debug.Log($"Adding {count} {type} cards to the deck. Current deck size before: {deck.Count}");
     }
 
     public void ShuffleDeck()
@@ -83,10 +90,9 @@ public class DeckManager : MonoBehaviour
         }
     }
     public void DrawCard(int cardNumber)
+{
+    for (int i = 0; i < cardNumber; i++)
     {
-       for (int i = 0; i < cardNumber; i++)
-       {
-
         if (deck.Count == 0)
         {
             RefillDeck();
@@ -98,8 +104,8 @@ public class DeckManager : MonoBehaviour
             deck.RemoveAt(0);
             handManager.AddCardToHand(nextCard);
         }   
-       }
     }
+}
 
     private void RefillDeck()
     {
