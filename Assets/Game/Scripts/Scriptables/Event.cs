@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using WS_DiegoCo_Enemy;
+using WS_DiegoCo_Middle;
 
 
 namespace WS_DiegoCo_Event
@@ -26,7 +27,10 @@ namespace WS_DiegoCo_Event
         public string eventName;  
         
         public Sprite background;
-        public Sprite backgroundBattle;
+
+        public CardMiddle assignedOfficer; // Policer assigné
+        public int remainingAttempts = 2; // Pour gérer les échecs répétés
+        public bool isResolved = false;
 
         public enum EventType
         {

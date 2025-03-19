@@ -8,12 +8,16 @@ public class EventDisplay : MonoBehaviour
 {
     public EventBattle eventBattle;
     public GameObject panelInformation;
-    private CardMiddle cardMiddle;
+    public CardMiddle cardMiddle;
+
     public TMP_Text descriptionText;
     public TMP_Text nameEventText;
     public TMP_Text typeEventText;
     public TMP_Text difficultyText;
     public TMP_Text numberOfTurn;
+
+    public Image cardImage;
+    public Image backgroundImage;
 
     private DeckManagerMacro deckManagerMacro;
     private HandManagerMacro handManagerMacro;
@@ -35,6 +39,15 @@ public class EventDisplay : MonoBehaviour
         typeEventText.text = eventBattle.eventType.ToString();
         difficultyText.text = eventBattle.eventDifficulty.ToString();
         numberOfTurn.text = eventBattle.numberTurn.ToString();
+        backgroundImage.sprite = eventBattle.background;
+        if (eventBattle.assignedOfficer != null)
+        {
+            cardImage.sprite = eventBattle.assignedOfficer.cardImage;
+        }
+        else
+        {
+            cardImage.sprite = null;
+        }
     }
 
     public void EventCheck()
@@ -54,16 +67,37 @@ public class EventDisplay : MonoBehaviour
             Debug.Log("No card assign to this event");
             return;
         }
-        handManagerMacro.AddCardToHand(cardMiddle);
-        deckManagerMacro.UnstockCard(cardMiddle);
+        handManagerMacro.AddCardToHand(eventBattle.assignedOfficer);
+        deckManagerMacro.UnstockCard(eventBattle.assignedOfficer);
+        eventBattle.assignedOfficer = null;
+        cardImage.sprite = null;
         panelInformation.SetActive(false);
-        cardMiddle = null;
     }
 
     public void SetPlayer(CardMiddle cardPlayer)
     {
-        Debug.Log(cardPlayer.name);
-        cardMiddle = cardPlayer;
+        if (eventBattle.assignedOfficer == null)
+        {
+            eventBattle.assignedOfficer = cardPlayer;
+            cardImage.sprite = cardPlayer.cardImage;
+            Debug.Log($"{cardPlayer.cardName} assigné à {eventBattle.eventName}");
+        }
+        else
+        {
+            Debug.Log("Un policier est déjà assigné à cet événement");
+        }
+    }
+
+    public void StartAutoResolution()
+    {
+        if (eventBattle.assignedOfficer == null)
+        {
+            Debug.Log("Aucun policier assigné pour la résolution automatique.");
+            return;
+        }
+
+        GameManager.ResolveEvent(eventBattle);
+        UpdateEventDisplay();
     }
 
     private void StartBattle()

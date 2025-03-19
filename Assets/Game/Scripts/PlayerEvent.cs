@@ -28,6 +28,8 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     public TMP_Text perceptionText;
     public TMP_Text currentTurnText;
 
+    public Image[] backgroundBattle;
+
     [SerializeField] private int healthRatio = 5;
 
     private bool discretionboost = false;
@@ -50,6 +52,18 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         cardData.discretion = cardData.maxDiscretion;
         cardData.perception = cardData.maxPerception;
         cardData.defense = currentDefense;
+
+        foreach (Image img in backgroundBattle)
+        {
+            img.gameObject.SetActive(false); // Deactivate all type images first
+        }
+
+        int typeIndex = (int)GameManager.currentEvent.eventPlace;
+        if (typeIndex >= 0 && typeIndex < backgroundBattle.Length)
+        {
+            backgroundBattle[typeIndex].gameObject.SetActive(true);
+        }
+
         GameManager.currentEvent.currentTurn = GameManager.currentEvent.numberTurn;
         UpdatePlayerEvent();
     }
