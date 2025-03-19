@@ -32,6 +32,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
 
     private bool discretionboost = false;
     public int maxEnergy = 3;
+    [SerializeField] private int baseHealth = 10;
     private int currentEnergy;
     public int currentDefense;
     private Dictionary<StatusEffect.StatusType, (int value, int turnsRemaining)> activeEffects = new Dictionary<StatusEffect.StatusType, (int, int)>();
@@ -40,6 +41,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        cardData.maxHealth = baseHealth;
         cardData = GameManager.selectedCard;
         currentEnergy = maxEnergy;
         cardData.maxHealth = cardData.heart * healthRatio + cardData.maxHealth;

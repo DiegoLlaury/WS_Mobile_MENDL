@@ -37,7 +37,7 @@ using WS_DiegoCo;
         switch (targetDamage)
         {
             case TargetDamage.Player:
-                player.cardData.health = Mathf.Clamp(cardData.health + NumberOfdamage, 0, player.cardData.maxHealth);
+                player.cardData.health = Mathf.Clamp(player.cardData.health + NumberOfdamage, 0, player.cardData.maxHealth);
                 break;
 
             case TargetDamage.Enemy:
@@ -129,9 +129,8 @@ using WS_DiegoCo;
                 }
                 else
                 {
-                    player.cardData.health = Mathf.Clamp(cardData.health + NumberOfdamage, 0, player.cardData.maxHealth);
+                    player.cardData.health = Mathf.Clamp(player.cardData.health + NumberOfdamage, 0, player.cardData.maxHealth);
                     Debug.Log("Unlucky! Took 5 damage instead.");
-                    shouldReturnToHand = true;
                 }
                 break;
         }      
