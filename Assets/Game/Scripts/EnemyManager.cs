@@ -17,6 +17,13 @@ public class EnemyManager : MonoBehaviour
     public Transform enemySpawnPoint;
     public GameObject enemyPrefab;
 
+    [SerializeField] private int defenseEnemy = 2;
+    [SerializeField] private int debuffAttack = -1;
+    [SerializeField] private int buffAttack = 1;
+    [SerializeField] private int buffPerception = 3;
+    [SerializeField] private int debuffPerception = -2;
+    [SerializeField] private int buffDiscretion = 3;
+    [SerializeField] private int DebuffDiscretion = 3;
 
     public float fanSpread = 5f;
     public float enemiesSpacing = 100f;
@@ -177,7 +184,7 @@ public class EnemyManager : MonoBehaviour
                         break;
                 }
                 
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(1f);
 
         }
 
