@@ -62,7 +62,11 @@ public class StatChangeEffect : CardEffect
                 break;
 
             case StatType.GainHealthIfDiscrection:
-                if (player.cardData.discretion > 10)
+                if (player.cardData.discretion < 10)
+                {
+                    shouldReturnToHand = true;
+                }
+                else
                 {
                     player.GainHealth(cardData.health);
                 }

@@ -105,7 +105,7 @@ public class CardDisplay : MonoBehaviour
     public void UpdateDamage(int strength)
     {
         cardData.damage = cardData.startingDamage + strength;
-        Debug.Log("Damage Uodate, Card dammage : " + cardData.damage +", Player strength : "+ player.cardData.strenght);
+        Debug.Log("Damage Update, Card damage : " + cardData.damage +", Player strength : "+ player.cardData.strenght);
         UpdateCardDisplay();
     }
 

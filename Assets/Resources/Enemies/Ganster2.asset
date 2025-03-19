@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Ganster Italien
   maxHealth: 50
-  health: 40
+  health: 50
   maxDefense: 0
-  defense: 0
+  defense: 2
   maxDamage: 4
   damage: 4
   maxDiscretion: 0

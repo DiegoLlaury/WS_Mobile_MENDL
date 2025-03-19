@@ -35,7 +35,6 @@ public class BattleManager : MonoBehaviour
     void Start()
     {
         StartBattle();
-        Debug.Log("Test");
     }
 
     private void StartBattle()
@@ -56,6 +55,7 @@ public class BattleManager : MonoBehaviour
         CheckGameOver();
         player.TurnChange();
         StartCoroutine(enemyManager.EnemyTurn(GameManager.currentEvent));
+        
     }
 
     public void EndEnemyTurn()
@@ -69,7 +69,6 @@ public class BattleManager : MonoBehaviour
             handManager.RemoveCardFromHand(card);
             deckManager.DiscardCard(card.GetComponent<CardDisplay>().cardData);
         }
-
         StartPlayerTurn();
     }
 

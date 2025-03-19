@@ -11,14 +11,22 @@ namespace WS_DiegoCo_Event
         public EventType eventType;
         public EventPlace eventPlace;
         public EventDifficulty eventDifficulty;
+
         public int numberTurn;
         public int currentTurn;
         public int conditionNumber;
+        
         public List<Enemy> enemies;
+        public ScriptableObject nextEvent;
+
         public bool boss;
+        public bool winFight = false;
+        
         public string description;
-        public string eventName;
+        public string eventName;  
+        
         public Sprite background;
+        public Sprite backgroundBattle;
 
         public enum EventType
         {

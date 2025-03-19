@@ -27,8 +27,7 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
     public GameObject infiltrationStatPanel;
     public GameObject investigationStatPanel;
 
-    private int currentDefense = 0;
-    private bool isNextAttackHeal = false;
+    private bool isNextAttackHeal;
 
     private PlayerEvent player;
     private Dictionary<StatusEffect.StatusType, (int value, int turnsRemaining)> activeEffects = new Dictionary<StatusEffect.StatusType, (int, int)>();
@@ -43,6 +42,8 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         enemyData.damage = enemyData.maxDamage;
         enemyData.discretion = enemyData.maxDiscretion;
         enemyData.perception = enemyData.maxPerception;
+        enemyData.defense = enemyData.maxDefense;
+        isNextAttackHeal = false;
         UpdateEnemyDisplay();
     }
 
@@ -69,12 +70,13 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
 
     public void TakeDamage(int damage, bool ignoreShield = false)
     {
-        if (!ignoreShield && currentDefense > 0)
+        Debug.Log(isNextAttackHeal);
+        if (!ignoreShield && enemyData.defense > 0)
         {
-            int absorbed = Mathf.Min(damage, currentDefense);
-            currentDefense -= absorbed;
+            int absorbed = Mathf.Min(damage, enemyData.defense);
+            enemyData.defense -= absorbed;
             damage -= absorbed;
-            Debug.Log($"Enemy {enemyData.enemyName} shield absorbed {absorbed} damage. Remaining shield: {currentDefense}");
+            Debug.Log($"Enemy {enemyData.enemyName} shield absorbed {absorbed} damage. Remaining shield: {enemyData.defense}");
         }
 
         if (damage > 0)
@@ -82,7 +84,8 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
             enemyData.health -= damage;
             Debug.Log($"Enemy {enemyData.enemyName} took {damage} damage. Remaining health: {enemyData.health}");
         }
-        if(isNextAttackHeal == true)
+
+        if (isNextAttackHeal == true)
         {
             player.GainHealth(damage);
             isNextAttackHeal = false;
@@ -104,9 +107,9 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
 
     public void GainShield(int amount)
     {
-        currentDefense += amount;
+        enemyData.defense += amount;
         UpdateEnemyDisplay();
-        Debug.Log($"Enemy {enemyData.enemyName} gained {amount} shield. Current shield: {currentDefense}");
+        Debug.Log($"Enemy {enemyData.enemyName} gained {amount} shield. Current shield: {enemyData.defense}");
     }
 
     public void ModifyStat(Card.StatType stat, int amount)

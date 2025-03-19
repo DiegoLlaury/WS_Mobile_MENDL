@@ -60,9 +60,11 @@ using WS_DiegoCo;
                 {
                     Debug.Log("You don't have discretion");
                     shouldReturnToHand = true;
-                    return;
                 }
-                enemy.TakeDamage(player.currentDefense, ignoreShield: false);
+                else
+                {
+                    enemy.TakeDamage(player.currentDefense, ignoreShield: false);
+                }       
                 break;
 
             case TargetDamage.InfiltrationAttack:
@@ -70,9 +72,12 @@ using WS_DiegoCo;
                 {
                     Debug.Log("You don't have discretion, card will return to hand.");
                     shouldReturnToHand = true;  // On active le retour
-                    return;
+                    
                 }
-                enemy.TakeDamage(player.cardData.discretion * 2, ignoreShield: false);
+                else
+                {
+                    enemy.TakeDamage(player.cardData.discretion * 2, ignoreShield: false);
+                }       
                 break;
 
             case TargetDamage.RandomEnemy:
@@ -127,6 +132,7 @@ using WS_DiegoCo;
                 {
                     player.cardData.health = Mathf.Clamp(cardData.health + NumberOfdamage, 0, player.cardData.maxHealth);
                     Debug.Log("Unlucky! Took 5 damage instead.");
+                    shouldReturnToHand = true;
                 }
                 break;
         }      

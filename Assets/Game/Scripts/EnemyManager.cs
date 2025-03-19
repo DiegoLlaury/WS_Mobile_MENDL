@@ -208,17 +208,17 @@ public class EnemyManager : MonoBehaviour
                 break;
 
             case 1: // Defense
-                enemy.ModifyStat(Card.StatType.defense, 2);
+                enemy.ModifyStat(Card.StatType.defense, defenseEnemy);
                 Debug.Log($"{enemy.enemyData.enemyName} defense for {enemy.enemyData.defense} defense!");
                 break;
 
             case 2: // Buff
-                enemy.ModifyStat(Card.StatType.damage, 1);
+                enemy.ModifyStat(Card.StatType.damage, buffAttack);
                 Debug.Log($"{enemy.enemyData.enemyName} buffs its damage!");
                 break;
 
             case 3: // Debuff
-                BattleManager.Instance.player.ApplyDebuff(Card.StatType.damage, -1);
+                BattleManager.Instance.player.ApplyDebuff(Card.StatType.damage, debuffAttack);
                 Debug.Log($"{enemy.enemyData.enemyName} weakens the player!");
                 break;
         }
@@ -231,7 +231,7 @@ public class EnemyManager : MonoBehaviour
         switch (actionInfiltrationType)
         {
             case 0:
-                enemy.ModifyStat(Card.StatType.perception, 5);
+                enemy.ModifyStat(Card.StatType.perception, buffPerception);
                 Debug.Log($"{enemy.enemyData.enemyName} gain perception");
                 break;
 
@@ -241,7 +241,7 @@ public class EnemyManager : MonoBehaviour
                 break;
 
             case 2:
-                BattleManager.Instance.player.ApplyDebuff(Card.StatType.discretion, -5);
+                BattleManager.Instance.player.ApplyDebuff(Card.StatType.discretion, DebuffDiscretion);
                 Debug.Log($"{enemy.enemyData.enemyName} debuffs yours discretion!");
                 break;
         }
@@ -254,12 +254,12 @@ public class EnemyManager : MonoBehaviour
         switch (actionInvestigationType)
         {
             case 0:
-                enemy.ModifyStat(Card.StatType.discretion, 6);
+                enemy.ModifyStat(Card.StatType.discretion, buffDiscretion);
                 Debug.Log($"{enemy.enemyData.enemyName} gain discretion");
                 break;
 
             case 1:
-                BattleManager.Instance.player.ApplyDebuff(Card.StatType.perception, -2);
+                BattleManager.Instance.player.ApplyDebuff(Card.StatType.perception, debuffPerception);
                 Debug.Log($"{enemy.enemyData.enemyName} debuff your perception!");
                 break;
         }
