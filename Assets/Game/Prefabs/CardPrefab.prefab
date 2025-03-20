@@ -2087,7 +2087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardData: {fileID: 11400000, guid: c5d51b1e996b38645849a75de4db6d89, type: 2}
-  cardImage: {fileID: 8606078028783245713}
+  cardImage: {fileID: 162867926385074001}
   nameText: {fileID: 2705954924964391440}
   effectText: {fileID: 660929600667875455}
   healthText: {fileID: 2439515181983010177}

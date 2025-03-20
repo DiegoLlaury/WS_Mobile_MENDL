@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Card
   - DropZone
+  - GameManager
   layers:
   - Default
   - TransparentFX

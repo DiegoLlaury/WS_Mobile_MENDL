@@ -23,7 +23,7 @@ public class DrawEffect : CardEffect
                 break;
 
             case TypeDraw.DrawInfiltration:
-                int count = 0;
+                int count = -1;
 
                 foreach (GameObject cardObject in hand.cardsInHand)
                 {

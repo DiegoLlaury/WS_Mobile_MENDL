@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8286df22d77560d44b7adf918644af7c, type: 3}
   m_Name: StrenghtDiscretion
   m_EditorClassIdentifier: 
+  shouldReturnToHand: 0
   statusType: 5
   value: 0
   duration: 0
   applyToPlayer: 1
   applyToEnemy: 0
+  NumberOfdamage: -3

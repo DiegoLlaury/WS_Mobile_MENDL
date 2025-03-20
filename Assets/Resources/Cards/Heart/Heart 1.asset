@@ -17,13 +17,13 @@ MonoBehaviour:
   statType: 01000000
   dropType: 01000000
   health: 0
-  defense: 1
-  damage: 2
-  startingDamage: 2
+  defense: 2
+  damage: 0
+  startingDamage: 0
   discretion: 0
   perception: 0
   energy: 2
-  effect: Gagnez {defense} de bouclier chaque tour. (Jouable une fois).
+  effect: Gagnez {defense} de bouclier pendant 2 tours.
   cardImage: {fileID: -605624883, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   effects:
   - {fileID: 11400000, guid: 3ce842a5d62227c418ad26c8683ebbf1, type: 2}

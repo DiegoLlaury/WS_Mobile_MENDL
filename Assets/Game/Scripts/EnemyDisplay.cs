@@ -6,38 +6,44 @@ using System;
 using WS_DiegoCo;
 using System.Collections.Generic;
 using System.Linq;
+using WS_DiegoCo_Event;
 
 public class EnemyDisplay : MonoBehaviour, IStatusReceiver
 {
-
+    private EventBattle.EventType currentEventType;
     public Enemy enemyData;
+
+
     public Sprite enemyImageDisplay;
     public TMP_Text nameText;
     public TMP_Text healthText;
     public TMP_Text defenseText;
-    public TMP_Text precisionText;
+    public TMP_Text perceptionText;
     public TMP_Text discretionText;
     public TMP_Text damageText;
 
-    private int currentDefense = 0;
-    private bool isNextAttackHeal = false;
+
+    public GameObject combatStatPanel;
+    public GameObject infiltrationStatPanel;
+    public GameObject investigationStatPanel;
+
+    private bool isNextAttackHeal;
 
     private PlayerEvent player;
     private Dictionary<StatusEffect.StatusType, (int value, int turnsRemaining)> activeEffects = new Dictionary<StatusEffect.StatusType, (int, int)>();
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {  
-        
-    }
-
-    public void Initialize(Enemy data)
+    public void Initialize(Enemy data, EventBattle.EventType eventType)
     {
         enemyData = data;
+        currentEventType = eventType;
+        player = FindAnyObjectByType<PlayerEvent>();
+
         enemyData.health = enemyData.maxHealth;
         enemyData.damage = enemyData.maxDamage;
         enemyData.discretion = enemyData.maxDiscretion;
         enemyData.perception = enemyData.maxPerception;
+        enemyData.defense = enemyData.maxDefense;
+        isNextAttackHeal = false;
         UpdateEnemyDisplay();
     }
 
@@ -45,8 +51,15 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
     {
         nameText.text = enemyData.enemyName;
         healthText.text = enemyData.health.ToString();
+        defenseText.text = enemyData.defense.ToString();
         damageText.text = enemyData.damage.ToString();
+        perceptionText.text = enemyData.perception.ToString();
+        discretionText.text = enemyData.discretion.ToString();
         enemyImageDisplay = enemyData.enemyImage;
+
+        combatStatPanel.SetActive(currentEventType == EventBattle.EventType.Combat);
+        infiltrationStatPanel.SetActive(currentEventType == EventBattle.EventType.Infiltration);
+        investigationStatPanel.SetActive(currentEventType == EventBattle.EventType.Enquete);
     }
 
     public void SetNextAttackHeal()
@@ -57,12 +70,13 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
 
     public void TakeDamage(int damage, bool ignoreShield = false)
     {
-        if (!ignoreShield && currentDefense > 0)
+        Debug.Log(isNextAttackHeal);
+        if (!ignoreShield && enemyData.defense > 0)
         {
-            int absorbed = Mathf.Min(damage, currentDefense);
-            currentDefense -= absorbed;
+            int absorbed = Mathf.Min(damage, enemyData.defense);
+            enemyData.defense -= absorbed;
             damage -= absorbed;
-            Debug.Log($"Enemy {enemyData.enemyName} shield absorbed {absorbed} damage. Remaining shield: {currentDefense}");
+            Debug.Log($"Enemy {enemyData.enemyName} shield absorbed {absorbed} damage. Remaining shield: {enemyData.defense}");
         }
 
         if (damage > 0)
@@ -71,25 +85,31 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
             Debug.Log($"Enemy {enemyData.enemyName} took {damage} damage. Remaining health: {enemyData.health}");
         }
 
-        if(isNextAttackHeal == true)
+        if (isNextAttackHeal == true)
         {
             player.GainHealth(damage);
             isNextAttackHeal = false;
         }
 
-        UpdateEnemyDisplay();
-
-        if (enemyData.health <= 0)
+        if(GameManager.currentEvent.eventType == EventBattle.EventType.Infiltration)
         {
-            BattleManager.Instance.CheckGameOver();
+            GameManager.currentEvent.currentTurn = 2;
         }
+        
+        if(GameManager.currentEvent.eventType == EventBattle.EventType.Enquete)
+        {
+            Debug.Log("You failed !");
+        }
+
+        UpdateEnemyDisplay();
+        player.Attack();
     }
 
     public void GainShield(int amount)
     {
-        currentDefense += amount;
+        enemyData.defense += amount;
         UpdateEnemyDisplay();
-        Debug.Log($"Enemy {enemyData.enemyName} gained {amount} shield. Current shield: {currentDefense}");
+        Debug.Log($"Enemy {enemyData.enemyName} gained {amount} shield. Current shield: {enemyData.defense}");
     }
 
     public void ModifyStat(Card.StatType stat, int amount)
@@ -118,13 +138,13 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
 
     public void ReducePerception(int value)
     {
-        enemyData.perception -= value;
+        enemyData.perception = Mathf.Clamp(enemyData.perception - value, enemyData.maxPerception, 50);
         UpdateEnemyDisplay();
     }
 
     public void ReduceInfiltration(int value)
     {
-        enemyData.discretion -= value;
+        enemyData.discretion = Mathf.Clamp(enemyData.discretion - value, enemyData.maxDiscretion, 50);
         UpdateEnemyDisplay();
     }
 
@@ -153,7 +173,7 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
             switch (key)
             {
                 case StatusEffect.StatusType.Regeneration:
-                    enemyData.health = Mathf.Min(enemyData.health + effect.value, enemyData.maxHealth);
+                    enemyData.health = Mathf.Clamp(enemyData.health + effect.value,0, enemyData.maxHealth);
                     Debug.Log($"Enemy {enemyData.enemyName} regenerated {effect.value} HP.");
                     break;
 

@@ -45,6 +45,8 @@ public class HandManager : MonoBehaviour
         UpdateCardPositions();
     }
 
+
+
     private void UpdateCardPositions()
     {
         int cardCount = cardsInHand.Count;
@@ -72,6 +74,10 @@ public class HandManager : MonoBehaviour
 
         while (elapsedTime < moveDuration)
         {
+            if (card == null) // Check if the card has been destroyed mid-animation
+            {
+                yield break;
+            }
 
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / moveDuration;

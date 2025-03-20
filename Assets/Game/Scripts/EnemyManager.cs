@@ -17,6 +17,13 @@ public class EnemyManager : MonoBehaviour
     public Transform enemySpawnPoint;
     public GameObject enemyPrefab;
 
+    [SerializeField] private int defenseEnemy = 2;
+    [SerializeField] private int debuffAttack = -1;
+    [SerializeField] private int buffAttack = 1;
+    [SerializeField] private int buffPerception = 3;
+    [SerializeField] private int debuffPerception = -2;
+    [SerializeField] private int buffDiscretion = 3;
+    [SerializeField] private int DebuffDiscretion = -3;
 
     public float fanSpread = 5f;
     public float enemiesSpacing = 100f;
@@ -42,6 +49,18 @@ public class EnemyManager : MonoBehaviour
         UpdateEnemiesPosition();
     }
 
+    //public void PrepareEnemyActions(EventBattle combatEvent)
+    //{
+    //    foreach (EnemyDisplay enemy in enemies)
+    //    {
+    //        enemy.nextAction = GetActionByProbability(combatEvent.eventDifficulty, combatEvent.eventType);
+    //        if (enemy.enemyData.perception >= 10) // Exemple de seuil pour révéler l'action
+    //        {
+    //            Debug.Log($"{enemy.enemyData.enemyName} prépare une action: {enemy.nextAction}");
+    //        }
+    //    }
+    //}
+
     public void StartCombat(EventBattle combatEvent)
     {
 
@@ -66,7 +85,7 @@ public class EnemyManager : MonoBehaviour
         EnemyDisplay enemyDisplay = newEnemyObj.GetComponent<EnemyDisplay>();
         if (enemyDisplay != null)
         {
-            enemyDisplay.Initialize(enemyData);
+            enemyDisplay.Initialize(enemyData, GameManager.currentEvent.eventType);
             enemies.Add(enemyDisplay);
         }
         else
@@ -143,15 +162,13 @@ public class EnemyManager : MonoBehaviour
 
         foreach (EnemyDisplay enemy in enemies)
         {
-            if (enemy.enemyData.health > 0)
-            {
-                enemy.ProcessTurnEffects();
-                if (enemy.enemyData.health <= 0)
-                {
-                    enemiesToRemove.Add(enemy);
 
-                    continue;
-                }
+            enemy.ProcessTurnEffects();
+            if (enemy.enemyData.health <= 0)
+            {
+                enemiesToRemove.Add(enemy);
+                continue;
+            }
                 switch (eventBattle.eventType)
                 {
                     case EventBattle.EventType.Combat:
@@ -167,8 +184,8 @@ public class EnemyManager : MonoBehaviour
                         break;
                 }
                 
-                yield return new WaitForSeconds(2f);
-            }
+                yield return new WaitForSeconds(1f);
+
         }
 
         foreach (EnemyDisplay enemy in enemiesToRemove)
@@ -181,9 +198,9 @@ public class EnemyManager : MonoBehaviour
 
     private void PerformActionBattle(EnemyDisplay enemy, EventBattle.EventDifficulty difficulty)
     {
-        int actionType = GetActionByProbability(difficulty, EventBattle.EventType.Combat);
+        int actionCombatType = GetActionByProbability(difficulty, EventBattle.EventType.Combat);
 
-        switch (actionType)
+        switch (actionCombatType)
         {
             case 0: // Attack
                 BattleManager.Instance.player.TakeDamage(enemy.enemyData.damage);
@@ -191,17 +208,17 @@ public class EnemyManager : MonoBehaviour
                 break;
 
             case 1: // Defense
-                enemy.ModifyStat(Card.StatType.defense, 2);
+                enemy.ModifyStat(Card.StatType.defense, defenseEnemy);
                 Debug.Log($"{enemy.enemyData.enemyName} defense for {enemy.enemyData.defense} defense!");
                 break;
 
             case 2: // Buff
-                enemy.ModifyStat(Card.StatType.damage, 1);
+                enemy.ModifyStat(Card.StatType.damage, buffAttack);
                 Debug.Log($"{enemy.enemyData.enemyName} buffs its damage!");
                 break;
 
             case 3: // Debuff
-                BattleManager.Instance.player.ApplyDebuff(Card.StatType.damage, -1);
+                BattleManager.Instance.player.ApplyDebuff(Card.StatType.damage, debuffAttack);
                 Debug.Log($"{enemy.enemyData.enemyName} weakens the player!");
                 break;
         }
@@ -209,38 +226,41 @@ public class EnemyManager : MonoBehaviour
 
     private void PerformActionInfiltration(EnemyDisplay enemy, EventBattle.EventDifficulty difficulty)
     {
-        int actionType = GetActionByProbability(difficulty, EventBattle.EventType.Infiltration);
+        int actionInfiltrationType = GetActionByProbability(difficulty, EventBattle.EventType.Infiltration);
 
-        switch (actionType)
+        switch (actionInfiltrationType)
         {
             case 0:
-                enemy.ModifyStat(Card.StatType.perception, 5);
+                enemy.ModifyStat(Card.StatType.perception, buffPerception);
                 Debug.Log($"{enemy.enemyData.enemyName} gain perception");
                 break;
 
             case 1:
                 BattleManager.Instance.player.RondeTest(enemy);
+                Debug.Log($"{enemy.enemyData.enemyName} do a check");
                 break;
 
             case 2:
-                BattleManager.Instance.player.ApplyDebuff(Card.StatType.damage, -5);
-                Debug.Log($"{enemy.enemyData.enemyName} buffs its damage!");
+                BattleManager.Instance.player.ApplyDebuff(Card.StatType.discretion, DebuffDiscretion);
+                Debug.Log($"{enemy.enemyData.enemyName} debuffs yours discretion!");
                 break;
         }
     }
 
     private void PerformActionInvestigation(EnemyDisplay enemy, EventBattle.EventDifficulty difficulty)
     {
-        int actionType = GetActionByProbability(difficulty, EventBattle.EventType.Enquete);
+        int actionInvestigationType = GetActionByProbability(difficulty, EventBattle.EventType.Enquete);
 
-        switch (actionType)
+        switch (actionInvestigationType)
         {
             case 0:
-                enemy.ModifyStat(Card.StatType.discretion, 6);
+                enemy.ModifyStat(Card.StatType.discretion, buffDiscretion);
+                Debug.Log($"{enemy.enemyData.enemyName} gain discretion");
                 break;
 
             case 1:
-                BattleManager.Instance.player.ApplyDebuff(Card.StatType.perception, -2);
+                BattleManager.Instance.player.ApplyDebuff(Card.StatType.perception, debuffPerception);
+                Debug.Log($"{enemy.enemyData.enemyName} debuff your perception!");
                 break;
         }
     }

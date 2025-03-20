@@ -11,6 +11,8 @@ namespace WS_DiegoCo_Middle
         public string cardName;
         public string description;
         public List<StatType> statType;
+        public SymbolTypes symbolTypes;
+
         public int health;
         public int maxHealth;
         public int maxDefense;
@@ -21,12 +23,26 @@ namespace WS_DiegoCo_Middle
         public int discretion;
         public int maxPerception;
         public int perception;
+
         public int heart;
         public int square;
         public int spade;
         public int clover;
+
+        public int skillLevel;
+
         public Sprite cardImage;
 
+        public enum SymbolTypes
+        {
+            Heart,
+
+            Spade,
+
+            Square,
+
+            Clover
+        }
        
     }
 }

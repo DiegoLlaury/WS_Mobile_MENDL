@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 using System.Collections.Generic;
 using WS_DiegoCo_Middle;
 using WS_DiegoCo;
@@ -12,7 +13,6 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
 {
 
     public CardMiddle cardData;
-    public GameManager game;
     private Card card;
     private EnemyDisplay enemy;
 
@@ -28,24 +28,43 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     public TMP_Text perceptionText;
     public TMP_Text currentTurnText;
 
+    public Image[] backgroundBattle;
+
     [SerializeField] private int healthRatio = 5;
 
+    private bool discretionboost = false;
     public int maxEnergy = 3;
+    [SerializeField] private int baseHealth = 10;
     private int currentEnergy;
     public int currentDefense;
     private Dictionary<StatusEffect.StatusType, (int value, int turnsRemaining)> activeEffects = new Dictionary<StatusEffect.StatusType, (int, int)>();
+    private List<System.Action> temporaryEffects = new List<System.Action>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        cardData.maxHealth = baseHealth;
+        cardData = GameManager.selectedCard;
         currentEnergy = maxEnergy;
-        cardData.maxHealth = cardData.heart * healthRatio;
+        cardData.maxHealth = cardData.heart * healthRatio + cardData.maxHealth;
         cardData.health = cardData.maxHealth;
         cardData.strenght = cardData.maxStrenght;
         cardData.discretion = cardData.maxDiscretion;
         cardData.perception = cardData.maxPerception;
         cardData.defense = currentDefense;
-        game.currentEvent.currentTurn = game.currentEvent.numberTurn;
+
+        foreach (Image img in backgroundBattle)
+        {
+            img.gameObject.SetActive(false); // Deactivate all type images first
+        }
+
+        int typeIndex = (int)GameManager.currentEvent.eventPlace;
+        if (typeIndex >= 0 && typeIndex < backgroundBattle.Length)
+        {
+            backgroundBattle[typeIndex].gameObject.SetActive(true);
+        }
+
+        GameManager.currentEvent.currentTurn = GameManager.currentEvent.numberTurn;
         UpdatePlayerEvent();
     }
 
@@ -57,12 +76,19 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         perceptionText.text = cardData.perception.ToString();
         energyText.text = currentEnergy.ToString();
         defenseText.text = currentDefense.ToString();
-        currentTurnText.text = game.currentEvent.currentTurn.ToString();
+        currentTurnText.text = GameManager.currentEvent.currentTurn.ToString();
+        
     }
 
     public void TurnChange()
     {
-        game.currentEvent.currentTurn--;
+        foreach (var effect in temporaryEffects)
+        {
+            effect.Invoke();
+        }
+        temporaryEffects.Clear();  // Vide la liste après l'application
+
+        GameManager.currentEvent.currentTurn--;
         UpdatePlayerEvent();
     }
 
@@ -78,7 +104,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
 
         if (damage > 0)
         {
-            cardData.health -= damage;
+            cardData.health  -= damage;
             Debug.Log($"Player took {damage} damage. Remaining health: {cardData.health}");
         }
 
@@ -90,18 +116,23 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         }
     }
 
-    public void GainHealth(int health)
+    public void Attack()
     {
-        if (cardData.health < cardData.maxHealth)
+        // Lors d'une attaque, perdre toute la discrétion
+        if (cardData.discretion > 0)
         {
-            cardData.health = Mathf.Min(cardData.health + health, cardData.maxHealth);
-            Debug.Log($"Player gained {health} health. Current health: {cardData.health}");
+            cardData.strenght -= cardData.discretion / 3;
+            cardData.discretion = 0;
+            discretionboost = false;
+            Debug.Log("Attaque effectuée : Discrétion remise à zéro.");
             UpdatePlayerEvent();
         }
-        else
-        {
-            Debug.Log("Health is already at max.");
-        }
+    }
+
+    public void GainHealth(int health)
+    {
+        cardData.health = Mathf.Clamp(cardData.health + health, 0, cardData.maxHealth);
+        Debug.Log($"Player gain {health} health. Current health : {cardData.health}");
     }
 
     public void GainShield(int defense)
@@ -113,17 +144,28 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
 
     public void GainPerception(int perception)
     {
-        cardData.perception += perception;
+        // Ajout normal de perception, en respectant la limite max
+        cardData.perception = Mathf.Clamp(cardData.perception + perception, cardData.maxPerception, 50);
         UpdatePlayerEvent();
-        Debug.Log($"Player gain {perception} perception. Current perception : {cardData.perception}");
+        Debug.Log($"Player gained {perception} perception. Current perception: {cardData.perception}");
     }
 
     public void GainInfiltration(int infiltration)
     {
-        cardData.discretion += infiltration;
+        // Ajout normal de discrétion, en respectant la limite max
+        cardData.discretion = Mathf.Clamp(cardData.discretion + infiltration, cardData.maxDiscretion, 50);
         UpdatePlayerEvent();
-        Debug.Log($"Player gain {infiltration} discretion. Current discretion : {cardData.discretion}");
+        Debug.Log($"Player gained {infiltration} discretion. Current discretion: {cardData.discretion}");
+
+        // Boost temporaire de Force si la discrétion dépasse 10 et que le boost n'a pas encore été appliqué
+        if (cardData.discretion > 10 && !discretionboost)
+        {
+            cardData.strenght += cardData.discretion / 3;
+            Debug.Log("Discretion > 10: Temporary Strength boost applied.");
+            discretionboost = true;
+        }
     }
+
 
     public void GainEnergy(int energy)
     {
@@ -136,17 +178,14 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     {
            switch (stat)
            {
-            case Card.StatType.health:
-                cardData.health += amount;
-                break;
             case Card.StatType.damage:
                 cardData.strenght += amount;
                 break;
             case Card.StatType.discretion:
-                cardData.discretion += amount;
+                GainInfiltration(amount);
                 break;
             case Card.StatType.perception:
-                cardData.perception += amount;
+                GainPerception(amount);
                 break;
            }
 
@@ -238,6 +277,12 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
 
         UpdatePlayerEvent();
         CardDisplay.UpdateAllCards(cardData.strenght);
+    }
+
+    public void AddTemporaryEffect(System.Action effect)
+    {
+        temporaryEffects.Add(effect);
+        Debug.Log("Temporary effect added for next turn.");
     }
 
     public void RondeTest(EnemyDisplay enemy)

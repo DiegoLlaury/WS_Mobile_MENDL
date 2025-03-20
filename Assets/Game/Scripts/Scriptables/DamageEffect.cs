@@ -29,6 +29,7 @@ using WS_DiegoCo;
         GambleDamage            // NEW: 50% chance to deal damage or take damage
     }
     public TargetDamage targetDamage;
+    public int NumberOfdamage;
 
     // The new, more flexible method
     public override void ApplyEffect(EnemyDisplay enemy, Card cardData, PlayerEvent player, DeckManager deck, HandManager hand, BattleManager battleManager, EnemyManager enemyManager)
@@ -36,38 +37,57 @@ using WS_DiegoCo;
         switch (targetDamage)
         {
             case TargetDamage.Player:
-                player.TakeDamage(cardData.damage);
+                player.cardData.health = Mathf.Clamp(player.cardData.health + NumberOfdamage, 0, player.cardData.maxHealth);
                 break;
 
             case TargetDamage.Enemy:
-                enemy.TakeDamage(cardData.damage);
+                enemy.TakeDamage(cardData.damage, ignoreShield: false);
                 break;
 
             case TargetDamage.AllEnemies:
                 foreach (EnemyDisplay enemyObject in enemyManager.enemies)
                 {
-                    enemyObject.TakeDamage(cardData.damage);
+                    enemyObject.TakeDamage(cardData.damage, ignoreShield: false);
                 }
                 break;
 
             case TargetDamage.DoubleAttack:
-                enemy.TakeDamage(cardData.damage * 2);
+                enemy.TakeDamage(cardData.damage * 2, ignoreShield: false);
                 break;
 
             case TargetDamage.DefenseAttack:
-                enemy.TakeDamage(player.currentDefense);
+                if (player.currentDefense == 0)
+                {
+                    Debug.Log("You don't have discretion");
+                    shouldReturnToHand = true;
+                }
+                else
+                {
+                    enemy.TakeDamage(player.currentDefense, ignoreShield: false);
+                }       
                 break;
 
             case TargetDamage.InfiltrationAttack:
-                enemy.TakeDamage(player.cardData.discretion * 2);
+                if (player.cardData.discretion == 0)
+                {
+                    Debug.Log("You don't have discretion, card will return to hand.");
+                    shouldReturnToHand = true;  // On active le retour     
+                }
+                else
+                {
+                    enemy.TakeDamage(player.cardData.discretion * 2, ignoreShield: false);
+                }       
                 break;
 
             case TargetDamage.RandomEnemy:
-                EnemyDisplay randomEnemy = enemyManager.GetRandomEnemy();
-                if (randomEnemy != null)
+                for (int i = 0; i <= 5; i++)
                 {
-                    randomEnemy.TakeDamage(cardData.damage);
-                    Debug.Log($"Random enemy {randomEnemy.enemyData.enemyName} took {cardData.damage} damage.");
+                    EnemyDisplay randomEnemy = enemyManager.GetRandomEnemy();
+                    if (randomEnemy != null)
+                    {
+                        randomEnemy.TakeDamage(cardData.damage, ignoreShield: false);
+                        Debug.Log($"Random enemy {randomEnemy.enemyData.enemyName} took {cardData.damage} damage.");
+                    }
                 }
                 break;
 
@@ -81,7 +101,7 @@ using WS_DiegoCo;
                 {
                     if (otherEnemy != enemy)
                     {
-                        otherEnemy.TakeDamage(cardData.damage / 2);
+                        otherEnemy.TakeDamage(cardData.damage / 2, ignoreShield: false);
                     }
                 }
                 Debug.Log($"Dealt {cardData.damage} to main target, {cardData.damage / 2} to others.");
@@ -90,13 +110,13 @@ using WS_DiegoCo;
             case TargetDamage.MultiTargetDamage:
                 if (enemyManager.enemies.Count > 1)
                 {
-                    enemyManager.enemies[0].TakeDamage(cardData.damage);
-                    enemyManager.enemies[1].TakeDamage(cardData.damage);
+                    enemyManager.enemies[0].TakeDamage(cardData.damage, ignoreShield: false);
+                    enemyManager.enemies[1].TakeDamage(cardData.damage, ignoreShield: false);
                     Debug.Log($"Dealt {cardData.damage} damage to two enemies.");
                 }
                 else if (enemyManager.enemies.Count == 1)
                 {
-                    enemyManager.enemies[0].TakeDamage(cardData.damage * 2);
+                    enemyManager.enemies[0].TakeDamage(cardData.damage * 2, ignoreShield: false);
                     Debug.Log($"Only one enemy, dealt {cardData.damage} damage.");
                 }
                 break;
@@ -104,12 +124,12 @@ using WS_DiegoCo;
             case TargetDamage.GambleDamage:
                 if (Random.value < 0.5f) // 50% chance
                 {
-                    enemy.TakeDamage(cardData.damage);
+                    enemy.TakeDamage(cardData.damage, ignoreShield: false);
                     Debug.Log($"Lucky! Dealt {cardData.damage} damage.");
                 }
                 else
                 {
-                    player.TakeDamage(cardData.damage);
+                    player.cardData.health = Mathf.Clamp(player.cardData.health + NumberOfdamage, 0, player.cardData.maxHealth);
                     Debug.Log("Unlucky! Took 5 damage instead.");
                 }
                 break;

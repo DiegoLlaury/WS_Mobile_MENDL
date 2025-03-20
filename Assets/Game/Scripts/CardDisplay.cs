@@ -52,9 +52,11 @@ public class CardDisplay : MonoBehaviour
         {
             Debug.LogError("PlayerEvent not found! Make sure a PlayerEvent exists in the scene.");
         }
+
         cardData.damage = cardData.startingDamage + player.cardData.strenght;
         UpdateCardDisplay();
     }
+
 
     private void UpdateCardDisplay()
     {
@@ -103,7 +105,7 @@ public class CardDisplay : MonoBehaviour
     public void UpdateDamage(int strength)
     {
         cardData.damage = cardData.startingDamage + strength;
-        Debug.Log("Damage Uodate, Card dammage : " + cardData.damage +", Player strength : "+ player.cardData.strenght);
+        Debug.Log("Damage Update, Card damage : " + cardData.damage +", Player strength : "+ player.cardData.strenght);
         UpdateCardDisplay();
     }
 
@@ -112,7 +114,6 @@ public class CardDisplay : MonoBehaviour
         CardDisplay[] cards = FindObjectsByType<CardDisplay>(FindObjectsSortMode.None);
         foreach (CardDisplay card in cards)
         {
-            Debug.Log("hello");
             card.UpdateDamage(strength);
         }
     }

@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.LightTransport;
 using WS_DiegoCo;
 
 
@@ -97,7 +96,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
             canvasGroup.interactable = false;
         }
 
-        originalLayer = gameObject.layer; 
+        originalLayer = gameObject.layer;
         gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
 
         if (cardDisplay != null && cardDisplay.cardData != null)
@@ -164,9 +163,6 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
             return;
         }
 
-        
-        Debug.Log($"Detected Drop Zone: {dropZone?.name}");
-
         bool isAttackCard = false;
         bool isSkillCard = false;
 
@@ -182,8 +178,6 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
             if (enemy != null)
             {
                 ApplyCardEffects(enemy, cardDisplay.cardData, player, deckManager, handManager, battleManager, enemyManager);
-                player.UseEnergy(cardDisplay.cardData.energy);
-                HandleCardUsed();
 
                 if (enemy.enemyData.health <= 0)
                 {
@@ -206,8 +200,6 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
                 EnemyDisplay randomEnemy = enemyManager.GetRandomEnemy();
                 enemyManager.GetRandomEnemy();
                 ApplyCardEffects(randomEnemy, cardDisplay.cardData, player, deckManager, handManager, battleManager, enemyManager);
-                player.UseEnergy(cardDisplay.cardData.energy);
-                HandleCardUsed();
             }
             else
             {
@@ -279,20 +271,43 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
             Debug.LogError("ApplyCardEffects: Enemy is null!");
             return; // Prevent further execution
         }
+        
+        bool shouldReturnToHand = false;
 
         foreach (CardEffect effect in cardDisplay.cardData.effects)
         {
             effect.ApplyEffect(enemy, card, playerEvent, deck, hand, battleManager, enemyManager);
+
+            if (effect.shouldReturnToHand)
+            {
+                shouldReturnToHand = true;
+            }
         }
 
-        Debug.Log($"Card {cardDisplay.cardData.cardName} applied effects to {enemy.enemyData.enemyName}.");
+        battleManager.CheckGameOver();
+
+        if (shouldReturnToHand)
+        {
+            Debug.Log($"Card {cardDisplay.cardData.cardName} returns to hand due to effect.");
+            TransitionToState0();
+        }
+        else
+        {
+            player.UseEnergy(cardDisplay.cardData.energy);
+            HandleCardUsed(card);
+        }
     }
 
-    private void HandleCardUsed()
+    private void HandleCardUsed(Card card)
     {
         if (deckManager != null && cardData != null)
         {
-            deckManager.DiscardCard(cardData);
+            deckManager.DiscardCard(card);
+        }
+        else
+        {
+            Debug.LogError(deckManager);
+            Debug.LogError(cardData);
         }
 
         if (handManager != null)

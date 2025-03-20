@@ -48,8 +48,16 @@ public class StatChangeEffect : CardEffect
                 break;
 
             case StatType.GainPerceptionButLostDiscretion:
-                player.GainPerception(player.cardData.discretion);
-                player.cardData.discretion = 0;
+                if (player.cardData.discretion == 0)
+                {
+                    shouldReturnToHand = true;
+                }
+                else
+                {
+                    player.GainPerception(player.cardData.discretion);
+                    player.cardData.discretion = 0;
+                }
+
                 break;
 
             case StatType.ReduceEnemyInfiltration:
@@ -62,15 +70,28 @@ public class StatChangeEffect : CardEffect
                 break;
 
             case StatType.GainHealthIfDiscrection:
-                if (player.cardData.discretion > 10)
+                Debug.Log("Hallo y a quelqu'un ???");
+                if (player.cardData.discretion >= 10)
+                {
+                    shouldReturnToHand = true;
+                    Debug.Log("Pk");
+                }
+                else
                 {
                     player.GainHealth(cardData.health);
                 }
                 break;
 
             case StatType.GainDiscretionButLostPerception:
-                player.GainInfiltration(player.cardData.perception);
-                player.cardData.perception = 0;
+                if (player.cardData.perception == 0)
+                {
+                    shouldReturnToHand = true;
+                }
+                else
+                {
+                    player.GainInfiltration(player.cardData.perception);
+                    player.cardData.perception = 0;
+                } 
                 break;
         }
     }

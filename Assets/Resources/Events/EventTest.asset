@@ -12,16 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1ef220b67029e442afdad0b4138c8a6, type: 3}
   m_Name: EventTest
   m_EditorClassIdentifier: 
-  eventType: 1
+  eventType: 0
   eventPlace: 0
   eventDifficulty: 1
   numberTurn: 20
-  currentTurn: 19
+  currentTurn: 15
   conditionNumber: 20
   enemies:
   - {fileID: 11400000, guid: 7c61995196e4de64a8f7eca48fcbe5ef, type: 2}
   - {fileID: 11400000, guid: c2135fff4befa014281e9fed28922bfd, type: 2}
+  nextEvent: {fileID: 0}
   boss: 0
-  description: 
-  eventName: 
+  winFight: 0
+  description: "Gr\xE2ce aux r\xE9v\xE9lations du barman, le commissaire vous confie
+    la t\xEAte de l\u2019enqu\xEAte sur le trafic clandestin d\u2019alcool qui gangr\xE8ne
+    la ville. Selon ses sources, un modeste restaurant en p\xE9riph\xE9rie, le Lacey\u2019s
+    Diner, servirait de fa\xE7ade \xE0 ces op\xE9rations ill\xE9gales. Votre mission
+    : infiltrer les lieux, recueillir des preuves et remonter la piste jusqu\u2019au
+    chef du r\xE9seau."
+  eventName: 'COULISSES DU CRIME '
   background: {fileID: 0}
+  backgroundBattle: {fileID: 0}

@@ -7,7 +7,6 @@ public class InfiltrationMode : MonoBehaviour
     public static InfiltrationMode Instance;
     public EnemyManager enemyManager;
     public PlayerEvent player;
-    public GameManager game;
     private int infiltrationScore;
     private int requiredInfiltration;
 
@@ -48,7 +47,7 @@ public class InfiltrationMode : MonoBehaviour
         if (enemyManager.AllEnemiesDefeated() || infiltrationScore >= requiredInfiltration)
         {
             Debug.Log("Infiltration Success!");
-        }else if(game.currentEvent.currentTurn == 0)
+        }else if(GameManager.currentEvent.currentTurn == 0)
         {
             Debug.Log("Infiltration Failed!");
         }
