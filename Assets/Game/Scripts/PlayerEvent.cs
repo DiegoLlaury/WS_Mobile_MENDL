@@ -193,7 +193,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
            Debug.Log($"Player {stat} changed by {amount}");
     }
 
-    public void ApplyStatus(StatusEffect.StatusType statusType, int value, int duration)
+    public void ApplyStatus(StatusEffect.StatusType statusType, int value, int duration, EnemyDisplay enemy)
     {
         if (activeEffects.ContainsKey(statusType))
         {

@@ -28,7 +28,6 @@ namespace WS_DiegoCo_Event
         
         public Sprite background;
 
-        public CardMiddle assignedOfficer; // Policer assigné
         public int remainingAttempts = 2; // Pour gérer les échecs répétés
         public bool isResolved = false;
 

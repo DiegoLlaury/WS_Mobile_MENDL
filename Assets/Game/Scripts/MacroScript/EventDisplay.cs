@@ -3,9 +3,12 @@ using WS_DiegoCo_Event;
 using WS_DiegoCo_Middle;
 using UnityEngine.UI;
 using TMPro;
+using static WS_DiegoCo_Event.EventBattle;
 
 public class EventDisplay : MonoBehaviour
 {
+    public static EventDisplay currentActivePanel;
+
     public EventBattle eventBattle;
     public GameObject panelInformation;
     public CardMiddle cardMiddle;
@@ -17,14 +20,40 @@ public class EventDisplay : MonoBehaviour
     public TMP_Text numberOfTurn;
 
     public Image cardImage;
+    public Image buildingImage;
     public Image backgroundImage;
 
     private DeckManagerMacro deckManagerMacro;
     private HandManagerMacro handManagerMacro;
 
+    public EventPlace eventPlace;
+
+    public enum EventPlace
+    {
+        Comissariat,
+        Prison,
+        Gare,
+        Hopital,
+        Villa,
+        Casino,
+        Banque,
+        Bar,
+        Entrepots,
+        Diner
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (eventBattle == null)
+        {
+            buildingImage.gameObject.SetActive(false);
+            return;
+        }
+        else
+        {
+            buildingImage.gameObject.SetActive(true);
+        }
         eventBattle.currentTurn = eventBattle.numberTurn;
         panelInformation.SetActive(false);
         deckManagerMacro = FindAnyObjectByType<DeckManagerMacro>();
@@ -40,14 +69,16 @@ public class EventDisplay : MonoBehaviour
         difficultyText.text = eventBattle.eventDifficulty.ToString();
         numberOfTurn.text = eventBattle.numberTurn.ToString();
         backgroundImage.sprite = eventBattle.background;
-        if (eventBattle.assignedOfficer != null)
+        if (cardMiddle != null)
         {
-            cardImage.sprite = eventBattle.assignedOfficer.cardImage;
+            cardImage.sprite = cardMiddle.cardImage;
         }
         else
         {
             cardImage.sprite = null;
         }
+
+
     }
 
     public void EventCheck()
@@ -57,7 +88,19 @@ public class EventDisplay : MonoBehaviour
             Debug.Log("No Event are happening here");
             return;
         }
+        if (currentActivePanel != null && currentActivePanel != this)
+        {
+            currentActivePanel.ClosePanel();
+        }
+
+        // Active ce panel et le définit comme actif
         panelInformation.SetActive(true);
+        currentActivePanel = this;
+    }
+
+    public void ClosePanel()
+    {
+        panelInformation.SetActive(false);
     }
 
     public void RemoveCardFromEvent()
@@ -67,18 +110,18 @@ public class EventDisplay : MonoBehaviour
             Debug.Log("No card assign to this event");
             return;
         }
-        handManagerMacro.AddCardToHand(eventBattle.assignedOfficer);
-        deckManagerMacro.UnstockCard(eventBattle.assignedOfficer);
-        eventBattle.assignedOfficer = null;
+        handManagerMacro.AddCardToHand(cardMiddle);
+        deckManagerMacro.UnstockCard(cardMiddle);
+        cardMiddle = null;
         cardImage.sprite = null;
         panelInformation.SetActive(false);
     }
 
     public void SetPlayer(CardMiddle cardPlayer)
     {
-        if (eventBattle.assignedOfficer == null)
+        if (cardMiddle == null)
         {
-            eventBattle.assignedOfficer = cardPlayer;
+            cardMiddle = cardPlayer;
             cardImage.sprite = cardPlayer.cardImage;
             Debug.Log($"{cardPlayer.cardName} assigné à {eventBattle.eventName}");
         }
@@ -88,25 +131,66 @@ public class EventDisplay : MonoBehaviour
         }
     }
 
+    public void StartEvent()
+    {
+        if (cardMiddle != null)
+        {
+            GameManager.StartEvent(cardMiddle, eventBattle);
+        }
+
+    }
+
     public void StartAutoResolution()
     {
-        if (eventBattle.assignedOfficer == null)
+        if (cardMiddle == null)
         {
             Debug.Log("Aucun policier assigné pour la résolution automatique.");
             return;
         }
 
-        GameManager.ResolveEvent(eventBattle);
+        ResolveEvent(eventBattle);
         UpdateEventDisplay();
     }
 
-    private void StartBattle()
+    public void ResolveEvent(EventBattle eventBattle)
     {
         if (cardMiddle == null)
         {
-            Debug.Log("No Card assign to this event");
+            Debug.LogWarning("Aucun policier assigné à cet événement.");
             return;
         }
-        GameManager.StartEvent(cardMiddle, eventBattle);
+
+        // Calcul des chances de succès
+        int baseSuccessChance = eventBattle.eventDifficulty switch
+        {
+            EventBattle.EventDifficulty.Facile => 70,
+            EventBattle.EventDifficulty.Moyen => 50,
+            EventBattle.EventDifficulty.Difficile => 30,
+            _ => 50
+        };
+
+        int totalChance = baseSuccessChance + cardMiddle.skillLevel;
+        bool success = Random.Range(0, 100) < totalChance;
+
+        if (success && cardMiddle.corruption == false)
+        {
+            Debug.Log($"Succès : {eventBattle.eventName}");
+            eventBattle.isResolved = true;
+            
+            EventManager.Instance.ResolveEvent(eventBattle);
+            ClosePanel();
+        }
+        else
+        {
+            Debug.Log($"Échec : {eventBattle.eventName}");
+            eventBattle.remainingAttempts--;
+
+            if (eventBattle.remainingAttempts <= 0)
+            {
+                Debug.Log($"Événement échoué définitivement : {eventBattle.eventName}");
+                Debug.Log($"{cardMiddle.cardName} a été blessé !");
+            }
+        }
+        UpdateEventDisplay();
     }
 }

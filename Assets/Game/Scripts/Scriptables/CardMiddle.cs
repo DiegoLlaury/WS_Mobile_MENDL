@@ -30,6 +30,7 @@ namespace WS_DiegoCo_Middle
         public int clover;
 
         public int skillLevel;
+        public bool corruption;
 
         public Sprite cardImage;
 
