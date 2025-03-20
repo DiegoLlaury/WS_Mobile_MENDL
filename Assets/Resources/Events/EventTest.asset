@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventType: 0
   eventPlace: 5
-  eventDifficulty: 1
+  eventDifficulty: 0
   numberTurn: 20
   currentTurn: 20
   conditionNumber: 20
@@ -32,5 +32,5 @@ MonoBehaviour:
     chef du r\xE9seau."
   eventName: 'COULISSES DU CRIME '
   background: {fileID: 0}
-  remainingAttempts: 2
-  isResolved: 0
+  remainingAttempts: 1
+  isResolved: 1

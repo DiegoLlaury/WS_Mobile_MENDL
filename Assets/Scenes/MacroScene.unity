@@ -2101,7 +2101,7 @@ PrefabInstance:
     - target: {fileID: 4712065331489294833, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
       propertyPath: eventBattle
       value: 
-      objectReference: {fileID: 11400000, guid: 57ece6d0a093998498a9ae6d79e2b991, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5431954914609038054, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
       propertyPath: m_Name
       value: ZoneEventPrefab_Casino

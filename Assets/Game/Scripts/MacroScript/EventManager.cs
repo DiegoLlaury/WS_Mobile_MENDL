@@ -8,7 +8,7 @@ public class EventManager : MonoBehaviour
 
     // Référence à tous les lieux et leurs événements en cours
     public Dictionary<EventBattle.EventPlace, EventBattle> activeEvents = new Dictionary<EventBattle.EventPlace, EventBattle>();
-
+    public EventBattle casinoEvent;
     void Awake()
     {
         if (Instance == null)
@@ -19,6 +19,11 @@ public class EventManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        AssignEventToPlace(casinoEvent);
     }
 
     public void AssignEventToPlace(EventBattle eventBattle)

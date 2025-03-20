@@ -193,4 +193,13 @@ public class EventDisplay : MonoBehaviour
         }
         UpdateEventDisplay();
     }
+
+    public void DebugTestMacro()
+    {
+        if (eventBattle == null || cardMiddle == null)
+        {
+            return; 
+        }
+        ResolveEvent(eventBattle);
+    }
 }

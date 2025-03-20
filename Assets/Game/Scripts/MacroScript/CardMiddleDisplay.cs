@@ -34,5 +34,16 @@ public class CardMiddleDisplay : MonoBehaviour
         spadeText.text = cardData.spade.ToString();
         cloverText.text = cardData.clover.ToString();
         cardImage.sprite = cardData.cardImage;
+
+        foreach (Image img in typeImages)
+        {
+            img.gameObject.SetActive(false); // Deactivate all type images first
+        }
+
+        int typeIndex = (int)cardData.symbolTypes;
+        if (typeIndex >= 0 && typeIndex < typeImages.Length)
+        {
+            typeImages[typeIndex].gameObject.SetActive(true);
+        }
     }
 }

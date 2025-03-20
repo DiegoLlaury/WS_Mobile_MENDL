@@ -30,4 +30,6 @@ MonoBehaviour:
   square: 0
   spade: 0
   clover: 0
+  skillLevel: 0
+  corruption: 1
   cardImage: {fileID: -1872677635, guid: 847f3e08157367e458aec63415b2d664, type: 3}
