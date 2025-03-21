@@ -1,10 +1,11 @@
 fileFormatVersion: 2
-guid: 7d1e0acea7281804b995498a545b2a96
+guid: 8e8952d8727067248972cd6764916078
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 595825646830552648
-    second: 6423886_0
+      213: 7066553947009392311
+    second: noestein_Green_--ar_8952_--v_6.1_ac2f36fa-843c-45e4-a3d1-8437d3e1eb68_3
+      1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +97,18 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 6423886_0
+      name: noestein_Green_--ar_8952_--v_6.1_ac2f36fa-843c-45e4-a3d1-8437d3e1eb68_3
+        1_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 105
-        width: 472
-        height: 302
+        x: 0
+        y: 0
+        width: 1424
+        height: 832
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +117,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 846076bd44cc44800800000000000000
-      internalID: 595825646830552648
+      spriteID: 7be11a5ef51711260800000000000000
+      internalID: 7066553947009392311
       vertices: []
       indices: 
       edges: []
@@ -147,8 +136,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      6423886_0: 595825646830552648
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

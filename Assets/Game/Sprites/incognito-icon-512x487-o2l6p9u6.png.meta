@@ -197,7 +197,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      incognito-icon-512x487-o2l6p9u6_0: 8675410234991384096
+      incognito-icon-512x487-o2l6p9u6_1: -8605141481417276924
+      incognito-icon-512x487-o2l6p9u6_2: 7222894579619754808
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

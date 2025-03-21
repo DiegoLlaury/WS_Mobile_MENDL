@@ -16,9 +16,9 @@ public class DistributionCartes : MonoBehaviour
     void Start()
     {
         // Définir les positions finales des cartes (gauche, centre, droite)
-        positions[0] = new Vector3(-175, 0, 0); // Gauche
-        positions[1] = new Vector3(0, 0, 0);    // Centre
-        positions[2] = new Vector3(175, 0, 0);  // Droite
+        positions[0] = new Vector3(-175, -115, 0); // Gauche
+        positions[1] = new Vector3(0, -115+40, 0);    // Centre
+        positions[2] = new Vector3(175, -115, 0);  // Droite
 
         // Stocker les cartes dans un tableau
         cartes = new GameObject[] { carteOptions, carteJouer, carteCredit };
