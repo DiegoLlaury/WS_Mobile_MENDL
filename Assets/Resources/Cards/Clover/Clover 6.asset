@@ -18,10 +18,11 @@ MonoBehaviour:
   dropType: 01000000
   health: 5
   defense: 0
-  damage: 0
+  damage: 2
+  startingDamage: 0
   discretion: 0
   perception: 8
-  energy: 1
+  energy: 0
   effect: "D\xE9faussez votre main, piochez le m\xEAme nombre de cartes."
   cardImage: {fileID: 0}
   effects:

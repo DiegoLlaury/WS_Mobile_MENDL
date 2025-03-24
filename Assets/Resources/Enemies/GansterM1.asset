@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b9ed5673610c354291f61410240a6f3, type: 3}
-  m_Name: Ganster2
+  m_Name: GansterM1
   m_EditorClassIdentifier: 
-  enemyName: Ganster Italien
-  maxHealth: 50
-  health: 50
+  enemyName: Ganster 2
+  maxHealth: 35
+  health: 0
   maxDefense: 0
-  defense: 2
-  maxDamage: 4
-  damage: 4
-  maxDiscretion: 0
-  discretion: 0
-  maxPerception: 0
-  perception: 0
+  defense: 0
+  maxDamage: 7
+  damage: 7
+  maxDiscretion: 3
+  discretion: 3
+  maxPerception: 5
+  perception: 5
   enemyImage: {fileID: -2081245629, guid: 132358e9bf26b60458b731bf001e31db, type: 3}

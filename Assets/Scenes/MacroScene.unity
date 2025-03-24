@@ -2024,7 +2024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f8d274a939fa246ace87ddcc9213b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventBattle: {fileID: 11400000, guid: 57ece6d0a093998498a9ae6d79e2b991, type: 2}
+  eventBattle: {fileID: 11400000, guid: 435eacf55f66e4b4d87be4c1cbebb5fc, type: 2}
   panelInformation: {fileID: 1570148945}
   descriptionText: {fileID: 1649948450}
   nameEventText: {fileID: 700248452}

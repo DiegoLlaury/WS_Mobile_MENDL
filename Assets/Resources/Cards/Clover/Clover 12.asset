@@ -18,10 +18,11 @@ MonoBehaviour:
   dropType: 01000000
   health: 5
   defense: 0
-  damage: 0
+  damage: 2
+  startingDamage: 0
   discretion: 0
   perception: 8
-  energy: 3
+  energy: 2
   effect: "Lancez un d\xE9 : \\n- pair : gagnez {perception} perception, \\n- impair
     : gagnez 5 points de vie."
   cardImage: {fileID: 0}
