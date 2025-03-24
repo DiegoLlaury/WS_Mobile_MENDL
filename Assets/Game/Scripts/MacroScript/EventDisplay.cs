@@ -124,6 +124,7 @@ public class EventDisplay : MonoBehaviour
         }
         handManagerMacro.AddCardToHand(cardMiddle);
         deckManagerMacro.UnstockCard(cardMiddle);
+        currentBattle.affectedCharacter = null;
         cardMiddle = null;
         cardImage.sprite = null;
         panelInformation.SetActive(false);

@@ -150,6 +150,7 @@ public class CardMovementMacro : MonoBehaviour, IDragHandler, IPointerDownHandle
                 currenEvent.SetPlayer(cardData);
                 deckManagerMacro.StockCard(cardData);
                 handManagerMacro.RemoveCardFromHand(gameObject);
+                currenEvent.currentBattle.affectedCharacter = cardData;
             }
             else
             {

@@ -17,7 +17,8 @@ namespace WS_DiegoCo_Event
         public int conditionNumber;
         
         public List<Enemy> enemies;
-        public ScriptableObject nextEvent;
+        public EventBattle nextEvent;
+        public CardMiddle affectedCharacter;
 
         public bool boss;
         

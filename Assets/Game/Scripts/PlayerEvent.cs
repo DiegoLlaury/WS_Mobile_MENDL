@@ -345,6 +345,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
 
     public void ReturnToMain()
     {
+        Debug.Log("Clique");
         GameManager.EndEvent();
     }
 }

@@ -1591,7 +1591,7 @@ MonoBehaviour:
   typeEventText: {fileID: 2259207025190445282}
   difficultyText: {fileID: 8863514835988222863}
   numberOfTurn: {fileID: 4776866515883195209}
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 6600030846537702356}
   buildingImage: {fileID: 2264698778323706726}
   backgroundImage: {fileID: 2800642142365473358}
   buildingPlace: 0
