@@ -155,6 +155,7 @@ public class EventDisplay : MonoBehaviour
 
         if (cardMiddle != null)
         {
+            currentBattle.isResolved = false;
             GameManager.StartEvent(cardMiddle, currentBattle);
         }
 

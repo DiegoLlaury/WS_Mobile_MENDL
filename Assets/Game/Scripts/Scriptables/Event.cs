@@ -20,7 +20,6 @@ namespace WS_DiegoCo_Event
         public ScriptableObject nextEvent;
 
         public bool boss;
-        public bool winFight = false;
         
         public string description;
         public string eventName;
@@ -29,7 +28,7 @@ namespace WS_DiegoCo_Event
         public Sprite background;
 
         public int remainingAttempts = 2; // Pour gérer les échecs répétés
-        public bool isResolved = false;
+        public bool isResolved = true;
 
         public enum EventType
         {

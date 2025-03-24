@@ -29,6 +29,8 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     public TMP_Text currentTurnText;
 
     public Image[] backgroundBattle;
+    public GameObject widgetLost;
+    public GameObject widgetWin;
 
     [SerializeField] private int healthRatio = 5;
 
@@ -316,5 +318,33 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         currentEnergy = maxEnergy;
         UpdatePlayerEvent();
     }  
-}
 
+    public void EndBattle()
+    {
+        if (GameManager.WinBattle == true)
+        {
+            widgetWin.SetActive(true);
+        }
+        else
+        {
+            widgetLost.SetActive(false);
+        }
+    }
+
+    public void DebugBattleWin()
+    {
+        GameManager.WinBattle = true;
+        EndBattle();
+    }
+
+    public void DebugBattleLost()
+    {
+        GameManager.WinBattle = false;
+        EndBattle();
+    }
+
+    public void ReturnToMain()
+    {
+        GameManager.EndEvent();
+    }
+}

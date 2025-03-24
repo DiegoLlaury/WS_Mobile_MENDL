@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1ef220b67029e442afdad0b4138c8a6, type: 3}
-  m_Name: EventNextTest
+  m_Name: Event 1
   m_EditorClassIdentifier: 
   eventType: 1
   eventDifficulty: 0
@@ -18,10 +18,9 @@ MonoBehaviour:
   currentTurn: 15
   conditionNumber: 15
   enemies:
-  - {fileID: 11400000, guid: 14b3053bf2872c24386c5661fad8ceab, type: 2}
-  nextEvent: {fileID: 0}
+  - {fileID: 11400000, guid: 7c61995196e4de64a8f7eca48fcbe5ef, type: 2}
+  nextEvent: {fileID: 11400000}
   boss: 0
-  winFight: 0
   description: Infiltre l'hopital.
   eventName: Hopital
   location: Hopital

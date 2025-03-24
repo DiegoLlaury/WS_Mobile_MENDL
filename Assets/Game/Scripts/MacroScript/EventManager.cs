@@ -87,6 +87,53 @@ public class EventManager : MonoBehaviour
         Debug.LogWarning("Événement non trouvé dans les slots !");
     }
 
+    public void AutoResolveRemainingEvents()
+    {
+        Debug.Log("Début de la résolution automatique des événements non réalisés...");
+
+        foreach (var kvp in eventLocations)
+        {
+            EventDisplay display = kvp.Value;
+            EventBattle battle = display.currentBattle;
+
+            // Vérifie que l'événement existe, n'a pas été résolu et qu'il reste des tentatives
+            if (battle != null && !battle.isResolved)
+            {
+                if (battle.remainingAttempts <= 0)
+                {
+                    Debug.Log($"L'événement '{battle.eventName}' se déclenche automatiquement (échecs cumulés).");
+                    battle.isResolved = false;  // Considéré comme échec automatique
+                }
+                else
+                {
+                    // Simule une résolution automatique (comme dans `ResolveEvent` d'EventDisplay)
+                    int baseSuccessChance = battle.eventDifficulty switch
+                    {
+                        EventBattle.EventDifficulty.Facile => 70,
+                        EventBattle.EventDifficulty.Moyen => 50,
+                        EventBattle.EventDifficulty.Difficile => 30,
+                        _ => 50
+                    };
+
+                    bool success = Random.Range(0, 100) < baseSuccessChance;
+
+                    if (success)
+                    {
+                        Debug.Log($"Succès automatique : {battle.eventName}");
+                        battle.isResolved = true;
+                        ResolveEvent(battle);
+                    }
+                    else
+                    {
+                        Debug.Log($"Échec automatique : {battle.eventName}");
+                        battle.remainingAttempts--;
+                    }
+                }
+            }
+        }
+        Debug.Log("Fin de la résolution automatique des événements.");
+    }
+
     public EventBattle GetEventByLocation(string location)
     {
         foreach (EventSlot slot in eventSlots)

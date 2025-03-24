@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1ef220b67029e442afdad0b4138c8a6, type: 3}
-  m_Name: New Event
+  m_Name: Event 4
   m_EditorClassIdentifier: 
   eventType: 2
   eventDifficulty: 2
@@ -22,10 +22,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7c61995196e4de64a8f7eca48fcbe5ef, type: 2}
   nextEvent: {fileID: 0}
   boss: 0
-  winFight: 0
   description: Il y a r frero
   eventName: "Le meutre \xE0 la cafeti\xE8re"
-  location: Cafe
+  location: Bank
   background: {fileID: 0}
   remainingAttempts: 2
   isResolved: 0
