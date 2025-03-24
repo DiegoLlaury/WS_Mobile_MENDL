@@ -7,106 +7,168 @@ public class EventManager : MonoBehaviour
 {
     public static EventManager Instance;
 
-    // Référence à tous les lieux et leurs événements en cours
-    [System.Serializable]
-    public class EventSlot
-    {
-        public string locationName;
-        public EventDisplay eventDisplay;
-        public EventBattle currentEvent;
-    }
-
-    [SerializeField] private List<EventSlot> eventSlots = new List<EventSlot>();
     [SerializeField] private ListEvent listEvent;
     [SerializeField] private List<string> locationNames = new List<string>();
     [SerializeField] private List<EventDisplay> locationDisplay = new List<EventDisplay>();
-    [SerializeField] public Dictionary<string, EventDisplay> eventLocations = new Dictionary<string, EventDisplay>();
 
-    
+    [SerializeField] public Dictionary<string, EventDisplay> eventLocations = new Dictionary<string, EventDisplay>();
+    private List<EventBattle> currentEventBattles;
+
+
+
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
+            return;
         }
-
-        for(int i =0; i < locationNames.Count; i++)
-        {
-            eventLocations.Add(locationNames[i], locationDisplay[i]);
-        }
+        RefreshEventLocations();
     }
 
     private void Start()
     {
-        GameManager.AssignStartingEvent(listEvent);
+        if (GameManager.firstTime == true)
+        {
+            GameManager.AssignStartingEvent(listEvent);
+            currentEventBattles = new List<EventBattle>(listEvent.eventBattles);
+        }
+        else
+        {
+            currentEventBattles = new List<EventBattle>(listEvent.eventBattles);
+        }
         AssignEvents();
+
+
+        //currentsEvents = GameManager.listEvent.eventBattles;
     }
 
+    public void RefreshEventLocations()
+    {
+        eventLocations.Clear();
+        for (int i = 0; i < locationNames.Count; i++)
+        {
+            if (!eventLocations.ContainsKey(locationNames[i]))
+            {
+                eventLocations.Add(locationNames[i], locationDisplay[i]);
+            }
+        }
+    }
+    public void SetEvents(string location, EventDisplay newEvent)
+    {
+        if (eventLocations.ContainsKey(location))
+        {
+            eventLocations[location] = newEvent;  // Met à jour si l'événement existe déjà
+        }
+        else
+        {
+            eventLocations.Add(location, newEvent);  // Ajoute si le lieu n'existe pas
+        }
+    }
+
+    public void ClearEvents()
+    {
+        eventLocations.Clear();
+    }
 
     public void AssignEvents()
     {
-        List<EventBattle> eventList = GameManager.listEvent.eventBattles;
-        foreach (EventBattle battle in eventList)
+        RefreshEventLocations();
+
+        if (currentEventBattles == null || currentEventBattles.Count == 0)
         {
-            eventLocations[battle.location].SetEvent(battle);
-            Debug.Log(battle.location);
+            Debug.LogWarning("Aucun événement à assigner.");
+            return;
         }
+
+        // Assigner les événements aux lieux
+        foreach (EventBattle battle in currentEventBattles)
+        {
+            Debug.Log($"Tentative d'assigner l'événement '{battle.eventName}' au lieu : {battle.location}");
+            EventDisplay display = GetEventDisplayByLocation(battle.location);
+            if (display != null)
+            {
+                display.SetEvent(battle);
+                Debug.Log($"Événement '{battle.eventName}' assigné à {battle.location}.");
+            }
+            else
+            {
+                Debug.LogWarning($"Aucun display trouvé pour le lieu : {battle.location}");
+            }
+        }
+        foreach (var display in locationDisplay)
+        {
+            display.RefreshDisplay();
+        }
+    }
+
+    public EventBattle GetEventByLocation(string location)
+    {
+        EventDisplay display = GetEventDisplayByLocation(location);
+        if (display != null)
+        {
+            return display.currentBattle;
+        }
+
+        Debug.LogWarning($"Aucun événement trouvé pour le lieu : {location}");
+        return null;
+    }
+
+    private EventDisplay GetEventDisplayByLocation(string location)
+    {
+        if (eventLocations.TryGetValue(location, out EventDisplay display))
+        {
+            return display;
+        }
+        Debug.LogWarning($"Aucun EventDisplay trouvé pour le lieu : {location}");
+        return null;
     }
 
     public void ResolveEvent(EventBattle eventBattle)
     {
-        foreach (EventSlot slot in eventSlots)
+        if (currentEventBattles.Contains(eventBattle))
         {
-            if (slot.currentEvent == eventBattle)
-            {
-                if (eventBattle.isResolved)
-                {
-                    Debug.Log($"Événement '{eventBattle.eventName}' terminé à {slot.locationName}");
-
-                    // Passe à l’événement suivant s’il existe
-                    if (eventBattle.nextEvent != null)
-                    {
-                        slot.currentEvent = (EventBattle)eventBattle.nextEvent;
-                        slot.eventDisplay.SetEvent(slot.currentEvent);
-                        Debug.Log($"Nouveau événement : {slot.currentEvent.eventName} à {slot.locationName}");
-                    }
-                    else
-                    {
-                        slot.currentEvent = null;
-                        Debug.Log($"Aucun nouvel événement pour {slot.locationName}");
-                    }
-                }
-                return;
-            }
+            currentEventBattles.Remove(eventBattle);
+            Debug.Log($"Événement '{eventBattle.eventName}' résolu et retiré des événements actuels.");
         }
-        Debug.LogWarning("Événement non trouvé dans les slots !");
+        else
+        {
+            Debug.LogWarning($"Événement '{eventBattle.eventName}' non trouvé dans les événements actuels.");
+        }
+
+        if (eventBattle.nextEvent != null)
+        {
+            EventBattle nextBattle = (EventBattle)eventBattle.nextEvent;
+            currentEventBattles.Add(nextBattle);
+            Debug.Log($"Nouveau événement '{nextBattle.eventName}' ajouté.");
+        }
+
+        // Réassigner les événements pour actualiser l'affichage
+        AssignEvents();
     }
 
     public void AutoResolveRemainingEvents()
     {
-        Debug.Log("Début de la résolution automatique des événements non réalisés...");
-
-        foreach (var kvp in eventLocations)
+        foreach (var kvp in new Dictionary<string, EventDisplay>(eventLocations))
         {
             EventDisplay display = kvp.Value;
             EventBattle battle = display.currentBattle;
 
-            // Vérifie que l'événement existe, n'a pas été résolu et qu'il reste des tentatives
-            if (battle != null && !battle.isResolved)
+            if (battle == null) continue;
+
+            if (!battle.isResolved)
             {
                 if (battle.remainingAttempts <= 0)
                 {
                     Debug.Log($"L'événement '{battle.eventName}' se déclenche automatiquement (échecs cumulés).");
-                    battle.isResolved = false;  // Considéré comme échec automatique
+                    battle.isResolved = false;
                 }
                 else
                 {
-                    // Simule une résolution automatique (comme dans `ResolveEvent` d'EventDisplay)
                     int baseSuccessChance = battle.eventDifficulty switch
                     {
                         EventBattle.EventDifficulty.Facile => 70,
@@ -130,28 +192,26 @@ public class EventManager : MonoBehaviour
                     }
                 }
             }
-        }
-        Debug.Log("Fin de la résolution automatique des événements.");
-    }
-
-    public EventBattle GetEventByLocation(string location)
-    {
-        foreach (EventSlot slot in eventSlots)
-        {
-            if (slot.locationName == location)
+            else
             {
-                return slot.currentEvent;
+                if (GameManager.WinBattle == true)
+                {
+                    ResolveEvent(battle);
+                }
+                else
+                {
+                    battle.remainingAttempts--;
+                }
             }
         }
-        return null;
     }
+
 
     public bool AreAllEventsReady()
     {
-        EventDisplay[] displays = Object.FindObjectsByType<EventDisplay>(FindObjectsInactive.Include, FindObjectsSortMode.None);
-
-        foreach (EventDisplay display in displays)
+        foreach (var kvp in eventLocations)
         {
+            EventDisplay display = kvp.Value;
             if (display.currentBattle != null && display.cardMiddle == null)
             {
                 Debug.Log($"L'événement '{display.currentBattle.eventName}' n'a pas encore de carte assignée !");

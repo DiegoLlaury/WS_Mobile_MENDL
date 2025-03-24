@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Event 2
   m_EditorClassIdentifier: 
   eventType: 0
-  eventDifficulty: 0
+  eventDifficulty: 2
   numberTurn: 20
   currentTurn: 20
   conditionNumber: 20
@@ -31,5 +31,6 @@ MonoBehaviour:
   eventName: 'COULISSES DU CRIME '
   location: Casino
   background: {fileID: 0}
-  remainingAttempts: 1
+  remainingAttempts: 4
+  MaxAttempts: 4
   isResolved: 1

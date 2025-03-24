@@ -23,8 +23,9 @@ MonoBehaviour:
   nextEvent: {fileID: 0}
   boss: 0
   description: Il y a r frero
-  eventName: "Le meutre \xE0 la cafeti\xE8re"
+  eventName: "Le meutre \xE0 l'Entrepot"
   location: Entrepot
   background: {fileID: 0}
-  remainingAttempts: 2
-  isResolved: 0
+  remainingAttempts: 4
+  MaxAttempts: 4
+  isResolved: 1

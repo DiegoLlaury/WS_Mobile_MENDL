@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Event 3
   m_EditorClassIdentifier: 
   eventType: 2
-  eventDifficulty: 2
+  eventDifficulty: 1
   numberTurn: 10
   currentTurn: 10
   conditionNumber: 20
@@ -26,5 +26,6 @@ MonoBehaviour:
   eventName: "Le meutre \xE0 la cafeti\xE8re"
   location: Cafe
   background: {fileID: 0}
-  remainingAttempts: 2
-  isResolved: 0
+  remainingAttempts: 4
+  MaxAttempts: 4
+  isResolved: 1
