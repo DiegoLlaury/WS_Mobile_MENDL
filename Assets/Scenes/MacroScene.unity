@@ -167,6 +167,10 @@ PrefabInstance:
       propertyPath: eventPlace
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4712065331489294833, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
+      propertyPath: buildingPlace
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5431954914609038054, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
       propertyPath: m_Name
       value: ZoneEventPrefab_Entrepot
@@ -270,6 +274,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8003393595600204184, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
   m_PrefabInstance: {fileID: 169114926}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &219907631 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4712065331489294833, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
+  m_PrefabInstance: {fileID: 169114926}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f8d274a939fa246ace87ddcc9213b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &402252996
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,6 +541,10 @@ PrefabInstance:
       propertyPath: eventPlace
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4712065331489294833, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
+      propertyPath: buildingPlace
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5431954914609038054, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
       propertyPath: m_Name
       value: ZoneEventPrefab_Bank
@@ -629,6 +648,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8003393595600204184, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
   m_PrefabInstance: {fileID: 542864776}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &548111012 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4712065331489294833, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
+  m_PrefabInstance: {fileID: 542864776}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f8d274a939fa246ace87ddcc9213b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &697261090
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,6 +948,10 @@ PrefabInstance:
       propertyPath: eventPlace
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4712065331489294833, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
+      propertyPath: buildingPlace
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5431954914609038054, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
       propertyPath: m_Name
       value: ZoneEventPrefab_Villa
@@ -1199,6 +1233,10 @@ PrefabInstance:
       propertyPath: eventPlace
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4712065331489294833, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
+      propertyPath: buildingPlace
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5431954914609038054, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
       propertyPath: m_Name
       value: ZoneEventPrefab_Hopital
@@ -1302,6 +1340,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8003393595600204184, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
   m_PrefabInstance: {fileID: 1435461866}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1435461868 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4712065331489294833, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
+  m_PrefabInstance: {fileID: 1435461866}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f8d274a939fa246ace87ddcc9213b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1455868921 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4712065331489294833, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
+  m_PrefabInstance: {fileID: 766259458}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f8d274a939fa246ace87ddcc9213b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1581431436
 GameObject:
   m_ObjectHideFlags: 0
@@ -1416,6 +1476,99 @@ RectTransform:
   m_AnchoredPosition: {x: -166, y: 125}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1611502964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1611502965}
+  - component: {fileID: 1611502966}
+  m_Layer: 0
+  m_Name: EventManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1611502965
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611502964}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1136.1978, y: 379.7668, z: -4.9862933}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1611502966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611502964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f47defb53c7b6aa4d8564907fbd9f0a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSlots:
+  - locationName: Casino
+    eventDisplay: {fileID: 1952076533}
+    currentEvent: {fileID: 0}
+  - locationName: Police
+    eventDisplay: {fileID: 1455868921}
+    currentEvent: {fileID: 0}
+  - locationName: Villa
+    eventDisplay: {fileID: 2086617582}
+    currentEvent: {fileID: 0}
+  - locationName: Hopital
+    eventDisplay: {fileID: 1435461868}
+    currentEvent: {fileID: 0}
+  - locationName: Gare
+    eventDisplay: {fileID: 1614303928}
+    currentEvent: {fileID: 0}
+  - locationName: Entrepot
+    eventDisplay: {fileID: 219907631}
+    currentEvent: {fileID: 0}
+  - locationName: Diner
+    eventDisplay: {fileID: 1773982685}
+    currentEvent: {fileID: 0}
+  - locationName: Cafe
+    eventDisplay: {fileID: 2061842029}
+    currentEvent: {fileID: 0}
+  - locationName: Bank
+    eventDisplay: {fileID: 548111012}
+    currentEvent: {fileID: 0}
+  listEvent: {fileID: 11400000, guid: e43fa7ccdc522d64a917a2e0b415506f, type: 2}
+  locationNames:
+  - Casino
+  - Police
+  - Villa
+  - Hopital
+  - Gare
+  - Entrepot
+  - Diner
+  - Cafe
+  - Bank
+  locationDisplay:
+  - {fileID: 1952076533}
+  - {fileID: 1455868921}
+  - {fileID: 2086617582}
+  - {fileID: 1435461868}
+  - {fileID: 1614303928}
+  - {fileID: 219907631}
+  - {fileID: 1773982685}
+  - {fileID: 2061842029}
+  - {fileID: 548111012}
 --- !u!1001 &1614303926
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1466,6 +1619,10 @@ PrefabInstance:
       objectReference: {fileID: -6930104502328893947, guid: c6dcfbaa31d0e0145bf0b97137cc767c, type: 3}
     - target: {fileID: 4712065331489294833, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
       propertyPath: eventPlace
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712065331489294833, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
+      propertyPath: buildingPlace
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5431954914609038054, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
@@ -1570,6 +1727,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8003393595600204184, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
   m_PrefabInstance: {fileID: 1614303926}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1614303928 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4712065331489294833, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
+  m_PrefabInstance: {fileID: 1614303926}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f8d274a939fa246ace87ddcc9213b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1773982683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1620,6 +1788,10 @@ PrefabInstance:
       objectReference: {fileID: 4503602592003174780, guid: 5b635007c1d47ec49b83bad2072e48c8, type: 3}
     - target: {fileID: 4712065331489294833, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
       propertyPath: eventPlace
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712065331489294833, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
+      propertyPath: buildingPlace
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5431954914609038054, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
@@ -1725,11 +1897,33 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8003393595600204184, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
   m_PrefabInstance: {fileID: 1773982683}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1773982685 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4712065331489294833, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
+  m_PrefabInstance: {fileID: 1773982683}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f8d274a939fa246ace87ddcc9213b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1952076532 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8003393595600204184, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
   m_PrefabInstance: {fileID: 4118821464042843035}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1952076533 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4712065331489294833, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
+  m_PrefabInstance: {fileID: 4118821464042843035}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f8d274a939fa246ace87ddcc9213b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1966426165
 GameObject:
   m_ObjectHideFlags: 0
@@ -1947,6 +2141,10 @@ PrefabInstance:
       propertyPath: eventPlace
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 4712065331489294833, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
+      propertyPath: buildingPlace
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5431954914609038054, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
       propertyPath: m_Name
       value: ZoneEventPrefab_Cafe
@@ -2050,6 +2248,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8003393595600204184, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
   m_PrefabInstance: {fileID: 2061842027}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2061842029 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4712065331489294833, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
+  m_PrefabInstance: {fileID: 2061842027}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f8d274a939fa246ace87ddcc9213b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2086617582 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4712065331489294833, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
+  m_PrefabInstance: {fileID: 985833625}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f8d274a939fa246ace87ddcc9213b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4118821464042843035
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2101,6 +2321,10 @@ PrefabInstance:
     - target: {fileID: 4712065331489294833, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
       propertyPath: eventBattle
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712065331489294833, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
+      propertyPath: buildingPlace
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5431954914609038054, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
       propertyPath: m_Name
@@ -2203,3 +2427,4 @@ SceneRoots:
   - {fileID: 431125919}
   - {fileID: 2001345356}
   - {fileID: 1581431439}
+  - {fileID: 1611502965}

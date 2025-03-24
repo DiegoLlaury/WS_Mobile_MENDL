@@ -10,7 +10,6 @@ namespace WS_DiegoCo_Event
     public class EventBattle : ScriptableObject
     {
         public EventType eventType;
-        public EventPlace eventPlace;
         public EventDifficulty eventDifficulty;
 
         public int numberTurn;
@@ -24,7 +23,8 @@ namespace WS_DiegoCo_Event
         public bool winFight = false;
         
         public string description;
-        public string eventName;  
+        public string eventName;
+        public string location;
         
         public Sprite background;
 
@@ -38,20 +38,6 @@ namespace WS_DiegoCo_Event
             Infiltration,
 
             Enquete
-        }
-
-        public enum EventPlace
-        {
-            Comissariat,
-            Prison,
-            Gare,
-            Hopital,
-            Villa,
-            Casino,
-            Banque,
-            Bar,
-            Entrepots,
-            Diner
         }
 
         public enum EventDifficulty

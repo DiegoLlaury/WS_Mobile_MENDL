@@ -4,11 +4,14 @@ using WS_DiegoCo_Event;
 using NUnit.Framework;
 using System.Collections.Generic;
 
-public static class GameManager 
+public static class GameManager
 {
     //public static GameManager Instance { get; private set; }
     public static CardMiddle selectedCard;
     public static EventBattle currentEvent;
+    public static ListEvent listEvent;
+
+    public static bool firstTime = true;
 
     public static void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
     {
@@ -41,5 +44,15 @@ public static class GameManager
 
         UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
         UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
+    }
+
+    public static void AssignStartingEvent(ListEvent eventList)
+    {
+        if (firstTime)
+        {
+            listEvent = eventList;
+            firstTime = false;
+        }
+        
     }
 }

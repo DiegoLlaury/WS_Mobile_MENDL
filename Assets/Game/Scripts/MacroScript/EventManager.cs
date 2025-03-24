@@ -1,68 +1,117 @@
 using UnityEngine;
 using System.Collections.Generic;
 using WS_DiegoCo_Event;
+using System.Diagnostics.Tracing;
 
 public class EventManager : MonoBehaviour
 {
     public static EventManager Instance;
 
     // Référence à tous les lieux et leurs événements en cours
-    public Dictionary<EventBattle.EventPlace, EventBattle> activeEvents = new Dictionary<EventBattle.EventPlace, EventBattle>();
-    public EventBattle casinoEvent;
+    [System.Serializable]
+    public class EventSlot
+    {
+        public string locationName;
+        public EventDisplay eventDisplay;
+        public EventBattle currentEvent;
+    }
+
+    [SerializeField] private List<EventSlot> eventSlots = new List<EventSlot>();
+    [SerializeField] private ListEvent listEvent;
+    [SerializeField] private List<string> locationNames = new List<string>();
+    [SerializeField] private List<EventDisplay> locationDisplay = new List<EventDisplay>();
+    [SerializeField] public Dictionary<string, EventDisplay> eventLocations = new Dictionary<string, EventDisplay>();
+
+    
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
+
+        for(int i =0; i < locationNames.Count; i++)
+        {
+            eventLocations.Add(locationNames[i], locationDisplay[i]);
+        }
     }
 
     private void Start()
     {
-        AssignEventToPlace(casinoEvent);
+        GameManager.AssignStartingEvent(listEvent);
+        AssignEvents();
     }
 
-    public void AssignEventToPlace(EventBattle eventBattle)
+
+    public void AssignEvents()
     {
-        if (!activeEvents.ContainsKey(eventBattle.eventPlace))
+        List<EventBattle> eventList = GameManager.listEvent.eventBattles;
+        foreach (EventBattle battle in eventList)
         {
-            activeEvents[eventBattle.eventPlace] = eventBattle;
-            Debug.Log($"Événement '{eventBattle.eventName}' assigné à {eventBattle.eventPlace}");
-        }
-        else
-        {
-            Debug.LogWarning($"Un événement est déjà en cours au {eventBattle.eventPlace}");
+            eventLocations[battle.location].SetEvent(battle);
+            Debug.Log(battle.location);
         }
     }
 
     public void ResolveEvent(EventBattle eventBattle)
     {
-        if (activeEvents.ContainsKey(eventBattle.eventPlace))
+        foreach (EventSlot slot in eventSlots)
         {
-            if (eventBattle.isResolved)
+            if (slot.currentEvent == eventBattle)
             {
-                Debug.Log($"Événement '{eventBattle.eventName}' terminé à {eventBattle.eventPlace}");
+                if (eventBattle.isResolved)
+                {
+                    Debug.Log($"Événement '{eventBattle.eventName}' terminé à {slot.locationName}");
 
-                // Remplacer l'événement par le suivant s'il existe
-                if (eventBattle.nextEvent is EventBattle nextEvent)
-                {
-                    Debug.Log($"Nouveau événement déclenché : {nextEvent.eventName} au {nextEvent.eventPlace}");
-                    activeEvents[eventBattle.eventPlace] = nextEvent;
+                    // Passe à l’événement suivant s’il existe
+                    if (eventBattle.nextEvent != null)
+                    {
+                        slot.currentEvent = (EventBattle)eventBattle.nextEvent;
+                        slot.eventDisplay.SetEvent(slot.currentEvent);
+                        Debug.Log($"Nouveau événement : {slot.currentEvent.eventName} à {slot.locationName}");
+                    }
+                    else
+                    {
+                        slot.currentEvent = null;
+                        Debug.Log($"Aucun nouvel événement pour {slot.locationName}");
+                    }
                 }
-                else
-                {
-                    activeEvents.Remove(eventBattle.eventPlace);
-                    Debug.Log($"Aucun nouvel événement pour {eventBattle.eventPlace}");
-                }
+                return;
             }
         }
-        else
+        Debug.LogWarning("Événement non trouvé dans les slots !");
+    }
+
+    public EventBattle GetEventByLocation(string location)
+    {
+        foreach (EventSlot slot in eventSlots)
         {
-            Debug.LogWarning($"Aucun événement trouvé au {eventBattle.eventPlace}");
+            if (slot.locationName == location)
+            {
+                return slot.currentEvent;
+            }
         }
+        return null;
+    }
+
+    public bool AreAllEventsReady()
+    {
+        EventDisplay[] displays = Object.FindObjectsByType<EventDisplay>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+
+        foreach (EventDisplay display in displays)
+        {
+            if (display.currentBattle != null && display.cardMiddle == null)
+            {
+                Debug.Log($"L'événement '{display.currentBattle.eventName}' n'a pas encore de carte assignée !");
+                return false;
+            }
+        }
+        Debug.Log("Tous les événements sont prêts !");
+        return true;
     }
 }

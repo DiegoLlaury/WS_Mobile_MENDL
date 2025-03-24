@@ -58,11 +58,11 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
             img.gameObject.SetActive(false); // Deactivate all type images first
         }
 
-        int typeIndex = (int)GameManager.currentEvent.eventPlace;
-        if (typeIndex >= 0 && typeIndex < backgroundBattle.Length)
-        {
-            backgroundBattle[typeIndex].gameObject.SetActive(true);
-        }
+        //int typeIndex = (int)GameManager.currentEvent.eventPlace;
+        //if (typeIndex >= 0 && typeIndex < backgroundBattle.Length)
+        //{
+        //    backgroundBattle[typeIndex].gameObject.SetActive(true);
+        //}
 
         GameManager.currentEvent.currentTurn = GameManager.currentEvent.numberTurn;
         UpdatePlayerEvent();

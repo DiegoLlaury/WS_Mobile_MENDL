@@ -9,7 +9,7 @@ public class EventDisplay : MonoBehaviour
 {
     public static EventDisplay currentActivePanel;
 
-    public EventBattle eventBattle;
+    public EventBattle currentBattle;
     public GameObject panelInformation;
     public CardMiddle cardMiddle;
 
@@ -22,39 +22,29 @@ public class EventDisplay : MonoBehaviour
     public Image cardImage;
     public Image buildingImage;
     public Image backgroundImage;
+    private static int numberOfPlayer = 0;
 
     private DeckManagerMacro deckManagerMacro;
     private HandManagerMacro handManagerMacro;
+    public BuildingPlace buildingPlace;
 
-    public EventPlace eventPlace;
-
-    public enum EventPlace
+    public enum BuildingPlace
     {
-        Comissariat,
+        Police,
         Prison,
         Gare,
         Hopital,
         Villa,
         Casino,
-        Banque,
-        Bar,
-        Entrepots,
+        Bank,
+        Cafe,
+        Entrepot,
         Diner
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (eventBattle == null)
-        {
-            buildingImage.gameObject.SetActive(false);
-            return;
-        }
-        else
-        {
-            buildingImage.gameObject.SetActive(true);
-        }
-        eventBattle.currentTurn = eventBattle.numberTurn;
         panelInformation.SetActive(false);
         deckManagerMacro = FindAnyObjectByType<DeckManagerMacro>();
         handManagerMacro = FindAnyObjectByType<HandManagerMacro>();
@@ -63,12 +53,24 @@ public class EventDisplay : MonoBehaviour
 
     private void UpdateEventDisplay()
     {
-        nameEventText.text = eventBattle.eventName;
-        descriptionText.text = eventBattle.description;
-        typeEventText.text = eventBattle.eventType.ToString();
-        difficultyText.text = eventBattle.eventDifficulty.ToString();
-        numberOfTurn.text = eventBattle.numberTurn.ToString();
-        backgroundImage.sprite = eventBattle.background;
+        if (currentBattle == null)
+        {
+            buildingImage.gameObject.SetActive(false);
+            Debug.Log("Nique");
+            return;
+        }
+        else
+        {
+            Debug.Log("la photo");
+            buildingImage.gameObject.SetActive(true);
+        }
+        currentBattle.currentTurn = currentBattle.numberTurn;
+        nameEventText.text = currentBattle.eventName;
+        descriptionText.text = currentBattle.description;
+        typeEventText.text = currentBattle.eventType.ToString();
+        difficultyText.text = currentBattle.eventDifficulty.ToString();
+        numberOfTurn.text = currentBattle.numberTurn.ToString();
+        backgroundImage.sprite = currentBattle.background;
         if (cardMiddle != null)
         {
             cardImage.sprite = cardMiddle.cardImage;
@@ -77,13 +79,17 @@ public class EventDisplay : MonoBehaviour
         {
             cardImage.sprite = null;
         }
-
-
+    }
+    public void SetEvent(EventBattle eventBattle)
+    {
+        currentBattle = eventBattle;
+        Debug.Log($"EventDisplay lié à {eventBattle.eventName} pour le lieu {buildingPlace}.");
+        UpdateEventDisplay();
     }
 
     public void EventCheck()
     {
-        if (eventBattle == null)
+        if (currentBattle == null)
         {
             Debug.Log("No Event are happening here");
             return;
@@ -115,6 +121,7 @@ public class EventDisplay : MonoBehaviour
         cardMiddle = null;
         cardImage.sprite = null;
         panelInformation.SetActive(false);
+        numberOfPlayer--;
     }
 
     public void SetPlayer(CardMiddle cardPlayer)
@@ -123,7 +130,14 @@ public class EventDisplay : MonoBehaviour
         {
             cardMiddle = cardPlayer;
             cardImage.sprite = cardPlayer.cardImage;
-            Debug.Log($"{cardPlayer.cardName} assigné à {eventBattle.eventName}");
+            Debug.Log(numberOfPlayer);
+            Debug.Log($"{cardPlayer.cardName} assigné à {currentBattle.eventName}");
+            numberOfPlayer++;
+
+            if (EventManager.Instance.AreAllEventsReady())
+            {
+                Debug.Log("Tous les événements sont prêts. Le combat peut commencer !");
+            }
         }
         else
         {
@@ -133,9 +147,15 @@ public class EventDisplay : MonoBehaviour
 
     public void StartEvent()
     {
+        if (!EventManager.Instance.AreAllEventsReady())
+        {
+            Debug.Log("Tous les événements n'ont pas encore de carte assignée !");
+            return;
+        }
+
         if (cardMiddle != null)
         {
-            GameManager.StartEvent(cardMiddle, eventBattle);
+            GameManager.StartEvent(cardMiddle, currentBattle);
         }
 
     }
@@ -148,7 +168,7 @@ public class EventDisplay : MonoBehaviour
             return;
         }
 
-        ResolveEvent(eventBattle);
+        ResolveEvent(currentBattle);
         UpdateEventDisplay();
     }
 
@@ -196,10 +216,10 @@ public class EventDisplay : MonoBehaviour
 
     public void DebugTestMacro()
     {
-        if (eventBattle == null || cardMiddle == null)
+        if (currentBattle == null || cardMiddle == null)
         {
             return; 
         }
-        ResolveEvent(eventBattle);
+        ResolveEvent(currentBattle);
     }
 }
