@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ef220b67029e442afdad0b4138c8a6, type: 3}
+  m_Name: Event 1
+  m_EditorClassIdentifier: 
+  eventType: 1
+  eventDifficulty: 0
+  numberTurn: 15
+  currentTurn: 15
+  conditionNumber: 15
+  enemies:
+  - {fileID: 11400000, guid: 7c61995196e4de64a8f7eca48fcbe5ef, type: 2}
+  nextEvent: {fileID: 11400000}
+  boss: 0
+  description: Infiltre l'hopital.
+  eventName: Hopital
+  location: Hopital
+  background: {fileID: 0}
+  remainingAttempts: 2
+  isResolved: 1

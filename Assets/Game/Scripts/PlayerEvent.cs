@@ -304,3 +304,35 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     }  
 }
 
+<<<<<<< Updated upstream
+=======
+    public void EndBattle()
+    {
+        if (GameManager.WinBattle == true)
+        {
+            widgetWin.SetActive(true);
+        }
+        else
+        {
+            widgetLost.SetActive(true);
+        }
+    }
+
+    public void DebugBattleWin()
+    {
+        GameManager.WinBattle = true;
+        EndBattle();
+    }
+
+    public void DebugBattleLost()
+    {
+        GameManager.WinBattle = false;
+        EndBattle();
+    }
+
+    public void ReturnToMain()
+    {
+        GameManager.EndEvent();
+    }
+}
+>>>>>>> Stashed changes

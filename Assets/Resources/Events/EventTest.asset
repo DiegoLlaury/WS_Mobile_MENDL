@@ -32,4 +32,9 @@ MonoBehaviour:
     chef du r\xE9seau."
   eventName: 'COULISSES DU CRIME '
   background: {fileID: 0}
+<<<<<<< Updated upstream:Assets/Resources/Events/EventTest.asset
   backgroundBattle: {fileID: 0}
+=======
+  remainingAttempts: 4
+  isResolved: 1
+>>>>>>> Stashed changes:Assets/Resources/Events/Event 2.asset

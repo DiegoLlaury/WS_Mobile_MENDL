@@ -40,4 +40,22 @@ public static class GameManager
         UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
         UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
     }
+<<<<<<< Updated upstream
+=======
+
+    public static void EndEvent()
+    {
+        EventManager.Instance.AutoResolveRemainingEvents();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MacroScene");
+    }
+
+    public static void AssignStartingEvent(ListEvent eventList)
+    {
+        if (firstTime)
+        {
+            listEvent = eventList;
+            firstTime = false;
+        }   
+    }
+>>>>>>> Stashed changes
 }
