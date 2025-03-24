@@ -76,6 +76,17 @@ public class CardDisplay : MonoBehaviour
 
         effectText.text = formattedEffect;
 
+        if (cardData.cardType == Card.CardType.Heart || cardData.cardType == Card.CardType.Square)
+        {
+            nameText.color = new Color32(173, 3, 3, 255); // #AD0303
+            effectText.color = new Color32(173, 3, 3, 255); // #AD0303
+        }
+        else
+        {
+            nameText.color = Color.black; // Default color
+            effectText.color = Color.black;
+        }
+
         foreach (var stat in statTexts)
         {
             stat.Value.text = GetStatValue(stat.Key).ToString();
