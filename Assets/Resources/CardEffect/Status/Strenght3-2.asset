@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8286df22d77560d44b7adf918644af7c, type: 3}
   m_Name: Strenght3-2
   m_EditorClassIdentifier: 
-  shouldReturnToHand: 0
   statusType: 3
-  value: 2
-  duration: 1
+  value: 3
+  duration: 2
   applyToPlayer: 1
   applyToEnemy: 0
-  NumberOfdamage: 0

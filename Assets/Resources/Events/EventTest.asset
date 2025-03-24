@@ -10,18 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1ef220b67029e442afdad0b4138c8a6, type: 3}
-  m_Name: EventCombatRiche
+  m_Name: EventTest
   m_EditorClassIdentifier: 
   eventType: 0
-  eventPlace: 4
-  eventDifficulty: 0
+  eventPlace: 0
+  eventDifficulty: 1
   numberTurn: 20
-  currentTurn: 20
+  currentTurn: 15
   conditionNumber: 20
   enemies:
-  - {fileID: 11400000, guid: 7eaac7b64956ea84582320f930254289, type: 2}
-  - {fileID: 11400000, guid: a20f23e0f020a4b4184eb18572160cca, type: 2}
-  - {fileID: 11400000, guid: 2a8e98806c720564c852cc9d4466ae0b, type: 2}
+  - {fileID: 11400000, guid: 7c61995196e4de64a8f7eca48fcbe5ef, type: 2}
+  - {fileID: 11400000, guid: c2135fff4befa014281e9fed28922bfd, type: 2}
   nextEvent: {fileID: 0}
   boss: 0
   winFight: 0

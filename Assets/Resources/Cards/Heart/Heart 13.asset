@@ -16,16 +16,16 @@ MonoBehaviour:
   cardType: 0
   statType: 00000000
   dropType: 01000000
-  health: 3
+  health: 5
   defense: 0
   damage: 0
   startingDamage: 0
   discretion: 0
   perception: 0
-  energy: 3
-  effect: "Gagnez 2 de force. Pendant 2 tours vous r\xE9g\xE9n\xE9rez {health} points
+  energy: 2
+  effect: "Gagnez 3 de force. Pendant 2 tours vous r\xE9g\xE9n\xE9rez {health} points
     de vie."
   cardImage: {fileID: -605624883, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
   effects:
-  - {fileID: 11400000, guid: 6eb37df1a1e4faa4caaba910f730c4ba, type: 2}
+  - {fileID: 11400000, guid: ada0b4d905db3e64ba360349567830af, type: 2}
   - {fileID: 11400000, guid: ed049323a3af88d4fb77a0441b350698, type: 2}
