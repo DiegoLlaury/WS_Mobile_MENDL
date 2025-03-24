@@ -43,11 +43,6 @@ public class EventManager : MonoBehaviour
 
     private void Start()
     {
-        if (eventSlots.Count == 0)
-        {
-            Debug.LogWarning("eventSlots est vide ! Vérifie l'initialisation.");
-        }
-
         GameManager.AssignStartingEvent(listEvent);
         AssignEvents();
     }
@@ -56,73 +51,53 @@ public class EventManager : MonoBehaviour
     public void AssignEvents()
     {
         List<EventBattle> eventList = GameManager.listEvent.eventBattles;
-
         foreach (EventBattle battle in eventList)
         {
-            if (eventLocations.TryGetValue(battle.location, out EventDisplay display))
-            {
-                display.SetEvent(battle);
-                Debug.Log(battle.location);
-
-                //  Ajout dans eventSlots (pour ResolveEvent)
-                EventSlot slot = eventSlots.Find(s => s.locationName == battle.location);
-                if (slot == null)
-                {
-                    slot = new EventSlot
-                    {
-                        locationName = battle.location,
-                        eventDisplay = display,
-                        currentEvent = battle
-                    };
-                    eventSlots.Add(slot);
-                }
-                else
-                {
-                    slot.currentEvent = battle;
-                }
-            }
-            else
-            {
-                Debug.LogWarning($"Lieu non trouvé : {battle.location}");
-            }
+            eventLocations[battle.location].SetEvent(battle);
+            Debug.Log(battle.location);
         }
     }
 
     public void ResolveEvent(EventBattle eventBattle)
     {
-        // Étape 1 : Vérifier si l'événement existe dans la liste et le retirer
-        if (listEvent.eventBattles.Contains(eventBattle))
+        foreach (EventSlot slot in eventSlots)
         {
-            listEvent.eventBattles.Remove(eventBattle);
-            Debug.Log($"Événement '{eventBattle.eventName}' supprimé de la liste.");
-        }
-        else
-        {
-            Debug.LogWarning($"Événement '{eventBattle.eventName}' non trouvé dans la liste.");
-        }
+            if (slot.currentEvent == eventBattle)
+            {
+                if (eventBattle.isResolved)
+                {
+                    Debug.Log($"Événement '{eventBattle.eventName}' terminé à {slot.locationName}");
 
-        // Étape 2 : Ajouter le nextEvent s'il existe
-        if (eventBattle.nextEvent != null)
-        {
-            EventBattle nextBattle = (EventBattle)eventBattle.nextEvent;
-            listEvent.eventBattles.Add(nextBattle);
-            Debug.Log($"Événement '{nextBattle.eventName}' ajouté à la liste.");
+                    // Passe à l’événement suivant s’il existe
+                    if (eventBattle.nextEvent != null)
+                    {
+                        slot.currentEvent = (EventBattle)eventBattle.nextEvent;
+                        slot.eventDisplay.SetEvent(slot.currentEvent);
+                        Debug.Log($"Nouveau événement : {slot.currentEvent.eventName} à {slot.locationName}");
+                    }
+                    else
+                    {
+                        slot.currentEvent = null;
+                        Debug.Log($"Aucun nouvel événement pour {slot.locationName}");
+                    }
+                }
+                return;
+            }
         }
-        Debug.Log(listEvent.eventBattles);
-        // Étape 3 : Réassigner les événements
-        AssignEvents();
+        Debug.LogWarning("Événement non trouvé dans les slots !");
     }
 
     public void AutoResolveRemainingEvents()
     {
+        Debug.Log("Début de la résolution automatique des événements non réalisés...");
 
         foreach (var kvp in eventLocations)
         {
             EventDisplay display = kvp.Value;
             EventBattle battle = display.currentBattle;
-            if (battle == null) continue;
+
             // Vérifie que l'événement existe, n'a pas été résolu et qu'il reste des tentatives
-            if (!battle.isResolved)
+            if (battle != null && !battle.isResolved)
             {
                 if (battle.remainingAttempts <= 0)
                 {
@@ -153,17 +128,6 @@ public class EventManager : MonoBehaviour
                         Debug.Log($"Échec automatique : {battle.eventName}");
                         battle.remainingAttempts--;
                     }
-                }
-            }
-            else
-            {
-                if (GameManager.WinBattle == true)
-                {
-                    ResolveEvent(battle);
-                }
-                else
-                {
-                    battle.remainingAttempts--;
                 }
             }
         }

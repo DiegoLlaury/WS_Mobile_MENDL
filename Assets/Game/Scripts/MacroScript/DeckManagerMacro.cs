@@ -23,7 +23,19 @@ public class DeckManagerMacro : MonoBehaviour
     {
         CardMiddle[] cards = Resources.LoadAll<CardMiddle>("CardsMiddle");
 
-        deck.AddRange(cards);
+
+        foreach (CardMiddle card in cards)
+        {
+            if (!deck.Contains(card))
+            {
+                deck.Add(card);
+            }
+        }
+
+        foreach (CardMiddle card in deck)
+        {
+            Debug.Log($"Card: {card.name} - Instance ID: {card.GetInstanceID()}");
+        }
     }
 
     public void ShuffleDeck()
@@ -68,11 +80,21 @@ public class DeckManagerMacro : MonoBehaviour
     //}
     public void StockCard(CardMiddle card)
     {
-        cardMiddleInEvent.Add(card);
+        if (!cardMiddleInEvent.Contains(card))
+        {
+            cardMiddleInEvent.Add(card);
+        }
+        else
+        {
+            Debug.LogWarning($"La carte {card.cardName} est déjà dans l'événement.");
+        }
     }
 
     public void UnstockCard(CardMiddle card)
     {
-        cardMiddleInEvent.Remove(card);
+        if (cardMiddleInEvent.Contains(card))
+        {
+            cardMiddleInEvent.Remove(card);
+        }
     }
 }

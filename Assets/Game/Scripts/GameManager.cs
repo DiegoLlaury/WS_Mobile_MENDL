@@ -1,12 +1,17 @@
 using UnityEngine;
 using WS_DiegoCo_Middle;
 using WS_DiegoCo_Event;
+using NUnit.Framework;
+using System.Collections.Generic;
 
-public static class GameManager 
+public static class GameManager
 {
-    //public static GameManager Instance { get; private set; }
     public static CardMiddle selectedCard;
     public static EventBattle currentEvent;
+    public static ListEvent listEvent;
+
+    public static bool firstTime = true;
+    public static bool WinBattle;
 
     public static void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
     {
@@ -40,13 +45,11 @@ public static class GameManager
         UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
         UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
     }
-<<<<<<< Updated upstream
-=======
 
     public static void EndEvent()
     {
         EventManager.Instance.AutoResolveRemainingEvents();
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MacroScene");
+
     }
 
     public static void AssignStartingEvent(ListEvent eventList)
@@ -57,5 +60,4 @@ public static class GameManager
             firstTime = false;
         }   
     }
->>>>>>> Stashed changes
 }

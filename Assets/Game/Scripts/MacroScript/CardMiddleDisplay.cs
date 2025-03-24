@@ -14,6 +14,7 @@ public class CardMiddleDisplay : MonoBehaviour
     public TMP_Text squareText;
     public TMP_Text spadeText;
     public TMP_Text cloverText;
+
     public Image[] typeImages;
 
     private void Start()
@@ -32,6 +33,7 @@ public class CardMiddleDisplay : MonoBehaviour
         squareText.text = cardData.square.ToString();
         spadeText.text = cardData.spade.ToString();
         cloverText.text = cardData.clover.ToString();
+        cardImage.sprite = cardData.cardImage;
 
         foreach (Image img in typeImages)
         {

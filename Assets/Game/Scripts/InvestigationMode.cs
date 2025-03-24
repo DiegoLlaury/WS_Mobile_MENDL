@@ -46,9 +46,13 @@ public class InvestigationMode : MonoBehaviour
     {
         if (suspectedMafioso.enemyData.perception <= perceptionScore)
         {
-            Debug.Log("Investigation Success! The mafioso has been found.");
-        }else if (GameManager.currentEvent.currentTurn == 0)
+            GameManager.WinBattle = true;
+            player.EndBattle();
+        }
+        else if (GameManager.currentEvent.currentTurn == 0 || player.cardData.health == 0)
         {
+            GameManager.WinBattle = false;
+            player.EndBattle();
             Debug.Log("You lost the investigation");
         }
     }

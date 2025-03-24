@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: f47defb53c7b6aa4d8564907fbd9f0a9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - casinoEvent: {fileID: 11400000, guid: 57ece6d0a093998498a9ae6d79e2b991, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

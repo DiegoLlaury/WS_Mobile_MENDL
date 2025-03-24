@@ -28,6 +28,10 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     public TMP_Text perceptionText;
     public TMP_Text currentTurnText;
 
+    public Image[] backgroundBattle;
+    public GameObject widgetLost;
+    public GameObject widgetWin;
+
     [SerializeField] private int healthRatio = 5;
 
     private bool discretionboost = false;
@@ -50,6 +54,18 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         cardData.discretion = cardData.maxDiscretion;
         cardData.perception = cardData.maxPerception;
         cardData.defense = currentDefense;
+
+        foreach (Image img in backgroundBattle)
+        {
+            img.gameObject.SetActive(false); // Deactivate all type images first
+        }
+
+        //int typeIndex = (int)GameManager.currentEvent.eventPlace;
+        //if (typeIndex >= 0 && typeIndex < backgroundBattle.Length)
+        //{
+        //    backgroundBattle[typeIndex].gameObject.SetActive(true);
+        //}
+
         GameManager.currentEvent.currentTurn = GameManager.currentEvent.numberTurn;
         UpdatePlayerEvent();
     }
@@ -179,7 +195,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
            Debug.Log($"Player {stat} changed by {amount}");
     }
 
-    public void ApplyStatus(StatusEffect.StatusType statusType, int value, int duration)
+    public void ApplyStatus(StatusEffect.StatusType statusType, int value, int duration, EnemyDisplay enemy)
     {
         if (activeEffects.ContainsKey(statusType))
         {
@@ -302,10 +318,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         currentEnergy = maxEnergy;
         UpdatePlayerEvent();
     }  
-}
 
-<<<<<<< Updated upstream
-=======
     public void EndBattle()
     {
         if (GameManager.WinBattle == true)
@@ -314,7 +327,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         }
         else
         {
-            widgetLost.SetActive(true);
+            widgetLost.SetActive(false);
         }
     }
 
@@ -335,4 +348,3 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         GameManager.EndEvent();
     }
 }
->>>>>>> Stashed changes

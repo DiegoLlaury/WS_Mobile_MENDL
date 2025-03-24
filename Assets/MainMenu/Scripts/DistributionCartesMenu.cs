@@ -10,15 +10,15 @@ public class DistributionCartes : MonoBehaviour
     private Vector3[] positions = new Vector3[3]; // Positions cibles
     private GameObject[] cartes; // Tableau des cartes
     private Vector3[] startPositions; // Positions de départ (en haut de l'écran)
-    private float speed = 2.5f; // Vitesse de l'animation (déplacement)
-    private float delay = 0.15f; // Délai d'attente entre deux cartes distribuées
+    private float speed = 1.5f; // Vitesse de l'animation (déplacement)
+    private float delay = 0.3f; // Délai d'attente entre deux cartes distribuées
 
     void Start()
     {
         // Définir les positions finales des cartes (gauche, centre, droite)
-        positions[0] = new Vector3(-175, 0, 0); // Gauche
-        positions[1] = new Vector3(0, 0, 0);    // Centre
-        positions[2] = new Vector3(175, 0, 0);  // Droite
+        positions[0] = new Vector3(-175, -115, 0); // Gauche
+        positions[1] = new Vector3(0, -115+40, 0);    // Centre
+        positions[2] = new Vector3(175, -115, 0);  // Droite
 
         // Stocker les cartes dans un tableau
         cartes = new GameObject[] { carteOptions, carteJouer, carteCredit };

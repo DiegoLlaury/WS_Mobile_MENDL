@@ -148,10 +148,11 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         UpdateEnemyDisplay();
     }
 
-    public void ApplyStatus(StatusEffect.StatusType statusType, int value, int duration)
+    public void ApplyStatus(StatusEffect.StatusType statusType, int value, int duration, EnemyDisplay enemy)
     {
         if (activeEffects.ContainsKey(statusType))
         {
+            enemyData = enemy.enemyData;
             // Refresh duration or stack values
             activeEffects[statusType] = (activeEffects[statusType].value + value, duration);
         }

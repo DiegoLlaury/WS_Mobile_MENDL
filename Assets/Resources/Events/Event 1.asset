@@ -26,4 +26,4 @@ MonoBehaviour:
   location: Hopital
   background: {fileID: 0}
   remainingAttempts: 2
-  isResolved: 1
+  isResolved: 0

@@ -15,6 +15,7 @@ public class BattleManager : MonoBehaviour
     public InfiltrationMode infiltration;
     public InvestigationMode investigation;
 
+
     private int cardStart = 4;
     private bool isPlayerTurn = true;
     private CardMiddle playerCard;
@@ -86,11 +87,13 @@ public class BattleManager : MonoBehaviour
             case EventBattle.EventType.Combat:
                 if (player.cardData.health <= 0)
                 {
-                    Debug.Log("Game Over! You lost.");
+                    GameManager.WinBattle = false;
+                    player.EndBattle();
                 }
                 else if (enemyManager.AllEnemiesDefeated())
                 {
-                    Debug.Log("Victory! All enemies are defeated.");
+                    GameManager.WinBattle = true;
+                    player.EndBattle();
                 }
                 break;
 

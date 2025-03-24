@@ -2,8 +2,6 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using WS_DiegoCo;
-using Unity.VisualScripting;
-using WS_DiegoCo_Middle;
 
 public class DeckManager : MonoBehaviour
 {

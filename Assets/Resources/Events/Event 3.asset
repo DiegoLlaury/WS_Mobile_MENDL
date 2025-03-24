@@ -26,5 +26,5 @@ MonoBehaviour:
   eventName: "Le meutre \xE0 la cafeti\xE8re"
   location: Cafe
   background: {fileID: 0}
-  remainingAttempts: 4
+  remainingAttempts: 2
   isResolved: 0

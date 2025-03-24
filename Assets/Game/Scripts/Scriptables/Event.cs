@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using WS_DiegoCo_Enemy;
+using WS_DiegoCo_Middle;
 
 
 namespace WS_DiegoCo_Event
@@ -9,7 +10,6 @@ namespace WS_DiegoCo_Event
     public class EventBattle : ScriptableObject
     {
         public EventType eventType;
-        public EventPlace eventPlace;
         public EventDifficulty eventDifficulty;
 
         public int numberTurn;
@@ -20,13 +20,15 @@ namespace WS_DiegoCo_Event
         public ScriptableObject nextEvent;
 
         public bool boss;
-        public bool winFight = false;
         
         public string description;
-        public string eventName;  
+        public string eventName;
+        public string location;
         
         public Sprite background;
-        public Sprite backgroundBattle;
+
+        public int remainingAttempts = 2; // Pour gérer les échecs répétés
+        public bool isResolved = true;
 
         public enum EventType
         {
@@ -35,20 +37,6 @@ namespace WS_DiegoCo_Event
             Infiltration,
 
             Enquete
-        }
-
-        public enum EventPlace
-        {
-            Comissariat,
-            Prison,
-            Gare,
-            Hopital,
-            Villa,
-            Casino,
-            Banque,
-            Bar,
-            Entrepots,
-            Diner
         }
 
         public enum EventDifficulty

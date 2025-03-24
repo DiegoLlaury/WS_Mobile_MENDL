@@ -46,9 +46,13 @@ public class InfiltrationMode : MonoBehaviour
     {
         if (enemyManager.AllEnemiesDefeated() || infiltrationScore >= requiredInfiltration)
         {
+            GameManager.WinBattle = true;
+            player.EndBattle();
             Debug.Log("Infiltration Success!");
-        }else if(GameManager.currentEvent.currentTurn == 0)
+        }else if(GameManager.currentEvent.currentTurn == 0 || player.cardData.health == 0)
         {
+            GameManager.WinBattle = false;
+            player.EndBattle();
             Debug.Log("Infiltration Failed!");
         }
     }
