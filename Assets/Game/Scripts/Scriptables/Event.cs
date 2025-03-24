@@ -28,6 +28,7 @@ namespace WS_DiegoCo_Event
         public Sprite background;
 
         public int remainingAttempts = 2; // Pour gérer les échecs répétés
+        public int MaxAttempts;
         public bool isResolved = true;
 
         public enum EventType

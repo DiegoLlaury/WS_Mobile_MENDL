@@ -13,6 +13,8 @@ public static class GameManager
     public static bool firstTime = true;
     public static bool WinBattle;
 
+    private static List<EventDisplay> locationDisplay = new List<EventDisplay>();
+
     public static void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
     {
         if (scene.name == "SampleScene")
@@ -35,6 +37,10 @@ public static class GameManager
             // Se désinscrire après le lancement pour éviter des appels multiples
             UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
         }
+        else if (scene.name == "MacroScene")
+        {
+            EventManager.Instance.AssignEvents();  // Recharger les événements
+        }
     }
 
     public static void StartEvent(CardMiddle card, EventBattle eventData)
@@ -48,8 +54,9 @@ public static class GameManager
 
     public static void EndEvent()
     {
+        
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MacroScene");
         EventManager.Instance.AutoResolveRemainingEvents();
-
     }
 
     public static void AssignStartingEvent(ListEvent eventList)

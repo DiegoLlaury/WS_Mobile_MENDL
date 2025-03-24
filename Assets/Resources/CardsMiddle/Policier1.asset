@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 524e95997e76bc040bd048661d06e8c2, type: 3}
   m_Name: Policier1
   m_EditorClassIdentifier: 
-  cardName: Roger
+  cardName: Mathias
   description: Mange des donuts
   statType: 
   symbolTypes: 1
@@ -23,11 +23,13 @@ MonoBehaviour:
   maxStrenght: 0
   strenght: 0
   maxDiscretion: 0
-  discretion: 0
+  discretion: 2
   maxPerception: 0
-  perception: 0
+  perception: 7
   heart: 10
-  square: 3
-  spade: 12
-  clover: 5
+  square: 4
+  spade: 3
+  clover: 13
+  skillLevel: 0
+  corruption: 0
   cardImage: {fileID: -1872677635, guid: 847f3e08157367e458aec63415b2d664, type: 3}

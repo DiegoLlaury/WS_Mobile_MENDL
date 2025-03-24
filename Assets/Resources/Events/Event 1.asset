@@ -13,17 +13,18 @@ MonoBehaviour:
   m_Name: Event 1
   m_EditorClassIdentifier: 
   eventType: 1
-  eventDifficulty: 0
+  eventDifficulty: 1
   numberTurn: 15
   currentTurn: 15
   conditionNumber: 15
   enemies:
   - {fileID: 11400000, guid: 7c61995196e4de64a8f7eca48fcbe5ef, type: 2}
-  nextEvent: {fileID: 11400000}
+  nextEvent: {fileID: 11400000, guid: f871cffe067fd4b48a5cd912b1b57c5c, type: 2}
   boss: 0
   description: Infiltre l'hopital.
   eventName: Hopital
   location: Hopital
   background: {fileID: 0}
-  remainingAttempts: 2
-  isResolved: 0
+  remainingAttempts: 4
+  MaxAttempts: 4
+  isResolved: 1

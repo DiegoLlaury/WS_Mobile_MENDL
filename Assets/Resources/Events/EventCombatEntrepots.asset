@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: EventCombatEntrepots
   m_EditorClassIdentifier: 
   eventType: 0
-  eventPlace: 8
   eventDifficulty: 1
   numberTurn: 20
   currentTurn: 6
@@ -23,7 +22,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5bbba1853d755bd49b01614f395fa906, type: 2}
   nextEvent: {fileID: 0}
   boss: 0
-  winFight: 0
   description: "Gr\xE2ce aux r\xE9v\xE9lations du barman, le commissaire vous confie
     la t\xEAte de l\u2019enqu\xEAte sur le trafic clandestin d\u2019alcool qui gangr\xE8ne
     la ville. Selon ses sources, un modeste restaurant en p\xE9riph\xE9rie, le Lacey\u2019s
@@ -31,5 +29,8 @@ MonoBehaviour:
     : infiltrer les lieux, recueillir des preuves et remonter la piste jusqu\u2019au
     chef du r\xE9seau."
   eventName: 'COULISSES DU CRIME '
+  location: 
   background: {fileID: 0}
-  backgroundBattle: {fileID: 0}
+  remainingAttempts: 4
+  MaxAttempts: 4
+  isResolved: 1

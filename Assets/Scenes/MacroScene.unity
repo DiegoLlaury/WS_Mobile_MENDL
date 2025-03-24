@@ -1087,6 +1087,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZoneEventPrefab_Police (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 5431954914609038054, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8003393595600204184, guid: 67bd500e2e2a6224087c586b1c1890f7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1520,34 +1524,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f47defb53c7b6aa4d8564907fbd9f0a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventSlots:
-  - locationName: Casino
-    eventDisplay: {fileID: 1952076533}
-    currentEvent: {fileID: 0}
-  - locationName: Police
-    eventDisplay: {fileID: 1455868921}
-    currentEvent: {fileID: 0}
-  - locationName: Villa
-    eventDisplay: {fileID: 2086617582}
-    currentEvent: {fileID: 0}
-  - locationName: Hopital
-    eventDisplay: {fileID: 1435461868}
-    currentEvent: {fileID: 0}
-  - locationName: Gare
-    eventDisplay: {fileID: 1614303928}
-    currentEvent: {fileID: 0}
-  - locationName: Entrepot
-    eventDisplay: {fileID: 219907631}
-    currentEvent: {fileID: 0}
-  - locationName: Diner
-    eventDisplay: {fileID: 1773982685}
-    currentEvent: {fileID: 0}
-  - locationName: Cafe
-    eventDisplay: {fileID: 2061842029}
-    currentEvent: {fileID: 0}
-  - locationName: Bank
-    eventDisplay: {fileID: 548111012}
-    currentEvent: {fileID: 0}
   listEvent: {fileID: 11400000, guid: e43fa7ccdc522d64a917a2e0b415506f, type: 2}
   locationNames:
   - Casino
