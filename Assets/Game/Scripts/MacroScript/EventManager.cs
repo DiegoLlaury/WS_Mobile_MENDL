@@ -12,7 +12,6 @@ public class EventManager : MonoBehaviour
     [SerializeField] private List<EventDisplay> locationDisplay = new List<EventDisplay>();
 
     [SerializeField] public Dictionary<string, EventDisplay> eventLocations = new Dictionary<string, EventDisplay>();
-    private List<EventBattle> currentEventBattles;
 
 
 
@@ -32,14 +31,9 @@ public class EventManager : MonoBehaviour
 
     private void Start()
     {
-        if (GameManager.firstTime == true)
+        if (GameManager.firstTime)
         {
             GameManager.AssignStartingEvent(listEvent);
-            currentEventBattles = new List<EventBattle>(listEvent.eventBattles);
-        }
-        else
-        {
-            currentEventBattles = new List<EventBattle>(listEvent.eventBattles);
         }
         AssignEvents();
 
@@ -79,14 +73,13 @@ public class EventManager : MonoBehaviour
     {
         RefreshEventLocations();
 
-        if (currentEventBattles == null || currentEventBattles.Count == 0)
+        if (GameManager.currentEventBattles == null || GameManager.currentEventBattles.Count == 0)
         {
             Debug.LogWarning("Aucun événement à assigner.");
             return;
         }
 
-        // Assigner les événements aux lieux
-        foreach (EventBattle battle in currentEventBattles)
+        foreach (EventBattle battle in GameManager.currentEventBattles)
         {
             Debug.Log($"Tentative d'assigner l'événement '{battle.eventName}' au lieu : {battle.location}");
             EventDisplay display = GetEventDisplayByLocation(battle.location);
@@ -100,6 +93,8 @@ public class EventManager : MonoBehaviour
                 Debug.LogWarning($"Aucun display trouvé pour le lieu : {battle.location}");
             }
         }
+
+        // Actualise l'affichage
         foreach (var display in locationDisplay)
         {
             display.RefreshDisplay();
@@ -130,9 +125,9 @@ public class EventManager : MonoBehaviour
 
     public void ResolveEvent(EventBattle eventBattle)
     {
-        if (currentEventBattles.Contains(eventBattle))
+        if (GameManager.currentEventBattles.Contains(eventBattle))
         {
-            currentEventBattles.Remove(eventBattle);
+            GameManager.currentEventBattles.Remove(eventBattle);
             Debug.Log($"Événement '{eventBattle.eventName}' résolu et retiré des événements actuels.");
         }
         else
@@ -142,69 +137,68 @@ public class EventManager : MonoBehaviour
 
         if (eventBattle.nextEvent != null)
         {
-            EventBattle nextBattle = (EventBattle)eventBattle.nextEvent;
-            currentEventBattles.Add(nextBattle);
-            Debug.Log($"Nouveau événement '{nextBattle.eventName}' ajouté.");
+            GameManager.currentEventBattles.Add(eventBattle.nextEvent);
+            Debug.Log($"Nouveau événement '{eventBattle.nextEvent.eventName}' ajouté.");
         }
 
         // Réassigner les événements pour actualiser l'affichage
         AssignEvents();
     }
 
-    public void AutoResolveRemainingEvents()
-    {
-        foreach (var kvp in new Dictionary<string, EventDisplay>(eventLocations))
-        {
-            EventDisplay display = kvp.Value;
-            EventBattle battle = display.currentBattle;
+    //public void AutoResolveRemainingEvents()
+    //{
+    //    foreach (var kvp in new Dictionary<string, EventDisplay>(eventLocations))
+    //    {
+    //        EventDisplay display = kvp.Value;
+    //        EventBattle battle = display.currentBattle;
 
-            if (battle == null) continue;
+    //        if (battle == null) continue;
 
-            if (!battle.isResolved)
-            {
-                if (battle.remainingAttempts <= 0)
-                {
-                    Debug.Log($"L'événement '{battle.eventName}' se déclenche automatiquement (échecs cumulés).");
-                    battle.isResolved = false;
-                }
-                else
-                {
-                    int baseSuccessChance = battle.eventDifficulty switch
-                    {
-                        EventBattle.EventDifficulty.Facile => 70,
-                        EventBattle.EventDifficulty.Moyen => 50,
-                        EventBattle.EventDifficulty.Difficile => 30,
-                        _ => 50
-                    };
+    //        if (!battle.isResolved)
+    //        {
+    //            if (battle.remainingAttempts <= 0)
+    //            {
+    //                Debug.Log($"L'événement '{battle.eventName}' se déclenche automatiquement (échecs cumulés).");
+    //                battle.isResolved = false;
+    //            }
+    //            else
+    //            {
+    //                int baseSuccessChance = battle.eventDifficulty switch
+    //                {
+    //                    EventBattle.EventDifficulty.Facile => 70,
+    //                    EventBattle.EventDifficulty.Moyen => 50,
+    //                    EventBattle.EventDifficulty.Difficile => 30,
+    //                    _ => 50
+    //                };
 
-                    bool success = Random.Range(0, 100) < baseSuccessChance;
+    //                bool success = Random.Range(0, 100) < baseSuccessChance;
 
-                    if (success)
-                    {
-                        Debug.Log($"Succès automatique : {battle.eventName}");
-                        battle.isResolved = true;
-                        ResolveEvent(battle);
-                    }
-                    else
-                    {
-                        Debug.Log($"Échec automatique : {battle.eventName}");
-                        battle.remainingAttempts--;
-                    }
-                }
-            }
-            else
-            {
-                if (GameManager.WinBattle == true)
-                {
-                    ResolveEvent(battle);
-                }
-                else
-                {
-                    battle.remainingAttempts--;
-                }
-            }
-        }
-    }
+    //                if (success)
+    //                {
+    //                    Debug.Log($"Succès automatique : {battle.eventName}");
+    //                    battle.isResolved = true;
+    //                    ResolveEvent(battle);
+    //                }
+    //                else
+    //                {
+    //                    Debug.Log($"Échec automatique : {battle.eventName}");
+    //                    battle.remainingAttempts--;
+    //                }
+    //            }
+    //        }
+    //        else
+    //        {
+    //            if (GameManager.WinBattle == true)
+    //            {
+    //                ResolveEvent(battle);
+    //            }
+    //            else
+    //            {
+    //                battle.remainingAttempts--;
+    //            }
+    //        }
+    //    }
+    //}
 
 
     public bool AreAllEventsReady()

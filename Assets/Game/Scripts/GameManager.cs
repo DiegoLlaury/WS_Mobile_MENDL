@@ -8,11 +8,12 @@ public static class GameManager
 {
     public static CardMiddle selectedCard;
     public static EventBattle currentEvent;
-    public static ListEvent listEvent;
     public static List<EventBattle> currentEventBattles;
+    public static List<EventBattle> startingEventBattles;
 
     public static bool firstTime = true;
     public static bool WinBattle;
+    public static int turnMacro = 15;
 
     private static List<EventDisplay> locationDisplay = new List<EventDisplay>();
     private static List<EventBattle> tempEvents = new List<EventBattle>();
@@ -49,7 +50,7 @@ public static class GameManager
     {
         selectedCard = card;
         currentEvent = eventData;
-
+        turnMacro--;
         UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
         UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
     }
@@ -105,7 +106,6 @@ public static class GameManager
         }
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("MacroScene");
-        EventManager.Instance.AutoResolveRemainingEvents();
     }
 
     private static float CalculatedWinChance(EventBattle battle)
@@ -117,7 +117,9 @@ public static class GameManager
     {
         if (firstTime)
         {
-            currentEventBattles = eventList.eventBattles;
+            turnMacro = 15;
+            startingEventBattles = new List<EventBattle>(eventList.eventBattles);
+            currentEventBattles = new List<EventBattle>(startingEventBattles);
             firstTime = false;
         }   
     }

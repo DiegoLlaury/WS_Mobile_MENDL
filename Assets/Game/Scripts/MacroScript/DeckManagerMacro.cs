@@ -21,6 +21,7 @@ public class DeckManagerMacro : MonoBehaviour
 
     private void LoadDeck()
     {
+        deck.Clear();
         CardMiddle[] cards = Resources.LoadAll<CardMiddle>("CardsMiddle");
 
 
@@ -49,6 +50,22 @@ public class DeckManagerMacro : MonoBehaviour
         }
     }
 
+    //private void AddCardsToDeck(CardMiddle.SymbolType type, int count, Dictionary<Card.CardType, List<Card>> library)
+    //{
+    //    if (!library.ContainsKey(type) || library[type].Count == 0)
+    //    {
+    //        Debug.LogWarning($" No valid cards available for {type}.");
+    //        return;
+    //    }
+
+    //    for (int i = 0; i < count; i++)
+    //    {
+    //        CardMiddle randomCard = library[type][Random.Range(0, library[type].Count)];
+    //        deck.Add(randomCard);
+    //    }
+    //    Debug.Log($"Adding {count} {type} cards to the deck. Current deck size before: {deck.Count}");
+    //}
+
     public void DrawCard(int cardNumber)
     {
         for (int i = 0; i < cardNumber; i++)
@@ -62,6 +79,7 @@ public class DeckManagerMacro : MonoBehaviour
             if (deck.Count > 0)
             {
                 CardMiddle nextCard = deck[0];
+                Debug.Log(nextCard);
                 deck.RemoveAt(0);
                 handManagerMacro.AddCardToHand(nextCard);
             }
