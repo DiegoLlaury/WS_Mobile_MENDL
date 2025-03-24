@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1ef220b67029e442afdad0b4138c8a6, type: 3}
   m_Name: Event 1
   m_EditorClassIdentifier: 
-  eventType: 1
+  eventType: 2
   eventDifficulty: 0
-  numberTurn: 15
-  currentTurn: 15
-  conditionNumber: 15
+  numberTurn: 20
+  currentTurn: 18
+  conditionNumber: 20
   enemies:
-  - {fileID: 11400000, guid: 7c61995196e4de64a8f7eca48fcbe5ef, type: 2}
+  - {fileID: 11400000, guid: 0c9a50ac535bad24a9d914bf8349f3e4, type: 2}
+  - {fileID: 11400000, guid: 949209088a7913b48a56178ee8b8edbd, type: 2}
+  - {fileID: 11400000, guid: 4ca7852897661154abb783b20383cc08, type: 2}
   nextEvent: {fileID: 11400000}
   boss: 0
-  description: Infiltre l'hopital.
+  description: TESTMATH
   eventName: Hopital
   location: Hopital
   background: {fileID: 0}

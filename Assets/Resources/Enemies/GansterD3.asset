@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b9ed5673610c354291f61410240a6f3, type: 3}
-  m_Name: GansterF1
+  m_Name: GansterD3
   m_EditorClassIdentifier: 
-  enemyName: Ganster 1
+  enemyName: D3
   maxHealth: 30
-  health: -15
+  health: 9
   maxDefense: 0
   defense: 0
-  maxDamage: 8
-  damage: 8
+  maxDamage: 7
+  damage: 6
   maxDiscretion: 3
   discretion: 3
   maxPerception: 5

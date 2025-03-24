@@ -313,7 +313,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     EventBattle.EventDifficulty.Facile => new int[] { 70, 30 },
                     EventBattle.EventDifficulty.Moyen => new int[] { 55, 30, 15 },
-                    EventBattle.EventDifficulty.Difficile => new int[] { 50, 20, 15, 15 },
+                    EventBattle.EventDifficulty.Difficile => new int[] { 55, 20, 15, 10 },
                     _ => new int[] { 50, 30, 15, 5 }
                 };
                 break;
