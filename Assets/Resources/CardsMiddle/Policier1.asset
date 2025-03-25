@@ -16,20 +16,20 @@ MonoBehaviour:
   description: Mange des donuts
   statType: 
   symbolTypes: 1
-  health: 6
+  health: 10
   maxHealth: 10
   maxDefense: 0
   defense: 0
   maxStrenght: 0
-  strenght: -1
+  strenght: 0
   maxDiscretion: 0
   discretion: 0
   maxPerception: 0
-  perception: 2
-  heart: 0
-  square: 0
-  spade: 0
-  clover: 13
+  perception: 0
+  heart: 3
+  square: 8
+  spade: 12
+  clover: 7
   skillLevel: 0
   corruption: 0
-  cardImage: {fileID: -1872677635, guid: 847f3e08157367e458aec63415b2d664, type: 3}
+  cardImage: {fileID: 21300000, guid: 508da9b1254fd6c458b1549e26192df1, type: 3}
