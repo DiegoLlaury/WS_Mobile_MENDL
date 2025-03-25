@@ -10,23 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1ef220b67029e442afdad0b4138c8a6, type: 3}
-  m_Name: CombatFacile
+  m_Name: Event 1
   m_EditorClassIdentifier: 
-  eventType: 0
-  eventDifficulty: 0
-  numberTurn: 20
-  currentTurn: 20
-  conditionNumber: 20
+  eventType: 1
+  eventDifficulty: 1
+  numberTurn: 15
+  currentTurn: 15
+  conditionNumber: 15
   enemies:
-  - {fileID: 11400000, guid: 14b3053bf2872c24386c5661fad8ceab, type: 2}
-  - {fileID: 11400000, guid: e53a6d781a007a14f963ea13de072612, type: 2}
+  - {fileID: 11400000, guid: 7c61995196e4de64a8f7eca48fcbe5ef, type: 2}
   nextEvent: {fileID: 11400000, guid: f871cffe067fd4b48a5cd912b1b57c5c, type: 2}
-  affectedCharacter: {fileID: 11400000, guid: 140fac9ef93cfb74291936cd7db189a3, type: 2}
+  affectedCharacter: {fileID: 0}
   boss: 0
-  description: combatFacile
+  description: Infiltre l'hopital.
   eventName: Hopital
   location: Hopital
-  background: {fileID: 0}
+  background: {fileID: 995473497027029406, guid: 028cee480866e3641bbe479a61dad491, type: 3}
   remainingAttempts: 4
   MaxAttempts: 4
-  isResolved: 0
+  isResolved: 1

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CarreauIcon_0: -7095605783072564137
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
