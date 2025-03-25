@@ -514,8 +514,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8, y: -120}
-  m_SizeDelta: {x: 236.96301, y: 311.1148}
+  m_AnchoredPosition: {x: -12.315, y: -167.8937}
+  m_SizeDelta: {x: 335.173, y: 462.1642}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8239297532493872486
 CanvasRenderer:
@@ -1106,7 +1106,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 3
@@ -1271,7 +1271,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &771106976892756296
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1797,7 +1797,7 @@ MonoBehaviour:
   numberOfTurn: {fileID: 4776866515883195209}
   cardImage: {fileID: 6600030846537702356}
   buildingImage: {fileID: 2264698778323706726}
-  backgroundImage: {fileID: 2800642142365473358}
+  backgroundImage: {fileID: 0}
   buildingPlace: 0
 --- !u!114 &6292041925077457482
 MonoBehaviour:
@@ -1872,7 +1872,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5384453528464842353
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2191,7 +2191,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6379081374240873410
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2461,7 +2461,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7326476208903834577
 RectTransform:
   m_ObjectHideFlags: 0
