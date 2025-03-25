@@ -13,6 +13,9 @@ public class DistributionCartes : MonoBehaviour
     private float speed = 1.5f; // Vitesse de l'animation (déplacement)
     private float delay = 0.3f; // Délai d'attente entre deux cartes distribuées
 
+    public AudioSource audioSource;  // Composant AudioSource
+    public AudioClip cardSound;      // Son de distribution des cartes
+
     void Start()
     {
         // Définir les positions finales des cartes (gauche, centre, droite)
@@ -50,6 +53,11 @@ public class DistributionCartes : MonoBehaviour
         float startRotation = 0f;
         float endRotation = 360f; // Tour complet sur la carte (horaire)
 
+        if (audioSource != null && cardSound != null)
+        {
+            audioSource.PlayOneShot(cardSound);
+        }
+
         // Déplacer la carte vers sa position cible tout en effectuant une rotation continue dans le sens horaire
         while (t < 1)
         {
@@ -60,7 +68,7 @@ public class DistributionCartes : MonoBehaviour
 
             // Appliquer une interpolation pour la rotation (rotation fluide dans le sens horaire)
             float currentRotation = Mathf.Lerp(startRotation, -endRotation, t); // Sens horaire (négatif)
-            rect.rotation = Quaternion.Euler(0, 0, currentRotation); // Appliquer la rotation
+            rect.rotation = Quaternion.Euler(0, 0, currentRotation); // Appliquer la 
 
             yield return null;
         }
