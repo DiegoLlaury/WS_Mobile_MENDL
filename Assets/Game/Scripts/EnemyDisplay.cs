@@ -7,6 +7,7 @@ using WS_DiegoCo;
 using System.Collections.Generic;
 using System.Linq;
 using WS_DiegoCo_Event;
+using UnityEngine.InputSystem;
 
 public class EnemyDisplay : MonoBehaviour, IStatusReceiver
 {
@@ -47,7 +48,7 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         UpdateEnemyDisplay();
     }
 
-    private void UpdateEnemyDisplay()
+    public void UpdateEnemyDisplay()
     {
         nameText.text = enemyData.enemyName;
         healthText.text = enemyData.health.ToString();
@@ -155,15 +156,32 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
             enemyData = enemy.enemyData;
             // Refresh duration or stack values
             activeEffects[statusType] = (activeEffects[statusType].value + value, duration);
+
+            
         }
         else
         {
             activeEffects.Add(statusType, (value, duration));
         }
+
+        switch (statusType)
+        {
+            case StatusEffect.StatusType.Weakness:
+                enemyData.damage -= value;
+                Debug.Log($"Enemy {enemyData.enemyName} is weakened!");
+                break;
+
+            case StatusEffect.StatusType.Strength:
+                enemyData.damage += value;
+                Debug.Log($"Enemy {enemyData.enemyName} strength increased by {value}.");
+                break;
+        }
+
+        UpdateEnemyDisplay();
         Debug.Log($"Enemy {enemyData.enemyName} applied status {statusType} with value {value} for {duration} turns.");
     }
 
-    public void ProcessTurnEffects()
+    public void ProcessTurnEffects(bool endStatus)
     {
         List<StatusEffect.StatusType> toRemove = new List<StatusEffect.StatusType>();
 
@@ -171,39 +189,54 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         {
             var effect = activeEffects[key];
 
-            switch (key)
+            if (!endStatus)
             {
-                case StatusEffect.StatusType.Regeneration:
-                    enemyData.health = Mathf.Clamp(enemyData.health + effect.value,0, enemyData.maxHealth);
-                    Debug.Log($"Enemy {enemyData.enemyName} regenerated {effect.value} HP.");
-                    break;
+                switch (key)
+                {
+                    case StatusEffect.StatusType.Regeneration:
+                        enemyData.health = Mathf.Clamp(enemyData.health + effect.value, 0, enemyData.maxHealth);
+                        Debug.Log($"Enemy {enemyData.enemyName} regenerated {effect.value} HP.");
+                        break;
 
-                case StatusEffect.StatusType.Bleeding:
-                    TakeDamage(effect.value, ignoreShield: true);
-                    Debug.Log($"Enemy {enemyData.enemyName} suffered {effect.value} bleeding damage.");
-                    break;
-
-                case StatusEffect.StatusType.Weakness:
-                    enemyData.damage -= effect.value;
-                    Debug.Log($"Enemy {enemyData.enemyName} is weakened!");
-                    break;
-
-                case StatusEffect.StatusType.Strength:
-                    enemyData.damage += effect.value;
-                    Debug.Log($"Enemy {enemyData.enemyName} strength increased by {effect.value}.");
-                    break;
+                    case StatusEffect.StatusType.Bleeding:
+                        TakeDamage(effect.value, ignoreShield: true);
+                        Debug.Log($"Enemy {enemyData.enemyName} suffered {effect.value} bleeding damage.");
+                        break;
+                }
             }
 
-            // Reduce duration
-            int newTurns = effect.turnsRemaining - 1;
-            if (newTurns <= 0)
+
+            if (endStatus)
             {
-                toRemove.Add(key);
+                // Reduce duration
+                int newTurns = effect.turnsRemaining - 1;
+                if (newTurns <= 0)
+                {
+                    toRemove.Add(key);
+
+                    if (endStatus)
+                    {
+                        switch (key)
+                        {
+                            case StatusEffect.StatusType.Weakness:
+                                enemyData.damage += effect.value;
+                                Debug.Log($"Enemy {enemyData.enemyName} is weakened!");
+                                break;
+
+                            case StatusEffect.StatusType.Strength:
+                                enemyData.damage -= effect.value;
+                                Debug.Log($"Enemy {enemyData.enemyName} strength increased by {effect.value}.");
+                                break;
+                        }
+                    }
+                }
+                else
+                {
+                    activeEffects[key] = (effect.value, newTurns);
+                }
             }
-            else
-            {
-                activeEffects[key] = (effect.value, newTurns);
-            }
+
+            UpdateEnemyDisplay();
         }
 
         // Remove expired effects
