@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WS_DiegoCo_Event;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class EnemyDisplay : MonoBehaviour, IStatusReceiver
 {
@@ -15,7 +16,9 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
     public Enemy enemyData;
 
 
-    public Sprite enemyImageDisplay;
+    public Image enemyIdleImage;
+    public Image enemyAttackImage;
+    public Image enemyDamagedImage;
     public TMP_Text nameText;
     public TMP_Text healthText;
     public TMP_Text defenseText;
@@ -28,10 +31,24 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
     public GameObject infiltrationStatPanel;
     public GameObject investigationStatPanel;
 
+    public float shakeIntensity = 10f;
+    public float shakeDuration = 0.5f;
+    public Color damageColor = new Color(1f, 0f, 0f, 0.5f); // Rouge semi-transparent
+
+    private Vector3 originalPosition;
+    private Color originalColor;
+
     private bool isNextAttackHeal;
 
     private PlayerEvent player;
     private Dictionary<StatusEffect.StatusType, (int value, int turnsRemaining)> activeEffects = new Dictionary<StatusEffect.StatusType, (int, int)>();
+
+
+    private void Awake()
+    {
+        originalPosition = enemyIdleImage.transform.localPosition;
+        originalColor = enemyIdleImage.color;
+    }
 
     public void Initialize(Enemy data, EventBattle.EventType eventType)
     {
@@ -56,7 +73,9 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         damageText.text = enemyData.damage.ToString();
         perceptionText.text = enemyData.perception.ToString();
         discretionText.text = enemyData.discretion.ToString();
-        enemyImageDisplay = enemyData.enemyImage;
+        enemyIdleImage.sprite = enemyData.enemyIdleImage;
+        enemyAttackImage.sprite = enemyData.enemyAttackImage;
+        enemyDamagedImage.sprite = enemyData.enemyDamagedImage;
 
         combatStatPanel.SetActive(currentEventType == EventBattle.EventType.Combat);
         infiltrationStatPanel.SetActive(currentEventType == EventBattle.EventType.Infiltration);
@@ -101,9 +120,33 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         {
             Debug.Log("You failed !");
         }
-
+        StartCoroutine(DamageAnimation());
+        
         UpdateEnemyDisplay();
         player.Attack();
+    }
+
+    private IEnumerator DamageAnimation()
+    {
+        // 1. Changement de couleur vers le rouge
+        enemyIdleImage.color = damageColor;
+
+        // 2. Tremblement
+        float elapsedTime = 0f;
+
+        while (elapsedTime < shakeDuration)
+        {
+            Vector3 randomOffset = UnityEngine.Random.insideUnitSphere * shakeIntensity;
+            randomOffset.z = 0;  // Évite de bouger sur l'axe Z si en 2D
+            enemyIdleImage.transform.localPosition = originalPosition + randomOffset;
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // 3. Remettre en place l'image et la couleur d'origine
+        enemyIdleImage.transform.localPosition = originalPosition;
+        enemyIdleImage.color = originalColor;
     }
 
     public void GainShield(int amount)

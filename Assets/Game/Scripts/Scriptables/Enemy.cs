@@ -17,7 +17,9 @@ namespace WS_DiegoCo_Enemy
         public int discretion;
         public int maxPerception;
         public int perception;
-        public Sprite enemyImage;
+        public Sprite enemyIdleImage;
+        public Sprite enemyAttackImage;
+        public Sprite enemyDamagedImage;
     }
 }
 
