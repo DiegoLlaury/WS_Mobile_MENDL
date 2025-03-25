@@ -45,6 +45,7 @@ public class EventDisplay : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //currentBattle.affectedCharacter = null;
         panelInformation.SetActive(false);
         deckManagerMacro = FindAnyObjectByType<DeckManagerMacro>();
         handManagerMacro = FindAnyObjectByType<HandManagerMacro>();
@@ -133,10 +134,32 @@ public class EventDisplay : MonoBehaviour
 
     public void SetPlayer(CardMiddle cardPlayer)
     {
+        if (cardPlayer == null)
+        {
+            Debug.LogError("cardPlayer est null dans SetPlayer !");
+            return;
+        }
+
         if (cardMiddle == null)
         {
             cardMiddle = cardPlayer;
-            cardImage.sprite = cardPlayer.cardImage;
+
+            if (cardImage != null)
+            {
+                if (cardPlayer.cardImage != null)
+                {
+                    cardImage.sprite = cardPlayer.cardImage;
+                }
+                else
+                {
+                    Debug.LogWarning("La carte n’a pas d’image assignée !");
+                }
+            }
+            else
+            {
+                Debug.LogError("cardImage n’est pas assigné dans l’inspecteur !");
+            }
+
             numberOfPlayer++;
 
             if (EventManager.Instance.AreAllEventsReady())

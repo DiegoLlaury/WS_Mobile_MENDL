@@ -36,17 +36,21 @@ public class CardMovementMacro : MonoBehaviour, IDragHandler, IPointerDownHandle
         rectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
         canvasGroup = GetComponent<CanvasGroup>();
+   
 
         cardMiddleDisplay = GetComponent<CardMiddleDisplay>();
+        if (cardMiddleDisplay != null)
+        {
+            cardData = cardMiddleDisplay.cardData;
+        }
+        else
+        {
+            Debug.LogError("CardMiddleDisplay non trouvé sur cette carte !");
+        }
 
         deckManagerMacro = FindAnyObjectByType<DeckManagerMacro>();
         handManagerMacro = FindAnyObjectByType<HandManagerMacro>();
         player = FindAnyObjectByType<PlayerEvent>();
-
-        if (cardMiddleDisplay != null && cardMiddleDisplay.cardData != null)
-        {
-            cardData = cardMiddleDisplay.cardData; // Make sure cardData is set properly
-        }
 
         originalScale = rectTransform.localScale;
         originalPosition = rectTransform.localPosition;
@@ -84,6 +88,22 @@ public class CardMovementMacro : MonoBehaviour, IDragHandler, IPointerDownHandle
     public void OnPointerDown(PointerEventData eventData)
     {
         if (currentState == 2) return;
+
+        if (cardMiddleDisplay == null)
+        {
+            cardMiddleDisplay = GetComponent<CardMiddleDisplay>();
+        }
+
+        if (cardMiddleDisplay != null && cardMiddleDisplay.cardData != null)
+        {
+            cardData = cardMiddleDisplay.cardData;
+        }
+        else
+        {
+            Debug.LogError("CardMiddleDisplay ou cardData est null lors de l'assignation dans OnPointerDown !");
+            return;
+        }
+
 
         if (canvasGroup != null)
         {
@@ -145,6 +165,13 @@ public class CardMovementMacro : MonoBehaviour, IDragHandler, IPointerDownHandle
 
         if (currenEvent != null)
         {
+            if (cardData == null)
+            {
+                Debug.LogError("cardData est null dans OnEndDrag !");
+                TransitionToState0();
+                return;
+            }
+
             if (currenEvent.cardMiddle == null)
             {
                 currenEvent.SetPlayer(cardData);

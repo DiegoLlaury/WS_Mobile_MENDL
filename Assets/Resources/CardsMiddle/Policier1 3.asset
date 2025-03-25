@@ -26,10 +26,10 @@ MonoBehaviour:
   discretion: 0
   maxPerception: 0
   perception: 0
-  heart: 8
-  square: 4
-  spade: 12
-  clover: 6
+  heart: 5
+  square: 5
+  spade: 13
+  clover: 7
   skillLevel: 0
   corruption: 1
-  cardImage: {fileID: 21300000, guid: 508da9b1254fd6c458b1549e26192df1, type: 3}
+  cardImage: {fileID: 21300000, guid: 13b783a99f2145b4b9d8bb39debf9aaf, type: 3}

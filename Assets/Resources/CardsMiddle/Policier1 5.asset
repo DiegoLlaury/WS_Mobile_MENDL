@@ -32,4 +32,4 @@ MonoBehaviour:
   clover: 6
   skillLevel: 0
   corruption: 1
-  cardImage: {fileID: 21300000, guid: 508da9b1254fd6c458b1549e26192df1, type: 3}
+  cardImage: {fileID: 21300000, guid: 13b783a99f2145b4b9d8bb39debf9aaf, type: 3}
