@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9ed5673610c354291f61410240a6f3, type: 3}
   m_Name: GansterNul
   m_EditorClassIdentifier: 
-  enemyName: Gilbert
+  enemyName: gang1
   maxHealth: 25
   health: 25
   maxDefense: 0
   defense: 0
-  maxDamage: 0
-  damage: 0
+  maxDamage: 3
+  damage: 3
   maxDiscretion: 0
   discretion: 0
   maxPerception: 0
