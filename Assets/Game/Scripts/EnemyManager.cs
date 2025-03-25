@@ -163,7 +163,7 @@ public class EnemyManager : MonoBehaviour
         foreach (EnemyDisplay enemy in enemies)
         {
 
-            enemy.ProcessTurnEffects();
+            enemy.ProcessTurnEffects(false);
             if (enemy.enemyData.health <= 0)
             {
                 enemiesToRemove.Add(enemy);
@@ -183,7 +183,8 @@ public class EnemyManager : MonoBehaviour
                         PerformActionInvestigation(enemy, eventBattle.eventDifficulty);
                         break;
                 }
-                
+
+                enemy.ProcessTurnEffects(true);
                 yield return new WaitForSeconds(1f);
 
         }
@@ -222,6 +223,8 @@ public class EnemyManager : MonoBehaviour
                 Debug.Log($"{enemy.enemyData.enemyName} weakens the player!");
                 break;
         }
+
+        enemy.UpdateEnemyDisplay();
     }
 
     private void PerformActionInfiltration(EnemyDisplay enemy, EventBattle.EventDifficulty difficulty)
@@ -275,7 +278,7 @@ public class EnemyManager : MonoBehaviour
     {
         foreach (EnemyDisplay enemy in enemies)
         {
-            enemy.ProcessTurnEffects();   
+            //enemy.ProcessTurnEffects();   
         }
     }
 

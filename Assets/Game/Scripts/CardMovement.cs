@@ -197,9 +197,16 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
             // Check if dropped on the Skill Zone
             if (dropZone != null && dropZone.CompareTag("DropZone"))
             {
-                EnemyDisplay randomEnemy = enemyManager.GetRandomEnemy();
-                enemyManager.GetRandomEnemy();
-                ApplyCardEffects(randomEnemy, cardDisplay.cardData, player, deckManager, handManager, battleManager, enemyManager);
+                if (enemy == null)
+                {
+                    EnemyDisplay randomEnemy = enemyManager.GetRandomEnemy();
+                    enemyManager.GetRandomEnemy();
+                    ApplyCardEffects(randomEnemy, cardDisplay.cardData, player, deckManager, handManager, battleManager, enemyManager);
+                }
+                else
+                {
+                    ApplyCardEffects(enemy, cardDisplay.cardData, player, deckManager, handManager, battleManager, enemyManager);
+                }
             }
             else
             {
