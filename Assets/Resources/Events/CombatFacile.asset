@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1ef220b67029e442afdad0b4138c8a6, type: 3}
-  m_Name: Event 1
+  m_Name: CombatFacile
   m_EditorClassIdentifier: 
   eventType: 1
   eventDifficulty: 1
@@ -18,7 +18,7 @@ MonoBehaviour:
   currentTurn: 15
   conditionNumber: 15
   enemies:
-  - {fileID: 11400000, guid: 7c61995196e4de64a8f7eca48fcbe5ef, type: 2}
+  - {fileID: 11400000, guid: 6c983bd6a5358a04494dbaf3b7ec910a, type: 2}
   nextEvent: {fileID: 11400000, guid: f871cffe067fd4b48a5cd912b1b57c5c, type: 2}
   affectedCharacter: {fileID: 0}
   boss: 0

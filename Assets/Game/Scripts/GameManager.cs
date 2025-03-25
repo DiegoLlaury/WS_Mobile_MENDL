@@ -13,7 +13,7 @@ public static class GameManager
 
     public static bool firstTime = true;
     public static bool WinBattle;
-    public static int turnMacro = 15;
+    public static int turnToKeep;
 
     private static List<EventDisplay> locationDisplay = new List<EventDisplay>();
     private static List<EventBattle> tempEvents = new List<EventBattle>();
@@ -50,7 +50,6 @@ public static class GameManager
     {
         selectedCard = card;
         currentEvent = eventData;
-        turnMacro--;
         UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
         UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
     }
@@ -74,7 +73,7 @@ public static class GameManager
             {
                 currentEvent.remainingAttempts--;
                 currentEventBattles.Remove(currentEvent);
-                tempEvents.Add(currentEvent.nextEvent);
+                tempEvents.Add(currentEvent);
             }
         }
 
@@ -93,7 +92,7 @@ public static class GameManager
                 else
                 {
                     eventBattle.remainingAttempts--;
-                    tempEvents.Add(eventBattle.nextEvent);
+                    tempEvents.Add(eventBattle);
                 }
             }
         }
@@ -106,6 +105,7 @@ public static class GameManager
         }
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("MacroScene");
+        HUDMacro.Instance.PassTurn();
     }
 
     private static float CalculatedWinChance(EventBattle battle)
@@ -117,7 +117,7 @@ public static class GameManager
     {
         if (firstTime)
         {
-            turnMacro = 15;
+
             startingEventBattles = new List<EventBattle>(eventList.eventBattles);
             currentEventBattles = new List<EventBattle>(startingEventBattles);
             firstTime = false;

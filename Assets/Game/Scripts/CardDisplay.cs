@@ -25,6 +25,7 @@ public class CardDisplay : MonoBehaviour
     public TMP_Text perceptionText;
     public TMP_Text discretionText;
     public TMP_Text shieldText;
+
     public TMP_Text dropTypeText;
 
     public Image[] typeImages;
@@ -63,7 +64,7 @@ public class CardDisplay : MonoBehaviour
 
         nameText.text = cardData.cardName;
         energyText.text = cardData.energy.ToString();
-        dropTypeText.text = string.Join(", ", cardData.dropType);
+        //dropTypeText.text = string.Join(", ", cardData.dropType);
 
         // Update stat text fields
         string formattedEffect = cardData.effect;

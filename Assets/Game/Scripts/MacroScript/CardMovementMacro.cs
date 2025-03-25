@@ -36,8 +36,6 @@ public class CardMovementMacro : MonoBehaviour, IDragHandler, IPointerDownHandle
         rectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
         canvasGroup = GetComponent<CanvasGroup>();
-   
-
         cardMiddleDisplay = GetComponent<CardMiddleDisplay>();
         if (cardMiddleDisplay != null)
         {

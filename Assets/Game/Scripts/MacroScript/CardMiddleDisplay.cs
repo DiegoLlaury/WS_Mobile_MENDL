@@ -49,7 +49,7 @@ public class CardMiddleDisplay : MonoBehaviour
         int maxStat = 18;
 
         // Détermine la stat principale (en fonction du symbole)
-        int mainStat = Random.Range(10, 15); // Entre 10 et 15 pour un bon équilibre
+        int mainStat = Random.Range(13, 18); // Entre 10 et 15 pour un bon équilibre
         totalPoints -= mainStat;
 
         int[] stats = new int[4];

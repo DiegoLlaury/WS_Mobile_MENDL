@@ -18,9 +18,10 @@ MonoBehaviour:
   currentTurn: 20
   conditionNumber: 20
   enemies:
-  - {fileID: 11400000, guid: 7c61995196e4de64a8f7eca48fcbe5ef, type: 2}
-  - {fileID: 11400000, guid: c2135fff4befa014281e9fed28922bfd, type: 2}
+  - {fileID: 11400000, guid: 9e89dec9e9495164d8862685475fe1d1, type: 2}
+  - {fileID: 11400000, guid: 038817793cd786046be986b97ca6d166, type: 2}
   nextEvent: {fileID: 11400000, guid: 2f0307ffca528cb448ca5a195e1ec313, type: 2}
+  affectedCharacter: {fileID: 11400000, guid: 085cf52b5bf5eb844bf9b859d43662a4, type: 2}
   boss: 0
   description: "Gr\xE2ce aux r\xE9v\xE9lations du barman, le commissaire vous confie
     la t\xEAte de l\u2019enqu\xEAte sur le trafic clandestin d\u2019alcool qui gangr\xE8ne
@@ -30,7 +31,7 @@ MonoBehaviour:
     chef du r\xE9seau."
   eventName: 'COULISSES DU CRIME '
   location: Casino
-  background: {fileID: 0}
+  background: {fileID: -1417799516807294308, guid: 1d62e4e3c6b499a47ad26b47c25ae78c, type: 3}
   remainingAttempts: 4
   MaxAttempts: 4
-  isResolved: 1
+  isResolved: 0

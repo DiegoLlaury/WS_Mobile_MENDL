@@ -46,22 +46,24 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        cardData.maxHealth = baseHealth;
         cardData = GameManager.selectedCard;
         currentEnergy = maxEnergy;
-        cardData.maxHealth = cardData.heart * healthRatio + cardData.maxHealth;
+
+        // Recalcule les PV max proprement sans empilement
+        cardData.maxHealth = baseHealth + cardData.heart * healthRatio;
         cardData.health = cardData.maxHealth;
+
+        // Remet les autres stats
         cardData.strenght = cardData.maxStrenght;
         cardData.discretion = cardData.maxDiscretion;
         cardData.perception = cardData.maxPerception;
         cardData.defense = currentDefense;
 
+        // Met à jour l'interface
         backgroundImage.sprite = GameManager.currentEvent.background;
-
         GameManager.currentEvent.currentTurn = GameManager.currentEvent.numberTurn;
         UpdatePlayerEvent();
     }
-
     private void UpdatePlayerEvent()
     {
         healthText.text = cardData.health.ToString();
@@ -319,7 +321,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         }
         else
         {
-            widgetLost.SetActive(false);
+            widgetLost.SetActive(true);
         }
     }
 

@@ -18,14 +18,15 @@ MonoBehaviour:
   currentTurn: 10
   conditionNumber: 20
   enemies:
-  - {fileID: 11400000, guid: c2135fff4befa014281e9fed28922bfd, type: 2}
-  - {fileID: 11400000, guid: 7c61995196e4de64a8f7eca48fcbe5ef, type: 2}
+  - {fileID: 11400000, guid: 14b3053bf2872c24386c5661fad8ceab, type: 2}
+  - {fileID: 11400000, guid: 6c983bd6a5358a04494dbaf3b7ec910a, type: 2}
   nextEvent: {fileID: 11400000, guid: 79063bbf86cc05647868b9d8e1a85820, type: 2}
+  affectedCharacter: {fileID: 11400000, guid: ca520e4fb08caea498637c73bd335d8e, type: 2}
   boss: 0
   description: Il y a r frero
   eventName: "Le meutre \xE0 la cafeti\xE8re"
   location: Cafe
-  background: {fileID: 0}
+  background: {fileID: 6744302211014969283, guid: e8d19b7709054194da0a677544f2bfe5, type: 3}
   remainingAttempts: 4
   MaxAttempts: 4
   isResolved: 1
