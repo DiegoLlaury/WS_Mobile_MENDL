@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 25320657e728a6645a64e771026e2b51
+guid: 508da9b1254fd6c458b1549e26192df1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6694130172295404823
-    second: Mafia1_Attack-removebg-preview_0
+      213: 5443495758388594948
+    second: Male_1_1_0
+  - first:
+      213: 908250757784886734
+    second: Male_1_1_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,17 +99,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Mafia1_Attack-removebg-preview_0
+      name: Male_1_1_0
       rect:
         serializedVersion: 2
-        x: 104
-        y: 10
-        width: 301
-        height: 485
+        x: 154
+        y: 127
+        width: 425
+        height: 532
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +131,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 71d54e7bce356ec50800000000000000
-      internalID: 6694130172295404823
+      spriteID: 40909172d8e2b8b40800000000000000
+      internalID: 5443495758388594948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male_1_1_1
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 445
+        width: 425
+        height: 493
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecd5fb88041ca9c00800000000000000
+      internalID: 908250757784886734
       vertices: []
       indices: 
       edges: []
@@ -135,7 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Mafia1_Attack-removebg-preview_0: 6694130172295404823
+      Male_1_1_0: 5443495758388594948
+      Male_1_1_1: 908250757784886734
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

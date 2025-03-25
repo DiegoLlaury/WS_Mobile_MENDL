@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf090ec687b880548ad57fc4d43235f0, type: 3}
   m_Name: Heart 10
   m_EditorClassIdentifier: 
-  cardName: Pistolet
-  cardType: 00000000
+  cardName: "R\xE9plique Muscl\xE9e"
+  cardType: 0
   statType: 02000000
   dropType: 00000000
   health: 0
   defense: 0
   damage: 0
+  startingDamage: 0
   discretion: 0
   perception: 0
   energy: 1

@@ -9,16 +9,17 @@ using System.Linq;
 using WS_DiegoCo_Event;
 using UnityEngine.InputSystem;
 using System.Collections;
+using WS_DiegoCo_Middle;
 
 public class EnemyDisplay : MonoBehaviour, IStatusReceiver
 {
     private EventBattle.EventType currentEventType;
     public Enemy enemyData;
 
-
     public Image enemyIdleImage;
     public Image enemyAttackImage;
     public Image enemyDamagedImage;
+    public Image intentionImage;
     public TMP_Text nameText;
     public TMP_Text healthText;
     public TMP_Text defenseText;
@@ -33,7 +34,8 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
 
     public float shakeIntensity = 10f;
     public float shakeDuration = 0.5f;
-    public Color damageColor = new Color(1f, 0f, 0f, 0.5f); // Rouge semi-transparent
+    public Color damageColor = new Color(1f, 0f, 0f); // Rouge semi-transparent
+    private int perceptionLimit = 10;
 
     private Vector3 originalPosition;
     private Color originalColor;
@@ -289,6 +291,62 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         {
             activeEffects.Remove(status);
             Debug.Log($"Enemy {enemyData.enemyName} status {status} expired.");
+        }
+    }
+
+    public void UpdateIntentionImage(int action)
+    {
+        if (player.cardData.perception >= perceptionLimit)
+        {
+            switch (currentEventType)
+            {
+                case EventBattle.EventType.Combat:
+                    switch (action)
+                    {
+                        case 0: intentionImage.sprite = enemyData.attackImage; break;  // Attaque
+                        case 1: intentionImage.sprite = enemyData.defenseImage; break;  // Défense
+                        case 2: intentionImage.sprite = enemyData.buffImage; break;    // Buff
+                        case 3: intentionImage.sprite = enemyData.debuffImage; break;  // Debuff
+                    }
+                    break;
+
+                case EventBattle.EventType.Infiltration:
+                    switch (action)
+                    {
+                        case 0: intentionImage.sprite = enemyData.buffImage; break;  // Gain perception
+                        case 1: intentionImage.sprite = enemyData.rondeImage; break;      // Test de ronde
+                        case 2: intentionImage.sprite = enemyData.debuffImage; break;      // Debuff discretion
+                    }
+                    break;
+
+                case EventBattle.EventType.Enquete:
+                    switch (action)
+                    {
+                        case 0: intentionImage.sprite = enemyData.buffImage; break;  // Gain discrétion
+                        case 1: intentionImage.sprite = enemyData.debuffImage; break;      // Debuff perception
+                    }
+                    break;
+            }
+            StartCoroutine(ShowIntentionAnimation());
+        }
+        else
+        {
+            intentionImage.sprite = enemyData.questionImage;
+        }
+       
+    }
+
+    private IEnumerator ShowIntentionAnimation()
+    {
+        intentionImage.transform.localScale = Vector3.zero;
+        float duration = 0.2f;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            intentionImage.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, elapsed / duration);
+            yield return null;
         }
     }
 }

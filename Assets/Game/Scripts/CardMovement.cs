@@ -261,7 +261,6 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
         foreach (RaycastResult result in results)
         {
-            Debug.Log($"Raycast Hit: {result.gameObject.name} (Layer: {result.gameObject.layer})"); // Debug check
             if (result.gameObject.CompareTag("DropZone")) // 🔹 Ensure DropZone has correct tag
             {
                 return result.gameObject;

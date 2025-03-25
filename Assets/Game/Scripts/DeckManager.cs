@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using WS_DiegoCo;
+using WS_DiegoCo_Middle;
 
 public class DeckManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class DeckManager : MonoBehaviour
     public List<Card> discardPile = new List<Card>();  
     public HandManager handManager;
     public PlayerEvent playerStats;
+
+    [SerializeField] private float drawDelay = 0.2f;
 
     private void Start()
     {
@@ -88,22 +91,30 @@ public class DeckManager : MonoBehaviour
         }
     }
     public void DrawCard(int cardNumber)
-{
-    for (int i = 0; i < cardNumber; i++)
     {
-        if (deck.Count == 0)
-        {
-            RefillDeck();
-        }
-
-        if (deck.Count > 0)
-        {
-            Card nextCard = deck[0];
-            deck.RemoveAt(0);
-            handManager.AddCardToHand(nextCard);
-        }   
+        StartCoroutine(DrawCardOneByOne(cardNumber));
     }
-}
+
+    private IEnumerator DrawCardOneByOne(int cardNumber)
+    {
+        for (int i = 0; i < cardNumber; i++)
+        {
+            if (deck.Count == 0)
+            {
+                // RefillDeck(); // Décommente cette ligne si tu veux reshuffle le deck
+                break;
+            }
+
+            if (deck.Count > 0)
+            {
+                Card nextCard = deck[0];
+                deck.RemoveAt(0);
+                handManager.AddCardToHand(nextCard);
+            }
+
+            yield return new WaitForSeconds(drawDelay);
+        }
+    }
 
     private void RefillDeck()
     {

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 045892bff172ca2498e4fb35fb953b04
+guid: 25320657e728a6645a64e771026e2b51
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -150442581718205795
-    second: Carreau_0
+      213: 6694130172295404823
+    second: Mafia1_Attack-removebg-preview_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -96,17 +96,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Carreau_0
+      name: Mafia1_Attack-removebg-preview_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 319
-        height: 449
+        x: 104
+        y: 10
+        width: 301
+        height: 485
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d9af79dd44589edf0800000000000000
-      internalID: -150442581718205795
+      spriteID: 71d54e7bce356ec50800000000000000
+      internalID: 6694130172295404823
       vertices: []
       indices: 
       edges: []
@@ -125,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Carreau_0: -150442581718205795
+      Mafia1_Attack-removebg-preview_0: 6694130172295404823
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

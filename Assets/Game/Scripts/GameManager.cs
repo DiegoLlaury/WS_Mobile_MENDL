@@ -13,7 +13,8 @@ public static class GameManager
 
     public static bool firstTime = true;
     public static bool WinBattle;
-    public static int turnToKeep;
+    public static int turnToKeep = 15;
+    public static bool isGameStarted = false;
 
     private static List<EventDisplay> locationDisplay = new List<EventDisplay>();
     private static List<EventBattle> tempEvents = new List<EventBattle>();

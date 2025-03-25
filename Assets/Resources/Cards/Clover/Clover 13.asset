@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf090ec687b880548ad57fc4d43235f0, type: 3}
   m_Name: Clover 13
   m_EditorClassIdentifier: 
-  cardName: Pair Impair
+  cardName: "Vue Per\xE7ante"
   cardType: 3
   statType: 04000000
   dropType: 01000000
   health: 0
   defense: 0
   damage: 0
+  startingDamage: 0
   discretion: 0
   perception: 0
   energy: 2

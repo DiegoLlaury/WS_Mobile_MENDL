@@ -4,7 +4,7 @@ public class HUDMacro : MonoBehaviour
 {
     public static HUDMacro Instance;
 
-    public int turnMacro;
+
     public TMP_Text numberOfTurnText;
 
     void Awake()
@@ -21,19 +21,17 @@ public class HUDMacro : MonoBehaviour
     }
     void Start()
     {
-        turnMacro = 15;
         UpdateHUDMacro();
     }
 
     public void UpdateHUDMacro()
     {
-        numberOfTurnText.text = turnMacro.ToString();
-        GameManager.turnToKeep = turnMacro;
+        numberOfTurnText.text = GameManager.turnToKeep.ToString();
     }
 
     public void PassTurn()
     {
-        turnMacro--;
+        GameManager.turnToKeep--;
         UpdateHUDMacro();
     }
 }

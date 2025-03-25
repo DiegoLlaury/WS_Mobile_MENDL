@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b3761ba441d48dd4ab997cb080a7fc49
+guid: 46e479f79e26df342b6b7d6244b710b9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5860895390001942634
-    second: Coeur_0
+      213: -3648222780516352609
+    second: Ellipse 107_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,27 +96,40 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Coeur_0
+      name: Ellipse 107_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 319
-        height: 449
+        width: 10
+        height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 10, y: 0, z: 0, w: 10}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a605aca0e45165150800000000000000
-      internalID: 5860895390001942634
+      spriteID: f9db5d1d5b8ee5dc0800000000000000
+      internalID: -3648222780516352609
       vertices: []
       indices: 
       edges: []
@@ -125,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: b2e9aef927e3cdb49822a7177955daa7
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Coeur_0: 5860895390001942634
+      Ellipse 107_0: -3648222780516352609
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

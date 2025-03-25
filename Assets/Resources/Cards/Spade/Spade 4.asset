@@ -12,17 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf090ec687b880548ad57fc4d43235f0, type: 3}
   m_Name: Spade 4
   m_EditorClassIdentifier: 
-  cardName: Triple Damage
+  cardName: "Coup de Poing Am\xE9ricain"
   cardType: 1
   statType: 02000000
   dropType: 01000000
   health: 0
   defense: 0
-  damage: 0
+  damage: 1
+  startingDamage: 0
   discretion: 0
   perception: 0
   energy: 2
   effect: Gagnez un bonus de force pour le prochain tour.
   cardImage: {fileID: 0}
   effects:
-  - {fileID: 11400000, guid: 623ea3efbbe27024a816e79e1a15fd10, type: 2}
+  - {fileID: 11400000, guid: 6f64a862685820c4ba9c5931f2bcae35, type: 2}

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using WS_DiegoCo;
 using WS_DiegoCo_Middle;
 using System;
+using Unity.VisualScripting;
 
 public class CardDisplay : MonoBehaviour
 {
@@ -15,6 +16,12 @@ public class CardDisplay : MonoBehaviour
     private PlayerEvent player;
 
     public Image cardImage;
+    public Image energyRed1;
+    public Image energyRed2;
+    public Image energyRed3;
+    public Image energyBlack1;
+    public Image energyBlack2;
+    public Image energyBlack3;
     public TMP_Text nameText;
     public TMP_Text effectText;
 
@@ -63,8 +70,6 @@ public class CardDisplay : MonoBehaviour
     {
 
         nameText.text = cardData.cardName;
-        energyText.text = cardData.energy.ToString();
-        //dropTypeText.text = string.Join(", ", cardData.dropType);
 
         // Update stat text fields
         string formattedEffect = cardData.effect;
@@ -111,6 +116,75 @@ public class CardDisplay : MonoBehaviour
         if (typeIndex >= 0 && typeIndex < typeImages.Length)
         {
             typeImages[typeIndex].gameObject.SetActive(true);
+        }
+        switch (cardData.cardType)
+        {
+            case Card.CardType.Heart:
+                UpdateEnergyRed();
+                break;
+
+            case Card.CardType.Spade:
+                UpdateEnergyBlack();
+                break;
+
+            case Card.CardType.Square:
+                UpdateEnergyRed();
+                break;
+
+            case Card.CardType.Clover:
+                UpdateEnergyBlack();
+                break;
+        }
+        
+    }
+
+    private void UpdateEnergyRed()
+    {
+        switch (cardData.energy)
+        {
+
+            case 0:
+                break;
+
+            case 1:
+                energyRed1.gameObject.SetActive(true);
+                break;
+
+            case 2:
+                energyRed1.gameObject.SetActive(true);
+                energyRed2.gameObject.SetActive(true);
+                break;
+
+            case 3:
+                energyRed1.gameObject.SetActive(true);
+                energyRed2.gameObject.SetActive(true);
+                energyRed3.gameObject.SetActive(true);
+                break;
+        }
+    }
+
+    private void UpdateEnergyBlack()
+    {
+        switch (cardData.energy)
+        {
+
+            case 0:
+                break;
+
+            case 1:
+                energyBlack1.gameObject.SetActive(true);
+                break;
+
+            case 2:
+                energyBlack1.gameObject.SetActive(true);
+                energyBlack2.gameObject.SetActive(true);
+                break;
+
+            case 3:
+                energyBlack1.gameObject.SetActive(true);
+                energyBlack2.gameObject.SetActive(true);
+                energyBlack3.gameObject.SetActive(true);
+                break;
         }
     }
 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf090ec687b880548ad57fc4d43235f0, type: 3}
   m_Name: Heart 8
   m_EditorClassIdentifier: 
-  cardName: ' Heal Shield Energy'
+  cardName: Roulette Russe
   cardType: 0
   statType: 0000000001000000
   dropType: 01000000

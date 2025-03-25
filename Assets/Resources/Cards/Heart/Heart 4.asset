@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf090ec687b880548ad57fc4d43235f0, type: 3}
   m_Name: Heart 4
   m_EditorClassIdentifier: 
-  cardName: Pistolet
+  cardName: "Injection d\u2019Adr\xE9naline"
   cardType: 0
   statType: 0000000002000000
   dropType: 00000000

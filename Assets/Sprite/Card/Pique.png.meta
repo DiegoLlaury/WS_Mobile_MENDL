@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: dfe223c76466ce44cafbed666acc526c
+guid: 371f1677017954841a7594a233269de2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6705195969440313495
-    second: noestein_Mafia_Casino_Gold_Frame_game_asset_plain_background__b360d244-5a4c-4491-a9c7-1b9cd2887ec8_3_0
+      213: 5576847566473906714
+    second: Pique_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,13 +46,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 120, y: 120, z: 120, w: 120}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -96,27 +96,40 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: noestein_Mafia_Casino_Gold_Frame_game_asset_plain_background__b360d244-5a4c-4491-a9c7-1b9cd2887ec8_3_0
+      name: Pique_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 574
-        height: 573
+        width: 319
+        height: 449
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 96f012c9acb52f2a0800000000000000
-      internalID: -6705195969440313495
+      spriteID: a1acd267051f46d40800000000000000
+      internalID: 5576847566473906714
       vertices: []
       indices: 
       edges: []
@@ -125,8 +138,8 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    spriteID: 
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      noestein_Mafia_Casino_Gold_Frame_game_asset_plain_background__b360d244-5a4c-4491-a9c7-1b9cd2887ec8_3_0: -6705195969440313495
+      Pique_0: 5576847566473906714
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

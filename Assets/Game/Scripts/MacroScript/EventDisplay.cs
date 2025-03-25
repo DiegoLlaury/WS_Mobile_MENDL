@@ -16,10 +16,12 @@ public class EventDisplay : MonoBehaviour
     public TMP_Text descriptionText;
     public TMP_Text nameEventText;
     public TMP_Text typeEventText;
-    public TMP_Text difficultyText;
     public TMP_Text numberOfTurn;
+    public TMP_Text percentagePlayerText;
+    public TMP_Text percentagePlayerTextWorld;
 
     public Image cardImage;
+    public Image cardImageWorld;
     public Image buildingImage;
     public Image backgroundImage;
     private static int numberOfPlayer = 0;
@@ -68,15 +70,23 @@ public class EventDisplay : MonoBehaviour
 
         if (nameEventText != null) nameEventText.text = currentBattle.eventName;
         if (descriptionText != null) descriptionText.text = currentBattle.description;
-        if (typeEventText != null) typeEventText.text = currentBattle.eventType.ToString();
-        if (difficultyText != null) difficultyText.text = currentBattle.eventDifficulty.ToString();
+        if (typeEventText != null)
+        {
+            typeEventText.text = $"{currentBattle.eventType.ToString()} / {currentBattle.eventDifficulty.ToString()}";
+        }
+        if (cardMiddle != null && percentagePlayerText != null)
+        {
+            percentagePlayerText.text = $"{cardMiddle.skillLevel.ToString()} %";
+            percentagePlayerTextWorld.text = $"{cardMiddle.skillLevel.ToString()} %";
+        }  
         if (numberOfTurn != null) numberOfTurn.text = currentBattle.numberTurn.ToString();
         if (backgroundImage != null) backgroundImage.sprite = currentBattle.background;
-        
 
-        if (cardImage != null)
+
+        if (cardMiddle != null && cardImage != null)
         {
-            cardImage.sprite = cardMiddle != null ? cardMiddle.cardImage : null;
+            cardImage.sprite = cardMiddle != null ? cardMiddle.cardImage : null; 
+            cardImageWorld.sprite = cardMiddle != null ? cardMiddle.cardImage : null;
         }
     }
 
@@ -87,6 +97,12 @@ public class EventDisplay : MonoBehaviour
 
     public void SetEvent(EventBattle eventBattle)
     {
+        if (eventBattle == null)
+        {
+            Debug.LogError("EventBattle is null!");
+            return;
+        }
+
         currentBattle = eventBattle;
         Debug.Log($"EventDisplay lié à {eventBattle.eventName} pour le lieu {buildingPlace}.");
 
@@ -129,6 +145,8 @@ public class EventDisplay : MonoBehaviour
         cardMiddle = null;
         cardImage.sprite = null;
         panelInformation.SetActive(false);
+        percentagePlayerTextWorld.gameObject.SetActive(false);
+        cardImageWorld.gameObject.SetActive(false);
         numberOfPlayer--;
     }
 
@@ -149,6 +167,11 @@ public class EventDisplay : MonoBehaviour
                 if (cardPlayer.cardImage != null)
                 {
                     cardImage.sprite = cardPlayer.cardImage;
+                    cardImageWorld.sprite = cardPlayer.cardImage;
+                    percentagePlayerText.text = $"{cardMiddle.skillLevel.ToString()} %";
+                    percentagePlayerTextWorld.text = $"{cardMiddle.skillLevel.ToString()} %";
+                    cardImageWorld.gameObject.SetActive(true);
+                    percentagePlayerTextWorld.gameObject.SetActive(true);
                 }
                 else
                 {

@@ -46,6 +46,13 @@ public class BattleManager : MonoBehaviour
         StartPlayerTurn();
 
     }
+    private void StartPlayerTurn()
+    {
+        isPlayerTurn = true;
+        player.ResetEnergy();
+        deckManager.DrawCard(cardStart);
+        enemyManager.GenerateEnemyActions(GameManager.currentEvent.eventDifficulty, GameManager.currentEvent.eventType);
+    }
 
     public void EndPlayerTurn()
     {
@@ -73,12 +80,7 @@ public class BattleManager : MonoBehaviour
         StartPlayerTurn();
     }
 
-    private void StartPlayerTurn()
-    {
-        isPlayerTurn = true;
-        player.ResetEnergy();
-        deckManager.DrawCard(cardStart);
-    }
+
 
     public void CheckGameOver()
     {
@@ -104,7 +106,6 @@ public class BattleManager : MonoBehaviour
             case EventBattle.EventType.Enquete:
                 investigation.CheckGameOver();
                 break;
-        }
-        
+        }      
     }
 }

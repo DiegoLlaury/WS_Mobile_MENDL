@@ -27,8 +27,6 @@ public class CardMiddleDisplay : MonoBehaviour
     public Transform gridMainImage;
     public Transform gridOtherImage;
 
-    private bool firstRandom = true;
-
     public Image[] typeImages;
 
     private void Start()
@@ -39,11 +37,11 @@ public class CardMiddleDisplay : MonoBehaviour
         cardData.strenght = cardData.maxStrenght;
         cardData.discretion = cardData.maxDiscretion;
         cardData.perception = cardData.maxPerception;
-        
-        if (firstRandom)
+
+        if (!GameManager.isGameStarted)
         {
             GenerateRandomStats();
-            firstRandom = false;
+            cardData.statsGenerated = true;
         }
 
         UpdateCardMiddle();
@@ -54,6 +52,8 @@ public class CardMiddleDisplay : MonoBehaviour
         int totalPoints = 30;
         int minStat = 3;
         int maxStat = 18;
+
+        int skill = Random.Range(10, 30);
 
         // Détermine la stat principale (en fonction du symbole)
         int mainStat = Random.Range(13, 18); // Entre 10 et 15 pour un bon équilibre
@@ -106,7 +106,7 @@ public class CardMiddleDisplay : MonoBehaviour
         cardData.spade = stats[2];
         cardData.clover = stats[3];
 
-        Debug.Log($"Stats générées : {cardData.heart},  {cardData.square}, {cardData.spade}, {cardData.clover}");
+        cardData.skillLevel = skill;
     }
 
     private void UpdateCardMiddle()

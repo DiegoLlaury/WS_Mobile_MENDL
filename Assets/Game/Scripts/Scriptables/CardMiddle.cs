@@ -13,16 +13,18 @@ namespace WS_DiegoCo_Middle
         public List<StatType> statType;
         public SymbolTypes symbolTypes;
 
-        public int health;
+        
         public int maxHealth;
-        public int maxDefense;
-        public int defense;
-        public int maxStrenght;
-        public int strenght;
-        public int maxDiscretion;
-        public int discretion;
+        public int maxDefense;      
+        public int maxStrenght;      
+        public int maxDiscretion;  
         public int maxPerception;
+
+        public int health;
+        public int defense;
+        public int strenght;
         public int perception;
+        public int discretion;
 
         public int heart;
         public int square;
@@ -44,6 +46,6 @@ namespace WS_DiegoCo_Middle
 
             Clover
         }
-       
+        public bool statsGenerated = false;
     }
 }

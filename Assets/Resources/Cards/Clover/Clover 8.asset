@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf090ec687b880548ad57fc4d43235f0, type: 3}
   m_Name: Clover 8
   m_EditorClassIdentifier: 
-  cardName: Random Reward
+  cardName: Jackpot
   cardType: 3
   statType: 
   dropType: 01000000

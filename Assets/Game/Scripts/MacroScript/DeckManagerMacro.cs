@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using WS_DiegoCo;
@@ -9,6 +10,7 @@ public class DeckManagerMacro : MonoBehaviour
 
     public List<CardMiddle> deck = new List<CardMiddle>();
     public List<CardMiddle> cardMiddleInEvent = new List<CardMiddle>();
+    private float drawDelay = 0.2f;
 
     private int drawCard = 4;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -50,39 +52,29 @@ public class DeckManagerMacro : MonoBehaviour
         }
     }
 
-    //private void AddCardsToDeck(CardMiddle.SymbolType type, int count, Dictionary<Card.CardType, List<Card>> library)
-    //{
-    //    if (!library.ContainsKey(type) || library[type].Count == 0)
-    //    {
-    //        Debug.LogWarning($" No valid cards available for {type}.");
-    //        return;
-    //    }
-
-    //    for (int i = 0; i < count; i++)
-    //    {
-    //        CardMiddle randomCard = library[type][Random.Range(0, library[type].Count)];
-    //        deck.Add(randomCard);
-    //    }
-    //    Debug.Log($"Adding {count} {type} cards to the deck. Current deck size before: {deck.Count}");
-    //}
-
     public void DrawCard(int cardNumber)
+    {
+        StartCoroutine(DrawCardOneByOne(cardNumber));
+    }
+
+    private IEnumerator DrawCardOneByOne(int cardNumber)
     {
         for (int i = 0; i < cardNumber; i++)
         {
-
             if (deck.Count == 0)
             {
-                //RefillDeck();
+                // RefillDeck(); // Décommente cette ligne si tu veux reshuffle le deck
+                break;
             }
 
             if (deck.Count > 0)
             {
                 CardMiddle nextCard = deck[0];
-                Debug.Log(nextCard);
                 deck.RemoveAt(0);
                 handManagerMacro.AddCardToHand(nextCard);
             }
+
+            yield return new WaitForSeconds(drawDelay);
         }
     }
 

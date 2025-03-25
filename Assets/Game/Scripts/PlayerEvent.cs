@@ -11,36 +11,25 @@ using WS_DiegoCo_Enemy;
 
 public class PlayerEvent : MonoBehaviour, IStatusReceiver
 {
-
     public CardMiddle cardData;
-    private Card card;
-    private EnemyDisplay enemy;
 
-    public TMP_Text heartText;
-    public TMP_Text spadeText;
-    public TMP_Text squareText;
-    public TMP_Text cloverText;
-    public TMP_Text energyText;
-    public TMP_Text defenseText;
-    public TMP_Text healthText;
-    public TMP_Text strenghtText;
-    public TMP_Text discretionText;
-    public TMP_Text perceptionText;
-    public TMP_Text currentTurnText;
+    [Header("UI Elements")]
+    public TMP_Text energyText, defenseText, healthText, strenghtText, discretionText, perceptionText, currentTurnText;
+    public TMP_Text regenNumberTurn, strengthNumberTurn, weaknessNumberTurn;
+    public GameObject widgetLost, widgetWin;
+    public Image backgroundImage, characterImage;
+    public Image regenImage, strengthImage, weaknessImage;
 
-    public GameObject widgetLost;
-    public GameObject widgetWin;
-
-    public Image backgroundImage;
-
+    [Header("Stats")]
     [SerializeField] private int healthRatio = 5;
-
-    private bool discretionboost = false;
-    public int maxEnergy = 3;
     [SerializeField] private int baseHealth = 10;
+    public int maxEnergy = 3;
     private int currentEnergy;
     public int currentDefense;
-    private Dictionary<StatusEffect.StatusType, (int value, int turnsRemaining)> activeEffects = new Dictionary<StatusEffect.StatusType, (int, int)>();
+    private bool discretionBoost = false;
+
+    [Header("Status Management")]
+    private Dictionary<StatusEffect.StatusType, (int value, int duration)> activeEffects = new Dictionary<StatusEffect.StatusType, (int, int)>();
     private List<System.Action> temporaryEffects = new List<System.Action>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -62,6 +51,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         // Met à jour l'interface
         backgroundImage.sprite = GameManager.currentEvent.background;
         GameManager.currentEvent.currentTurn = GameManager.currentEvent.numberTurn;
+        characterImage.sprite = cardData.cardImage;
         UpdatePlayerEvent();
     }
     private void UpdatePlayerEvent()
@@ -78,15 +68,18 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
 
     public void TurnChange()
     {
+        // Applique les effets temporaires et les vide
         foreach (var effect in temporaryEffects)
         {
             effect.Invoke();
         }
-        temporaryEffects.Clear();  // Vide la liste après l'application
-
+        temporaryEffects.Clear();
         GameManager.currentEvent.currentTurn--;
+        ProcessTurnEffects();
         UpdatePlayerEvent();
     }
+
+    // ==================== GESTION DES ACTIONS ====================
 
     public void TakeDamage(int damage, bool ignoreShield = false)
     {
@@ -119,7 +112,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         {
             cardData.strenght -= cardData.discretion / 3;
             cardData.discretion = 0;
-            discretionboost = false;
+            discretionBoost = false;
             Debug.Log("Attaque effectuée : Discrétion remise à zéro.");
             UpdatePlayerEvent();
         }
@@ -143,6 +136,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         // Ajout normal de perception, en respectant la limite max
         cardData.perception = Mathf.Clamp(cardData.perception + perception, cardData.maxPerception, 50);
         UpdatePlayerEvent();
+        EnemyManager.Instance.UpdateEnemyIntentions();
         Debug.Log($"Player gained {perception} perception. Current perception: {cardData.perception}");
     }
 
@@ -154,11 +148,11 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         Debug.Log($"Player gained {infiltration} discretion. Current discretion: {cardData.discretion}");
 
         // Boost temporaire de Force si la discrétion dépasse 10 et que le boost n'a pas encore été appliqué
-        if (cardData.discretion > 10 && !discretionboost)
+        if (cardData.discretion > 10 && !discretionBoost)
         {
             cardData.strenght += cardData.discretion / 3;
             Debug.Log("Discretion > 10: Temporary Strength boost applied.");
-            discretionboost = true;
+            discretionBoost = true;
         }
     }
 
@@ -170,13 +164,12 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         Debug.Log($"Player gain {energy} energy. Current Energy : {currentEnergy}");
     }
 
+    // ==================== GESTION DES STATUTS ====================
+
     public void ApplyDebuff(Card.StatType stat, int amount)
     {
            switch (stat)
            {
-            case Card.StatType.damage:
-                cardData.strenght += amount;
-                break;
             case Card.StatType.discretion:
                 GainInfiltration(amount);
                 break;
@@ -193,26 +186,41 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     {
         if (activeEffects.ContainsKey(statusType))
         {
-            // Refresh duration or stack values
+            // Rafraîchit la durée et cumule les valeurs
             activeEffects[statusType] = (activeEffects[statusType].value + value, duration);
         }
         else
         {
-            activeEffects.Add(statusType, (value, duration));
+            activeEffects[statusType] = (value, duration);
         }
 
-        if (statusType == StatusEffect.StatusType.Strength)
+        // Effets immédiats si nécessaire
+        switch (statusType)
         {
-            cardData.strenght += value;
-        }
-        else if (statusType == StatusEffect.StatusType.Weakness)
-        {
-            cardData.strenght -= value;
+            case StatusEffect.StatusType.Strength:
+                cardData.strenght += value;
+                strengthImage.gameObject.SetActive(true);
+                strengthNumberTurn.text = duration.ToString();
+                strengthNumberTurn.gameObject.SetActive(true);
+                break;
+
+            case StatusEffect.StatusType.Weakness:
+                cardData.strenght -= value;
+                weaknessImage.gameObject.SetActive(true);
+                weaknessNumberTurn.text = duration.ToString();
+                weaknessNumberTurn.gameObject.SetActive(true);
+                break;
+
+            case StatusEffect.StatusType.Regeneration:
+                regenImage.gameObject.SetActive(true);
+                regenNumberTurn.text = duration.ToString();
+                regenNumberTurn.gameObject.SetActive(true);
+                break;
         }
 
         UpdatePlayerEvent();
+        Debug.Log($"Applied {statusType} with value {value} for {duration} turns.");
         CardDisplay.UpdateAllCards(cardData.strenght);
-        Debug.Log($"Applied status {statusType} with value {value} for {duration} turns.");
     }
 
     public void ProcessTurnEffects()
@@ -228,35 +236,57 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
                 case StatusEffect.StatusType.Shield:
                     GainShield(effect.value);
                     break;
+
                 case StatusEffect.StatusType.Regeneration:
                     GainHealth(effect.value);
                     break;
+
                 case StatusEffect.StatusType.Bleeding:
                     TakeDamage(effect.value, ignoreShield: true);
                     break;
-                case StatusEffect.StatusType.Weakness:
-                    cardData.strenght -= effect.value;
-                    break;
+            }
+
+            // Réduction de la durée de l'effet
+            int newTurns = effect.duration - 1;
+
+            // Met à jour les textes du HUD
+            switch (key)
+            {
                 case StatusEffect.StatusType.Strength:
-                    cardData.strenght += effect.value;
-                    Debug.Log($"Player strength increased by {effect.value}");
+                    strengthNumberTurn.text = newTurns.ToString();
+                    break;
+
+                case StatusEffect.StatusType.Weakness:
+                    weaknessNumberTurn.text = newTurns.ToString();
+                    break;
+
+                case StatusEffect.StatusType.Regeneration:
+                    regenNumberTurn.text = newTurns.ToString();
                     break;
             }
 
-            // Reduce duration
-            int newTurns = effect.turnsRemaining - 1;
+            // Supprime les effets expirés
             if (newTurns <= 0)
             {
                 toRemove.Add(key);
 
-                // Remove effect from Strength/Weakness
+                // Annule les effets permanents
                 if (key == StatusEffect.StatusType.Strength)
                 {
                     cardData.strenght -= effect.value;
+                    strengthImage.gameObject.SetActive(false);
+                    strengthNumberTurn.gameObject.SetActive(false);
                 }
                 else if (key == StatusEffect.StatusType.Weakness)
                 {
                     cardData.strenght += effect.value;
+                    weaknessImage.gameObject.SetActive(false);
+                    weaknessNumberTurn.gameObject.SetActive(true);
+                }
+                else if (key == StatusEffect.StatusType.Regeneration)
+                {
+                    regenImage.gameObject.SetActive(true);
+                    regenNumberTurn.gameObject.SetActive(true);
                 }
             }
             else
@@ -264,12 +294,14 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
                 activeEffects[key] = (effect.value, newTurns);
             }
         }
-        // Remove expired effects
+
+        // Supprime les effets expirés
         foreach (var status in toRemove)
         {
             activeEffects.Remove(status);
             Debug.Log($"Status {status} expired.");
         }
+
 
         UpdatePlayerEvent();
         CardDisplay.UpdateAllCards(cardData.strenght);

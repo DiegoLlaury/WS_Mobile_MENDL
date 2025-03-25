@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf090ec687b880548ad57fc4d43235f0, type: 3}
   m_Name: Square 13
   m_EditorClassIdentifier: 
-  cardName: Infiltration Attack
+  cardName: Charge Rapide
   cardType: 2
   statType: 03000000
   dropType: 00000000

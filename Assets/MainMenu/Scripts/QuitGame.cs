@@ -31,5 +31,6 @@ public class QuitGame : MonoBehaviour
     public void LaunchGame()
     {
        SceneManager.LoadScene("MacroScene");
+        GameManager.isGameStarted = false;
     }
 }

@@ -6,6 +6,7 @@ using WS_DiegoCo_Event;
 using WS_DiegoCo_Enemy;
 using WS_DiegoCo;
 using UnityEngine.Rendering;
+using NUnit.Framework.Internal.Commands;
 
 
 public class EnemyManager : MonoBehaviour
@@ -18,7 +19,7 @@ public class EnemyManager : MonoBehaviour
     public GameObject enemyPrefab;
 
     [SerializeField] private int defenseEnemy = 2;
-    [SerializeField] private int debuffAttack = -1;
+    [SerializeField] private int debuffAttack = 1;
     [SerializeField] private int buffAttack = 1;
     [SerializeField] private int buffPerception = 3;
     [SerializeField] private int debuffPerception = -2;
@@ -31,6 +32,8 @@ public class EnemyManager : MonoBehaviour
     public float moveDuration = 0.5f;
 
     public List<GameObject> enemiesInBoard = new List<GameObject>();
+    private List<int> enemyActions = new List<int>();
+    private int actionEnemy;
 
     void Awake()
     {
@@ -48,18 +51,6 @@ public class EnemyManager : MonoBehaviour
     {
         UpdateEnemiesPosition();
     }
-
-    //public void PrepareEnemyActions(EventBattle combatEvent)
-    //{
-    //    foreach (EnemyDisplay enemy in enemies)
-    //    {
-    //        enemy.nextAction = GetActionByProbability(combatEvent.eventDifficulty, combatEvent.eventType);
-    //        if (enemy.enemyData.perception >= 10) // Exemple de seuil pour révéler l'action
-    //        {
-    //            Debug.Log($"{enemy.enemyData.enemyName} prépare une action: {enemy.nextAction}");
-    //        }
-    //    }
-    //}
 
     public void StartCombat(EventBattle combatEvent)
     {
@@ -124,6 +115,11 @@ public class EnemyManager : MonoBehaviour
 
         while (elapsedTime < moveDuration)
         {
+            if (card == null)  // Vérifie à chaque frame
+            {
+                Debug.LogWarning("AnimateCardMovement: Card was destroyed during animation.");
+                yield break;
+            }
 
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / moveDuration;
@@ -155,13 +151,38 @@ public class EnemyManager : MonoBehaviour
         return Quaternion.Euler(0f, 0f, rotationAngle);
     }
 
+    public void GenerateEnemyActions(EventBattle.EventDifficulty difficulty, EventBattle.EventType eventType)
+    {
+        enemyActions.Clear();  // Reset les actions précédentes
+
+        foreach (var enemy in enemies)
+        {
+            int action = GetActionByProbability(difficulty, eventType);
+            enemyActions.Add(action);
+            enemy.UpdateIntentionImage(action);
+            Debug.Log($"{enemy.enemyData.enemyName} va faire l'action : {action}");
+        }
+    }
+
+    public void UpdateEnemyIntentions()
+    {
+       for (int i = 0; i < enemies.Count; i++)
+       {
+           EnemyDisplay enemy = enemies[i];
+           int actionType = enemyActions[i];
+
+           enemy.UpdateIntentionImage(actionType);
+       }   
+    }
+
     public IEnumerator EnemyTurn(EventBattle eventBattle)
     {
         Debug.Log("Enemy Turn Start");
         List<EnemyDisplay> enemiesToRemove = new List<EnemyDisplay>();
 
-        foreach (EnemyDisplay enemy in enemies)
+        for (int i = 0; i < enemies.Count; i++)
         {
+            EnemyDisplay enemy = enemies[i];
 
             enemy.ProcessTurnEffects(false);
             if (enemy.enemyData.health <= 0)
@@ -169,18 +190,22 @@ public class EnemyManager : MonoBehaviour
                 enemiesToRemove.Add(enemy);
                 continue;
             }
+
+            // Utilise l'action générée à l'avance
+            int actionType = enemyActions[i];
+
             switch (eventBattle.eventType)
             {
                 case EventBattle.EventType.Combat:
-                    PerformActionBattle(enemy, eventBattle.eventDifficulty);
+                    PerformActionBattle(enemy, eventBattle.eventDifficulty, actionType);
                     break;
 
                 case EventBattle.EventType.Infiltration:
-                    PerformActionInfiltration(enemy, eventBattle.eventDifficulty);
+                    PerformActionInfiltration(enemy, eventBattle.eventDifficulty, actionType);
                     break;
 
                 case EventBattle.EventType.Enquete:
-                    PerformActionInvestigation(enemy, eventBattle.eventDifficulty);
+                    PerformActionInvestigation(enemy, eventBattle.eventDifficulty, actionType);
                     break;
             }
 
@@ -189,7 +214,6 @@ public class EnemyManager : MonoBehaviour
             yield return new WaitForSeconds(0.75f);
             enemy.enemyIdleImage.sprite = enemy.enemyData.enemyIdleImage;
             yield return new WaitForSeconds(0.5f);
-
         }
 
         foreach (EnemyDisplay enemy in enemiesToRemove)
@@ -200,9 +224,8 @@ public class EnemyManager : MonoBehaviour
         BattleManager.Instance.EndEnemyTurn();
     }
 
-    private void PerformActionBattle(EnemyDisplay enemy, EventBattle.EventDifficulty difficulty)
+    private void PerformActionBattle(EnemyDisplay enemy, EventBattle.EventDifficulty difficulty, int actionCombatType)
     {
-        int actionCombatType = GetActionByProbability(difficulty, EventBattle.EventType.Combat);
 
         switch (actionCombatType)
         {
@@ -222,7 +245,7 @@ public class EnemyManager : MonoBehaviour
                 break;
 
             case 3: // Debuff
-                BattleManager.Instance.player.ApplyDebuff(Card.StatType.damage, debuffAttack);
+                BattleManager.Instance.player.ApplyStatus(StatusEffect.StatusType.Weakness, debuffAttack, 1, enemy);
                 Debug.Log($"{enemy.enemyData.enemyName} weakens the player!");
                 break;
         }
@@ -230,10 +253,8 @@ public class EnemyManager : MonoBehaviour
         enemy.UpdateEnemyDisplay();
     }
 
-    private void PerformActionInfiltration(EnemyDisplay enemy, EventBattle.EventDifficulty difficulty)
+    private void PerformActionInfiltration(EnemyDisplay enemy, EventBattle.EventDifficulty difficulty, int actionInfiltrationType)
     {
-        int actionInfiltrationType = GetActionByProbability(difficulty, EventBattle.EventType.Infiltration);
-
         switch (actionInfiltrationType)
         {
             case 0:
@@ -253,10 +274,8 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    private void PerformActionInvestigation(EnemyDisplay enemy, EventBattle.EventDifficulty difficulty)
+    private void PerformActionInvestigation(EnemyDisplay enemy, EventBattle.EventDifficulty difficulty, int actionInvestigationType)
     {
-        int actionInvestigationType = GetActionByProbability(difficulty, EventBattle.EventType.Enquete);
-
         switch (actionInvestigationType)
         {
             case 0:
@@ -308,7 +327,7 @@ public class EnemyManager : MonoBehaviour
         enemies.Clear();
     }
 
-    private int GetActionByProbability(EventBattle.EventDifficulty difficulty, EventBattle.EventType eventType)
+    public int GetActionByProbability(EventBattle.EventDifficulty difficulty, EventBattle.EventType eventType)
     {
         int[] probabilities;
 
@@ -357,6 +376,7 @@ public class EnemyManager : MonoBehaviour
             cumulative += probabilities[i];
             if (roll < cumulative)
             {
+                Debug.Log(i);
                 return i;
             }
         }
