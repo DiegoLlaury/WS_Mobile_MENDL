@@ -29,7 +29,10 @@ public class HandManagerMacro : MonoBehaviour
 
         // Assign card data
         CardMiddleDisplay display = newCard.GetComponent<CardMiddleDisplay>();
-
+        if (display != null)
+        {
+            display.cardData = cardData;
+        }
         // Add to hand
         cardsInHand.Add(newCard);
         //display.UpdateAllCards();
