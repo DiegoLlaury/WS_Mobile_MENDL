@@ -61,6 +61,7 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         enemyData.discretion = enemyData.maxDiscretion;
         enemyData.perception = enemyData.maxPerception;
         enemyData.defense = enemyData.maxDefense;
+        enemyIdleImage.sprite = enemyData.enemyIdleImage;
         isNextAttackHeal = false;
         UpdateEnemyDisplay();
     }
@@ -73,9 +74,7 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         damageText.text = enemyData.damage.ToString();
         perceptionText.text = enemyData.perception.ToString();
         discretionText.text = enemyData.discretion.ToString();
-        enemyIdleImage.sprite = enemyData.enemyIdleImage;
-        enemyAttackImage.sprite = enemyData.enemyAttackImage;
-        enemyDamagedImage.sprite = enemyData.enemyDamagedImage;
+
 
         combatStatPanel.SetActive(currentEventType == EventBattle.EventType.Combat);
         infiltrationStatPanel.SetActive(currentEventType == EventBattle.EventType.Infiltration);
@@ -130,6 +129,7 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
     {
         // 1. Changement de couleur vers le rouge
         enemyIdleImage.color = damageColor;
+        enemyIdleImage.sprite = enemyData.enemyDamagedImage;
 
         // 2. Tremblement
         float elapsedTime = 0f;
@@ -138,6 +138,7 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         {
             Vector3 randomOffset = UnityEngine.Random.insideUnitSphere * shakeIntensity;
             randomOffset.z = 0;  // Évite de bouger sur l'axe Z si en 2D
+
             enemyIdleImage.transform.localPosition = originalPosition + randomOffset;
 
             elapsedTime += Time.deltaTime;
@@ -147,6 +148,7 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         // 3. Remettre en place l'image et la couleur d'origine
         enemyIdleImage.transform.localPosition = originalPosition;
         enemyIdleImage.color = originalColor;
+        enemyIdleImage.sprite = enemyData.enemyIdleImage;
     }
 
     public void GainShield(int amount)

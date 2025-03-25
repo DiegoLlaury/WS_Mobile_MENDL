@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: gang2
   maxHealth: 20
-  health: 20
+  health: 17
   maxDefense: 0
   defense: 0
   maxDamage: 5
@@ -23,6 +23,6 @@ MonoBehaviour:
   discretion: 0
   maxPerception: 0
   perception: 0
-  enemyIdleImage: {fileID: 21300000, guid: 508da9b1254fd6c458b1549e26192df1, type: 3}
-  enemyAttackImage: {fileID: 21300000, guid: 508da9b1254fd6c458b1549e26192df1, type: 3}
-  enemyDamagedImage: {fileID: 21300000, guid: 508da9b1254fd6c458b1549e26192df1, type: 3}
+  enemyIdleImage: {fileID: 21300000, guid: 06ae62479ea32b74cb28b1066f9b9d79, type: 3}
+  enemyAttackImage: {fileID: 21300000, guid: 25320657e728a6645a64e771026e2b51, type: 3}
+  enemyDamagedImage: {fileID: 21300000, guid: ee93e1abfb493f34ba9d2a0a453d3fe3, type: 3}
