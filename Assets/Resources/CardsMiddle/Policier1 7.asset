@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 524e95997e76bc040bd048661d06e8c2, type: 3}
-  m_Name: Policier1
+  m_Name: Policier1 7
   m_EditorClassIdentifier: 
-  cardName: Mathias
+  cardName: Gilbert
   description: Mange des donuts
   statType: 
   symbolTypes: 1
-  health: 10
-  maxHealth: 10
+  health: 85
+  maxHealth: 85
   maxDefense: 0
   defense: 0
   maxStrenght: 0
@@ -26,10 +26,10 @@ MonoBehaviour:
   discretion: 0
   maxPerception: 0
   perception: 0
-  heart: 3
-  square: 8
+  heart: 8
+  square: 4
   spade: 12
-  clover: 7
+  clover: 6
   skillLevel: 0
-  corruption: 0
+  corruption: 1
   cardImage: {fileID: 21300000, guid: 508da9b1254fd6c458b1549e26192df1, type: 3}
