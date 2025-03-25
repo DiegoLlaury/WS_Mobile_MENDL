@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using WS_DiegoCo_Middle;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.SceneManagement;
 
 public class CardMiddleDisplay : MonoBehaviour
 {

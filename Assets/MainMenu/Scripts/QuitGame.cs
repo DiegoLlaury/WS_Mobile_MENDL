@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class QuitGame : MonoBehaviour
 {
     public GameObject quitPopup; // Assigne le panel de confirmation depuis l'éditeur
+    public GameObject playPopup;
 
     public void Quitter()
     {
@@ -24,5 +26,10 @@ public class QuitGame : MonoBehaviour
     {
         // Désactiver la popup si l'utilisateur annule
         quitPopup.SetActive(false);
+    }
+    
+    public void LaunchGame()
+    {
+       SceneManager.LoadScene("MacroScene");
     }
 }
