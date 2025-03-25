@@ -20,11 +20,12 @@ MonoBehaviour:
   enemies:
   - {fileID: 11400000, guid: 7c61995196e4de64a8f7eca48fcbe5ef, type: 2}
   nextEvent: {fileID: 11400000, guid: f871cffe067fd4b48a5cd912b1b57c5c, type: 2}
+  affectedCharacter: {fileID: 0}
   boss: 0
   description: Infiltre l'hopital.
   eventName: Hopital
   location: Hopital
-  background: {fileID: 0}
+  background: {fileID: 995473497027029406, guid: 028cee480866e3641bbe479a61dad491, type: 3}
   remainingAttempts: 4
   MaxAttempts: 4
   isResolved: 1

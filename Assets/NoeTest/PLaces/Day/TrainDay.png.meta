@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8d76d2ad929a57444ab97ecea2a31aa0
+guid: 828d4644c85115f47bd1d9e4dd3db41f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -594326695483482949
-    second: PiqueIcon_0
+      213: 848032202879402619
+    second: TrainDay_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PiqueIcon_0
+      name: TrainDay_0
       rect:
         serializedVersion: 2
-        x: 33
-        y: 17
-        width: 372
-        height: 403
+        x: 0
+        y: 0
+        width: 1456
+        height: 816
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bbcdc23f40780c7f0800000000000000
-      internalID: -594326695483482949
+      spriteID: b7208b2abc0d4cb00800000000000000
+      internalID: 848032202879402619
       vertices: []
       indices: 
       edges: []
@@ -147,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      PiqueIcon_0: -594326695483482949
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

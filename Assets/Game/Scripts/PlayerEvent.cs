@@ -28,9 +28,10 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     public TMP_Text perceptionText;
     public TMP_Text currentTurnText;
 
-    public Image[] backgroundBattle;
     public GameObject widgetLost;
     public GameObject widgetWin;
+
+    public Image backgroundImage;
 
     [SerializeField] private int healthRatio = 5;
 
@@ -55,16 +56,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         cardData.perception = cardData.maxPerception;
         cardData.defense = currentDefense;
 
-        foreach (Image img in backgroundBattle)
-        {
-            img.gameObject.SetActive(false); // Deactivate all type images first
-        }
-
-        //int typeIndex = (int)GameManager.currentEvent.eventPlace;
-        //if (typeIndex >= 0 && typeIndex < backgroundBattle.Length)
-        //{
-        //    backgroundBattle[typeIndex].gameObject.SetActive(true);
-        //}
+        backgroundImage.sprite = GameManager.currentEvent.background;
 
         GameManager.currentEvent.currentTurn = GameManager.currentEvent.numberTurn;
         UpdatePlayerEvent();

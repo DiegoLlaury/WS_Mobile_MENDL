@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TrefleIcon_0: 6867641260490534626
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
