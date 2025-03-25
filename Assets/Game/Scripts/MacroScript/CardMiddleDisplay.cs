@@ -10,18 +10,30 @@ public class CardMiddleDisplay : MonoBehaviour
     public CardMiddle cardData;
     
     public Image cardImage;
+    public Image backRedImage;
+    public Image backBlackImage;
+
     public TMP_Text heartText;
     public TMP_Text squareText;
     public TMP_Text spadeText;
     public TMP_Text cloverText;
 
+    public Image heartImage;
+    public Image squareImage;
+    public Image spadeImage;
+    public Image cloverImage;
+
     public Transform gridMainStat;   // Référence à GridMainStat
     public Transform gridOtherStat;  // Référence à GridOtherStat
+    public Transform gridMainImage;
+    public Transform gridOtherImage;
 
     public Image[] typeImages;
 
     private void Start()
     {
+        backBlackImage.gameObject.SetActive(false);
+        backRedImage.gameObject.SetActive(false);
         cardData.health = cardData.maxHealth;
         cardData.strenght = cardData.maxStrenght;
         cardData.discretion = cardData.maxDiscretion;
@@ -102,6 +114,10 @@ public class CardMiddleDisplay : MonoBehaviour
         squareText.transform.SetParent(gridOtherStat);
         spadeText.transform.SetParent(gridOtherStat);
         cloverText.transform.SetParent(gridOtherStat);
+        heartImage.transform.SetParent(gridOtherImage);
+        squareImage.transform.SetParent(gridOtherImage);
+        spadeImage.transform.SetParent(gridOtherImage);
+        cloverImage.transform.SetParent(gridOtherImage);
 
         // Place la stat principale dans GridMainStat
         switch (cardData.symbolTypes)
@@ -111,6 +127,13 @@ public class CardMiddleDisplay : MonoBehaviour
                 spadeText.transform.SetSiblingIndex(0);
                 squareText.transform.SetSiblingIndex(1);
                 cloverText.transform.SetSiblingIndex(2);
+
+                heartImage.transform.SetParent(gridMainImage);
+                spadeImage.transform.SetSiblingIndex(0);
+                squareImage.transform.SetSiblingIndex(1);
+                cloverImage.transform.SetSiblingIndex(2);
+                
+                backRedImage.gameObject.SetActive(true);
                 break;
 
             case CardMiddle.SymbolTypes.Square:
@@ -118,6 +141,13 @@ public class CardMiddleDisplay : MonoBehaviour
                 spadeText.transform.SetSiblingIndex(0);
                 heartText.transform.SetSiblingIndex(1);
                 cloverText.transform.SetSiblingIndex(2);
+
+                squareImage.transform.SetParent(gridMainImage);
+                spadeImage.transform.SetSiblingIndex(0);
+                heartImage.transform.SetSiblingIndex(1);
+                cloverImage.transform.SetSiblingIndex(2);
+
+                backRedImage.gameObject.SetActive(true);
                 break;
 
             case CardMiddle.SymbolTypes.Spade:
@@ -125,6 +155,14 @@ public class CardMiddleDisplay : MonoBehaviour
                 heartText.transform.SetSiblingIndex(0);
                 cloverText.transform.SetSiblingIndex(1);
                 squareText.transform.SetSiblingIndex(2);
+
+                spadeImage.transform.SetParent(gridMainImage);
+                heartImage.transform.SetSiblingIndex(0);
+                cloverImage.transform.SetSiblingIndex(1);
+                squareImage.transform.SetSiblingIndex(2);
+
+                backBlackImage.gameObject.SetActive(true);
+
                 break;
 
             case CardMiddle.SymbolTypes.Clover:
@@ -132,6 +170,13 @@ public class CardMiddleDisplay : MonoBehaviour
                 heartText.transform.SetSiblingIndex(0);
                 spadeText.transform.SetSiblingIndex(1);
                 squareText.transform.SetSiblingIndex(2);
+
+                cloverImage.transform.SetParent(gridMainImage);
+                heartImage.transform.SetSiblingIndex(0);
+                spadeImage.transform.SetSiblingIndex(1);
+                squareImage.transform.SetSiblingIndex(2);
+
+                backBlackImage.gameObject.SetActive(true);
                 break;
         }
 
