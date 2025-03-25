@@ -169,23 +169,26 @@ public class EnemyManager : MonoBehaviour
                 enemiesToRemove.Add(enemy);
                 continue;
             }
-                switch (eventBattle.eventType)
-                {
-                    case EventBattle.EventType.Combat:
-                        PerformActionBattle(enemy, eventBattle.eventDifficulty);
-                        break;
+            switch (eventBattle.eventType)
+            {
+                case EventBattle.EventType.Combat:
+                    PerformActionBattle(enemy, eventBattle.eventDifficulty);
+                    break;
 
-                    case EventBattle.EventType.Infiltration:
-                        PerformActionInfiltration(enemy, eventBattle.eventDifficulty);
-                        break;
+                case EventBattle.EventType.Infiltration:
+                    PerformActionInfiltration(enemy, eventBattle.eventDifficulty);
+                    break;
 
-                    case EventBattle.EventType.Enquete:
-                        PerformActionInvestigation(enemy, eventBattle.eventDifficulty);
-                        break;
-                }
+                case EventBattle.EventType.Enquete:
+                    PerformActionInvestigation(enemy, eventBattle.eventDifficulty);
+                    break;
+            }
 
-                enemy.ProcessTurnEffects(true);
-                yield return new WaitForSeconds(1f);
+            enemy.ProcessTurnEffects(true);
+            enemy.enemyIdleImage.sprite = enemy.enemyData.enemyAttackImage;
+            yield return new WaitForSeconds(0.75f);
+            enemy.enemyIdleImage.sprite = enemy.enemyData.enemyIdleImage;
+            yield return new WaitForSeconds(0.5f);
 
         }
 
