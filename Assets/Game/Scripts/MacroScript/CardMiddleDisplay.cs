@@ -27,6 +27,8 @@ public class CardMiddleDisplay : MonoBehaviour
     public Transform gridMainImage;
     public Transform gridOtherImage;
 
+    private bool firstRandom = true;
+
     public Image[] typeImages;
 
     private void Start()
@@ -37,7 +39,13 @@ public class CardMiddleDisplay : MonoBehaviour
         cardData.strenght = cardData.maxStrenght;
         cardData.discretion = cardData.maxDiscretion;
         cardData.perception = cardData.maxPerception;
-        GenerateRandomStats();
+        
+        if (firstRandom)
+        {
+            GenerateRandomStats();
+            firstRandom = false;
+        }
+
         UpdateCardMiddle();
     }
 

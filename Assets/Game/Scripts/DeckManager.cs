@@ -16,7 +16,7 @@ public class DeckManager : MonoBehaviour
     {
         handManager = FindAnyObjectByType<HandManager>();
         //playerStats = FindAnyObjectByType<CardMiddle>();
-
+        playerStats.cardData = GameManager.selectedCard;
         if (playerStats == null)  //  Prevent errors if playerStats isn't found
         {
             Debug.LogError(" Error: CardMiddle (playerStats) is missing! Deck cannot be created.");
