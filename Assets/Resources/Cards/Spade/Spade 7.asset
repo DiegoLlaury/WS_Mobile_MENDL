@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Triple Damage
   cardType: 1
   statType: 02000000
-  dropType: 01000000
+  dropType: 00000000
   health: 0
   defense: 0
   damage: 0

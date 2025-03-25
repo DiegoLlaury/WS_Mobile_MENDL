@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using WS_DiegoCo;
 
@@ -32,15 +33,16 @@ public class DiscardEffect : CardEffect
                 break;
 
             case DiscardType.DiscardRandom:
-                cardsToDiscard = GetRandomCards(hand, 1);
+                cardsToDiscard = GetRandomCards(hand, 1, cardData);
                 break;
 
             case DiscardType.DiscardAll:
                 cardsToDiscard.AddRange(hand.cardsInHand);
+                drawAmountAfterDiscard = cardsToDiscard.Count-1;
                 break;
 
             case DiscardType.DiscardNumber:
-                cardsToDiscard = GetRandomCards(hand, discardNumber);
+                cardsToDiscard = GetRandomCards(hand, 1, cardData);
                 break;
         }
 
@@ -52,7 +54,11 @@ public class DiscardEffect : CardEffect
             CardDisplay display = cardObj.GetComponent<CardDisplay>();
             if (display != null)
             {
-                deck.DiscardCard(display.cardData); // Move the actual card data to the discard pile
+                Debug.Log(display.cardData.name);
+                if (display.cardData != cardData)
+                {
+                    deck.DiscardCard(display.cardData); // Move the actual card data to the discard pile
+                }
             }
             hand.RemoveCardFromHand(cardObj); // Properly removes from hand
             discardedCount++;
@@ -90,16 +96,24 @@ public class DiscardEffect : CardEffect
         return result;
     }
 
-    private List<GameObject> GetRandomCards(HandManager hand, int count)
+    private List<GameObject> GetRandomCards(HandManager hand, int count, Card cardData)
     {
         List<GameObject> result = new List<GameObject>(hand.cardsInHand);
         List<GameObject> selected = new List<GameObject>();
-
-        for (int i = 0; i < count && result.Count > 0; i++)
+        
+        while (selected.Count != count)
         {
-           int randomIndex = Random.Range(0, result.Count);
-           selected.Add(result[randomIndex]);
-           result.RemoveAt(randomIndex);
+            int randomIndex = Random.Range(0, result.Count - 1);
+            if (result[randomIndex].GetComponent<CardDisplay>().cardData != cardData)
+            {
+                selected.Add(result[randomIndex]);
+                result.RemoveAt(randomIndex);
+            }
+
+            if (result.Count <= 1)
+            {
+                return selected;
+            }
         }
         return selected;
     }
