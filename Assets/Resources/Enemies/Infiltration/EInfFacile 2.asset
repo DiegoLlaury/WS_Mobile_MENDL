@@ -30,5 +30,5 @@ MonoBehaviour:
   defenseImage: {fileID: -604943165, guid: 847f3e08157367e458aec63415b2d664, type: 3}
   buffImage: {fileID: -503176371265989259, guid: b5408f5132379d244919c99c95b4fc31, type: 3}
   debuffImage: {fileID: -650786412, guid: 847f3e08157367e458aec63415b2d664, type: 3}
-  rondeImage: {fileID: 21300000, guid: ab422f9a1393e874a8844d863ce96790, type: 3}
-  questionImage: {fileID: -1915229303, guid: 847f3e08157367e458aec63415b2d664, type: 3}
+  rondeImage: {fileID: 21300000, guid: fa2ccd790c03ef04ab16d039593bce4e, type: 3}
+  questionImage: {fileID: 21300000, guid: af83b56d652874c45858f82fe7fec212, type: 3}

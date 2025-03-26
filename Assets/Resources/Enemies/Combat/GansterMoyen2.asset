@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: gang2
   maxHealth: 20
-  health: 20
+  health: -2
   maxDefense: 0
   defense: 0
   maxDamage: 3
@@ -26,9 +26,9 @@ MonoBehaviour:
   enemyIdleImage: {fileID: 21300000, guid: 06ae62479ea32b74cb28b1066f9b9d79, type: 3}
   enemyAttackImage: {fileID: 21300000, guid: 25320657e728a6645a64e771026e2b51, type: 3}
   enemyDamagedImage: {fileID: 21300000, guid: ee93e1abfb493f34ba9d2a0a453d3fe3, type: 3}
-  attackImage: {fileID: -1190951230, guid: 847f3e08157367e458aec63415b2d664, type: 3}
-  defenseImage: {fileID: -604943165, guid: 847f3e08157367e458aec63415b2d664, type: 3}
-  buffImage: {fileID: -503176371265989259, guid: b5408f5132379d244919c99c95b4fc31, type: 3}
-  debuffImage: {fileID: -650786412, guid: 847f3e08157367e458aec63415b2d664, type: 3}
-  rondeImage: {fileID: 21300000, guid: ab422f9a1393e874a8844d863ce96790, type: 3}
-  questionImage: {fileID: -1915229303, guid: 847f3e08157367e458aec63415b2d664, type: 3}
+  attackImage: {fileID: 21300000, guid: 79c48be568ecf404fa83e27d7351d169, type: 3}
+  defenseImage: {fileID: 21300000, guid: e112e085a2687814b9c7a1ed5568ebf2, type: 3}
+  buffImage: {fileID: 21300000, guid: 0cd800206a80734429b41f9761121f00, type: 3}
+  debuffImage: {fileID: 21300000, guid: f69ddd5025d46344da6b3fdf539f9cbf, type: 3}
+  rondeImage: {fileID: 21300000, guid: fa2ccd790c03ef04ab16d039593bce4e, type: 3}
+  questionImage: {fileID: 21300000, guid: af83b56d652874c45858f82fe7fec212, type: 3}
