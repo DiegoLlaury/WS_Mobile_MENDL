@@ -4,7 +4,6 @@ using WS_DiegoCo;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEngine.EventSystems;
 
 public class HandManager : MonoBehaviour
 {
@@ -12,13 +11,11 @@ public class HandManager : MonoBehaviour
     public GameObject cardPrefab; //Assign card prefab in inspector
     public Transform handTransform; //Root of the hand position
     public Transform deckTransform;
-    public GameObject hoveredCard = null;
 
     public float fanSpread = 5f;
     public float cardSpacing = 100f;
     public float verticalSpacing = 10f;
     public float moveDuration = 0.5f;
-    public float hoverPushDistance = 50f;
 
     public List<GameObject> cardsInHand = new List<GameObject>(); //Hold a list of th card objects in our hand
 
@@ -48,34 +45,7 @@ public class HandManager : MonoBehaviour
         UpdateCardPositions();
     }
 
-    public void SetHoveredCard(GameObject newHoveredCard)
-    {
-        if (hoveredCard != newHoveredCard)
-        {
-            // Réinitialise la carte précédente si elle existe
-            if (hoveredCard != null)
-            {
-                CardMovement previousCard = hoveredCard.GetComponent<CardMovement>();
-                if (previousCard != null)
-                {
-                    previousCard.TransitionToState0();
-                }
-            }
 
-            // Mets à jour la carte actuellement survolée
-            hoveredCard = newHoveredCard;
-            UpdateCardPositions();
-        }
-    }
-
-    public void ClearHoveredCard(GameObject card)
-    {
-        if (hoveredCard == card)
-        {
-            hoveredCard = null;
-            UpdateCardPositions();  // Remet la main en place quand la souris quitte
-        }
-    }
 
     private void UpdateCardPositions()
     {
@@ -84,12 +54,9 @@ public class HandManager : MonoBehaviour
 
         for (int i = 0; i < cardCount; i++)
         {
-            GameObject card = cardsInHand[i];
-            if (card == hoveredCard) continue;  // Ne touche pas à la carte survolée
-
             Vector3 targetPos = CalculateCardPosition(i, cardCount);
             Quaternion targetRot = CalculateCardRotation(i, cardCount);
-            StartCoroutine(AnimateCardMovement(card, targetPos, targetRot));
+            StartCoroutine(AnimateCardMovement(cardsInHand[i], targetPos, targetRot));
         }
     }
 
