@@ -10,17 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1ef220b67029e442afdad0b4138c8a6, type: 3}
-  m_Name: BOSSSSS
+  m_Name: BOSSSSSEVENT
   m_EditorClassIdentifier: 
   eventType: 0
   eventDifficulty: 2
   numberTurn: 20
-  currentTurn: 20
+  currentTurn: 5
   conditionNumber: 25
   enemies:
-  - {fileID: 11400000, guid: 14b3053bf2872c24386c5661fad8ceab, type: 2}
   - {fileID: 11400000, guid: ee6b44b13018f9f46a50e69be3bce33a, type: 2}
-  - {fileID: 11400000, guid: e53a6d781a007a14f963ea13de072612, type: 2}
   nextEvent: {fileID: 11400000, guid: f871cffe067fd4b48a5cd912b1b57c5c, type: 2}
   affectedCharacter: {fileID: 11400000, guid: 0dba3ae4bbb3c0d4c92c36d572f2b229, type: 2}
   boss: 1
