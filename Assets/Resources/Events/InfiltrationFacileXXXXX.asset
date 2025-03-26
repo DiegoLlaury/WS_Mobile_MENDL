@@ -10,19 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1ef220b67029e442afdad0b4138c8a6, type: 3}
-  m_Name: EnqueteFacile X
+  m_Name: InfiltrationFacileXXXXX
   m_EditorClassIdentifier: 
-  eventType: 2
+  eventType: 1
   eventDifficulty: 0
   numberTurn: 15
-  currentTurn: 14
+  currentTurn: 1
   conditionNumber: 25
   enemies:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 6b433b65d060f414a9334035422be582, type: 2}
+  - {fileID: 11400000, guid: cff968549b40e2f468c9cc5cc531881a, type: 2}
   nextEvent: {fileID: 11400000, guid: f871cffe067fd4b48a5cd912b1b57c5c, type: 2}
-  affectedCharacter: {fileID: 11400000, guid: 76132a84c459ca242925e0c3234b7bfd, type: 2}
+  affectedCharacter: {fileID: 11400000, guid: 0119d751a19d255408617dd4f6a6925f, type: 2}
   boss: 0
-  description: CombatDiff
+  description: enquetefacile
   eventName: Hopital
   location: Hopital
   background: {fileID: 995473497027029406, guid: 028cee480866e3641bbe479a61dad491, type: 3}
