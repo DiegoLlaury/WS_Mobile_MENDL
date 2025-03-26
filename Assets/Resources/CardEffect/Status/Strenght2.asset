@@ -15,7 +15,7 @@ MonoBehaviour:
   shouldReturnToHand: 0
   statusType: 3
   value: 3
-  duration: 1
+  duration: 2
   applyToPlayer: 1
   applyToEnemy: 0
   NumberOfdamage: 0
