@@ -987,6 +987,7 @@ MonoBehaviour:
   shakeIntensity: 10
   shakeDuration: 0.5
   damageColor: {r: 1, g: 0, b: 0, a: 1}
+  perceptionLimit: 0
   HealthTransform: {fileID: 6166843407719817221}
   DefenseTransform: {fileID: 797889073832306945}
   AttackTransform: {fileID: 4076612068665919233}

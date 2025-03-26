@@ -292,22 +292,27 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
                 // Annule les effets permanents
                 if (key == StatusEffect.StatusType.Strength)
                 {
-                    cardData.strenght -= effect.value;
+                    cardData.strenght -= effect.value;  // Retire uniquement la valeur de cet effet précis
                     StartCoroutine(ScaleAnimation(PlayerAttack, 1.5f, 0.5f, 0f));
-                    strengthImage.gameObject.SetActive(false);
-                    strengthNumberTurn.gameObject.SetActive(false);
+
+                    if (activeEffects.Count(e => e.Key == StatusEffect.StatusType.Strength) == 1)
+                    {
+                        // Désactive l'icône uniquement quand tous les effets de force sont terminés
+                        strengthImage.gameObject.SetActive(false);
+                        strengthNumberTurn.gameObject.SetActive(false);
+                    }
                 }
                 else if (key == StatusEffect.StatusType.Weakness)
                 {
                     cardData.strenght -= effect.value;
                     StartCoroutine(ScaleAnimation(PlayerAttack, 1.5f, 0.5f, 0f));
                     weaknessImage.gameObject.SetActive(false);
-                    weaknessNumberTurn.gameObject.SetActive(true);
+                    weaknessNumberTurn.gameObject.SetActive(false);
                 }
                 else if (key == StatusEffect.StatusType.Regeneration)
                 {
-                    regenImage.gameObject.SetActive(true);
-                    regenNumberTurn.gameObject.SetActive(true);
+                    regenImage.gameObject.SetActive(false);
+                    regenNumberTurn.gameObject.SetActive(false);
                 }
             }
             else

@@ -48,15 +48,9 @@ public class StatChangeEffect : CardEffect
                 break;
 
             case StatType.GainPerceptionButLostDiscretion:
-                if (player.cardData.discretion == 0)
-                {
-                 
-                }
-                else
-                {
+
                     player.GainPerception(player.cardData.discretion);
                     player.cardData.discretion = 0;
-                }
 
                 break;
 
@@ -83,15 +77,9 @@ public class StatChangeEffect : CardEffect
                 break;
 
             case StatType.GainDiscretionButLostPerception:
-                if (player.cardData.perception == 0)
-                {
-                   
-                }
-                else
-                {
+
                     player.GainInfiltration(player.cardData.perception);
                     player.cardData.perception = 0;
-                } 
                 break;
         }
     }
