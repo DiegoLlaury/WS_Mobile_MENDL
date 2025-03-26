@@ -50,7 +50,7 @@ public class StatChangeEffect : CardEffect
             case StatType.GainPerceptionButLostDiscretion:
                 if (player.cardData.discretion == 0)
                 {
-                    shouldReturnToHand = true;
+                 
                 }
                 else
                 {
@@ -85,7 +85,7 @@ public class StatChangeEffect : CardEffect
             case StatType.GainDiscretionButLostPerception:
                 if (player.cardData.perception == 0)
                 {
-                    shouldReturnToHand = true;
+                   
                 }
                 else
                 {

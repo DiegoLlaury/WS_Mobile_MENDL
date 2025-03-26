@@ -103,16 +103,16 @@ public class DiscardEffect : CardEffect
         
         while (selected.Count != count)
         {
-            int randomIndex = Random.Range(0, result.Count - 1);
+            if (result.Count <= 1)
+            {
+                break;
+            }
+
+            int randomIndex = Random.Range(0, result.Count);
             if (result[randomIndex].GetComponent<CardDisplay>().cardData != cardData)
             {
                 selected.Add(result[randomIndex]);
                 result.RemoveAt(randomIndex);
-            }
-
-            if (result.Count <= 1)
-            {
-                return selected;
             }
         }
         return selected;
