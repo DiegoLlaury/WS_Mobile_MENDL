@@ -107,7 +107,6 @@ public class EnemyManager : MonoBehaviour
     {
         if (card == null)
         {
-            Debug.LogWarning("AnimateCardMovement: Card is null before animation starts.");
             yield break;
         }
 
@@ -119,7 +118,6 @@ public class EnemyManager : MonoBehaviour
         {
             if (card == null)  // Vérifie à chaque frame
             {
-                Debug.LogWarning("AnimateCardMovement: Card was destroyed during animation.");
                 yield break;
             }
 

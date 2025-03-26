@@ -271,8 +271,6 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
                 {
                     toRemove.Add(key);
 
-                    if (endStatus)
-                    {
                         switch (key)
                         {
                             case StatusEffect.StatusType.Weakness:
@@ -285,8 +283,8 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
                                 Debug.Log($"Enemy {enemyData.enemyName} strength increased by {effect.value}.");
                                 break;
                         }
-                    }
-                }
+          
+                }          
                 else
                 {
                     activeEffects[key] = (effect.value, newTurns);
