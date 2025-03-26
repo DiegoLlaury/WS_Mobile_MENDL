@@ -34,7 +34,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
 
 
-    [SerializeField] private float selectScale = 1.1f;
+    [SerializeField] private float selectScale = 1.5f;
     [SerializeField] private GameObject glowEffect;
 
     void Awake()
@@ -63,12 +63,34 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+
         if (currentState == 0)
         {
             originalPosition = rectTransform.localPosition;
-            originalRotation = rectTransform.localRotation;
             originalScale = rectTransform.localScale;
-            currentState = 1;
+            originalRotation = rectTransform.localRotation;
+
+            // Passe au premier plan en changeant l'ordre des cartes (facultatif)
+            transform.SetAsLastSibling();
+
+            // Notifie le HandManager
+            if (handManager.hoveredCard != gameObject)
+            {
+                // Réinitialise l'état de la carte précédente, si elle existe
+                if (handManager.hoveredCard != null)
+                {
+                    CardMovement previousCard = handManager.hoveredCard.GetComponent<CardMovement>();
+                    if (previousCard != null)
+                    {
+                        previousCard.TransitionToState0(); // Réinitialise la carte précédente
+                    }
+                }
+
+                // Mets à jour la carte survolée
+                handManager.SetHoveredCard(gameObject);
+            }
+
+            // Animation de survol
             HandleHoverState();
         }
     }
@@ -78,15 +100,18 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         if (currentState == 1)
         {
             TransitionToState0();
+
+            handManager.ClearHoveredCard(gameObject);
+        }
+        else if (currentState == 0)
+        {
+            TransitionToState0();
         }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (currentState == 2)
-        {
-            TransitionToState0();
-        }
+        TransitionToState0();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -95,7 +120,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
         if (canvasGroup != null)
         {
-            canvasGroup.alpha = 0.5f;
+            canvasGroup.alpha = 0.8f;
             canvasGroup.blocksRaycasts = false;
             canvasGroup.interactable = false;
         }
@@ -105,7 +130,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
         if (cardDisplay != null && cardDisplay.cardData != null)
         {
-            Debug.Log($" Picked Up Card: {cardDisplay.cardData.cardName} (Instance ID: {cardDisplay.cardData.GetInstanceID()})");
+
         }
         else
         {
@@ -335,9 +360,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
         Destroy(gameObject);
     }
 
-    
-
-    private void TransitionToState0()
+    public void TransitionToState0()
     {
         currentState = 0;
         rectTransform.localScale = originalScale;
@@ -350,13 +373,22 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
             canvasGroup.interactable = true;
         }
 
-        glowEffect.SetActive(false);
+        if (glowEffect != null)
+        {
+            glowEffect.SetActive(false);
+        }
+
+        currentDraggedCard = null;
     }
 
     private void HandleHoverState()
     {
         glowEffect.SetActive(true);
         rectTransform.localScale = originalScale * selectScale;
+
+        // Lève la carte en avant
+        Vector3 hoverOffset = new Vector3(0f, 75f, 0f);
+        rectTransform.localPosition += hoverOffset;
     }
 }
 
