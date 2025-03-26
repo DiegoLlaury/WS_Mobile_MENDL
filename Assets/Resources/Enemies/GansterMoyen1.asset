@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: GansterMoyen1
   m_EditorClassIdentifier: 
   enemyName: gang1
-  maxHealth: 30
-  health: 30
+  maxHealth: 25
+  health: 0
   maxDefense: 2
-  defense: 2
+  defense: 0
   maxDamage: 2
-  damage: 2
+  damage: 5
   maxDiscretion: 0
   discretion: 0
   maxPerception: 0

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b9ed5673610c354291f61410240a6f3, type: 3}
-  m_Name: GansterMoyen3
+  m_Name: GansterDiff 2
   m_EditorClassIdentifier: 
-  enemyName: gang3
-  maxHealth: 15
-  health: -1
-  maxDefense: 0
+  enemyName: gang1
+  maxHealth: 25
+  health: 0
+  maxDefense: 2
   defense: 0
-  maxDamage: 4
+  maxDamage: 2
   damage: 5
   maxDiscretion: 0
   discretion: 0
