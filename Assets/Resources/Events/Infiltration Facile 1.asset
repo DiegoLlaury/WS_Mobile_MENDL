@@ -15,7 +15,7 @@ MonoBehaviour:
   eventType: 1
   eventDifficulty: 0
   numberTurn: 15
-  currentTurn: 15
+  currentTurn: 0
   conditionNumber: 25
   enemies:
   - {fileID: 11400000, guid: 6b433b65d060f414a9334035422be582, type: 2}

@@ -12,19 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1ef220b67029e442afdad0b4138c8a6, type: 3}
   m_Name: CombatDiff
   m_EditorClassIdentifier: 
-  eventType: 0
-  eventDifficulty: 2
+  eventType: 2
+  eventDifficulty: 0
   numberTurn: 20
   currentTurn: 20
-  conditionNumber: 20
+  conditionNumber: 25
   enemies:
-  - {fileID: 11400000, guid: 839efbfb5127cc245b383e7e413eadcd, type: 2}
-  - {fileID: 11400000, guid: e48d0d4581c21844abf1f20f91589897, type: 2}
-  - {fileID: 11400000, guid: a0de70a0a4ffbd7429dcfe4f1a95a8ae, type: 2}
+  - {fileID: 11400000, guid: cff968549b40e2f468c9cc5cc531881a, type: 2}
+  - {fileID: 11400000, guid: 6b433b65d060f414a9334035422be582, type: 2}
   nextEvent: {fileID: 11400000, guid: f871cffe067fd4b48a5cd912b1b57c5c, type: 2}
   affectedCharacter: {fileID: 11400000, guid: c0a4115fcece66f44a10254a61412e67, type: 2}
   boss: 0
-  description: CombatDiff
+  description: fefez
   eventName: Hopital
   location: Hopital
   background: {fileID: 995473497027029406, guid: 028cee480866e3641bbe479a61dad491, type: 3}
