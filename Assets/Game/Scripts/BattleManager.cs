@@ -59,6 +59,12 @@ public class BattleManager : MonoBehaviour
         if (!isPlayerTurn) return;
 
         isPlayerTurn = false;
+        for (int i = handManager.cardsInHand.Count - 1; i >= 0; i--)
+        {
+            GameObject card = handManager.cardsInHand[i];
+            handManager.RemoveCardFromHand(card);
+            deckManager.DiscardCard(card.GetComponent<CardDisplay>().cardData);
+        }
         //player.ProcessTurnEffects();
         CheckGameOver();
         player.TurnChange();
@@ -71,12 +77,6 @@ public class BattleManager : MonoBehaviour
         Debug.Log("Enemy Turn End");
         enemyManager.ProcessEnemyEffects();
 
-        for (int i = handManager.cardsInHand.Count - 1; i >= 0; i--)
-        {
-            GameObject card = handManager.cardsInHand[i];
-            handManager.RemoveCardFromHand(card);
-            deckManager.DiscardCard(card.GetComponent<CardDisplay>().cardData);
-        }
         StartPlayerTurn();
     }
 
