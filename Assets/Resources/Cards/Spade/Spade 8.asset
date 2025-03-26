@@ -24,6 +24,6 @@ MonoBehaviour:
   perception: 0
   energy: 1
   effect: Gagnez un bonus de Force pendant un tour.
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: 33b42ab716ef74c4c9a3d21e05a441b6, type: 3}
   effects:
   - {fileID: 11400000, guid: 623ea3efbbe27024a816e79e1a15fd10, type: 2}

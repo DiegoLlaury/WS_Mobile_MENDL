@@ -24,6 +24,6 @@ MonoBehaviour:
   perception: 0
   energy: 1
   effect: "R\xE9g\xE9n\xE9rez {health} PV si infiltration est sup\xE9rieur \xE0 10."
-  cardImage: {fileID: -605624883, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
+  cardImage: {fileID: 21300000, guid: c4ad09677494a604d96c6f4477b632f1, type: 3}
   effects:
   - {fileID: 11400000, guid: a0dafd3fce7cbf2459d8dcee5984a982, type: 2}

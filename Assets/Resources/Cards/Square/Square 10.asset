@@ -24,6 +24,6 @@ MonoBehaviour:
   perception: 0
   energy: 0
   effect: Piochez 1 carte par carte infiltration dans votre main (max 3).
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: 355059106f8cae449b8fd05b4fed0a83, type: 3}
   effects:
   - {fileID: 11400000, guid: ea99d56aee4039f44bf1a7b453c3ae58, type: 2}

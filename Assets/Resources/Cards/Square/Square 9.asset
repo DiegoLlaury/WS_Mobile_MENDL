@@ -24,6 +24,6 @@ MonoBehaviour:
   perception: 0
   energy: 2
   effect: Gagnez 1 de force par 2 d'infiltration, perdez 3 PV.
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: 6ef9177db964ecb4c97caa944cce9929, type: 3}
   effects:
   - {fileID: 11400000, guid: 6ab1bb1c8f74f444dbd6218d95d7eda2, type: 2}

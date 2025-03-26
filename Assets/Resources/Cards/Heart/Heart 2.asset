@@ -25,6 +25,6 @@ MonoBehaviour:
   energy: 2
   effect: "R\xE9g\xE9n\xE9rez des PV \xE9quivalents aux d\xE9g\xE2ts de la prochaine
     attaque."
-  cardImage: {fileID: -605624883, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
+  cardImage: {fileID: 21300000, guid: 4f0af6a5d307c524e95902b32d4cb3a5, type: 3}
   effects:
   - {fileID: 11400000, guid: 3573345f8eed42348bc728d58e74e0f3, type: 2}

@@ -24,6 +24,6 @@ MonoBehaviour:
   perception: 0
   energy: 1
   effect: Attaquez avec votre valeur de bouclier.
-  cardImage: {fileID: -605624883, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
+  cardImage: {fileID: 21300000, guid: 63ba4347843917341ae28ff95fcf0a20, type: 3}
   effects:
   - {fileID: 11400000, guid: 1be1ad6d49f588547ac6511a10458b46, type: 2}

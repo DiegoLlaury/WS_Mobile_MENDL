@@ -24,6 +24,6 @@ MonoBehaviour:
   perception: 5
   energy: 1
   effect: Gagnez {perception} perception.
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: 2b56ed97424419548863eba851529ce4, type: 3}
   effects:
   - {fileID: 11400000, guid: d586550180511cf469fe388d7fe9f14a, type: 2}

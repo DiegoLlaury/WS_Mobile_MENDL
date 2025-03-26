@@ -25,7 +25,7 @@ MonoBehaviour:
   energy: 2
   effect: "Infligez {damage} d\xE9gats \xE0 la cible et r\xE9g\xE9n\xE9rez {health}
     PV."
-  cardImage: {fileID: -605624883, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
+  cardImage: {fileID: 21300000, guid: 3ff092e97a839314a99b4b086bfce85a, type: 3}
   effects:
   - {fileID: 11400000, guid: 7f9fb8b7684ec49489366f9448f95469, type: 2}
   - {fileID: 11400000, guid: 5bb625690c2487d47bb9f7a80a94da6f, type: 2}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf090ec687b880548ad57fc4d43235f0, type: 3}
   m_Name: Clover 11
   m_EditorClassIdentifier: 
-  cardName: "\xC9valuation de la Sc\xE8ne"
+  cardName: "D\xE9tective Priv\xE9"
   cardType: 3
   statType: 04000000
   dropType: 00000000
@@ -25,6 +25,6 @@ MonoBehaviour:
   energy: 1
   effect: 'Si la perception est : \n paire : gagnez {perception} de perception,\n
     impaire : gagnez {discretion} d''infiltration.'
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: fe515ae79ca9e6847b3b52a51163bcae, type: 3}
   effects:
   - {fileID: 11400000, guid: 08ca0d952cee8a945b467946e50423f5, type: 2}

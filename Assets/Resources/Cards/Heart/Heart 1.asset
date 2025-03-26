@@ -24,6 +24,6 @@ MonoBehaviour:
   perception: 0
   energy: 2
   effect: Gagnez {defense} de bouclier pendant 2 tours.
-  cardImage: {fileID: -605624883, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
+  cardImage: {fileID: 21300000, guid: c7583143d94609b49b2c8d71f2e25b48, type: 3}
   effects:
   - {fileID: 11400000, guid: 3ce842a5d62227c418ad26c8683ebbf1, type: 2}

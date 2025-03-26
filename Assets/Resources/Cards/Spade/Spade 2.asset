@@ -24,7 +24,7 @@ MonoBehaviour:
   perception: 2
   energy: 2
   effect: "Infligez {damage} d\xE9gats et gagnez {perception} perception."
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: 719bd7af90d28a64a8cda1d900174341, type: 3}
   effects:
   - {fileID: 11400000, guid: 7f9fb8b7684ec49489366f9448f95469, type: 2}
   - {fileID: 11400000, guid: d586550180511cf469fe388d7fe9f14a, type: 2}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf090ec687b880548ad57fc4d43235f0, type: 3}
   m_Name: Square 13
   m_EditorClassIdentifier: 
-  cardName: Charge Rapide
+  cardName: "D\xE9vastation Parfaite"
   cardType: 2
   statType: 03000000
   dropType: 00000000
@@ -24,6 +24,6 @@ MonoBehaviour:
   perception: 0
   energy: 2
   effect: "Infligez \xE0 un ennemis deux fois {damage} de d\xE9gat."
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: 984a843c6ba113448804b692938bb1f7, type: 3}
   effects:
   - {fileID: 11400000, guid: cfbd677566fd50c4da30943de0fa980a, type: 2}

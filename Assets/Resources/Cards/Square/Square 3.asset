@@ -24,6 +24,6 @@ MonoBehaviour:
   perception: 0
   energy: 1
   effect: Gagnez {discretion} infiltration.
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: 3e11dbc80e19c074eac9d47b166dc7e1, type: 3}
   effects:
   - {fileID: 11400000, guid: 313bc1cd219dc514b9c55bffa75291cd, type: 2}

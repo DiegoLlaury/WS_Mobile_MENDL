@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf090ec687b880548ad57fc4d43235f0, type: 3}
   m_Name: Spade 10
   m_EditorClassIdentifier: 
-  cardName: "Poignard en C\xF4tes"
+  cardName: Poignard
   cardType: 1
   statType: 02000000
   dropType: 00000000
@@ -24,7 +24,7 @@ MonoBehaviour:
   perception: 0
   energy: 2
   effect: "Infligez {damage} d\xE9g\xE2ts et provoquez Saignement pendant 2 tours."
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: e5b4b77cfe1f23d49901209f5e49841e, type: 3}
   effects:
   - {fileID: 11400000, guid: a83f1f1f1ea9eeb4f9d651055a7f08f7, type: 2}
   - {fileID: 11400000, guid: 7f9fb8b7684ec49489366f9448f95469, type: 2}

@@ -24,6 +24,6 @@ MonoBehaviour:
   perception: 0
   energy: 0
   effect: "Appliquez Faiblesse \xE0 la cible pendant un tour."
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: 1816cf60422b7584097384dcb7bb609c, type: 3}
   effects:
   - {fileID: 11400000, guid: e95b350efef6edc48a48c10b1701e234, type: 2}

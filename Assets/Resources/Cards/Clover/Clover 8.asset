@@ -18,12 +18,12 @@ MonoBehaviour:
   dropType: 01000000
   health: 5
   defense: 4
-  damage: 6
+  damage: 5
   startingDamage: 6
   discretion: 5
   perception: 5
   energy: 2
   effect: "Lancez un d\xE9 pour une r\xE9compense al\xE9atoire."
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: 1a0371b6e003d5a43bb4c5a0a85690eb, type: 3}
   effects:
   - {fileID: 11400000, guid: 6927cd7732c294b4d9c47360e7ba0884, type: 2}

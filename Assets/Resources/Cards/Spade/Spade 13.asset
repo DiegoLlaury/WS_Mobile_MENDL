@@ -24,7 +24,7 @@ MonoBehaviour:
   perception: 0
   energy: 0
   effect: "Infligez {damage} d\xE9gats et piochez une carte."
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: d263428e68fa8af4bb34f79867ae7ee0, type: 3}
   effects:
   - {fileID: 11400000, guid: d0701ffe51c754e4d9a9ca42f508dc2f, type: 2}
   - {fileID: 11400000, guid: 7f9fb8b7684ec49489366f9448f95469, type: 2}

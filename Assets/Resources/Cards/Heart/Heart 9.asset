@@ -18,13 +18,13 @@ MonoBehaviour:
   dropType: 01000000
   health: 2
   defense: 0
-  damage: 3
+  damage: 2
   startingDamage: 3
   discretion: 0
   perception: 0
   energy: 2
   effect: "Lancez un d\xE9 :\\n- pair : infligez 2 fois ce r\xE9sultat en d\xE9gats,
     \\n- impair : gagnez 2 fois le r\xE9sultat en points de vie."
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: 005b2b6a24c5c1541b286cef845a864b, type: 3}
   effects:
   - {fileID: 11400000, guid: 89eb57d0eee99454fbfd4553b60af3d2, type: 2}

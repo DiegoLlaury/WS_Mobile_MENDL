@@ -24,6 +24,6 @@ MonoBehaviour:
   perception: 0
   energy: 1
   effect: "D\xE9faussez les cartes pique pour gagner 2 PV par carte."
-  cardImage: {fileID: -605624883, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
+  cardImage: {fileID: 21300000, guid: 793b869d2e74e3e49aaef33efea91519, type: 3}
   effects:
   - {fileID: 11400000, guid: eb3c15d9177d0134f9615035ba94da4c, type: 2}

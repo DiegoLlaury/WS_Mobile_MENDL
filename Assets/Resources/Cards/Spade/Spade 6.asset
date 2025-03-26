@@ -24,6 +24,6 @@ MonoBehaviour:
   perception: 0
   energy: 2
   effect: "Infligez {damage} d\xE9gats \xE0 deux ennemis."
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: a1258973626d137468cb9d70f6d2572b, type: 3}
   effects:
   - {fileID: 11400000, guid: 5506267ba708620409b6626a4863d2d3, type: 2}

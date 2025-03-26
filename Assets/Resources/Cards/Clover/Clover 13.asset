@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf090ec687b880548ad57fc4d43235f0, type: 3}
   m_Name: Clover 13
   m_EditorClassIdentifier: 
-  cardName: "Vue Per\xE7ante"
+  cardName: "Lumi\xE8re Per\xE7ante"
   cardType: 3
   statType: 04000000
   dropType: 01000000
@@ -24,6 +24,6 @@ MonoBehaviour:
   perception: 0
   energy: 2
   effect: "Baissez l'infiltration de l'adversaire de la moiti\xE9 de votre perception."
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: 04aefc658055a334bbf2982b3215d920, type: 3}
   effects:
   - {fileID: 11400000, guid: 1a6301616502fdc49a4741bfea707dcb, type: 2}

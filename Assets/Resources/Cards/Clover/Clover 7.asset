@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf090ec687b880548ad57fc4d43235f0, type: 3}
   m_Name: Clover 7
   m_EditorClassIdentifier: 
-  cardName: Clairvoyance
+  cardName: Le corps et l'esprit
   cardType: 3
   statType: 04000000
   dropType: 01000000
@@ -24,7 +24,7 @@ MonoBehaviour:
   perception: 7
   energy: 2
   effect: Gagnez {perception} perception et {health} PV.
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: 5428bfd357b2f344b819aca395e23cf3, type: 3}
   effects:
   - {fileID: 11400000, guid: d586550180511cf469fe388d7fe9f14a, type: 2}
   - {fileID: 11400000, guid: 5bb625690c2487d47bb9f7a80a94da6f, type: 2}

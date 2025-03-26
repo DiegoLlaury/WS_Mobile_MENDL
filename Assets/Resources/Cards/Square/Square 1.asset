@@ -24,6 +24,6 @@ MonoBehaviour:
   perception: 0
   energy: 2
   effect: Perdez toute votre perception, pour chaque point perdu gagnez 1 de discretion.
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: ba1bd4621005fb34088917858d4b4def, type: 3}
   effects:
   - {fileID: 11400000, guid: 6d96d19349dce6c458b332d43e952aed, type: 2}

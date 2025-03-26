@@ -25,6 +25,6 @@ MonoBehaviour:
   energy: 2
   effect: 'Si vos PV est :\n paire : gagnez {defense} de bouclier,\n impaire : gagnez
     {health} PV.'
-  cardImage: {fileID: -605624883, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
+  cardImage: {fileID: 21300000, guid: d4b6b0a320466e34199b9ea67ae1716e, type: 3}
   effects:
   - {fileID: 11400000, guid: 08982c82217ee4941b2799698d339742, type: 2}

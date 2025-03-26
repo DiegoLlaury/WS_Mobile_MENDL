@@ -70,7 +70,8 @@ public class CardDisplay : MonoBehaviour
     {
 
         nameText.text = cardData.cardName;
-
+        cardImage.sprite = cardData.cardImage;
+        cardImage.color = Color.white;
         // Update stat text fields
         string formattedEffect = cardData.effect;
         foreach (var stat in statTexts)

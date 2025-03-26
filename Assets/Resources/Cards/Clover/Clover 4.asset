@@ -18,12 +18,12 @@ MonoBehaviour:
   dropType: 01000000
   health: 5
   defense: 0
-  damage: -1
+  damage: 0
   startingDamage: 0
   discretion: 0
   perception: 8
   energy: 0
   effect: "D\xE9faussez une carte al\xE9atoire, piochez 2 cartes."
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: 00d12448ea779ca4eb237abf70eef113, type: 3}
   effects:
   - {fileID: 11400000, guid: ce0163ac2028923468edd7e9c8a749c7, type: 2}

@@ -25,7 +25,7 @@ MonoBehaviour:
   energy: 1
   effect: "Faites perdre {perception} perception \xE0 la cible et gagnez {discretion}
     infiltration."
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: 26828bac9ff028940a7fb89abaa597e9, type: 3}
   effects:
   - {fileID: 11400000, guid: 2d587321212f87243991d153ea3f3a35, type: 2}
   - {fileID: 11400000, guid: 313bc1cd219dc514b9c55bffa75291cd, type: 2}

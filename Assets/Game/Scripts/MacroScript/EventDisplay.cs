@@ -182,6 +182,7 @@ public class EventDisplay : MonoBehaviour
                     percentagePlayerText.text = $"{probVar.ToString()} %";
                     percentagePlayerTextWorld.text = $"{probVar.ToString()} %";
                     cardImageWorld.gameObject.SetActive(true);
+                    cardImageWorld.transform.Find("CardMiddleImage").GetComponent<Image>().sprite = cardPlayer.cardImage;
                     cardBorder.gameObject.SetActive(true);
                     percentagePlayerTextWorld.gameObject.SetActive(true);
                     percentagePlayerText.gameObject.SetActive(true);

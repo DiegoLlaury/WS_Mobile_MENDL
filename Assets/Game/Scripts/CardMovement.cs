@@ -34,7 +34,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
 
 
-    [SerializeField] private float selectScale = 1.1f;
+    [SerializeField] private float selectScale = 1.5f;
     [SerializeField] private GameObject glowEffect;
 
     void Awake()
@@ -95,7 +95,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
         if (canvasGroup != null)
         {
-            canvasGroup.alpha = 0.5f;
+            canvasGroup.alpha = 1f;
             canvasGroup.blocksRaycasts = false;
             canvasGroup.interactable = false;
         }

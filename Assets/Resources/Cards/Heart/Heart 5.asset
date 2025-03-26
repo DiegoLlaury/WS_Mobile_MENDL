@@ -24,6 +24,6 @@ MonoBehaviour:
   perception: 0
   energy: 1
   effect: Gagnez {defense} de bouclier.
-  cardImage: {fileID: -605624883, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
+  cardImage: {fileID: 21300000, guid: 2c8b956fe40abb440a987ff35ebc63db, type: 3}
   effects:
   - {fileID: 11400000, guid: ef1cada5187404a4a949c3ea677c7c3c, type: 2}

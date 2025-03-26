@@ -24,7 +24,7 @@ MonoBehaviour:
   perception: 0
   energy: 1
   effect: "Infligez {damage} d\xE9gats et Faiblesse pendant un tour."
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: 09f2461e3a5ec204a9e072ab12bef763, type: 3}
   effects:
   - {fileID: 11400000, guid: e95b350efef6edc48a48c10b1701e234, type: 2}
   - {fileID: 11400000, guid: 7f9fb8b7684ec49489366f9448f95469, type: 2}

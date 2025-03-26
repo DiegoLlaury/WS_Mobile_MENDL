@@ -24,6 +24,6 @@ MonoBehaviour:
   perception: 0
   energy: 2
   effect: "Lancez un d\xE9, infligez 3 fois le r\xE9sultat en d\xE9g\xE2ts."
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: 7275d03910e14eb4ba2f355535ecef6a, type: 3}
   effects:
   - {fileID: 11400000, guid: 3f113aee96f077f4e874d77bb7a614c7, type: 2}

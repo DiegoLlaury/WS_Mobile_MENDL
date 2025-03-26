@@ -24,7 +24,7 @@ MonoBehaviour:
   perception: 0
   energy: 1
   effect: "R\xE9g\xE9n\xE9rez {health} PV et gagnez {defense} bouclier."
-  cardImage: {fileID: -605624883, guid: 05e0567213a58c840a3ea79a4409bdfd, type: 3}
+  cardImage: {fileID: 21300000, guid: 9579ceebae358f045a363befb0a619c1, type: 3}
   effects:
   - {fileID: 11400000, guid: 5bb625690c2487d47bb9f7a80a94da6f, type: 2}
   - {fileID: 11400000, guid: ef1cada5187404a4a949c3ea677c7c3c, type: 2}

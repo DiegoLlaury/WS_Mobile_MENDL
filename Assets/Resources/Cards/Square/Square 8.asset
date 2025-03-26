@@ -25,6 +25,6 @@ MonoBehaviour:
   energy: 1
   effect: "Lancez un d\xE9: \\n- 1 \xE0 3: gagnez {discretion} infiltration, \\n-
     3 \xE0 6: attaquez la cible avec votre valeur d'infiltration."
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: 91a68f36d7135c14d97f20f3bb9d2556, type: 3}
   effects:
   - {fileID: 11400000, guid: 2668d6c1fa68d5540a6a6e47a01100f3, type: 2}

@@ -24,6 +24,6 @@ MonoBehaviour:
   perception: 0
   energy: 1
   effect: "Vous avez 1/2 d'infliger {damage} d\xE9gats ou de subir 5 d\xE9g\xE2ts."
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: 88a3654ebc88b7b4a9b232d2f8b7872e, type: 3}
   effects:
   - {fileID: 11400000, guid: 6c6d5998af1a08a4891288b16fed6e17, type: 2}
