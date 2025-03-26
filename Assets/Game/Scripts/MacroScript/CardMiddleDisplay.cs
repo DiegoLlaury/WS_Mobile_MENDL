@@ -37,13 +37,12 @@ public class CardMiddleDisplay : MonoBehaviour
         cardData.strenght = cardData.maxStrenght;
         cardData.discretion = cardData.maxDiscretion;
         cardData.perception = cardData.maxPerception;
-        Debug.Log(GameManager.isGameStarted);
-        if (!GameManager.isGameStarted)
+        if (!GameManager.generatedCharacter.Contains(cardData))
         {
             GenerateRandomStats();
-            GameManager.isGameStarted = true;
+            GameManager.generatedCharacter.Add(cardData);
+            Debug.Log(cardData.cardName);
         }
-
         UpdateCardMiddle();
     }
 

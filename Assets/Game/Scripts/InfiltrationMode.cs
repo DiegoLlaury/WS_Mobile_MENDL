@@ -6,7 +6,7 @@ public class InfiltrationMode : MonoBehaviour
 {
     public static InfiltrationMode Instance;
     public EnemyManager enemyManager;
-    public PlayerEvent player;
+  
     private int infiltrationScore;
     private int requiredInfiltration;
 
@@ -26,7 +26,6 @@ public class InfiltrationMode : MonoBehaviour
     {
         enemyManager.StartCombat(infiltrationEvent);
         requiredInfiltration = infiltrationEvent.conditionNumber;
-        infiltrationScore = player.cardData.discretion;
     }
 
     //public void EndPlayerTurn()
@@ -42,9 +41,9 @@ public class InfiltrationMode : MonoBehaviour
     //    }
     //}
 
-    public void CheckGameOver()
+    public void CheckGameOver(PlayerEvent player)
     {
-        if (enemyManager.AllEnemiesDefeated() || infiltrationScore >= requiredInfiltration)
+        if (enemyManager.AllEnemiesDefeated() || player.cardData.discretion >= requiredInfiltration)
         {
             GameManager.WinBattle = true;
             player.EndBattle();

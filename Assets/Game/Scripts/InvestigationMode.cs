@@ -6,9 +6,7 @@ public class InvestigationMode : MonoBehaviour
 {
     public static InvestigationMode Instance;
     public EnemyManager enemyManager;
-    public PlayerEvent player;
     private EnemyDisplay suspectedMafioso;
-    private int perceptionScore;
     private int requiredInfiltration;
 
     void Awake()
@@ -28,7 +26,6 @@ public class InvestigationMode : MonoBehaviour
         enemyManager.StartCombat(investigationEvent);
         suspectedMafioso = enemyManager.GetRandomEnemy(); // Randomize the mafioso
         requiredInfiltration = investigationEvent.conditionNumber;
-        perceptionScore = player.cardData.perception;
     }
 
     //public void EndPlayerTurn()
@@ -42,9 +39,9 @@ public class InvestigationMode : MonoBehaviour
     //    StartCoroutine(enemyManager.EnemyTurn());
     //}
 
-    public void CheckGameOver()
+    public void CheckGameOver(PlayerEvent player)
     {
-        if (suspectedMafioso.enemyData.perception <= perceptionScore)
+        if (suspectedMafioso.enemyData.perception <= player.cardData.perception)
         {
             GameManager.WinBattle = true;
             player.EndBattle();
