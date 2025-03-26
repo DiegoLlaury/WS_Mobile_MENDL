@@ -32,6 +32,12 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     private Dictionary<StatusEffect.StatusType, (int value, int duration)> activeEffects = new Dictionary<StatusEffect.StatusType, (int, int)>();
     private List<System.Action> temporaryEffects = new List<System.Action>();
 
+    public Transform PlayerHealth;
+    public Transform PlayerDefense;
+    public Transform PlayerAttack;
+    public Transform PlayerDiscretion;
+    public Transform PlayerPerception;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -88,12 +94,14 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
             int absorbed = Mathf.Min(damage, currentDefense);
             currentDefense -= absorbed;
             damage -= absorbed;
+            StartCoroutine(ScaleAnimation(PlayerDefense, 1.5f, 0.25f, 0f));
             Debug.Log($"Shield absorbed {absorbed} damage. Remaining shield: {currentDefense}");
         }
 
         if (damage > 0)
         {
             cardData.health  -= damage;
+            StartCoroutine(ScaleAnimation(PlayerHealth, 1.5f, 0.5f, 0f));
             Debug.Log($"Player took {damage} damage. Remaining health: {cardData.health}");
         }
 
@@ -121,12 +129,14 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     public void GainHealth(int health)
     {
         cardData.health = Mathf.Clamp(cardData.health + health, 0, cardData.maxHealth);
+        StartCoroutine(ScaleAnimation(PlayerHealth, 1.5f, 0.5f, 0f));
         Debug.Log($"Player gain {health} health. Current health : {cardData.health}");
     }
 
     public void GainShield(int defense)
     {
         currentDefense += defense;
+        StartCoroutine(ScaleAnimation(PlayerDefense, 1.5f, 0.5f, 0f));
         UpdatePlayerEvent();
         Debug.Log($"Player gain {defense} shield. Current shield : {cardData.defense}");
     }
@@ -135,6 +145,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     {
         // Ajout normal de perception, en respectant la limite max
         cardData.perception = Mathf.Clamp(cardData.perception + perception, cardData.maxPerception, 50);
+        StartCoroutine(ScaleAnimation(PlayerPerception, 1.5f, 0.5f, 0f));
         UpdatePlayerEvent();
         EnemyManager.Instance.UpdateEnemyIntentions();
         Debug.Log($"Player gained {perception} perception. Current perception: {cardData.perception}");
@@ -144,6 +155,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     {
         // Ajout normal de discrétion, en respectant la limite max
         cardData.discretion = Mathf.Clamp(cardData.discretion + infiltration, cardData.maxDiscretion, 50);
+        StartCoroutine(ScaleAnimation(PlayerDiscretion, 1.5f, 0.5f, 0f));
         UpdatePlayerEvent();
         Debug.Log($"Player gained {infiltration} discretion. Current discretion: {cardData.discretion}");
 
@@ -199,6 +211,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         {
             case StatusEffect.StatusType.Strength:
                 cardData.strenght += value;
+                StartCoroutine(ScaleAnimation(PlayerAttack, 1.5f, 0.5f, 0f));
                 strengthImage.gameObject.SetActive(true);
                 strengthNumberTurn.text = duration.ToString();
                 strengthNumberTurn.gameObject.SetActive(true);
@@ -206,6 +219,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
 
             case StatusEffect.StatusType.Weakness:
                 cardData.strenght += value;
+                StartCoroutine(ScaleAnimation(PlayerAttack, 1.5f, 0.5f, 0f));
                 weaknessImage.gameObject.SetActive(true);
                 weaknessNumberTurn.text = duration.ToString();
                 weaknessNumberTurn.gameObject.SetActive(true);
@@ -274,12 +288,14 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
                 if (key == StatusEffect.StatusType.Strength)
                 {
                     cardData.strenght -= effect.value;
+                    StartCoroutine(ScaleAnimation(PlayerAttack, 1.5f, 0.5f, 0f));
                     strengthImage.gameObject.SetActive(false);
                     strengthNumberTurn.gameObject.SetActive(false);
                 }
                 else if (key == StatusEffect.StatusType.Weakness)
                 {
                     cardData.strenght -= effect.value;
+                    StartCoroutine(ScaleAnimation(PlayerAttack, 1.5f, 0.5f, 0f));
                     weaknessImage.gameObject.SetActive(false);
                     weaknessNumberTurn.gameObject.SetActive(true);
                 }
@@ -373,5 +389,36 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     {
         Debug.Log("Clique");
         GameManager.EndEvent();
+    }
+
+    private IEnumerator ScaleAnimation(Transform target, float scaleMultiplier, float duration, float delay)
+    {
+        Debug.Log("TEST");
+        Vector3 originalScale = target.localScale;
+        Vector3 targetScale = originalScale * scaleMultiplier;
+
+        yield return new WaitForSeconds(delay);
+
+        float elapsedTime = 0f;
+        while (elapsedTime < duration / 2)
+        {
+            float t = elapsedTime / (duration / 2);
+            t = t * t * (3f - 2f * t); // Smoothstep easing
+            target.localScale = Vector3.Lerp(originalScale, targetScale, t);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        elapsedTime = 0f;
+        while (elapsedTime < duration / 2)
+        {
+            float t = elapsedTime / (duration / 2);
+            t = t * t * (3f - 2f * t); // Smoothstep easing
+            target.localScale = Vector3.Lerp(targetScale, originalScale, t);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        target.localScale = originalScale;
     }
 }

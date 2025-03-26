@@ -4332,6 +4332,11 @@ MonoBehaviour:
   baseHealth: 10
   maxEnergy: 3
   currentDefense: 0
+  PlayerHealth: {fileID: 1403827294}
+  PlayerDefense: {fileID: 503034459}
+  PlayerAttack: {fileID: 590315899}
+  PlayerDiscretion: {fileID: 209503841}
+  PlayerPerception: {fileID: 1767606122}
 --- !u!1 &837129494
 GameObject:
   m_ObjectHideFlags: 0
