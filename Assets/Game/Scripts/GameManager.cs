@@ -11,6 +11,7 @@ public static class GameManager
     public static List<EventBattle> currentEventBattles;
     public static List<EventBattle> startingEventBattles;
     public static List<(string message, bool isVictory)> eventResults = new List<(string, bool)>();
+    public static List<CardMiddle> generatedCharacter = new List<CardMiddle>();
 
     public static bool firstTime = true;
     public static bool WinBattle;
@@ -19,6 +20,7 @@ public static class GameManager
 
     private static List<EventDisplay> locationDisplay = new List<EventDisplay>();
     private static List<EventBattle> tempEvents = new List<EventBattle>();
+    
 
     public static void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
     {

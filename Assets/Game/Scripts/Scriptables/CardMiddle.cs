@@ -46,6 +46,5 @@ namespace WS_DiegoCo_Middle
 
             Clover
         }
-        public bool statsGenerated = false;
     }
 }

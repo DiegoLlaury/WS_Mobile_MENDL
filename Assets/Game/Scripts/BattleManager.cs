@@ -100,11 +100,11 @@ public class BattleManager : MonoBehaviour
                 break;
 
             case EventBattle.EventType.Infiltration:
-                infiltration.CheckGameOver();
+                infiltration.CheckGameOver(player);
                 break;
 
             case EventBattle.EventType.Enquete:
-                investigation.CheckGameOver();
+                investigation.CheckGameOver(player);
                 break;
         }      
     }
