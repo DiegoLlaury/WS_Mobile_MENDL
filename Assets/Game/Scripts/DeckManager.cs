@@ -97,12 +97,11 @@ public class DeckManager : MonoBehaviour
 
     private IEnumerator DrawCardOneByOne(int cardNumber)
     {
-        for (int i = 0; i < cardNumber; i++)
+        for (int i = 0; i < cardNumber;)
         {
             if (deck.Count == 0)
             {
                 RefillDeck(); // Décommente cette ligne si tu veux reshuffle le deck
-                break;
             }
 
             if (deck.Count > 0)
@@ -110,6 +109,7 @@ public class DeckManager : MonoBehaviour
                 Card nextCard = deck[0];
                 deck.RemoveAt(0);
                 handManager.AddCardToHand(nextCard);
+                i++;
             }
 
             yield return new WaitForSeconds(drawDelay);
