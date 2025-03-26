@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using WS_DiegoCo;
@@ -28,6 +29,9 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
     private HandManager handManager;
     private EnemyManager enemyManager;
     private BattleManager battleManager;
+
+    public AudioClip cardPlaceSound; // Son de pose de carte
+
 
 
     [SerializeField] private float selectScale = 1.1f;
@@ -277,7 +281,14 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
             Debug.LogError("ApplyCardEffects: Enemy is null!");
             return; // Prevent further execution
         }
+
         
+        if (cardPlaceSound != null) // Joue le son AVANT de détruire la carte
+        {
+                AudioManager.instance.PlaySound(cardPlaceSound);
+        }
+
+
         bool shouldReturnToHand = false;
 
         foreach (CardEffect effect in cardDisplay.cardData.effects)

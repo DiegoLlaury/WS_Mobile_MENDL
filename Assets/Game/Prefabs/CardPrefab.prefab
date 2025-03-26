@@ -2620,6 +2620,7 @@ MonoBehaviour:
   currentDraggedCard: {fileID: 0}
   currentState: 0
   cardDisplay: {fileID: 0}
+  cardPlaceSound: {fileID: 8300000, guid: c57bdead888a663429b760d88d6e765e, type: 3}
   selectScale: 1.1
   glowEffect: {fileID: 8284506621531312128}
 --- !u!225 &7270933432967717596
