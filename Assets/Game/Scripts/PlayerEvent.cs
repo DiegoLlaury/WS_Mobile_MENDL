@@ -205,7 +205,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
                 break;
 
             case StatusEffect.StatusType.Weakness:
-                cardData.strenght -= value;
+                cardData.strenght += value;
                 weaknessImage.gameObject.SetActive(true);
                 weaknessNumberTurn.text = duration.ToString();
                 weaknessNumberTurn.gameObject.SetActive(true);
@@ -279,7 +279,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
                 }
                 else if (key == StatusEffect.StatusType.Weakness)
                 {
-                    cardData.strenght += effect.value;
+                    cardData.strenght -= effect.value;
                     weaknessImage.gameObject.SetActive(false);
                     weaknessNumberTurn.gameObject.SetActive(true);
                 }
