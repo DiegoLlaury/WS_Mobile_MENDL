@@ -1,3 +1,4 @@
+using NUnit.Framework.Constraints;
 using UnityEngine;
 using WS_DiegoCo;
 
@@ -37,7 +38,7 @@ using WS_DiegoCo;
         switch (targetDamage)
         {
             case TargetDamage.Player:
-                player.cardData.health = Mathf.Clamp(player.cardData.health + NumberOfdamage, 0, player.cardData.maxHealth);
+                player.GainHealth(NumberOfdamage);
                 break;
 
             case TargetDamage.Enemy:
@@ -129,7 +130,7 @@ using WS_DiegoCo;
                 }
                 else
                 {
-                    player.cardData.health = Mathf.Clamp(player.cardData.health + NumberOfdamage, 0, player.cardData.maxHealth);
+                    player.GainHealth(NumberOfdamage);
                     Debug.Log("Unlucky! Took 5 damage instead.");
                 }
                 break;

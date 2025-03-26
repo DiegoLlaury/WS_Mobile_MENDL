@@ -82,7 +82,7 @@ public class StatusEffect : CardEffect
 
             player.ApplyStatus(StatusType.Strength, strengthGain, 1, enemyChoose); // 1 turn effect
             
-            player.cardData.health = Mathf.Clamp(player.cardData.health + NumberOfdamage, 0, player.cardData.maxHealth);
+            player.GainHealth(NumberOfdamage);
 
             Debug.Log($"Player gains {strengthGain} Strength from {infiltration} Infiltration and loses 3 HP.");
         }
