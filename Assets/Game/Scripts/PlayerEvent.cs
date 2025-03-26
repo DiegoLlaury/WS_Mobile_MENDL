@@ -77,13 +77,14 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     public void TurnChange()
     {
         // Applique les effets temporaires et les vide
+
+        GameManager.currentEvent.currentTurn--;
+        ProcessTurnEffects();
         foreach (var effect in temporaryEffects)
         {
             effect.Invoke();
         }
         temporaryEffects.Clear();
-        GameManager.currentEvent.currentTurn--;
-        ProcessTurnEffects();
         UpdatePlayerEvent();
     }
 

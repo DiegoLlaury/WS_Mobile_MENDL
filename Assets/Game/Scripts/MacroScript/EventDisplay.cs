@@ -25,6 +25,7 @@ public class EventDisplay : MonoBehaviour
  
     public Image cardImage;
     public Image cardImageWorld;
+    public Image cardBorder;
     public Image buildingImage;
     public Image backgroundImage;
     public Image errorPanel;
@@ -91,7 +92,6 @@ public class EventDisplay : MonoBehaviour
         if (cardMiddle != null && cardImage != null)
         {
             cardImage.sprite = cardMiddle != null ? cardMiddle.cardImage : null; 
-            cardImageWorld.sprite = cardMiddle != null ? cardMiddle.cardImage : null;
         }
     }
 
@@ -155,6 +155,7 @@ public class EventDisplay : MonoBehaviour
         panelInformation.SetActive(false);
         percentagePlayerTextWorld.gameObject.SetActive(false);
         cardImageWorld.gameObject.SetActive(false);
+        cardBorder.gameObject.SetActive(false);
         percentagePlayerText.gameObject.SetActive(false);
 
         numberOfPlayer--;
@@ -178,10 +179,10 @@ public class EventDisplay : MonoBehaviour
                 {
                     probVar = GameManager.CalculatedWinChance(currentBattle);
                     cardImage.sprite = cardMiddle.cardImage;
-                    cardImageWorld.sprite = cardMiddle.cardImage;
                     percentagePlayerText.text = $"{probVar.ToString()} %";
                     percentagePlayerTextWorld.text = $"{probVar.ToString()} %";
                     cardImageWorld.gameObject.SetActive(true);
+                    cardBorder.gameObject.SetActive(true);
                     percentagePlayerTextWorld.gameObject.SetActive(true);
                     percentagePlayerText.gameObject.SetActive(true);
                 }
