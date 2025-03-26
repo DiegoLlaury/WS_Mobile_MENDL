@@ -15,7 +15,7 @@ MonoBehaviour:
   eventType: 0
   eventDifficulty: 1
   numberTurn: 20
-  currentTurn: 20
+  currentTurn: 18
   conditionNumber: 20
   enemies:
   - {fileID: 11400000, guid: d0c4d2bb11f03fa488a286070fea3150, type: 2}
@@ -24,7 +24,7 @@ MonoBehaviour:
   nextEvent: {fileID: 11400000, guid: f871cffe067fd4b48a5cd912b1b57c5c, type: 2}
   affectedCharacter: {fileID: 11400000, guid: 0dba3ae4bbb3c0d4c92c36d572f2b229, type: 2}
   boss: 0
-  description: combatFacile
+  description: combatMoyen
   eventName: Hopital
   location: Hopital
   background: {fileID: 995473497027029406, guid: 028cee480866e3641bbe479a61dad491, type: 3}
