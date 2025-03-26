@@ -141,6 +141,7 @@ public class EventDisplay : MonoBehaviour
     {
         if (cardMiddle == null)
         {
+            textError.text = new string("Il n'y a pas d'agent assigner.");
             StartCoroutine(ErrorPanel());
             return;
         }
@@ -197,7 +198,8 @@ public class EventDisplay : MonoBehaviour
         }
         else
         {
-            Debug.Log("Un policier est déjà assigné à cet événement");
+            textError.text = new string("Un policier est déjà assigné à cet événement !");
+            StartCoroutine(ErrorPanel());
         }
     }
 
@@ -205,7 +207,8 @@ public class EventDisplay : MonoBehaviour
     {
         if (!EventManager.Instance.AreAllEventsReady())
         {
-            Debug.Log("Tous les événements n'ont pas encore de carte assignée !");
+            textError.text = new string("Tous les événements n'ont pas encore de carte assignée !");
+            StartCoroutine(ErrorPanel());
             return;
         }
 

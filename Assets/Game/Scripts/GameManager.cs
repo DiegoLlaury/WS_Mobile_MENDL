@@ -10,6 +10,7 @@ public static class GameManager
     public static EventBattle currentEvent;
     public static List<EventBattle> currentEventBattles;
     public static List<EventBattle> startingEventBattles;
+    public static List<(string message, bool isVictory)> eventResults = new List<(string, bool)>();
 
     public static bool firstTime = true;
     public static bool WinBattle;
@@ -58,6 +59,13 @@ public static class GameManager
     public static void EndEvent()
     {
         tempEvents.Clear();
+
+        string currentEventResult = WinBattle
+        ? $"Victoire dans l'événement {currentEvent.eventType} : {currentEvent.eventName} !"
+        : $"Défaite dans l'événement {currentEvent.eventType} : {currentEvent.eventName}...";
+
+        eventResults.Add((currentEventResult, WinBattle));
+
         if (WinBattle)
         {
             currentEventBattles.Remove(currentEvent);
@@ -82,16 +90,19 @@ public static class GameManager
         {
             if (Random.Range(0, 100) > CalculatedWinChance(eventBattle))
             {
+                eventResults.Add(($"Succès automatique de {eventBattle.eventType} : {eventBattle.eventName} !", true));
                 tempEvents.Add(eventBattle.nextEvent);
             }
             else
             {
                 if (eventBattle.remainingAttempts == 0)
                 {
+                    eventResults.Add(($"Échec définitif de {eventBattle.eventType} : {eventBattle.eventName}...", false));
                     tempEvents.Add(eventBattle.nextEvent);
                 }
                 else
                 {
+                    eventResults.Add(($"Échec temporaire de {eventBattle.eventType} : {eventBattle.eventName}, tentatives restantes : {eventBattle.remainingAttempts}", false));
                     eventBattle.remainingAttempts--;
                     tempEvents.Add(eventBattle);
                 }
