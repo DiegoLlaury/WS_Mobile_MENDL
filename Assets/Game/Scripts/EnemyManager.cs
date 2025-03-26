@@ -337,7 +337,7 @@ public class EnemyManager : MonoBehaviour
                 probabilities = difficulty switch
                 {
                     EventBattle.EventDifficulty.Facile => new int[] { 70, 30 },
-                    EventBattle.EventDifficulty.Moyen => new int[] { 55, 30, 15 },
+                    EventBattle.EventDifficulty.Moyen => new int[] { 55, 30, 10 },
                     EventBattle.EventDifficulty.Difficile => new int[] { 55, 20, 15, 10 },
                     _ => new int[] { 50, 30, 15, 5 }
                 };
@@ -357,8 +357,8 @@ public class EnemyManager : MonoBehaviour
                 probabilities = difficulty switch
                 {
                     EventBattle.EventDifficulty.Facile => new int[] { 100 },
-                    EventBattle.EventDifficulty.Moyen => new int[] { 60, 40 },
-                    EventBattle.EventDifficulty.Difficile => new int[] { 60, 40 },
+                    EventBattle.EventDifficulty.Moyen => new int[] { 70, 30 },
+                    EventBattle.EventDifficulty.Difficile => new int[] { 50, 50 },
                     _ => new int[] { 70, 30 }
                 };
                 break;

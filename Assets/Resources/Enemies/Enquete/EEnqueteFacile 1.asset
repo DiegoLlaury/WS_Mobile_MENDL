@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b9ed5673610c354291f61410240a6f3, type: 3}
-  m_Name: GansterDiff
+  m_Name: EEnqueteFacile 1
   m_EditorClassIdentifier: 
-  enemyName: gang1
-  maxHealth: 25
-  health: 0
-  maxDefense: 2
+  enemyName: cible1
+  maxHealth: 5
+  health: 5
+  maxDefense: 0
   defense: 0
-  maxDamage: 2
-  damage: 5
-  maxDiscretion: 0
-  discretion: 0
+  maxDamage: 0
+  damage: 0
+  maxDiscretion: 5
+  discretion: 8
   maxPerception: 0
   perception: 0
   enemyIdleImage: {fileID: 21300000, guid: 06ae62479ea32b74cb28b1066f9b9d79, type: 3}

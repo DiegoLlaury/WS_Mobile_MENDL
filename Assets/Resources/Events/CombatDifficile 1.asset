@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ef220b67029e442afdad0b4138c8a6, type: 3}
+  m_Name: CombatDifficile 1
+  m_EditorClassIdentifier: 
+  eventType: 0
+  eventDifficulty: 2
+  numberTurn: 20
+  currentTurn: 20
+  conditionNumber: 20
+  enemies:
+  - {fileID: 11400000, guid: a0de70a0a4ffbd7429dcfe4f1a95a8ae, type: 2}
+  - {fileID: 11400000, guid: e48d0d4581c21844abf1f20f91589897, type: 2}
+  - {fileID: 11400000, guid: 839efbfb5127cc245b383e7e413eadcd, type: 2}
+  nextEvent: {fileID: 11400000, guid: f871cffe067fd4b48a5cd912b1b57c5c, type: 2}
+  affectedCharacter: {fileID: 11400000, guid: c0a4115fcece66f44a10254a61412e67, type: 2}
+  boss: 0
+  description: CombatDiff
+  eventName: Hopital
+  location: Hopital
+  background: {fileID: 995473497027029406, guid: 028cee480866e3641bbe479a61dad491, type: 3}
+  remainingAttempts: 4
+  MaxAttempts: 4
+  isResolved: 0

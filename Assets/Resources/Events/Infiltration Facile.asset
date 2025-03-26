@@ -10,21 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1ef220b67029e442afdad0b4138c8a6, type: 3}
-  m_Name: CombatDifficile
+  m_Name: Infiltration Facile
   m_EditorClassIdentifier: 
-  eventType: 0
-  eventDifficulty: 1
-  numberTurn: 20
-  currentTurn: 20
-  conditionNumber: 20
+  eventType: 2
+  eventDifficulty: 0
+  numberTurn: 15
+  currentTurn: 14
+  conditionNumber: 25
   enemies:
-  - {fileID: 11400000, guid: d0c4d2bb11f03fa488a286070fea3150, type: 2}
-  - {fileID: 11400000, guid: 038817793cd786046be986b97ca6d166, type: 2}
-  - {fileID: 11400000, guid: 9e89dec9e9495164d8862685475fe1d1, type: 2}
+  - {fileID: 11400000, guid: 9073b4d111b34b1469089527a0306900, type: 2}
+  - {fileID: 11400000, guid: 382ad3cdc05b02444a40103f0785a8f3, type: 2}
   nextEvent: {fileID: 11400000, guid: f871cffe067fd4b48a5cd912b1b57c5c, type: 2}
-  affectedCharacter: {fileID: 11400000, guid: 0dba3ae4bbb3c0d4c92c36d572f2b229, type: 2}
+  affectedCharacter: {fileID: 11400000, guid: 76132a84c459ca242925e0c3234b7bfd, type: 2}
   boss: 0
-  description: combatMoyen
+  description: CombatDiff
   eventName: Hopital
   location: Hopital
   background: {fileID: 995473497027029406, guid: 028cee480866e3641bbe479a61dad491, type: 3}
