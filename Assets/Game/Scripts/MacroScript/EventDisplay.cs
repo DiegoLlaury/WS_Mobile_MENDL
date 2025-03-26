@@ -2,6 +2,8 @@ using UnityEngine;
 using WS_DiegoCo_Event;
 using WS_DiegoCo_Middle;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using static WS_DiegoCo_Event.EventBattle;
 
@@ -19,11 +21,13 @@ public class EventDisplay : MonoBehaviour
     public TMP_Text numberOfTurn;
     public TMP_Text percentagePlayerText;
     public TMP_Text percentagePlayerTextWorld;
-
+    public TMP_Text textError;
+ 
     public Image cardImage;
     public Image cardImageWorld;
     public Image buildingImage;
     public Image backgroundImage;
+    public Image errorPanel;
     private static int numberOfPlayer = 0;
 
     private DeckManagerMacro deckManagerMacro;
@@ -137,6 +141,7 @@ public class EventDisplay : MonoBehaviour
     {
         if (cardMiddle == null)
         {
+            StartCoroutine(ErrorPanel());
             return;
         }
         handManagerMacro.AddCardToHand(cardMiddle);
@@ -211,5 +216,45 @@ public class EventDisplay : MonoBehaviour
             GameManager.StartEvent(cardMiddle, currentBattle);
         }
 
+    }
+
+    private IEnumerator ErrorPanel()
+    {
+
+        // Assure-toi que le panneau est visible au début
+        errorPanel.gameObject.SetActive(true);
+
+        // Rendre le panneau complètement opaque
+        Color panelColor = errorPanel.color;
+        panelColor.a = 1f;
+        errorPanel.color = panelColor;
+
+        Color textColor = textError.color;
+        textColor.a = 1f;
+        textError.color = textColor;
+
+        // Attendre 1 seconde
+        yield return new WaitForSeconds(1f);
+
+        // Disparition progressive sur 0.8 secondes
+        float duration = 0.8f;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, elapsed / duration);
+
+            panelColor.a = alpha;
+            errorPanel.color = panelColor;
+
+            textColor.a = alpha;
+            textError.color = textColor;
+
+            yield return null;
+        }
+
+        // Cache le panneau à la fin de l’animation
+        errorPanel.gameObject.SetActive(false);
     }
 }

@@ -18,6 +18,7 @@ public class DeckManagerMacro : MonoBehaviour
     {
         handManagerMacro = FindAnyObjectByType<HandManagerMacro>();
         LoadDeck();
+        ShuffleDeck();
         DrawCard(drawCard);
     }
 

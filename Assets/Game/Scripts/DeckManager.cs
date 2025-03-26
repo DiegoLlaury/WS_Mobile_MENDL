@@ -101,7 +101,7 @@ public class DeckManager : MonoBehaviour
         {
             if (deck.Count == 0)
             {
-                // RefillDeck(); // Décommente cette ligne si tu veux reshuffle le deck
+                RefillDeck(); // Décommente cette ligne si tu veux reshuffle le deck
                 break;
             }
 
