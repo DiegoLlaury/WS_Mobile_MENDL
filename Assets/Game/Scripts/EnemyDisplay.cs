@@ -45,6 +45,12 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
     private PlayerEvent player;
     private Dictionary<StatusEffect.StatusType, (int value, int turnsRemaining)> activeEffects = new Dictionary<StatusEffect.StatusType, (int, int)>();
 
+    public Transform HealthTransform;
+    public Transform DefenseTransform;
+    public Transform AttackTransform;
+    public Transform PerceptionTransform;
+    public Transform DiscretionTransform;
+
 
     private void Awake()
     {
@@ -98,12 +104,14 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
             enemyData.defense -= absorbed;
             damage -= absorbed;
             Debug.Log($"Enemy {enemyData.enemyName} shield absorbed {absorbed} damage. Remaining shield: {enemyData.defense}");
+            StartCoroutine(ScaleAnimation(DefenseTransform, 1.5f, 0.5f, 0f));
         }
 
         if (damage > 0)
         {
             enemyData.health -= damage;
             Debug.Log($"Enemy {enemyData.enemyName} took {damage} damage. Remaining health: {enemyData.health}");
+            StartCoroutine(ScaleAnimation(HealthTransform, 1.5f, 0.75f, 0f));
         }
 
         if (isNextAttackHeal == true)
@@ -156,6 +164,7 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
     public void GainShield(int amount)
     {
         enemyData.defense += amount;
+        StartCoroutine(ScaleAnimation(DefenseTransform, 1.5f, 0.5f, 0f));
         UpdateEnemyDisplay();
         Debug.Log($"Enemy {enemyData.enemyName} gained {amount} shield. Current shield: {enemyData.defense}");
     }
@@ -166,18 +175,23 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         {
             case Card.StatType.health:
                 enemyData.health += amount;
+                StartCoroutine(ScaleAnimation(HealthTransform, 1.5f, 0.5f, 0f));
                 break;
             case Card.StatType.defense:
                 enemyData.defense += amount;
+                StartCoroutine(ScaleAnimation(DefenseTransform, 1.5f, 0.5f, 0f));
                 break;
             case Card.StatType.damage:
                 enemyData.damage += amount;
+                StartCoroutine(ScaleAnimation(AttackTransform, 1.5f, 0.5f, 0f));
                 break;
             case Card.StatType.discretion:
                 enemyData.discretion += amount;
+                StartCoroutine(ScaleAnimation(DiscretionTransform, 1.5f, 0.5f, 0f));
                 break;
             case Card.StatType.perception:
                 enemyData.perception += amount;
+                StartCoroutine(ScaleAnimation(PerceptionTransform, 1.5f, 0.5f, 0f));
                 break;
         }
         UpdateEnemyDisplay();
@@ -187,12 +201,14 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
     public void ReducePerception(int value)
     {
         enemyData.perception = Mathf.Clamp(enemyData.perception - value, enemyData.maxPerception, 50);
+        StartCoroutine(ScaleAnimation(PerceptionTransform, 1.5f, 0.5f, 0f));
         UpdateEnemyDisplay();
     }
 
     public void ReduceInfiltration(int value)
     {
         enemyData.discretion = Mathf.Clamp(enemyData.discretion - value, enemyData.maxDiscretion, 50);
+        StartCoroutine(ScaleAnimation(DiscretionTransform, 1.5f, 0.5f, 0f));
         UpdateEnemyDisplay();
     }
 
@@ -348,5 +364,36 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
             intentionImage.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, elapsed / duration);
             yield return null;
         }
+    }
+
+    private IEnumerator ScaleAnimation(Transform target, float scaleMultiplier, float duration, float delay)
+    {
+        Debug.Log("TEST");
+        Vector3 originalScale = target.localScale;
+        Vector3 targetScale = originalScale * scaleMultiplier;
+
+        yield return new WaitForSeconds(delay);
+
+        float elapsedTime = 0f;
+        while (elapsedTime < duration / 2)
+        {
+            float t = elapsedTime / (duration / 2);
+            t = t * t * (3f - 2f * t); // Smoothstep easing
+            target.localScale = Vector3.Lerp(originalScale, targetScale, t);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        elapsedTime = 0f;
+        while (elapsedTime < duration / 2)
+        {
+            float t = elapsedTime / (duration / 2);
+            t = t * t * (3f - 2f * t); // Smoothstep easing
+            target.localScale = Vector3.Lerp(targetScale, originalScale, t);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        target.localScale = originalScale;
     }
 }
