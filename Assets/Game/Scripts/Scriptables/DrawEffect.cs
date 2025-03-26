@@ -23,18 +23,19 @@ public class DrawEffect : CardEffect
                 break;
 
             case TypeDraw.DrawInfiltration:
-                int count = -1;
+                int count = -2;
 
                 foreach (GameObject cardObject in hand.cardsInHand)
                 {
                     CardDisplay cardDisplay = cardObject.GetComponent<CardDisplay>();
-                    if (cardDisplay != null && cardData.cardType == Card.CardType.Square)
+                    if (cardDisplay != null && cardDisplay.cardData.cardType == Card.CardType.Square)
                     {
+                        count++;
                         count++;
                     }
                 }
 
-                int drawAmount = Mathf.Min(count, 3);
+                int drawAmount = Mathf.Min(count, 4);
                 deck.DrawCard(drawAmount);
                 break;
 
