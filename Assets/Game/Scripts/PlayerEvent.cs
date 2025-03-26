@@ -38,6 +38,8 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     public Transform PlayerDiscretion;
     public Transform PlayerPerception;
 
+    private int discretionStrengthIncrease;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -118,7 +120,8 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         // Lors d'une attaque, perdre toute la discrétion
         if (cardData.discretion > 0)
         {
-            cardData.strenght -= cardData.discretion / 3;
+            cardData.strenght -= discretionStrengthIncrease;
+            discretionStrengthIncrease = 0;
             cardData.discretion = 0;
             discretionBoost = false;
             Debug.Log("Attaque effectuée : Discrétion remise à zéro.");
@@ -162,7 +165,9 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         // Boost temporaire de Force si la discrétion dépasse 10 et que le boost n'a pas encore été appliqué
         if (cardData.discretion > 10 && !discretionBoost)
         {
-            cardData.strenght += cardData.discretion / 3;
+            cardData.strenght -= discretionStrengthIncrease;
+            discretionStrengthIncrease = cardData.discretion / 3;
+            cardData.strenght += discretionStrengthIncrease;
             Debug.Log("Discretion > 10: Temporary Strength boost applied.");
             discretionBoost = true;
         }
