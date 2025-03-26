@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: gang1
   maxHealth: 30
-  health: 24
-  maxDefense: 2
+  health: 26
+  maxDefense: 0
   defense: 0
-  maxDamage: 2
+  maxDamage: 3
   damage: 4
   maxDiscretion: 0
   discretion: 0
