@@ -29,6 +29,7 @@ public class EventDisplay : MonoBehaviour
     public Image backgroundImage;
     public Image errorPanel;
     private static int numberOfPlayer = 0;
+    private float probVar;
 
     private DeckManagerMacro deckManagerMacro;
     private HandManagerMacro handManagerMacro;
@@ -80,8 +81,8 @@ public class EventDisplay : MonoBehaviour
         }
         if (cardMiddle != null && percentagePlayerText != null)
         {
-            percentagePlayerText.text = $"{cardMiddle.skillLevel.ToString()} %";
-            percentagePlayerTextWorld.text = $"{cardMiddle.skillLevel.ToString()} %";
+            percentagePlayerText.text = $"{probVar.ToString()} %";
+            percentagePlayerTextWorld.text = $"{probVar.ToString()} %";
         }  
         if (numberOfTurn != null) numberOfTurn.text = currentBattle.numberTurn.ToString();
         if (backgroundImage != null) backgroundImage.sprite = currentBattle.background;
@@ -172,10 +173,11 @@ public class EventDisplay : MonoBehaviour
             {
                 if (cardPlayer.cardImage != null)
                 {
+                    probVar = GameManager.CalculatedWinChance(currentBattle);
                     cardImage.sprite = cardPlayer.cardImage;
                     cardImageWorld.sprite = cardPlayer.cardImage;
-                    percentagePlayerText.text = $"{cardMiddle.skillLevel.ToString()} %";
-                    percentagePlayerTextWorld.text = $"{cardMiddle.skillLevel.ToString()} %";
+                    percentagePlayerText.text = $"{probVar.ToString()} %";
+                    percentagePlayerTextWorld.text = $"{probVar.ToString()} %";
                     cardImageWorld.gameObject.SetActive(true);
                     percentagePlayerTextWorld.gameObject.SetActive(true);
                 }
