@@ -35,7 +35,7 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
     public float shakeIntensity = 10f;
     public float shakeDuration = 0.5f;
     public Color damageColor = new Color(1f, 0f, 0f); // Rouge semi-transparent
-    private int perceptionLimit = 10;
+    public int perceptionLimit = 10;
 
     private Vector3 originalPosition;
     private Color originalColor;
@@ -252,25 +252,19 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         {
             var effect = activeEffects[key];
 
-            if (!endStatus)
-            {
+
+            
                 switch (key)
                 {
-                    case StatusEffect.StatusType.Regeneration:
-                        enemyData.health = Mathf.Clamp(enemyData.health + effect.value, 0, enemyData.maxHealth);
-                        Debug.Log($"Enemy {enemyData.enemyName} regenerated {effect.value} HP.");
-                        break;
-
                     case StatusEffect.StatusType.Bleeding:
                         TakeDamage(effect.value, ignoreShield: true);
                         Debug.Log($"Enemy {enemyData.enemyName} suffered {effect.value} bleeding damage.");
                         break;
                 }
-            }
+            
 
 
-            if (endStatus)
-            {
+ 
                 // Reduce duration
                 int newTurns = effect.turnsRemaining - 1;
                 if (newTurns <= 0)
@@ -297,7 +291,6 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
                 {
                     activeEffects[key] = (effect.value, newTurns);
                 }
-            }
 
             UpdateEnemyDisplay();
         }

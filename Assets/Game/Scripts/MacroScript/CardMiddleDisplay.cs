@@ -37,11 +37,11 @@ public class CardMiddleDisplay : MonoBehaviour
         cardData.strenght = cardData.maxStrenght;
         cardData.discretion = cardData.maxDiscretion;
         cardData.perception = cardData.maxPerception;
-
+        Debug.Log(GameManager.isGameStarted);
         if (!GameManager.isGameStarted)
         {
             GenerateRandomStats();
-            cardData.statsGenerated = true;
+            GameManager.isGameStarted = true;
         }
 
         UpdateCardMiddle();
@@ -49,6 +49,7 @@ public class CardMiddleDisplay : MonoBehaviour
 
     private void GenerateRandomStats()
     {
+
         int totalPoints = 30;
         int minStat = 3;
         int maxStat = 18;
@@ -105,8 +106,6 @@ public class CardMiddleDisplay : MonoBehaviour
         cardData.square = stats[1];
         cardData.spade = stats[2];
         cardData.clover = stats[3];
-
-        cardData.skillLevel = skill;
     }
 
     private void UpdateCardMiddle()

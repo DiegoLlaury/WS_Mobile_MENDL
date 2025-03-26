@@ -7,6 +7,8 @@ using WS_DiegoCo_Enemy;
 using WS_DiegoCo;
 using UnityEngine.Rendering;
 using NUnit.Framework.Internal.Commands;
+using static StatusEffect;
+using static UnityEngine.Rendering.DebugUI;
 
 
 public class EnemyManager : MonoBehaviour
@@ -185,6 +187,7 @@ public class EnemyManager : MonoBehaviour
             EnemyDisplay enemy = enemies[i];
 
             enemy.ProcessTurnEffects(false);
+            
             if (enemy.enemyData.health <= 0)
             {
                 enemiesToRemove.Add(enemy);
@@ -209,7 +212,6 @@ public class EnemyManager : MonoBehaviour
                     break;
             }
 
-            enemy.ProcessTurnEffects(true);
             enemy.enemyIdleImage.sprite = enemy.enemyData.enemyAttackImage;
             yield return new WaitForSeconds(0.75f);
             enemy.enemyIdleImage.sprite = enemy.enemyData.enemyIdleImage;
@@ -240,7 +242,7 @@ public class EnemyManager : MonoBehaviour
                 break;
 
             case 2: // Buff
-                enemy.ModifyStat(Card.StatType.damage, buffAttack);
+                enemy.ApplyStatus(StatusEffect.StatusType.Strength, buffAttack, 1, enemy);
                 Debug.Log($"{enemy.enemyData.enemyName} buffs its damage!");
                 break;
 

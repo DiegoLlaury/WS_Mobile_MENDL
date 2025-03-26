@@ -115,7 +115,7 @@ public class CardMovementMacro : MonoBehaviour, IDragHandler, IPointerDownHandle
 
         if (cardMiddleDisplay != null && cardMiddleDisplay.cardData != null)
         {
-            Debug.Log($" Picked Up Card: {cardMiddleDisplay.cardData.cardName} (Instance ID: {cardMiddleDisplay.cardData.GetInstanceID()})");
+
         }
         else
         {
@@ -172,10 +172,11 @@ public class CardMovementMacro : MonoBehaviour, IDragHandler, IPointerDownHandle
 
             if (currenEvent.cardMiddle == null)
             {
+                currenEvent.currentBattle.affectedCharacter = cardData;
                 currenEvent.SetPlayer(cardData);
                 deckManagerMacro.StockCard(cardData);
                 handManagerMacro.RemoveCardFromHand(gameObject);
-                currenEvent.currentBattle.affectedCharacter = cardData;
+                
             }
             else
             {

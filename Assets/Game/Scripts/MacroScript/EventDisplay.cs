@@ -151,9 +151,12 @@ public class EventDisplay : MonoBehaviour
         currentBattle.affectedCharacter = null;
         cardMiddle = null;
         cardImage.sprite = null;
+
         panelInformation.SetActive(false);
         percentagePlayerTextWorld.gameObject.SetActive(false);
         cardImageWorld.gameObject.SetActive(false);
+        percentagePlayerText.gameObject.SetActive(false);
+
         numberOfPlayer--;
     }
 
@@ -174,12 +177,13 @@ public class EventDisplay : MonoBehaviour
                 if (cardPlayer.cardImage != null)
                 {
                     probVar = GameManager.CalculatedWinChance(currentBattle);
-                    cardImage.sprite = cardPlayer.cardImage;
-                    cardImageWorld.sprite = cardPlayer.cardImage;
+                    cardImage.sprite = cardMiddle.cardImage;
+                    cardImageWorld.sprite = cardMiddle.cardImage;
                     percentagePlayerText.text = $"{probVar.ToString()} %";
                     percentagePlayerTextWorld.text = $"{probVar.ToString()} %";
                     cardImageWorld.gameObject.SetActive(true);
                     percentagePlayerTextWorld.gameObject.SetActive(true);
+                    percentagePlayerText.gameObject.SetActive(true);
                 }
                 else
                 {
