@@ -99,7 +99,7 @@ public static class GameManager
                 Debug.Log($"EventBattle {eventBattle.eventName} est bien assigné à {eventBattle.affectedCharacter.cardName}");
             }
 
-            if (Random.Range(0, 100) > CalculatedWinChance(eventBattle))
+            if (Random.Range(0, 100) < CalculatedWinChance(eventBattle))
             {
                 eventResults.Add(($"Succès automatique de {eventBattle.eventType} : {eventBattle.eventName} !", true));
                 tempEvents.Add(eventBattle.nextEvent);

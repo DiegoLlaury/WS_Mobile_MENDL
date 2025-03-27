@@ -181,6 +181,8 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
 
     public IEnumerator DeathAnimation()
     {
+        if (enemyIdleImage == null) yield break;
+
         // 1. Changement de couleur vers le rouge et tremblement
         enemyIdleImage.color = damageColor;
         enemyIdleImage.sprite = enemyData.enemyDamagedImage;
@@ -189,35 +191,42 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
 
         while (elapsedTime < shakeDuration)
         {
+            if (enemyIdleImage == null) yield break; // Vérifie si l'objet existe encore
+
             Vector3 randomOffset = UnityEngine.Random.insideUnitSphere * shakeIntensity;
             randomOffset.z = 0; // Évite de bouger sur l'axe Z si en 2D
-
             enemyIdleImage.transform.localPosition = originalPosition + randomOffset;
 
             elapsedTime += Time.deltaTime;
-            yield return null;
+            yield return null; // Utiliser `null` au lieu de `WaitForSeconds(0.5f)` pour un effet plus fluide
         }
 
         // 2. Remettre l'ennemi à sa position initiale
+        if (enemyIdleImage == null) yield break;
         enemyIdleImage.transform.localPosition = originalPosition;
 
         // 3. Commencer le Fade Out
-        float fadeDuration = 1.5f; // Temps pour disparaître
+        float fadeDuration = 1.5f;
         float fadeElapsed = 0f;
         Color currentColor = enemyIdleImage.color;
 
         while (fadeElapsed < fadeDuration)
         {
+            if (enemyIdleImage == null) yield break;
+
             float alpha = Mathf.Lerp(1f, 0f, fadeElapsed / fadeDuration);
             enemyIdleImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, alpha);
 
             fadeElapsed += Time.deltaTime;
-            yield return null;
+            yield return null; // Utiliser `null` pour un fade fluide
         }
 
-        // 4. Assurez-vous que l'ennemi est complètement invisible
-        enemyIdleImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, 0f);
-        enemyIdleImage.gameObject.SetActive(false); // Désactive l'objet une fois l'animation terminée
+        // 4. Assurez-vous que l'ennemi est complètement invisible et désactive l'objet
+        if (enemyIdleImage != null)
+        {
+            enemyIdleImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, 0f);
+            enemyIdleImage.gameObject.SetActive(false);
+        }
     }
 
     public void GainShield(int amount)

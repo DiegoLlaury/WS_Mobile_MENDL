@@ -334,9 +334,24 @@ public class EnemyManager : MonoBehaviour
     {
         if (enemies.Contains(enemy))
         {
-            StartCoroutine(enemy.DeathAnimation());
+            StartCoroutine(DeathAnimationCoroutine(enemy));
             enemies.Remove(enemy);
-            Destroy(enemy.gameObject);
+        }
+    }
+
+    private IEnumerator DeathAnimationCoroutine(EnemyDisplay enemy)
+    {
+        if (enemy != null)
+        {
+            // Lancer l'animation de mort
+            yield return StartCoroutine(enemy.DeathAnimation());
+
+            // Vérifie à nouveau que l'ennemi n'a pas été détruit avant de tenter de le détruire
+            if (enemy != null)
+            {
+                // Détruire l'ennemi après la fin de l'animation
+                Destroy(enemy.gameObject);
+            }
         }
     }
 
