@@ -729,7 +729,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CARTES POLICIERS
+  m_text: CARTES POLICIER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 97bbfcad81086e54689efa0f50460aa2, type: 2}
   m_sharedMaterial: {fileID: -8468335865341335069, guid: 97bbfcad81086e54689efa0f50460aa2, type: 2}
@@ -5350,8 +5350,8 @@ MonoBehaviour:
   m_text: "Il y a 3 types d'\xE9v\xE9nements : Combat, Infiltration et Enqu\xEAte.
     \n\nChoisissez judicieusement les Policiers qui s\u2019occuperont des \xE9v\xE9nements
     pour maximiser vos chances de r\xE9ussite, ceux avec une bonne statistique d'Attaque
-    seront meilleur en combat, la Discr\xE9tion est efficace en infiltration et la
-    Perception en Enqu\xEAte."
+    seront meilleurs en combat, la Discr\xE9tion est efficace en infiltration et
+    la Perception en Enqu\xEAte."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 97bbfcad81086e54689efa0f50460aa2, type: 2}
   m_sharedMaterial: {fileID: -8468335865341335069, guid: 97bbfcad81086e54689efa0f50460aa2, type: 2}
@@ -8524,7 +8524,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\nEn bas se situe les cartes des Policiers qui sont \xE0 votre disposition
+  m_text: "\nEn bas se situent les cartes des Policiers qui sont \xE0 votre disposition
     pour r\xE9soudre les \xE9v\xE8nements en cours, chacun avec leur statistique
     propre et leur sp\xE9cialit\xE9 : \n\r\n\n   Sant\xE9            Attaque           
     Discr\xE9tion            Perception\r\n"
@@ -9000,7 +9000,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Vous pouvez les d\xE9placer sur les \xC9v\xE9nements en cours pour les
-    y assigner, cliquer sur un \xC9v\xE9nements pour voir plus de d\xE9tails et ainsi
+    y assigner, cliquez sur un \xC9v\xE9nement pour voir plus de d\xE9tails et ainsi
     mieux choisir quel Policier aura le plus de chance de r\xE9ussir."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 97bbfcad81086e54689efa0f50460aa2, type: 2}
