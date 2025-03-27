@@ -398,12 +398,28 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
             {
                 firstStatus.gameObject.SetActive(true);
                 firstStatus.sprite = GetStatusIcon(effect.Key);
+                if (effect.Key == StatusEffect.StatusType.Bleeding)
+                {
+                    firstStatus.color = Color.red;
+                }
+                else
+                {
+                    firstStatus.color = Color.white;
+                }
                 firstStatus.enabled = true;
             }
             else if (statusCount == 1)
             {
                 secondStatus.gameObject.SetActive(true);
                 secondStatus.sprite = GetStatusIcon(effect.Key);
+                if (effect.Key == StatusEffect.StatusType.Bleeding)
+                {
+                    secondStatus.color = Color.red;
+                }
+                else
+                {
+                    secondStatus.color = Color.white;
+                }
                 secondStatus.enabled = true;
             }
             statusCount++;
