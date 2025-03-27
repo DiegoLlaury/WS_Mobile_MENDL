@@ -31,7 +31,7 @@ public class DiceEffect : CardEffect
                 else if (diceRoll < 6)
                     player.GainShield(cardData.defense);
                 else
-                    player.GainEnergy(1);
+                    player.GainEnergy(2);
                 break;
 
             case DiceType.DamageOrHeal:

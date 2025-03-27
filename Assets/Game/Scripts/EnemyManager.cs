@@ -24,10 +24,17 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private int debuffAttack = 1;
     [SerializeField] private int buffAttack = 1;
     [SerializeField] private int buffPerception = 3;
+<<<<<<< Updated upstream
     [SerializeField] private int maxbuffPerception = 3;
     [SerializeField] private int debuffPerception = -2;
     [SerializeField] private int buffDiscretion = 3;
     [SerializeField] private int maxbuffDiscretion = 3;
+=======
+    [SerializeField] private int maxBuffPerception = 2;
+    [SerializeField] private int debuffPerception = -2;
+    [SerializeField] private int buffDiscretion = 3;
+    [SerializeField] private int maxBuffDiscretion = 2;
+>>>>>>> Stashed changes
     [SerializeField] private int DebuffDiscretion = -3;
 
     public float fanSpread = 5f;
@@ -58,16 +65,30 @@ public class EnemyManager : MonoBehaviour
 
     public void StartCombat(EventBattle combatEvent)
     {
+<<<<<<< Updated upstream
         buffPerception = maxbuffPerception;
         buffDiscretion = maxbuffDiscretion;
         switch (GameManager.currentEvent.eventDifficulty)
         {
             case EventBattle.EventDifficulty.Facile: 
                 break;
+=======
+        buffPerception = maxBuffPerception;
+        buffDiscretion = maxBuffDiscretion;
+        switch (GameManager.currentEvent.eventDifficulty)
+        {
+            case EventBattle.EventDifficulty.Facile:
+                break;
+
+>>>>>>> Stashed changes
             case EventBattle.EventDifficulty.Moyen:
                 buffDiscretion += 1;
                 buffPerception += 1;
                 break;
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
             case EventBattle.EventDifficulty.Difficile:
                 buffDiscretion += 1;
                 buffPerception += 1;
@@ -329,6 +350,7 @@ public class EnemyManager : MonoBehaviour
     {
         if (enemies.Contains(enemy))
         {
+            StartCoroutine(enemy.DeathAnimation());
             enemies.Remove(enemy);
             Destroy(enemy.gameObject);
         }

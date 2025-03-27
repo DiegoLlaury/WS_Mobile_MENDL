@@ -90,6 +90,15 @@ public static class GameManager
 
         foreach (EventBattle eventBattle in currentEventBattles)
         {
+            if (eventBattle.affectedCharacter == null)
+            {
+                Debug.LogError($"EventBattle {eventBattle.eventName} n'a pas de personnage assigné !");
+            }
+            else
+            {
+                Debug.Log($"EventBattle {eventBattle.eventName} est bien assigné à {eventBattle.affectedCharacter.cardName}");
+            }
+
             if (Random.Range(0, 100) > CalculatedWinChance(eventBattle))
             {
                 eventResults.Add(($"Succès automatique de {eventBattle.eventType} : {eventBattle.eventName} !", true));

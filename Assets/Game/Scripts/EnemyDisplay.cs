@@ -125,6 +125,14 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
             GameManager.currentEvent.currentTurn = 2;
         }
         
+        if(enemyData.health <= 0)
+        {
+            Debug.Log($"Enemy {enemyData.enemyName} defeated!");
+            EnemyManager.Instance.RemoveEnemy(this); // Suppression propre de l'ennemi
+            Destroy(gameObject); // Détruit l'objet de l'ennemi dans la scène
+            return; // Empêche l'exécution du reste de la méthode
+        }
+        
         if(GameManager.currentEvent.eventType == EventBattle.EventType.Enquete)
         {
             Debug.Log("You failed !");
@@ -162,6 +170,47 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         enemyIdleImage.sprite = enemyData.enemyIdleImage;
     }
 
+    public IEnumerator DeathAnimation()
+    {
+        // 1. Changement de couleur vers le rouge et tremblement
+        enemyIdleImage.color = damageColor;
+        enemyIdleImage.sprite = enemyData.enemyDamagedImage;
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < shakeDuration)
+        {
+            Vector3 randomOffset = UnityEngine.Random.insideUnitSphere * shakeIntensity;
+            randomOffset.z = 0; // Évite de bouger sur l'axe Z si en 2D
+
+            enemyIdleImage.transform.localPosition = originalPosition + randomOffset;
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // 2. Remettre l'ennemi à sa position initiale
+        enemyIdleImage.transform.localPosition = originalPosition;
+
+        // 3. Commencer le Fade Out
+        float fadeDuration = 1.5f; // Temps pour disparaître
+        float fadeElapsed = 0f;
+        Color currentColor = enemyIdleImage.color;
+
+        while (fadeElapsed < fadeDuration)
+        {
+            float alpha = Mathf.Lerp(1f, 0f, fadeElapsed / fadeDuration);
+            enemyIdleImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, alpha);
+
+            fadeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // 4. Assurez-vous que l'ennemi est complètement invisible
+        enemyIdleImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, 0f);
+        enemyIdleImage.gameObject.SetActive(false); // Désactive l'objet une fois l'animation terminée
+    }
+
     public void GainShield(int amount)
     {
         enemyData.defense += amount;
@@ -196,19 +245,18 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
                 break;
         }
         UpdateEnemyDisplay();
-        Debug.Log($"Enemy {stat} changed by {amount}");
     }
 
     public void ReducePerception(int value)
     {
-        enemyData.perception = Mathf.Clamp(enemyData.perception - value, enemyData.maxPerception, 50);
+        enemyData.perception = Mathf.Clamp(enemyData.perception - value, 0, enemyData.maxPerception);
         StartCoroutine(ScaleAnimation(PerceptionTransform, 1.5f, 0.5f, 0f));
         UpdateEnemyDisplay();
     }
 
     public void ReduceInfiltration(int value)
     {
-        enemyData.discretion = Mathf.Clamp(enemyData.discretion - value, enemyData.maxDiscretion, 50);
+        enemyData.discretion = Mathf.Clamp(enemyData.discretion - value, 0, enemyData.maxDiscretion);
         StartCoroutine(ScaleAnimation(DiscretionTransform, 1.5f, 0.5f, 0f));
         UpdateEnemyDisplay();
     }
