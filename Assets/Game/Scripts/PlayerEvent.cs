@@ -50,6 +50,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     public AudioSource debuffSound;
     public AudioSource shieldGainSound;
     public AudioSource energySound;
+    public AudioSource errorSound;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
