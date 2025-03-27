@@ -23,7 +23,7 @@ MonoBehaviour:
   discretion: 8
   perception: 0
   energy: 2
-  effect: Gagnez {discretion} infiltration mais perdez 3 PV.
+  effect: Gagnez {discretion} discretion mais perdez 3 PV.
   cardImage: {fileID: 21300000, guid: 3c5b5d7a3c4e6ee4c88a47c5b6ba91c9, type: 3}
   effects:
   - {fileID: 11400000, guid: f17cf8b071756dd4d8742932fc287625, type: 2}

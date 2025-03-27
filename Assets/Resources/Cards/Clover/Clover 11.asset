@@ -24,7 +24,7 @@ MonoBehaviour:
   perception: 5
   energy: 1
   effect: 'Si la perception est : \n paire : gagnez {perception} de perception,\n
-    impaire : gagnez {discretion} d''infiltration.'
+    impaire : gagnez {discretion} de discretion.'
   cardImage: {fileID: 21300000, guid: fe515ae79ca9e6847b3b52a51163bcae, type: 3}
   effects:
   - {fileID: 11400000, guid: 08ca0d952cee8a945b467946e50423f5, type: 2}

@@ -23,7 +23,7 @@ MonoBehaviour:
   discretion: 0
   perception: 0
   energy: 1
-  effect: "D\xE9faussez les cartes tr\xE8fle et gagnez 2 d'infiltration par carte
+  effect: "D\xE9faussez les cartes tr\xE8fle et gagnez 2 de discretion par carte
     d\xE9fauss\xE9e."
   cardImage: {fileID: 21300000, guid: 9fe6080a1e0eee44690c9d8b41f450a7, type: 3}
   effects:

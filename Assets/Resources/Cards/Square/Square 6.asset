@@ -23,7 +23,7 @@ MonoBehaviour:
   discretion: 5
   perception: 0
   energy: 1
-  effect: "Si votre infiltration est paire gagnez {discretion} infiltration, si elle
+  effect: "Si votre discretion est paire gagnez {discretion} discretion, si elle
     est impaire infligez 5 d\xE9gats \xE0 la cible."
   cardImage: {fileID: 21300000, guid: af69bc9629ea7124d996b62c39b2c8ce, type: 3}
   effects:

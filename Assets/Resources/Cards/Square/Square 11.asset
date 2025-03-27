@@ -23,7 +23,7 @@ MonoBehaviour:
   discretion: 3
   perception: 0
   energy: 3
-  effect: Attaquez avec le double de votre infiltration.
+  effect: Attaquez avec le double de votre discretion.
   cardImage: {fileID: 21300000, guid: 56bf1562209ddf44cb0e5affc8d6cddf, type: 3}
   effects:
   - {fileID: 11400000, guid: c4d88faa9d520964fb91a4073082e096, type: 2}

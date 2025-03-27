@@ -23,7 +23,7 @@ MonoBehaviour:
   discretion: 7
   perception: 5
   energy: 2
-  effect: Gagnez {discretion} infiltration et {perception} perception.
+  effect: Gagnez {discretion} discretion et {perception} perception.
   cardImage: {fileID: 21300000, guid: eee98b77547ecee4a9fe0433373d055b, type: 3}
   effects:
   - {fileID: 11400000, guid: d586550180511cf469fe388d7fe9f14a, type: 2}
