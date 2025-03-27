@@ -22,7 +22,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 038817793cd786046be986b97ca6d166, type: 2}
   - {fileID: 11400000, guid: 9e89dec9e9495164d8862685475fe1d1, type: 2}
   nextEvent: {fileID: 11400000, guid: f871cffe067fd4b48a5cd912b1b57c5c, type: 2}
-  affectedCharacter: {fileID: 11400000, guid: 0dba3ae4bbb3c0d4c92c36d572f2b229, type: 2}
+  affectedCharacter: {fileID: 11400000, guid: c0551f6b5c97b4b4b95eecb6d7b5d894, type: 2}
   boss: 0
   description: combatMoyen
   eventName: Hopital
