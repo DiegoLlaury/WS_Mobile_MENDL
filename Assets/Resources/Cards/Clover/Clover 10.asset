@@ -23,7 +23,7 @@ MonoBehaviour:
   discretion: 0
   perception: 2
   energy: 1
-  effect: "Gagnez {perception}de perception, piochez et d\xE9faussez une carte."
+  effect: "Gagnez {perception} de perception, piochez et d\xE9faussez une carte."
   cardImage: {fileID: 21300000, guid: f11d9489d53304f43810f2a4ae334468, type: 3}
   effects:
   - {fileID: 11400000, guid: d0701ffe51c754e4d9a9ca42f508dc2f, type: 2}
