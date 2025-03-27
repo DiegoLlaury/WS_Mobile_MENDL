@@ -20,6 +20,9 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
     public Image enemyAttackImage;
     public Image enemyDamagedImage;
     public Image intentionImage;
+    public Image firstStatus;
+    public Image secondStatus;
+
     public TMP_Text nameText;
     public TMP_Text healthText;
     public TMP_Text defenseText;
@@ -31,6 +34,10 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
     public GameObject combatStatPanel;
     public GameObject infiltrationStatPanel;
     public GameObject investigationStatPanel;
+
+    public Sprite strengthIcon;
+    public Sprite weaknessIcon;
+    public Sprite bleedingIcon;
 
     public float shakeIntensity = 10f;
     public float shakeDuration = 0.5f;
@@ -293,9 +300,7 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         {
             enemyData = enemy.enemyData;
             // Refresh duration or stack values
-            activeEffects[statusType] = (activeEffects[statusType].value + value, duration);
-
-            
+            activeEffects[statusType] = (activeEffects[statusType].value + value, duration);  
         }
         else
         {
@@ -315,6 +320,7 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
                 break;
         }
 
+        UpdateStatusHUD();
         UpdateEnemyDisplay();
         Debug.Log($"Enemy {enemyData.enemyName} applied status {statusType} with value {value} for {duration} turns.");
     }
@@ -327,45 +333,33 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         {
             var effect = activeEffects[key];
 
+            if (key == StatusEffect.StatusType.Bleeding)
+            {
+                TakeDamage(effect.value, ignoreShield: true);
+                Debug.Log($"Enemy {enemyData.enemyName} suffered {effect.value} bleeding damage.");
+            }
 
-            
+            int newTurns = effect.turnsRemaining - 1;
+            if (newTurns <= 0)
+            {
+                toRemove.Add(key);
+
                 switch (key)
                 {
-                    case StatusEffect.StatusType.Bleeding:
-                        TakeDamage(effect.value, ignoreShield: true);
-                        Debug.Log($"Enemy {enemyData.enemyName} suffered {effect.value} bleeding damage.");
+                    case StatusEffect.StatusType.Weakness:
+                        enemyData.damage += effect.value;
+                        Debug.Log($"Enemy {enemyData.enemyName} is no longer weakened.");
+                        break;
+                    case StatusEffect.StatusType.Strength:
+                        enemyData.damage -= effect.value;
+                        Debug.Log($"Enemy {enemyData.enemyName} lost strength bonus.");
                         break;
                 }
-            
-
-
- 
-                // Reduce duration
-                int newTurns = effect.turnsRemaining - 1;
-                if (newTurns <= 0)
-                {
-                    toRemove.Add(key);
-
-                        switch (key)
-                        {
-                            case StatusEffect.StatusType.Weakness:
-                                enemyData.damage += effect.value;
-                                Debug.Log($"Enemy {enemyData.enemyName} is weakened!");
-                                break;
-
-                            case StatusEffect.StatusType.Strength:
-                                enemyData.damage -= effect.value;
-                                Debug.Log($"Enemy {enemyData.enemyName} strength increased by {effect.value}.");
-                                break;
-                        }
-          
-                }          
-                else
-                {
-                    activeEffects[key] = (effect.value, newTurns);
-                }
-
-            UpdateEnemyDisplay();
+            }
+            else
+            {
+                activeEffects[key] = (effect.value, newTurns);
+            }
         }
 
         // Remove expired effects
@@ -373,6 +367,49 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         {
             activeEffects.Remove(status);
             Debug.Log($"Enemy {enemyData.enemyName} status {status} expired.");
+        }
+
+
+        UpdateStatusHUD();
+        UpdateEnemyDisplay();
+    }
+
+    private void UpdateStatusHUD()
+    {
+        // Réinitialise l'affichage
+        firstStatus.sprite = null;
+        firstStatus.enabled = false;
+        secondStatus.sprite = null;
+        secondStatus.enabled = false;
+
+        int statusCount = 0;
+
+        foreach (var effect in activeEffects)
+        {
+            if (statusCount == 0)
+            {
+                firstStatus.sprite = GetStatusIcon(effect.Key);
+                firstStatus.enabled = true;
+            }
+            else if (statusCount == 1)
+            {
+                secondStatus.sprite = GetStatusIcon(effect.Key);
+                secondStatus.enabled = true;
+            }
+            statusCount++;
+
+            if (statusCount >= 2) break; // Affiche au maximum 2 statuts
+        }
+    }
+
+    private Sprite GetStatusIcon(StatusEffect.StatusType status)
+    {
+        switch (status)
+        {
+            case StatusEffect.StatusType.Strength: return strengthIcon;
+            case StatusEffect.StatusType.Weakness: return weaknessIcon;
+            case StatusEffect.StatusType.Bleeding: return bleedingIcon;
+            default: return null;
         }
     }
 
