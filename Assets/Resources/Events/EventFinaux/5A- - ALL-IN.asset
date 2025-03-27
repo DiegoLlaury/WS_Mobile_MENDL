@@ -21,10 +21,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a0de70a0a4ffbd7429dcfe4f1a95a8ae, type: 2}
   - {fileID: 11400000, guid: ee6b44b13018f9f46a50e69be3bce33a, type: 2}
   - {fileID: 11400000, guid: 7746d5ddfeae39147b9969d545e20534, type: 2}
-  nextEvent: {fileID: 0}
-  nextEventFail: {fileID: 0}
+  nextEvent: {fileID: 11400000, guid: 39c2e1aaad357cb409bdf99de8d4a055, type: 2}
+  nextEventFail: {fileID: 11400000, guid: cf8e9e39ad827d2428f06f8f3844d058, type: 2}
   affectedCharacter: {fileID: 11400000, guid: 0119d751a19d255408617dd4f6a6925f, type: 2}
   boss: 1
+  tuto: 0
+  end: 0
   description: "La villa est bien plus surveill\xE9e que ce que vous pensiez, vous
     \xEAtes pris de court et vous vous retrouvez dans une importante fusillade. D\xE9fendez
     vous co\xFBte que co\xFBte et \xE9liminez le chef !"

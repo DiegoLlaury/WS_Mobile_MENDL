@@ -21,11 +21,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fe333be98dd3507478268e3039887c36, type: 2}
   - {fileID: 11400000, guid: 853465607eca1fb47826e8a1d96832d8, type: 2}
   - {fileID: 11400000, guid: fe333be98dd3507478268e3039887c36, type: 2}
-  nextEvent: {fileID: 0}
-  nextEventFail: {fileID: 0}
+  nextEvent: {fileID: 11400000, guid: 91bf8d679fa9ff843a6c9c1444721400, type: 2}
+  nextEventFail: {fileID: 11400000, guid: cf8e9e39ad827d2428f06f8f3844d058, type: 2}
   affectedCharacter: {fileID: 0}
   boss: 1
   tuto: 0
+  end: 0
   description: "Votre enqu\xEAte \xE0 la banque vous a conduit jusqu\u2019\xE0 lui,
     le chef de la mafia. Il ne semble plus qu'\xE0 quelques pas de la libert\xE9,
     se dirigeant droit vers la gare. Si vous ne l\u2019arr\xEAtez pas l\xE0, il dispara\xEEtra

@@ -10,26 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1ef220b67029e442afdad0b4138c8a6, type: 3}
-  m_Name: 5A+ - ALL-IN
+  m_Name: 6A-
   m_EditorClassIdentifier: 
   eventType: 0
-  eventDifficulty: 1
+  eventDifficulty: 2
   numberTurn: 15
   currentTurn: 1
   conditionNumber: 25
   enemies:
+  - {fileID: 11400000, guid: a0de70a0a4ffbd7429dcfe4f1a95a8ae, type: 2}
   - {fileID: 11400000, guid: ee6b44b13018f9f46a50e69be3bce33a, type: 2}
-  nextEvent: {fileID: 11400000, guid: 39c2e1aaad357cb409bdf99de8d4a055, type: 2}
-  nextEventFail: {fileID: 11400000, guid: cf8e9e39ad827d2428f06f8f3844d058, type: 2}
+  - {fileID: 11400000, guid: 7746d5ddfeae39147b9969d545e20534, type: 2}
+  nextEvent: {fileID: 0}
+  nextEventFail: {fileID: 0}
   affectedCharacter: {fileID: 11400000, guid: 0119d751a19d255408617dd4f6a6925f, type: 2}
-  boss: 1
+  boss: 0
   tuto: 0
-  end: 0
-  description: "Apr\xE8s avoir fouill\xE9 le bureau du chef, vous avez d\xE9couvert
-    qu\u2019il se trouve \xE0 une f\xEAte priv\xE9e organis\xE9e dans le Casino.
-    Avec d\xE9termination, vous prenez votre arme et vous vous appr\xEAtez \xE0 prendre
-    d\u2019assaut le chef !"
-  eventName: ALL-IN
+  end: 1
+  description: "La fusillade prend un tournant inattendu. Un instant d'inattention
+    et une balle vous transperce le torse. Vous \xEAtes \xE0 terre, la fin approche,
+    tandis que vos alli\xE9s se battent d\xE9sesp\xE9r\xE9ment. Mais vous ne conna\xEEtrez
+    jamais l'issue de cette histoire. "
+  eventName: DEFAITE
   location: Casino
   background: {fileID: -1417799516807294308, guid: 1d62e4e3c6b499a47ad26b47c25ae78c, type: 3}
   remainingAttempts: 4

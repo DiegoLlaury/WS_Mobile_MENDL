@@ -23,7 +23,8 @@ namespace WS_DiegoCo_Event
 
         public bool boss;
         public bool tuto;
-        
+        public bool end;
+
         public string description;
         public string eventName;
         public string location;

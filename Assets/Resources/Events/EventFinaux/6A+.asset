@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ef220b67029e442afdad0b4138c8a6, type: 3}
+  m_Name: 6A+
+  m_EditorClassIdentifier: 
+  eventType: 0
+  eventDifficulty: 1
+  numberTurn: 15
+  currentTurn: 1
+  conditionNumber: 25
+  enemies:
+  - {fileID: 11400000, guid: ee6b44b13018f9f46a50e69be3bce33a, type: 2}
+  nextEvent: {fileID: 0}
+  nextEventFail: {fileID: 0}
+  affectedCharacter: {fileID: 11400000, guid: 0119d751a19d255408617dd4f6a6925f, type: 2}
+  boss: 0
+  tuto: 0
+  end: 1
+  description: "Dans un \xE9lan d\u2019adr\xE9naline, vous prenez votre arme et tirez
+    avec pr\xE9cision dans le c\u0153ur du chef. Mais la victoire a un go\xFBt amer.
+    Vous n'avez pas r\xE9ussi \xE0 obtenir les preuves essentielles pour relier le
+    crime organis\xE9 \xE0 ses autres activit\xE9s illicites. Pire encore, le chef
+    n\u2019a pas eu le temps de livrer les aveux tant attendus, et maintenant, il
+    est trop tard. L\u2019enqu\xEAte, jadis pleine d\u2019espoir, se heurte \xE0
+    un mur de silence. Vous avez mis au jour des secrets, mais sans preuves solides,
+    vos avanc\xE9es restent fragiles. Mais le r\xE9seau a des tentacules partout
+    et maintenant que leur chef est mort, il sera d\xE9sormais impossible de les
+    faire tous tomber. Vous parvenez \xE0 d\xE9barrasser la ville de la mafia mais
+    la criminalit\xE9 monte en fl\xE8che, de nouveaux groupes se forment apr\xE8s
+    l\u2019\xE9clatement du r\xE9seau principal. "
+  eventName: VICTOIRE... MAIS A QUEL PRIX?
+  location: Casino
+  background: {fileID: -1417799516807294308, guid: 1d62e4e3c6b499a47ad26b47c25ae78c, type: 3}
+  remainingAttempts: 4
+  MaxAttempts: 4
+  isResolved: 0

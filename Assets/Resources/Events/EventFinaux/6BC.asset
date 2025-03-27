@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1ef220b67029e442afdad0b4138c8a6, type: 3}
-  m_Name: 5B - DERNIER PARI
+  m_Name: 6BC
   m_EditorClassIdentifier: 
   eventType: 2
   eventDifficulty: 2
@@ -20,18 +20,20 @@ MonoBehaviour:
   enemies:
   - {fileID: 11400000, guid: 63b78305d98e23f46b4e72939e4caa9c, type: 2}
   - {fileID: 11400000, guid: bd2fab3b37a25574f96feea1b261886f, type: 2}
-  nextEvent: {fileID: 11400000, guid: 91bf8d679fa9ff843a6c9c1444721400, type: 2}
-  nextEventFail: {fileID: 11400000, guid: cf8e9e39ad827d2428f06f8f3844d058, type: 2}
+  nextEvent: {fileID: 0}
+  nextEventFail: {fileID: 0}
   affectedCharacter: {fileID: 11400000, guid: ca520e4fb08caea498637c73bd335d8e, type: 2}
-  boss: 1
+  boss: 0
   tuto: 0
-  end: 0
-  description: "Votre sabotage de la livraison est un succ\xE8s! Des bouteilles empoisonn\xE9es
-    ont \xE9t\xE9 servies lors du grand \xE9v\xE9nement du casino, sans que le chef
-    de la mafia ne s\u2019en rende compte. Il a \xE9t\xE9 conduit \xE0 l\u2019h\xF4pital
-    et est d\xE9sormais vuln\xE9rable. C\u2019est le moment de frapper : menez l\u2019enqu\xEAte
-    pour l'identifier parmi les patients et faites-lui avouer ses crimes."
-  eventName: DERNIER PARI
+  end: 1
+  description: "L\u2019\xE9tau s\u2019est referm\xE9 sur le chef de la mafia, et
+    contre toute attente, il s\u2019agissait d\u2019Estella Castellini. Accul\xE9e
+    par les preuves et sans \xE9chappatoire, elle a fini par avouer l\u2019ensemble
+    de ses crimes. Son empire criminel s\u2019effondre en quelques jours, entra\xEEnant
+    avec lui tout son r\xE9seau. Quant \xE0 Estella, elle passera le reste de sa
+    vie derri\xE8re les barreaux de la prison de la ville. F\xE9licitations, lieutenant
+    !"
+  eventName: VICTOIRE
   location: Entrepot
   background: {fileID: -995689715088803539, guid: e9567d40b4a3e764db607bb314714e1f, type: 3}
   remainingAttempts: 4
