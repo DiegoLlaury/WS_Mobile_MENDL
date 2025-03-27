@@ -286,6 +286,7 @@ public class EnemyManager : MonoBehaviour
             case 1:
                 if (GameManager.currentEvent.currentTurn <= GameManager.currentEvent.numberTurn - 3)
                 {
+                    enemy.rondeSound.Play();
                     BattleManager.Instance.player.RondeTest(enemy);
                     Debug.Log($"{enemy.enemyData.enemyName} do a check");
                 }

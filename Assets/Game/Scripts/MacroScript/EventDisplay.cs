@@ -154,7 +154,7 @@ public class EventDisplay : MonoBehaviour
         deckManagerMacro.UnstockCard(cardMiddle);
         currentBattle.affectedCharacter = null;
         cardMiddle = null;
-        cardImage.sprite = null;
+        cardImage.sprite = nothingSprite;
 
         panelInformation.SetActive(false);
         percentagePlayerTextWorld.gameObject.SetActive(false);

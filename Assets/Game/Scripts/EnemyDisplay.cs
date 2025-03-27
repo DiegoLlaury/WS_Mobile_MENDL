@@ -64,6 +64,8 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
     public AudioSource debuffSound;
     public AudioSource shieldGainSound;
     public AudioSource shieldHitSound;
+    public AudioSource deathSound;
+    public AudioSource rondeSound;
 
     private void Awake()
     {
@@ -161,6 +163,8 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
 
     private IEnumerator DeathSequence()
     {
+        deathSound.Play();
+
         yield return StartCoroutine(DeathAnimation()); // Attends la fin de l'animation avant de désactiver
 
         EnemyManager.Instance.RemoveEnemy(this);
