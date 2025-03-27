@@ -28,6 +28,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private int debuffPerception = -2;
     [SerializeField] private int buffDiscretion = 3;
     [SerializeField] private int maxbuffDiscretion = 3;
+
     [SerializeField] private int DebuffDiscretion = -3;
 
     public float fanSpread = 5f;
@@ -60,14 +61,17 @@ public class EnemyManager : MonoBehaviour
     {
         buffPerception = maxbuffPerception;
         buffDiscretion = maxbuffDiscretion;
+
         switch (GameManager.currentEvent.eventDifficulty)
         {
-            case EventBattle.EventDifficulty.Facile: 
+            case EventBattle.EventDifficulty.Facile:
                 break;
+
             case EventBattle.EventDifficulty.Moyen:
                 buffDiscretion += 1;
                 buffPerception += 1;
                 break;
+
             case EventBattle.EventDifficulty.Difficile:
                 buffDiscretion += 1;
                 buffPerception += 1;
@@ -329,6 +333,7 @@ public class EnemyManager : MonoBehaviour
     {
         if (enemies.Contains(enemy))
         {
+            StartCoroutine(enemy.DeathAnimation());
             enemies.Remove(enemy);
             Destroy(enemy.gameObject);
         }
