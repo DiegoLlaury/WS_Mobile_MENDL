@@ -140,6 +140,12 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         {
             GameManager.currentEvent.currentTurn = 2;
         }
+
+        if(GameManager.currentEvent.eventType == EventBattle.EventType.Enquete)
+        {
+            GameManager.WinBattle = false;
+            player.EndBattle();
+        }
         
         if(enemyData.health <= 0)
         {

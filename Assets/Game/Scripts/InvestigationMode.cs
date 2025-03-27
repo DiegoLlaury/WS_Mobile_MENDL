@@ -41,16 +41,28 @@ public class InvestigationMode : MonoBehaviour
 
     public void CheckGameOver(PlayerEvent player)
     {
-        if (player.cardData.perception >= requiredInfiltration)
+        bool allEnemiesDetected = true;
+
+        foreach (EnemyDisplay enemy in enemyManager.enemies)
+        {
+            if (player.cardData.perception < enemy.enemyData.discretion)
+            {
+                allEnemiesDetected = false;
+                break; // Si un seul ennemi n'est pas détecté, pas besoin de continuer
+            }
+        }
+
+        if (allEnemiesDetected && GameManager.currentEvent.currentTurn == 0)
         {
             GameManager.WinBattle = true;
             player.EndBattle();
+            Debug.Log("Investigation réussie !");
         }
-        else if (GameManager.currentEvent.currentTurn == 0 || player.cardData.health == 0)
+        else if (!allEnemiesDetected && GameManager.currentEvent.currentTurn == 0)
         {
             GameManager.WinBattle = false;
             player.EndBattle();
-            Debug.Log("You lost the investigation");
+            Debug.Log("Vous avez perdu l'investigation !");
         }
     }
 }
