@@ -344,7 +344,8 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     {
         if (cardData.discretion < enemy.enemyData.perception)
         {
-            Debug.Log("Infiltration Failed!");
+            GameManager.WinBattle = false;
+            EndBattle();
         }
     }
 
