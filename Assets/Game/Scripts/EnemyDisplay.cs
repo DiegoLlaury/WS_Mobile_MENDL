@@ -377,8 +377,10 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
     private void UpdateStatusHUD()
     {
         // Réinitialise l'affichage
+        firstStatus.gameObject.SetActive(false);
         firstStatus.sprite = null;
         firstStatus.enabled = false;
+        secondStatus.gameObject.SetActive(false);
         secondStatus.sprite = null;
         secondStatus.enabled = false;
 
@@ -388,11 +390,13 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         {
             if (statusCount == 0)
             {
+                firstStatus.gameObject.SetActive(true);
                 firstStatus.sprite = GetStatusIcon(effect.Key);
                 firstStatus.enabled = true;
             }
             else if (statusCount == 1)
             {
+                secondStatus.gameObject.SetActive(true);
                 secondStatus.sprite = GetStatusIcon(effect.Key);
                 secondStatus.enabled = true;
             }

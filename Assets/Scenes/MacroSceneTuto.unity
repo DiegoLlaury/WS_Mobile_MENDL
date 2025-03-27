@@ -2667,7 +2667,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handManagerMacro: {fileID: 1966426167}
   deck:
-  - {fileID: 11400000, guid: ca520e4fb08caea498637c73bd335d8e, type: 2}
+  - {fileID: 11400000, guid: a337094fec051574f90a07f7a7cf6ce1, type: 2}
   cardMiddleInEvent: []
   drawCard: 1
   tuto: 1
@@ -2721,6 +2721,7 @@ MonoBehaviour:
   - {fileID: 970100005}
   - {fileID: 746108914}
   - {fileID: 543447655}
+  inMacro: 1
 --- !u!1 &746108914
 GameObject:
   m_ObjectHideFlags: 0
@@ -6504,6 +6505,9 @@ MonoBehaviour:
   - {fileID: 1773982685}
   - {fileID: 2061842029}
   - {fileID: 548111012}
+  endPanel: {fileID: 0}
+  endTitle: {fileID: 0}
+  endDescription: {fileID: 0}
 --- !u!1 &1612717938
 GameObject:
   m_ObjectHideFlags: 0

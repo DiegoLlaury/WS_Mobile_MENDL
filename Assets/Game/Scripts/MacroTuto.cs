@@ -7,11 +7,19 @@ public class MacroTuto : MonoBehaviour
 {
     public List<GameObject> panelList;
     private int tutoStep = -1;
+    public bool inMacro;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartCoroutine(wait(1f));
+        if (inMacro)
+        {
+            StartCoroutine(wait(1f));
+        }
+        else if (GameManager.currentEvent.tuto)
+        {
+            StartCoroutine(wait(1f));
+        }
     }
 
     public void Next()

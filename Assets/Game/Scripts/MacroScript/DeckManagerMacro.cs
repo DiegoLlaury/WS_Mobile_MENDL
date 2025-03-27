@@ -39,12 +39,6 @@ public class DeckManagerMacro : MonoBehaviour
                 }
             }
         }
-
-
-        foreach (CardMiddle card in deck)
-        {
-            Debug.Log($"Card: {card.name} - Instance ID: {card.GetInstanceID()}");
-        }
     }
 
     public void ShuffleDeck()
