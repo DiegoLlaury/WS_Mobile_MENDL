@@ -12,7 +12,9 @@ public class DeckManagerMacro : MonoBehaviour
     public List<CardMiddle> cardMiddleInEvent = new List<CardMiddle>();
     private float drawDelay = 0.2f;
 
-    private int drawCard = 4;
+    public int drawCard = 4;
+
+    public bool tuto;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,17 +26,20 @@ public class DeckManagerMacro : MonoBehaviour
 
     private void LoadDeck()
     {
-        deck.Clear();
-        CardMiddle[] cards = Resources.LoadAll<CardMiddle>("CardsMiddle");
-
-
-        foreach (CardMiddle card in cards)
+        if (!tuto)
         {
-            if (!deck.Contains(card))
+            deck.Clear();
+            CardMiddle[] cards = Resources.LoadAll<CardMiddle>("CardsMiddle");
+
+            foreach (CardMiddle card in cards)
             {
-                deck.Add(card);
+                if (!deck.Contains(card))
+                {
+                    deck.Add(card);
+                }
             }
         }
+
 
         foreach (CardMiddle card in deck)
         {
