@@ -53,6 +53,10 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
 
     public AudioSource hurtSound;
     public AudioSource attackSound;
+    public AudioSource buffSound;
+    public AudioSource debuffSound;
+    public AudioSource shieldGainSound;
+    public AudioSource shieldHitSound;
 
     private void Awake()
     {
@@ -105,6 +109,7 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
             int absorbed = Mathf.Min(damage, enemyData.defense);
             enemyData.defense -= absorbed;
             damage -= absorbed;
+            shieldHitSound.Play();
             Debug.Log($"Enemy {enemyData.enemyName} shield absorbed {absorbed} damage. Remaining shield: {enemyData.defense}");
             StartCoroutine(ScaleAnimation(DefenseTransform, 1.5f, 0.5f, 0f));
         }
@@ -219,6 +224,7 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
     {
         enemyData.defense += amount;
         StartCoroutine(ScaleAnimation(DefenseTransform, 1.5f, 0.5f, 0f));
+        shieldGainSound.Play();
         UpdateEnemyDisplay();
         Debug.Log($"Enemy {enemyData.enemyName} gained {amount} shield. Current shield: {enemyData.defense}");
     }
@@ -233,18 +239,22 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
                 break;
             case Card.StatType.defense:
                 enemyData.defense += amount;
+                shieldGainSound.Play();
                 StartCoroutine(ScaleAnimation(DefenseTransform, 1.5f, 0.5f, 0f));
                 break;
             case Card.StatType.damage:
                 enemyData.damage += amount;
+                buffSound.Play();
                 StartCoroutine(ScaleAnimation(AttackTransform, 1.5f, 0.5f, 0f));
                 break;
             case Card.StatType.discretion:
                 enemyData.discretion += amount;
+                buffSound.Play();
                 StartCoroutine(ScaleAnimation(DiscretionTransform, 1.5f, 0.5f, 0f));
                 break;
             case Card.StatType.perception:
                 enemyData.perception += amount;
+                buffSound.Play();
                 StartCoroutine(ScaleAnimation(PerceptionTransform, 1.5f, 0.5f, 0f));
                 break;
         }
@@ -254,6 +264,7 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
     public void ReducePerception(int value)
     {
         enemyData.perception = Mathf.Clamp(enemyData.perception - value, 0, enemyData.maxPerception);
+        debuffSound.Play();
         StartCoroutine(ScaleAnimation(PerceptionTransform, 1.5f, 0.5f, 0f));
         UpdateEnemyDisplay();
     }
@@ -261,12 +272,14 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
     public void ReduceInfiltration(int value)
     {
         enemyData.discretion = Mathf.Clamp(enemyData.discretion - value, 0, enemyData.maxDiscretion);
+        debuffSound.Play();
         StartCoroutine(ScaleAnimation(DiscretionTransform, 1.5f, 0.5f, 0f));
         UpdateEnemyDisplay();
     }
 
     public void ApplyStatus(StatusEffect.StatusType statusType, int value, int duration, EnemyDisplay enemy)
     {
+        debuffSound.Play();
         if (activeEffects.ContainsKey(statusType))
         {
             enemyData = enemy.enemyData;
