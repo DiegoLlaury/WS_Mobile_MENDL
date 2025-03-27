@@ -374,6 +374,12 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
 
     public void EndBattle()
     {
+        if (GameManager.currentEvent.tuto)
+        {
+            GameManager.firstTime = true;
+            GameManager.currentEventBattles.Clear();
+        }
+
         if (GameManager.WinBattle == true)
         {
             widgetWin.SetActive(true);
