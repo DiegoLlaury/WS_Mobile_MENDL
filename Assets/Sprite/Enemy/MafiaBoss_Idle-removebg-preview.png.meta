@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2a8527c8477a6ed4c85d45ef5c0c208e
+guid: a9b87eb57f31e874a9b671a53e049b42
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1621334193339639418
-    second: image_2025-03-27_200557903-removebg-preview_0
+      213: 7174085190399941060
+    second: MafiaBoss_Idle-removebg-preview_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: image_2025-03-27_200557903-removebg-preview_0
+      name: MafiaBoss_Idle-removebg-preview_0
       rect:
         serializedVersion: 2
-        x: 39
-        y: 0
-        width: 170
-        height: 248
+        x: 123
+        y: 10
+        width: 244
+        height: 480
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a762430dbd2208610800000000000000
-      internalID: 1621334193339639418
+      spriteID: 4c9dd2288787f8360800000000000000
+      internalID: 7174085190399941060
       vertices: []
       indices: 
       edges: []
@@ -147,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      image_2025-03-27_200557903-removebg-preview_0: 1621334193339639418
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
