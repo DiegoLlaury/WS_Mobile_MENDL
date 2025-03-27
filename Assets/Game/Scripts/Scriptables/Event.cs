@@ -22,6 +22,7 @@ namespace WS_DiegoCo_Event
         public CardMiddle affectedCharacter;
 
         public bool boss;
+        public bool tuto;
         
         public string description;
         public string eventName;

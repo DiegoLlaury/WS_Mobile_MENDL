@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ef220b67029e442afdad0b4138c8a6, type: 3}
+  m_Name: 0 - ATTAQUE SURPRISE
+  m_EditorClassIdentifier: 
+  eventType: 0
+  eventDifficulty: 0
+  numberTurn: 15
+  currentTurn: 15
+  conditionNumber: 25
+  enemies:
+  - {fileID: 11400000, guid: 6b433b65d060f414a9334035422be582, type: 2}
+  - {fileID: 11400000, guid: cff968549b40e2f468c9cc5cc531881a, type: 2}
+  nextEvent: {fileID: 11400000, guid: a60563e19787c44408525c86343875b3, type: 2}
+  nextEventFail: {fileID: 11400000, guid: a60563e19787c44408525c86343875b3, type: 2}
+  affectedCharacter: {fileID: 11400000, guid: ebee12de6ffbd01429479ec425ecefdb, type: 2}
+  boss: 0
+  tuto: 1
+  description: "Apr\xE8s une longue journ\xE9e de service, vous d\xE9cidez d\u2019aller
+    boire un coup dans un bar pour d\xE9compresser. \u201CQu\u2019est-ce que je vous
+    sert lieutenant?\u201D Vous avez \xE0 peine le temps de r\xE9pondre au barman
+    quand tout \xE0 coup des hommes arm\xE9s entrent brusquement dans l\u2019\xE9tablissement
+    et une fusillade \xE9clate !"
+  eventName: ATTAQUE SURPRISE
+  location: Cafe
+  background: {fileID: 6744302211014969283, guid: e8d19b7709054194da0a677544f2bfe5, type: 3}
+  remainingAttempts: 4
+  MaxAttempts: 4
+  isResolved: 0
