@@ -71,7 +71,7 @@ public class DeckManagerMacro : MonoBehaviour
             {
                 CardMiddle nextCard = deck[0];
                 deck.RemoveAt(0);
-                handManagerMacro.AddCardToHand(nextCard);
+                handManagerMacro.AddCardToHand(nextCard, handManagerMacro.deckTransform.position);
             }
 
             yield return new WaitForSeconds(drawDelay);

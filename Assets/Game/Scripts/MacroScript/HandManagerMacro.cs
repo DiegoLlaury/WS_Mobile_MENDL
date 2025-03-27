@@ -22,10 +22,10 @@ public class HandManagerMacro : MonoBehaviour
         UpdateCardPositions();
     }
 
-    public void AddCardToHand(CardMiddle cardData)
+    public void AddCardToHand(CardMiddle cardData, Vector3 position)
     {
         // Instantiate the card at the deck's position
-        GameObject newCard = Instantiate(cardPrefab, deckTransform.position, Quaternion.identity, handTransform);
+        GameObject newCard = Instantiate(cardPrefab, position, Quaternion.identity, handTransform);
 
         // Assign card data
         CardMiddleDisplay display = newCard.GetComponent<CardMiddleDisplay>();

@@ -150,7 +150,7 @@ public class EventDisplay : MonoBehaviour
             StartCoroutine(ErrorPanel());
             return;
         }
-        handManagerMacro.AddCardToHand(cardMiddle);
+        handManagerMacro.AddCardToHand(cardMiddle, cardImage.transform.position);
         deckManagerMacro.UnstockCard(cardMiddle);
         currentBattle.affectedCharacter = null;
         cardMiddle = null;
