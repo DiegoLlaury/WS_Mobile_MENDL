@@ -104,7 +104,7 @@ public static class GameManager
                 }
                 else
                 {
-                    eventResults.Add(($"Échec temporaire de {eventBattle.eventType} : {eventBattle.eventName}, tentatives restantes : {eventBattle.remainingAttempts}", false));
+                    eventResults.Add(($"Échec de {eventBattle.eventType} : {eventBattle.eventName}, essais restants : {eventBattle.remainingAttempts}", false));
                     eventBattle.remainingAttempts--;
                     tempEvents.Add(eventBattle);
                 }

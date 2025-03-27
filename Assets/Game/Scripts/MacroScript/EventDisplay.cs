@@ -183,6 +183,16 @@ public class EventDisplay : MonoBehaviour
                     percentagePlayerTextWorld.text = $"{probVar.ToString()} %";
                     cardImageWorld.gameObject.SetActive(true);
                     cardImageWorld.transform.Find("CardMiddleImage").GetComponent<Image>().sprite = cardPlayer.cardImage;
+                    if (cardPlayer.symbolTypes == CardMiddle.SymbolTypes.Heart || cardPlayer.symbolTypes == CardMiddle.SymbolTypes.Square)
+                    {
+                        cardImage.color = new Color32(173, 3, 3, 255);
+                        cardImageWorld.transform.Find("CardMiddleImage").GetComponent<Image>().color = new Color32(173, 3, 3, 255);
+                    }
+                    else
+                    {
+                        cardImage.color = Color.black;
+                        cardImageWorld.transform.Find("CardMiddleImage").GetComponent<Image>().color = Color.black;
+                    }
                     cardBorder.gameObject.SetActive(true);
                     percentagePlayerTextWorld.gameObject.SetActive(true);
                     percentagePlayerText.gameObject.SetActive(true);

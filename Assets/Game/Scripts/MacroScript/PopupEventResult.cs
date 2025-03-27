@@ -12,7 +12,7 @@ public class PopupEventResult : MonoBehaviour
     public void SetupPopup(string resultMessage, bool isVictory)
     {
         resultText.text = resultMessage;
-        backgroundImage.color = isVictory ? Color.green : Color.red;
+        resultText.color = isVictory ? Color.green : Color.red;
         canvasGroup = GetComponent<CanvasGroup>();
 
         // Animation d’apparition
@@ -22,7 +22,7 @@ public class PopupEventResult : MonoBehaviour
     private IEnumerator ShowPopup()
     {
         float fadeDuration = 0.3f;
-        float displayDuration = 5f;
+        float displayDuration = 7.5f;
         float elapsed = 0f;
 
         // Apparition progressive
