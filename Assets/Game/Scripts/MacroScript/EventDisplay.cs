@@ -36,6 +36,9 @@ public class EventDisplay : MonoBehaviour
     private HandManagerMacro handManagerMacro;
     public BuildingPlace buildingPlace;
 
+    public Sprite nothingSprite;
+    public AudioSource cardSound;
+
     public enum BuildingPlace
     {
         Police,
@@ -91,7 +94,7 @@ public class EventDisplay : MonoBehaviour
 
         if (cardMiddle != null && cardImage != null)
         {
-            cardImage.sprite = cardMiddle != null ? cardMiddle.cardImage : null; 
+            cardImage.sprite = cardMiddle != null ? cardMiddle.cardImage : nothingSprite;
         }
     }
 
@@ -183,6 +186,7 @@ public class EventDisplay : MonoBehaviour
                     percentagePlayerTextWorld.text = $"{probVar.ToString()} %";
                     cardImageWorld.gameObject.SetActive(true);
                     cardImageWorld.transform.Find("CardMiddleImage").GetComponent<Image>().sprite = cardPlayer.cardImage;
+                    cardSound.Play();
                     if (cardPlayer.symbolTypes == CardMiddle.SymbolTypes.Heart || cardPlayer.symbolTypes == CardMiddle.SymbolTypes.Square)
                     {
                         cardImage.color = new Color32(173, 3, 3, 255);

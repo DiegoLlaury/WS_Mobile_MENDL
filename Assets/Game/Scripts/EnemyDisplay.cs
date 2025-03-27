@@ -51,6 +51,8 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
     public Transform PerceptionTransform;
     public Transform DiscretionTransform;
 
+    public AudioSource hurtSound;
+    public AudioSource attackSound;
 
     private void Awake()
     {
@@ -110,6 +112,7 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         if (damage > 0)
         {
             enemyData.health -= damage;
+            hurtSound.Play();
             Debug.Log($"Enemy {enemyData.enemyName} took {damage} damage. Remaining health: {enemyData.health}");
             StartCoroutine(ScaleAnimation(HealthTransform, 1.5f, 0.75f, 0f));
         }

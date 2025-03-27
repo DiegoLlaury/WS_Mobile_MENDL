@@ -21,6 +21,8 @@ public class BattleManager : MonoBehaviour
     private CardMiddle playerCard;
     private EventBattle currentEvent;
 
+    public AudioSource DrawSound;
+
     void Awake()
     {
         if (Instance == null)
@@ -51,6 +53,7 @@ public class BattleManager : MonoBehaviour
         isPlayerTurn = true;
         player.ResetEnergy();
         deckManager.DrawCard(cardStart);
+        DrawSound.Play();
         enemyManager.GenerateEnemyActions(GameManager.currentEvent.eventDifficulty, GameManager.currentEvent.eventType);
     }
 

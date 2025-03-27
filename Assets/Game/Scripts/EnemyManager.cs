@@ -251,6 +251,7 @@ public class EnemyManager : MonoBehaviour
         {
             case 0: // Attack
                 BattleManager.Instance.player.TakeDamage(enemy.enemyData.damage);
+                enemy.attackSound.Play();
                 Debug.Log($"{enemy.enemyData.enemyName} attacks for {enemy.enemyData.damage} damage!");
                 break;
 
