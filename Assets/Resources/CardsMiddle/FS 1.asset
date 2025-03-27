@@ -26,11 +26,11 @@ MonoBehaviour:
   strenght: 0
   perception: 0
   discretion: 0
-  heart: 6
-  square: 4
-  spade: 3
-  clover: 17
+  heart: 7
+  square: 3
+  spade: 15
+  clover: 5
   skillLevel: 25
   corruption: 1
-  letter: K
+  letter: Q
   cardImage: {fileID: 21300000, guid: 80101c77e248cb14197d4e65c75fa2fe, type: 3}

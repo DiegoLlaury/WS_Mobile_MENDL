@@ -32,5 +32,5 @@ MonoBehaviour:
   clover: 17
   skillLevel: 25
   corruption: 1
-  letter: K
+  letter: Q
   cardImage: {fileID: 21300000, guid: 2a015861703e6ca4b941cdf474442960, type: 3}
