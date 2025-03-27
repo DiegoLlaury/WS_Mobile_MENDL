@@ -10,23 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1ef220b67029e442afdad0b4138c8a6, type: 3}
-  m_Name: Infiltration Facile 1
+  m_Name: Event1
   m_EditorClassIdentifier: 
   eventType: 1
-  eventDifficulty: 0
+  eventDifficulty: 2
   numberTurn: 15
-  currentTurn: 0
+  currentTurn: 1
   conditionNumber: 25
   enemies:
   - {fileID: 11400000, guid: 6b433b65d060f414a9334035422be582, type: 2}
   - {fileID: 11400000, guid: cff968549b40e2f468c9cc5cc531881a, type: 2}
-  nextEvent: {fileID: 11400000, guid: f871cffe067fd4b48a5cd912b1b57c5c, type: 2}
-  affectedCharacter: {fileID: 11400000, guid: 085cf52b5bf5eb844bf9b859d43662a4, type: 2}
+  nextEvent: {fileID: 0}
+  nextEventFail: {fileID: 0}
+  affectedCharacter: {fileID: 11400000, guid: 0119d751a19d255408617dd4f6a6925f, type: 2}
   boss: 0
-  description: CombatDiff
-  eventName: Hopital
-  location: Hopital
-  background: {fileID: 995473497027029406, guid: 028cee480866e3641bbe479a61dad491, type: 3}
-  remainingAttempts: 4
-  MaxAttempts: 4
+  description: teggydezvbfezf
+  eventName: 
+  location: 
+  background: {fileID: 848032202879402619, guid: 828d4644c85115f47bd1d9e4dd3db41f, type: 3}
+  remainingAttempts: 0
+  MaxAttempts: 1
   isResolved: 0

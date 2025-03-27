@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventType: 0
   eventDifficulty: 0
-  numberTurn: 15
+  numberTurn: 20
   currentTurn: 1
-  conditionNumber: 25
+  conditionNumber: 999
   enemies:
-  - {fileID: 11400000, guid: 6b433b65d060f414a9334035422be582, type: 2}
-  - {fileID: 11400000, guid: cff968549b40e2f468c9cc5cc531881a, type: 2}
+  - {fileID: 11400000, guid: e53a6d781a007a14f963ea13de072612, type: 2}
+  - {fileID: 11400000, guid: 14b3053bf2872c24386c5661fad8ceab, type: 2}
   nextEvent: {fileID: 11400000, guid: e080bade604583a46a706c3a451a42ac, type: 2}
   nextEventFail: {fileID: 11400000, guid: e080bade604583a46a706c3a451a42ac, type: 2}
   affectedCharacter: {fileID: 11400000, guid: 0119d751a19d255408617dd4f6a6925f, type: 2}

@@ -20,7 +20,7 @@ MonoBehaviour:
   defense: 0
   damage: 0
   startingDamage: 0
-  discretion: 3
+  discretion: 4
   perception: 3
   energy: 1
   effect: "Faites perdre {perception} perception \xE0 la cible et gagnez {discretion}
