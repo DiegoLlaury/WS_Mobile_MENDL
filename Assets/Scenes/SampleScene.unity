@@ -2483,10 +2483,10 @@ MonoBehaviour:
   defenseEnemy: 2
   debuffAttack: -1
   buffAttack: 1
-  buffPerception: 3
+  buffPerception: 2
   debuffPerception: -2
-  buffDiscretion: 3
-  DebuffDiscretion: -3
+  buffDiscretion: 2
+  DebuffDiscretion: -2
   fanSpread: 0
   enemiesSpacing: 400
   verticalSpacing: 10
