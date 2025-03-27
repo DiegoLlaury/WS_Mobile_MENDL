@@ -320,6 +320,11 @@ public class EnemyManager : MonoBehaviour
 
     public EnemyDisplay GetRandomEnemy()
     {
+        if (enemies.Count == 0)
+        {
+            Debug.LogWarning("GetRandomEnemy() : Aucun ennemi disponible !");
+            return null; // Retourne null pour éviter l'erreur
+        }
         int randomIndex = Random.Range(0, enemies.Count);
         return enemies[randomIndex];
     }
