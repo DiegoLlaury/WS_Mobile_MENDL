@@ -18,6 +18,7 @@ namespace WS_DiegoCo_Event
         
         public List<Enemy> enemies;
         public EventBattle nextEvent;
+        public EventBattle nextEventFail;
         public CardMiddle affectedCharacter;
 
         public bool boss;

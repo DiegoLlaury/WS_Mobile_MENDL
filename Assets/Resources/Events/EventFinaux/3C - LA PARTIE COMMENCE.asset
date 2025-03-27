@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ef220b67029e442afdad0b4138c8a6, type: 3}
+  m_Name: 3C - LA PARTIE COMMENCE
+  m_EditorClassIdentifier: 
+  eventType: 1
+  eventDifficulty: 0
+  numberTurn: 15
+  currentTurn: 1
+  conditionNumber: 25
+  enemies:
+  - {fileID: 11400000, guid: 6b433b65d060f414a9334035422be582, type: 2}
+  - {fileID: 11400000, guid: cff968549b40e2f468c9cc5cc531881a, type: 2}
+  nextEvent: {fileID: 11400000, guid: bbdc4e0f3152ccb4389eb6286fefb987, type: 2}
+  nextEventFail: {fileID: 11400000, guid: bbdc4e0f3152ccb4389eb6286fefb987, type: 2}
+  affectedCharacter: {fileID: 11400000, guid: 0119d751a19d255408617dd4f6a6925f, type: 2}
+  boss: 0
+  description: "Vous avez \xE9chapp\xE9 de justesse \xE0 la fusillade du quartier
+    riche, mais vos assaillants ne comptent pas s\u2019arr\xEAter l\xE0. Ils se dirigent
+    \xE0 pr\xE9sent vers le casino, un lieu plus luxueux et imp\xE9n\xE9trable o\xF9
+    la v\xE9rit\xE9 pourrait bien se cacher. L'infiltration dans cet endroit survolt\xE9
+    est votre seule chance d'obtenir des informations cruciales pour d\xE9manteler
+    leur r\xE9seau."
+  eventName: LA PARTIE COMMENCE
+  location: Casino
+  background: {fileID: -1417799516807294308, guid: 1d62e4e3c6b499a47ad26b47c25ae78c, type: 3}
+  remainingAttempts: 4
+  MaxAttempts: 4
+  isResolved: 0

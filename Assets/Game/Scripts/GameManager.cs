@@ -100,7 +100,7 @@ public static class GameManager
                 if (eventBattle.remainingAttempts == 0)
                 {
                     eventResults.Add(($"Échec définitif de {eventBattle.eventType} : {eventBattle.eventName}...", false));
-                    tempEvents.Add(eventBattle.nextEvent);
+                    tempEvents.Add(eventBattle.nextEventFail);
                 }
                 else
                 {

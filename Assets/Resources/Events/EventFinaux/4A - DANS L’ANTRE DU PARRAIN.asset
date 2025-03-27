@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ef220b67029e442afdad0b4138c8a6, type: 3}
+  m_Name: "4A - DANS L\u2019ANTRE DU PARRAIN"
+  m_EditorClassIdentifier: 
+  eventType: 1
+  eventDifficulty: 0
+  numberTurn: 15
+  currentTurn: 1
+  conditionNumber: 25
+  enemies:
+  - {fileID: 11400000, guid: 6b433b65d060f414a9334035422be582, type: 2}
+  - {fileID: 11400000, guid: cff968549b40e2f468c9cc5cc531881a, type: 2}
+  nextEvent: {fileID: 11400000, guid: 9260b11896525c44a952ad2724af91a9, type: 2}
+  nextEventFail: {fileID: 11400000, guid: ea2067951ed35fa4f9df147b1c3ac477, type: 2}
+  affectedCharacter: {fileID: 11400000, guid: 0119d751a19d255408617dd4f6a6925f, type: 2}
+  boss: 0
+  description: "Apr\xE8s plusieurs heures pass\xE9es \xE0 faire parler les suspects,
+    l\u2019un d\u2019eux finit par r\xE9v\xE9ler des informations importantes sur
+    la localisation de la maison du chef. Cependant, vous devrez faire preuve de
+    prudence lors de votre infiltration, la villa est surveill\xE9e par des hommes
+    arm\xE9s."
+  eventName: "DANS L\u2019ANTRE DU PARRAIN"
+  location: Villa
+  background: {fileID: -6204372652665505456, guid: e03d3c259d456c842b5117fd50f75776, type: 3}
+  remainingAttempts: 4
+  MaxAttempts: 4
+  isResolved: 0

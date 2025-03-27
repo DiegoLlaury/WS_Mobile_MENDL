@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ef220b67029e442afdad0b4138c8a6, type: 3}
+  m_Name: 5A- - ALL-IN
+  m_EditorClassIdentifier: 
+  eventType: 0
+  eventDifficulty: 0
+  numberTurn: 15
+  currentTurn: 1
+  conditionNumber: 25
+  enemies:
+  - {fileID: 11400000, guid: 6b433b65d060f414a9334035422be582, type: 2}
+  - {fileID: 11400000, guid: cff968549b40e2f468c9cc5cc531881a, type: 2}
+  nextEvent: {fileID: 0}
+  affectedCharacter: {fileID: 11400000, guid: 0119d751a19d255408617dd4f6a6925f, type: 2}
+  boss: 1
+  description: "La villa est bien plus surveill\xE9e que ce que vous pensiez, vous
+    \xEAtes pris de court et vous vous retrouvez dans une importante fusillade. D\xE9fendez
+    vous co\xFBte que co\xFBte et \xE9liminez le chef !"
+  eventName: "L\u2019ASSAUT FINAL"
+  location: Casino
+  background: {fileID: -1417799516807294308, guid: 1d62e4e3c6b499a47ad26b47c25ae78c, type: 3}
+  remainingAttempts: 4
+  MaxAttempts: 4
+  isResolved: 0

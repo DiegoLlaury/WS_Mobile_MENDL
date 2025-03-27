@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ef220b67029e442afdad0b4138c8a6, type: 3}
+  m_Name: 3A - VISITE DE COURTOISIE
+  m_EditorClassIdentifier: 
+  eventType: 2
+  eventDifficulty: 0
+  numberTurn: 15
+  currentTurn: 1
+  conditionNumber: 25
+  enemies:
+  - {fileID: 11400000, guid: 6b433b65d060f414a9334035422be582, type: 2}
+  - {fileID: 11400000, guid: cff968549b40e2f468c9cc5cc531881a, type: 2}
+  nextEvent: {fileID: 11400000, guid: e28cd7e7c42d77842ad45125e966f86c, type: 2}
+  nextEventFail: {fileID: 11400000, guid: e28cd7e7c42d77842ad45125e966f86c, type: 2}
+  affectedCharacter: {fileID: 11400000, guid: 0119d751a19d255408617dd4f6a6925f, type: 2}
+  boss: 0
+  description: "La fusillade de l\u2019entrep\xF4t a fait de nombreux bless\xE9s,
+    que ce soit dans vos rangs mais aussi chez l\u2019ennemi. C\u2019est une occasion
+    pour vous de leur soutirer des informations \xE0 l\u2019h\xF4pital. Interrogez
+    les patients afin de trouver les membres de la mafia et enqu\xEAter sur leur
+    chef."
+  eventName: VISITE DE COURTOISIE
+  location: Hopital
+  background: {fileID: 995473497027029406, guid: 028cee480866e3641bbe479a61dad491, type: 3}
+  remainingAttempts: 4
+  MaxAttempts: 4
+  isResolved: 0
