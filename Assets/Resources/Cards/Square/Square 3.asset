@@ -20,7 +20,7 @@ MonoBehaviour:
   defense: 0
   damage: 0
   startingDamage: 0
-  discretion: 6
+  discretion: 4
   perception: 0
   energy: 1
   effect: Gagnez {discretion} infiltration.

@@ -15,15 +15,16 @@ MonoBehaviour:
   eventType: 1
   eventDifficulty: 1
   numberTurn: 15
-  currentTurn: 1
-  conditionNumber: 25
+  currentTurn: 6
+  conditionNumber: 45
   enemies:
-  - {fileID: 11400000, guid: 6b433b65d060f414a9334035422be582, type: 2}
-  - {fileID: 11400000, guid: cff968549b40e2f468c9cc5cc531881a, type: 2}
+  - {fileID: 11400000, guid: fe333be98dd3507478268e3039887c36, type: 2}
+  - {fileID: 11400000, guid: 853465607eca1fb47826e8a1d96832d8, type: 2}
   nextEvent: {fileID: 11400000, guid: bbdc4e0f3152ccb4389eb6286fefb987, type: 2}
   nextEventFail: {fileID: 11400000, guid: bbdc4e0f3152ccb4389eb6286fefb987, type: 2}
-  affectedCharacter: {fileID: 11400000, guid: 0119d751a19d255408617dd4f6a6925f, type: 2}
+  affectedCharacter: {fileID: 11400000, guid: 09e2d7357b7b1a74d9332b1cdac2e4f0, type: 2}
   boss: 0
+  tuto: 0
   description: "Vous avez \xE9chapp\xE9 de justesse \xE0 la fusillade du quartier
     riche, mais vos assaillants ne comptent pas s\u2019arr\xEAter l\xE0. Ils se dirigent
     \xE0 pr\xE9sent vers le casino, un lieu plus luxueux et imp\xE9n\xE9trable o\xF9

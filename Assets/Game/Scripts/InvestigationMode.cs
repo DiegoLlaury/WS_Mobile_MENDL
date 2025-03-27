@@ -25,7 +25,7 @@ public class InvestigationMode : MonoBehaviour
     {
         enemyManager.StartCombat(investigationEvent);
         suspectedMafioso = enemyManager.GetRandomEnemy(); // Randomize the mafioso
-        requiredInfiltration = investigationEvent.conditionNumber;
+        requiredInfiltration = GameManager.currentEvent.conditionNumber;
     }
 
     //public void EndPlayerTurn()
@@ -41,7 +41,7 @@ public class InvestigationMode : MonoBehaviour
 
     public void CheckGameOver(PlayerEvent player)
     {
-        if (suspectedMafioso.enemyData.perception <= player.cardData.perception)
+        if (player.cardData.perception >= requiredInfiltration)
         {
             GameManager.WinBattle = true;
             player.EndBattle();

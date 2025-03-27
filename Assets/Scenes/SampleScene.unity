@@ -2484,8 +2484,10 @@ MonoBehaviour:
   debuffAttack: -1
   buffAttack: 1
   buffPerception: 2
+  maxbuffPerception: 2
   debuffPerception: -2
   buffDiscretion: 2
+  maxbuffDiscretion: 2
   DebuffDiscretion: -2
   fanSpread: 0
   enemiesSpacing: 400

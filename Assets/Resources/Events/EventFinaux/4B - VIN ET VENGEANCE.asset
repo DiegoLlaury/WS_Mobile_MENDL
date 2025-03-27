@@ -18,12 +18,13 @@ MonoBehaviour:
   currentTurn: 1
   conditionNumber: 25
   enemies:
-  - {fileID: 11400000, guid: 6b433b65d060f414a9334035422be582, type: 2}
-  - {fileID: 11400000, guid: cff968549b40e2f468c9cc5cc531881a, type: 2}
+  - {fileID: 11400000, guid: fe333be98dd3507478268e3039887c36, type: 2}
+  - {fileID: 11400000, guid: fe333be98dd3507478268e3039887c36, type: 2}
   nextEvent: {fileID: 11400000, guid: c14a14a852c7a3e4c9bc125d6e985a90, type: 2}
   nextEventFail: {fileID: 11400000, guid: c14a14a852c7a3e4c9bc125d6e985a90, type: 2}
   affectedCharacter: {fileID: 11400000, guid: 0119d751a19d255408617dd4f6a6925f, type: 2}
   boss: 0
+  tuto: 0
   description: "La fusillade du Diner a \xE9t\xE9 un v\xE9ritable carnage, mais vous
     apprenez que la v\xE9ritable livraison se fera dans un vieil entrep\xF4t. Cette
     r\xE9v\xE9lation vous offre l'opportunit\xE9 de leur rendre la monnaie de leur

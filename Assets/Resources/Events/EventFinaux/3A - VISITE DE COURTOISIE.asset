@@ -15,15 +15,16 @@ MonoBehaviour:
   eventType: 2
   eventDifficulty: 1
   numberTurn: 15
-  currentTurn: 1
-  conditionNumber: 25
+  currentTurn: 4
+  conditionNumber: 35
   enemies:
-  - {fileID: 11400000, guid: 6b433b65d060f414a9334035422be582, type: 2}
-  - {fileID: 11400000, guid: cff968549b40e2f468c9cc5cc531881a, type: 2}
+  - {fileID: 11400000, guid: a4521c13485fee548a618276c3699e6e, type: 2}
+  - {fileID: 11400000, guid: d2004190bbb98d8428fe4bcea7489102, type: 2}
   nextEvent: {fileID: 11400000, guid: e28cd7e7c42d77842ad45125e966f86c, type: 2}
   nextEventFail: {fileID: 11400000, guid: e28cd7e7c42d77842ad45125e966f86c, type: 2}
-  affectedCharacter: {fileID: 11400000, guid: 0119d751a19d255408617dd4f6a6925f, type: 2}
+  affectedCharacter: {fileID: 11400000, guid: 085cf52b5bf5eb844bf9b859d43662a4, type: 2}
   boss: 0
+  tuto: 0
   description: "La fusillade de l\u2019entrep\xF4t a fait de nombreux bless\xE9s,
     que ce soit dans vos rangs mais aussi chez l\u2019ennemi. C\u2019est une occasion
     pour vous de leur soutirer des informations \xE0 l\u2019h\xF4pital. Interrogez

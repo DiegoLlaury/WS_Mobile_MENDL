@@ -15,15 +15,16 @@ MonoBehaviour:
   eventType: 1
   eventDifficulty: 0
   numberTurn: 15
-  currentTurn: 1
-  conditionNumber: 15
+  currentTurn: 10
+  conditionNumber: 30
   enemies:
   - {fileID: 11400000, guid: 6b433b65d060f414a9334035422be582, type: 2}
   - {fileID: 11400000, guid: cff968549b40e2f468c9cc5cc531881a, type: 2}
   nextEvent: {fileID: 11400000, guid: a60563e19787c44408525c86343875b3, type: 2}
   nextEventFail: {fileID: 11400000, guid: a60563e19787c44408525c86343875b3, type: 2}
-  affectedCharacter: {fileID: 11400000, guid: ebee12de6ffbd01429479ec425ecefdb, type: 2}
+  affectedCharacter: {fileID: 11400000, guid: 10e7a009ac4068d4d9e05456adb1ed68, type: 2}
   boss: 0
+  tuto: 0
   description: "Apr\xE8s la fusillade, le barman vous dit qu\u2019il a entendu dire
     qu\u2019une livraison d\u2019armes lourdes aura lieu dans l\u2019entrep\xF4t
     de la ville. Introduisez-vous discr\xE8tement afin d\u2019en savoir plus sur

@@ -24,8 +24,10 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private int debuffAttack = 1;
     [SerializeField] private int buffAttack = 1;
     [SerializeField] private int buffPerception = 3;
+    [SerializeField] private int maxbuffPerception = 3;
     [SerializeField] private int debuffPerception = -2;
     [SerializeField] private int buffDiscretion = 3;
+    [SerializeField] private int maxbuffDiscretion = 3;
     [SerializeField] private int DebuffDiscretion = -3;
 
     public float fanSpread = 5f;
@@ -56,7 +58,21 @@ public class EnemyManager : MonoBehaviour
 
     public void StartCombat(EventBattle combatEvent)
     {
-
+        buffPerception = maxbuffPerception;
+        buffDiscretion = maxbuffDiscretion;
+        switch (GameManager.currentEvent.eventDifficulty)
+        {
+            case EventBattle.EventDifficulty.Facile: 
+                break;
+            case EventBattle.EventDifficulty.Moyen:
+                buffDiscretion += 1;
+                buffPerception += 1;
+                break;
+            case EventBattle.EventDifficulty.Difficile:
+                buffDiscretion += 1;
+                buffPerception += 1;
+                break;
+        }
         ClearEnemies();
 
         for (int i = 0; i < combatEvent.enemies.Count; i++)
@@ -346,11 +362,11 @@ public class EnemyManager : MonoBehaviour
             case EventBattle.EventType.Infiltration:
                 probabilities = difficulty switch
                 {
-                    EventBattle.EventDifficulty.Facile => new int[] { 50, 50 },
-                    EventBattle.EventDifficulty.Moyen => new int[] { 50, 25, 25 },
-                    EventBattle.EventDifficulty.Difficile => new int[] { 50, 25, 25 },
+                    EventBattle.EventDifficulty.Facile => new int[] { 65, 35 },
+                    EventBattle.EventDifficulty.Moyen => new int[] { 60, 20, 20 },
+                    EventBattle.EventDifficulty.Difficile => new int[] { 70, 15, 15 },
                     _ => new int[] { 50, 30, 20 }
-                };
+                } ;
                 break;
 
             case EventBattle.EventType.Enquete:
@@ -358,7 +374,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     EventBattle.EventDifficulty.Facile => new int[] { 100 },
                     EventBattle.EventDifficulty.Moyen => new int[] { 70, 30 },
-                    EventBattle.EventDifficulty.Difficile => new int[] { 50, 50 },
+                    EventBattle.EventDifficulty.Difficile => new int[] { 60, 40 },
                     _ => new int[] { 70, 30 }
                 };
                 break;

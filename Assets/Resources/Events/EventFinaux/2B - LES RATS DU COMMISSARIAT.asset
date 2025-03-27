@@ -14,16 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventType: 2
   eventDifficulty: 1
-  numberTurn: 15
+  numberTurn: 20
   currentTurn: 1
-  conditionNumber: 25
+  conditionNumber: 50
   enemies:
-  - {fileID: 11400000, guid: 6b433b65d060f414a9334035422be582, type: 2}
-  - {fileID: 11400000, guid: cff968549b40e2f468c9cc5cc531881a, type: 2}
+  - {fileID: 11400000, guid: d2004190bbb98d8428fe4bcea7489102, type: 2}
+  - {fileID: 11400000, guid: a4521c13485fee548a618276c3699e6e, type: 2}
   nextEvent: {fileID: 11400000, guid: 1b8627292026c064594610e0a13ec5c2, type: 2}
   nextEventFail: {fileID: 11400000, guid: 1b8627292026c064594610e0a13ec5c2, type: 2}
-  affectedCharacter: {fileID: 11400000, guid: 0119d751a19d255408617dd4f6a6925f, type: 2}
+  affectedCharacter: {fileID: 0}
   boss: 0
+  tuto: 0
   description: "Vos agents ont confirm\xE9 que le Lacey\u2019s Diner cache un trafic,
     mais pire encore : ils ont d\xE9couvert que d\u2019autres policiers \xE9taient
     de m\xE8che avec les mafieux. La corruption s\u2019\xE9tend aux forces de l\u2019ordre.

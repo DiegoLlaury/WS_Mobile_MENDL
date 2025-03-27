@@ -129,6 +129,7 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         {
             Debug.Log("You failed !");
         }
+
         StartCoroutine(DamageAnimation());
         
         UpdateEnemyDisplay();
