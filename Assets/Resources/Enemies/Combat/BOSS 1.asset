@@ -23,9 +23,9 @@ MonoBehaviour:
   discretion: 0
   maxPerception: 0
   perception: 0
-  enemyIdleImage: {fileID: 21300000, guid: 06ae62479ea32b74cb28b1066f9b9d79, type: 3}
-  enemyAttackImage: {fileID: 21300000, guid: 25320657e728a6645a64e771026e2b51, type: 3}
-  enemyDamagedImage: {fileID: 21300000, guid: ee93e1abfb493f34ba9d2a0a453d3fe3, type: 3}
+  enemyIdleImage: {fileID: 7174085190399941060, guid: a9b87eb57f31e874a9b671a53e049b42, type: 3}
+  enemyAttackImage: {fileID: -1543937637966021318, guid: 0c8b1b58a9eebb445a5db03183b2a8ea, type: 3}
+  enemyDamagedImage: {fileID: -4712023593981100359, guid: 06b660b1485c7df49b579893ee219c5b, type: 3}
   attackImage: {fileID: 21300000, guid: 79c48be568ecf404fa83e27d7351d169, type: 3}
   defenseImage: {fileID: 21300000, guid: e112e085a2687814b9c7a1ed5568ebf2, type: 3}
   buffImage: {fileID: 21300000, guid: 0cd800206a80734429b41f9761121f00, type: 3}

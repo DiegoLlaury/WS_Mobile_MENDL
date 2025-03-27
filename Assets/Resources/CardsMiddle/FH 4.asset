@@ -33,4 +33,4 @@ MonoBehaviour:
   skillLevel: 25
   corruption: 1
   letter: K
-  cardImage: {fileID: 21300000, guid: 508da9b1254fd6c458b1549e26192df1, type: 3}
+  cardImage: {fileID: 21300000, guid: c2d48aaab9419bd47871b005df0971a9, type: 3}
