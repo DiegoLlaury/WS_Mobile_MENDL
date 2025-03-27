@@ -6794,6 +6794,7 @@ MonoBehaviour:
   PlayerAttack: {fileID: 590315899}
   PlayerDiscretion: {fileID: 209503841}
   PlayerPerception: {fileID: 1767606122}
+  EnergyFrame: {fileID: 712320524}
 --- !u!1 &837129494
 GameObject:
   m_ObjectHideFlags: 0

@@ -155,6 +155,8 @@ public class CardMovement : MonoBehaviour, IDragHandler, IPointerDownHandler, IP
 
         if (!player.CanPlayCard(cardDisplay.cardData.energy))
         {
+            StartCoroutine(player.ScaleAnimation(player.EnergyFrame, 1.25f, 0.5f, 0f));
+            StartCoroutine(player.NotEnoughEnergy(.5f));
             Debug.LogWarning("Not enough energy to play this card!");
             TransitionToState0();
             return;

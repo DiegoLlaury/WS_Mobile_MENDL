@@ -8,6 +8,7 @@ using WS_DiegoCo;
 using UnityEngine.Rendering;
 using System.Linq;
 using WS_DiegoCo_Enemy;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerEvent : MonoBehaviour, IStatusReceiver
 {
@@ -37,6 +38,8 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     public Transform PlayerAttack;
     public Transform PlayerDiscretion;
     public Transform PlayerPerception;
+
+    public Transform EnergyFrame;
 
     private int discretionStrengthIncrease;
 
@@ -360,6 +363,10 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         {
             currentEnergy -= cost;
             UpdatePlayerEvent();
+            if (cost > 0)
+            {
+                StartCoroutine(ScaleAnimation(EnergyFrame, 1.25f, 0.5f, 0f));
+            }
         }
         else
         {
@@ -409,10 +416,9 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         GameManager.EndEvent();
     }
 
-    private IEnumerator ScaleAnimation(Transform target, float scaleMultiplier, float duration, float delay)
+    public IEnumerator ScaleAnimation(Transform target, float scaleMultiplier, float duration, float delay)
     {
-        Debug.Log("TEST");
-        Vector3 originalScale = target.localScale;
+        Vector3 originalScale = new Vector3(1,1,1);
         Vector3 targetScale = originalScale * scaleMultiplier;
 
         yield return new WaitForSeconds(delay);
@@ -438,5 +444,34 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         }
 
         target.localScale = originalScale;
+    }
+
+    public IEnumerator NotEnoughEnergy(float duration)
+    {
+        Debug.Log("uycvcvbzfv");
+        Color originalColor = Color.white;
+        Color targetColor = Color.red;
+
+        float elapsedTime = 0f;
+        while (elapsedTime < duration / 2)
+        {
+            float t = elapsedTime / (duration / 2);
+            t = t * t * (3f - 2f * t); // Smoothstep easing
+            EnergyFrame.GetComponent<Image>().color = Color.Lerp(originalColor, targetColor, t);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        elapsedTime = 0f;
+        while (elapsedTime < duration / 2)
+        {
+            float t = elapsedTime / (duration / 2);
+            t = t * t * (3f - 2f * t); // Smoothstep easing
+            EnergyFrame.GetComponent<Image>().color = Color.Lerp(targetColor, originalColor, t);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        EnergyFrame.GetComponent<Image>().color = originalColor;
     }
 }
