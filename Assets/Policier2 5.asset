@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 524e95997e76bc040bd048661d06e8c2, type: 3}
-  m_Name: Policier1 7
+  m_Name: Policier2 5
   m_EditorClassIdentifier: 
   cardName: Gilbert
   description: Mange des donuts
   statType: 
   symbolTypes: 1
-  maxHealth: 85
+  maxHealth: 30
   maxDefense: 0
   maxStrenght: 0
   maxDiscretion: 0
   maxPerception: 0
-  health: 85
+  health: 30
   defense: 0
   strenght: 0
   perception: 0
   discretion: 0
-  heart: 8
+  heart: 9
   square: 4
-  spade: 12
-  clover: 6
+  spade: 4
+  clover: 13
   skillLevel: 25
   corruption: 1
   letter: K

@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Gilbert
   description: Mange des donuts
   statType: 
-  symbolTypes: 3
+  symbolTypes: 0
   maxHealth: 30
   maxDefense: 0
   maxStrenght: 0
@@ -26,10 +26,10 @@ MonoBehaviour:
   strenght: 0
   perception: 0
   discretion: 0
-  heart: 9
+  heart: 6
   square: 4
-  spade: 4
-  clover: 13
+  spade: 3
+  clover: 17
   skillLevel: 25
   corruption: 1
   letter: K
