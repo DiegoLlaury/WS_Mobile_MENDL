@@ -235,6 +235,13 @@ public class EventDisplay : MonoBehaviour
             return;
         }
 
+        if (EventManager.Instance.bossInEvent)
+        {
+            textError.text = new string("Il y a un événement Boss, vous devez obligatoirement le jouer");
+            StartCoroutine(ErrorPanel());
+            return;
+        }
+
         if (cardMiddle != null)
         {
             currentBattle.isResolved = false;

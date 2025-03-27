@@ -20,6 +20,7 @@ public class EventManager : MonoBehaviour
     public GameObject endPanel;
     public TMP_Text endTitle;
     public TMP_Text endDescription;
+    public bool bossInEvent;
 
     void Awake()
     {
@@ -50,8 +51,14 @@ public class EventManager : MonoBehaviour
                 return;
             }
         }
-
-        AssignEvents();
+        foreach (EventBattle battle in GameManager.currentEventBattles)
+        {
+            if (battle.boss == true)
+            {
+                bossInEvent = true;
+            }
+        }
+            AssignEvents();
 
 
         //currentsEvents = GameManager.listEvent.eventBattles;

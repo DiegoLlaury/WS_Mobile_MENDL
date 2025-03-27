@@ -149,32 +149,25 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         
         if(enemyData.health <= 0)
         {
-            StartCoroutine(DeathAnimation());
-            // 1. Supprime l'ennemi de la liste avant de le détruire
-            EnemyManager.Instance.RemoveEnemy(this);
-
-            // 2. Désactive avant destruction pour éviter d’autres interactions
-            gameObject.SetActive(false);
-
-            // 3. Utilisation d'une Coroutine pour retarder la destruction si nécessaire
-            StartCoroutine(DestroyAfterDelay(0.1f));
+            StartCoroutine(DeathSequence());
             return; // Empêche l'exécution du reste de la méthode
         }
-        
-        if(GameManager.currentEvent.eventType == EventBattle.EventType.Enquete)
-        {
-            Debug.Log("You failed !");
-        }
-
+       
         StartCoroutine(DamageAnimation());
         
         UpdateEnemyDisplay();
         player.Attack();
     }
 
-    IEnumerator DestroyAfterDelay(float delay)
+    private IEnumerator DeathSequence()
     {
-        yield return new WaitForSeconds(delay);
+        yield return StartCoroutine(DeathAnimation()); // Attends la fin de l'animation avant de désactiver
+
+        EnemyManager.Instance.RemoveEnemy(this);
+
+        gameObject.SetActive(false); // Désactive seulement après l'animation
+
+        yield return new WaitForSeconds(0.1f); // Petit délai avant destruction (optionnel)
         Destroy(gameObject);
     }
 
@@ -297,7 +290,7 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
 
     public void ReducePerception(int value)
     {
-        enemyData.perception = Mathf.Clamp(enemyData.perception - value, 0, enemyData.maxPerception);
+        enemyData.perception = Mathf.Clamp(enemyData.perception - value, 0, 50);
         debuffSound.Play();
         StartCoroutine(ScaleAnimation(PerceptionTransform, 1.5f, 0.5f, 0f));
         UpdateEnemyDisplay();
@@ -305,7 +298,7 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
 
     public void ReduceInfiltration(int value)
     {
-        enemyData.discretion = Mathf.Clamp(enemyData.discretion - value, 0, enemyData.maxDiscretion);
+        enemyData.discretion = Mathf.Clamp(enemyData.discretion - value, 0, 50);
         debuffSound.Play();
         StartCoroutine(ScaleAnimation(DiscretionTransform, 1.5f, 0.5f, 0f));
         UpdateEnemyDisplay();
