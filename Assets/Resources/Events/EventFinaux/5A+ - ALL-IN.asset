@@ -13,13 +13,12 @@ MonoBehaviour:
   m_Name: 5A+ - ALL-IN
   m_EditorClassIdentifier: 
   eventType: 0
-  eventDifficulty: 0
+  eventDifficulty: 1
   numberTurn: 15
   currentTurn: 1
   conditionNumber: 25
   enemies:
-  - {fileID: 11400000, guid: 6b433b65d060f414a9334035422be582, type: 2}
-  - {fileID: 11400000, guid: cff968549b40e2f468c9cc5cc531881a, type: 2}
+  - {fileID: 11400000, guid: ee6b44b13018f9f46a50e69be3bce33a, type: 2}
   nextEvent: {fileID: 0}
   nextEventFail: {fileID: 0}
   affectedCharacter: {fileID: 11400000, guid: 0119d751a19d255408617dd4f6a6925f, type: 2}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 5C - ECHEC ET MAT
   m_EditorClassIdentifier: 
   eventType: 1
-  eventDifficulty: 0
+  eventDifficulty: 2
   numberTurn: 15
   currentTurn: 1
   conditionNumber: 25
@@ -33,6 +33,6 @@ MonoBehaviour:
   eventName: ECHEC ET MAT
   location: Gare
   background: {fileID: 848032202879402619, guid: 828d4644c85115f47bd1d9e4dd3db41f, type: 3}
-  remainingAttempts: 4
-  MaxAttempts: 4
+  remainingAttempts: 1
+  MaxAttempts: 1
   isResolved: 0

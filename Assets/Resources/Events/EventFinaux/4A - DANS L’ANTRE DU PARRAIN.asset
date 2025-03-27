@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "4A - DANS L\u2019ANTRE DU PARRAIN"
   m_EditorClassIdentifier: 
   eventType: 1
-  eventDifficulty: 0
+  eventDifficulty: 1
   numberTurn: 15
   currentTurn: 1
   conditionNumber: 25

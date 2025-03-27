@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: EInfFacile 1
   m_EditorClassIdentifier: 
   enemyName: cible1
-  maxHealth: 5
-  health: 5
+  maxHealth: 12
+  health: 1
   maxDefense: 0
   defense: 0
   maxDamage: 0
@@ -22,7 +22,7 @@ MonoBehaviour:
   maxDiscretion: 0
   discretion: 0
   maxPerception: 3
-  perception: 3
+  perception: 4
   enemyIdleImage: {fileID: 21300000, guid: 06ae62479ea32b74cb28b1066f9b9d79, type: 3}
   enemyAttackImage: {fileID: 21300000, guid: 25320657e728a6645a64e771026e2b51, type: 3}
   enemyDamagedImage: {fileID: 21300000, guid: ee93e1abfb493f34ba9d2a0a453d3fe3, type: 3}

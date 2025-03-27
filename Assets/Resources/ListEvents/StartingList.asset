@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: StartingList
   m_EditorClassIdentifier: 
   eventBattles:
-  - {fileID: 11400000, guid: 1fc0af85e9b10c94fb6126aac9ace770, type: 2}
-  - {fileID: 11400000, guid: 35282e4e1472a0046b3a70ec5ded708e, type: 2}
+  - {fileID: 11400000, guid: aa55bcd9d04826e48ba6c07cae41d549, type: 2}
+  - {fileID: 11400000, guid: be3403d6044b377409491bfa487c02c4, type: 2}
   - {fileID: 11400000, guid: 25a3dd30190d086419e9a52c99070181, type: 2}

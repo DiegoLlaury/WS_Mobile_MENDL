@@ -18,8 +18,8 @@ MonoBehaviour:
   currentTurn: 1
   conditionNumber: 25
   enemies:
-  - {fileID: 11400000, guid: 6b433b65d060f414a9334035422be582, type: 2}
-  - {fileID: 11400000, guid: cff968549b40e2f468c9cc5cc531881a, type: 2}
+  - {fileID: 11400000, guid: 382ad3cdc05b02444a40103f0785a8f3, type: 2}
+  - {fileID: 11400000, guid: 9073b4d111b34b1469089527a0306900, type: 2}
   nextEvent: {fileID: 11400000, guid: 575d0b695576b3247851cc0e0b797c0f, type: 2}
   nextEventFail: {fileID: 11400000, guid: 575d0b695576b3247851cc0e0b797c0f, type: 2}
   affectedCharacter: {fileID: 11400000, guid: 0119d751a19d255408617dd4f6a6925f, type: 2}

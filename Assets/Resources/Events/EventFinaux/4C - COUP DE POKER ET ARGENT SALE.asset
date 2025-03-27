@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 4C - COUP DE POKER ET ARGENT SALE
   m_EditorClassIdentifier: 
   eventType: 2
-  eventDifficulty: 0
+  eventDifficulty: 1
   numberTurn: 15
   currentTurn: 1
   conditionNumber: 25

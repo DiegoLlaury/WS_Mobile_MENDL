@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: 2C - LE BRUIT DES BALLES
   m_EditorClassIdentifier: 
   eventType: 0
-  eventDifficulty: 0
-  numberTurn: 15
+  eventDifficulty: 1
+  numberTurn: 20
   currentTurn: 1
-  conditionNumber: 25
+  conditionNumber: 999
   enemies:
-  - {fileID: 11400000, guid: 6b433b65d060f414a9334035422be582, type: 2}
-  - {fileID: 11400000, guid: cff968549b40e2f468c9cc5cc531881a, type: 2}
+  - {fileID: 11400000, guid: d0c4d2bb11f03fa488a286070fea3150, type: 2}
+  - {fileID: 11400000, guid: 038817793cd786046be986b97ca6d166, type: 2}
+  - {fileID: 11400000, guid: 9e89dec9e9495164d8862685475fe1d1, type: 2}
   nextEvent: {fileID: 11400000, guid: 4c16c09b4ad357b46a85dbbfb210954b, type: 2}
   nextEventFail: {fileID: 11400000, guid: 4c16c09b4ad357b46a85dbbfb210954b, type: 2}
   affectedCharacter: {fileID: 11400000, guid: 0119d751a19d255408617dd4f6a6925f, type: 2}
