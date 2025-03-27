@@ -38,6 +38,7 @@ public class EventDisplay : MonoBehaviour
 
     public Sprite nothingSprite;
     public AudioSource cardSound;
+    public AudioSource errorSound;
 
     public enum BuildingPlace
     {
@@ -245,7 +246,7 @@ public class EventDisplay : MonoBehaviour
 
     private IEnumerator ErrorPanel()
     {
-
+        errorSound.Play();
         // Assure-toi que le panneau est visible au début
         errorPanel.gameObject.SetActive(true);
 
