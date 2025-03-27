@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using WS_DiegoCo_Event;
 using System.Diagnostics.Tracing;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class EventManager : MonoBehaviour
 {
@@ -13,7 +15,11 @@ public class EventManager : MonoBehaviour
 
     [SerializeField] public Dictionary<string, EventDisplay> eventLocations = new Dictionary<string, EventDisplay>();
 
+    private EventBattle endEvent;
 
+    public GameObject endPanel;
+    public TMP_Text endTitle;
+    public TMP_Text endDescription;
 
     void Awake()
     {
@@ -35,12 +41,49 @@ public class EventManager : MonoBehaviour
         {
             GameManager.AssignStartingEvent(listEvent);
         }
+        foreach (EventBattle battle in GameManager.currentEventBattles)
+        {
+            if (battle.end)
+            {
+                endEvent = battle;
+                TriggerEnd();
+                return;
+            }
+        }
+
         AssignEvents();
 
 
         //currentsEvents = GameManager.listEvent.eventBattles;
     }
 
+    private void TriggerEnd()
+    {
+        Debug.Log("YUVIBN?");
+        endPanel.SetActive(true);
+        GameManager.firstTime = true;
+        endTitle.text = endEvent.eventName;
+        endDescription.text = endEvent.description;
+    }
+
+    public void Replay()
+    {
+        SceneManager.LoadScene("MacroScene");
+    }
+
+    public void Menu()
+    {
+        SceneManager.LoadScene("MainMenuScene");
+    }
+
+    public void Quit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
     public void RefreshEventLocations()
     {
         eventLocations.Clear();
