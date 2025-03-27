@@ -112,6 +112,7 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         if (damage > 0)
         {
             enemyData.health -= damage;
+            attackSound.Play();
             hurtSound.Play();
             Debug.Log($"Enemy {enemyData.enemyName} took {damage} damage. Remaining health: {enemyData.health}");
             StartCoroutine(ScaleAnimation(HealthTransform, 1.5f, 0.75f, 0f));
