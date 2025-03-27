@@ -144,41 +144,31 @@ public static class GameManager
         switch (battle.eventType)
         {
             case EventBattle.EventType.Infiltration:
-                if(battle.affectedCharacter.symbolTypes == CardMiddle.SymbolTypes.Square)
-                {
-                    cardValue = battle.affectedCharacter.square;
-                }
+                cardValue = battle.affectedCharacter.square;
                 break;
             case EventBattle.EventType.Enquete:
-                if (battle.affectedCharacter.symbolTypes == CardMiddle.SymbolTypes.Clover)
-                {
-                    cardValue = battle.affectedCharacter.clover;
-                }
+                cardValue = battle.affectedCharacter.clover;
                 break;
             case EventBattle.EventType.Combat:
-                if (battle.affectedCharacter.symbolTypes == CardMiddle.SymbolTypes.Spade)
-                {
-                    cardValue = battle.affectedCharacter.spade;
-                }
+                cardValue = (int)(0.75f * battle.affectedCharacter.spade + 0.25f * battle.affectedCharacter.heart);
                 break;
         }
          // Utilisez la valeur appropriée selon votre logique
 
         // Assurez-vous que cardValue est supérieur ou égal à 10
-        cardValue = Mathf.Max(cardValue, 10);
 
         float baseChance = 0f;
 
         switch (battle.eventDifficulty)
         {
             case EventBattle.EventDifficulty.Facile:
-                baseChance = 70f;
-                break;
-            case EventBattle.EventDifficulty.Moyen:
                 baseChance = 50f;
                 break;
+            case EventBattle.EventDifficulty.Moyen:
+                baseChance = 35f;
+                break;
             case EventBattle.EventDifficulty.Difficile:
-                baseChance = 30f; // Base de 50%
+                baseChance = 20f; // Base de 50%
                 break;
             default:
                 Debug.LogError("Type d'événement non pris en charge.");
@@ -186,7 +176,7 @@ public static class GameManager
         }
 
         // Augmentation de la chance par point au-dessus de 10
-        float additionalChance = (cardValue - 10) * 10f;
+        float additionalChance = (cardValue) * 3f;
         float totalChance = baseChance + additionalChance;
 
         // Limitez la probabilité entre 0% et 100%
