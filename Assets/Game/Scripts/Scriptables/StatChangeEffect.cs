@@ -49,7 +49,7 @@ public class StatChangeEffect : CardEffect
 
             case StatType.GainPerceptionButLostDiscretion:
 
-                    player.GainPerception(cardData.discretion);
+                    player.GainPerception(cardData.perception);
                     player.cardData.discretion = 0;
                 break;
 
@@ -76,7 +76,7 @@ public class StatChangeEffect : CardEffect
 
             case StatType.GainDiscretionButLostPerception:
 
-                    player.GainInfiltration(cardData.perception);
+                    player.GainInfiltration(cardData.discretion);
                     player.cardData.perception = 0;
                 break;
         }
