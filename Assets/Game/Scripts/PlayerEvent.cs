@@ -9,6 +9,7 @@ using UnityEngine.Rendering;
 using System.Linq;
 using WS_DiegoCo_Enemy;
 using static UnityEngine.GraphicsBuffer;
+using WS_DiegoCo_Event;
 
 public class PlayerEvent : MonoBehaviour, IStatusReceiver
 {
@@ -28,6 +29,8 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     private int currentEnergy;
     public int currentDefense;
     private bool discretionBoost = false;
+
+    public TMP_Text conditionWinText;
 
     [Header("Status Management")]
     private Dictionary<StatusEffect.StatusType, (int value, int duration)> activeEffects = new Dictionary<StatusEffect.StatusType, (int, int)>();
@@ -512,5 +515,25 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         }
 
         EnergyFrame.GetComponent<Image>().color = originalColor;
+    }
+
+    public void UpdateVictoryText()
+    {
+        EventBattle eventBattle = GameManager.currentEvent;
+
+        switch (eventBattle.eventType)
+        {
+            case EventBattle.EventType.Combat:
+                conditionWinText.text = new string($"Vous devez vaincre tous les ennemis avant {GameManager.currentEvent.numberTurn} tours");
+                break;
+
+            case EventBattle.EventType.Enquete:
+                conditionWinText.text = new string($"Augmenter votre discretion pour atteindre {GameManager.currentEvent.conditionNumber} de discretion avant la fin du nombre de tour impartie");
+                break;
+
+            case EventBattle.EventType.Infiltration:
+                conditionWinText.text = new string($"Votre valeur de perception doit être supérieur à la valeur de discretion des ennemis avant la fin du nombre de tour impartie.");
+                break;
+        }
     }
 }

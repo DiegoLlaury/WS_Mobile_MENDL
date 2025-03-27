@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventType: 2
   eventDifficulty: 1
-  numberTurn: 15
+  numberTurn: 4
   currentTurn: 1
   conditionNumber: 25
   enemies:
@@ -25,6 +25,7 @@ MonoBehaviour:
   affectedCharacter: {fileID: 0}
   boss: 0
   tuto: 0
+  end: 0
   description: "Votre enqu\xEAte au casino a port\xE9 ses fruits, vous avez trouv\xE9
     des transactions douteuses relient l'argent de la maison de jeu \xE0 une banque
     inconnue. Ces informations sont la cl\xE9 pour suivre la trace du chef mafieux,

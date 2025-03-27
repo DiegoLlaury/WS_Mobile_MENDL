@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventType: 0
   eventDifficulty: 1
-  numberTurn: 20
+  numberTurn: 15
   currentTurn: 1
   conditionNumber: 999
   enemies:
@@ -25,6 +25,8 @@ MonoBehaviour:
   nextEventFail: {fileID: 11400000, guid: 4c16c09b4ad357b46a85dbbfb210954b, type: 2}
   affectedCharacter: {fileID: 11400000, guid: 0119d751a19d255408617dd4f6a6925f, type: 2}
   boss: 0
+  tuto: 0
+  end: 0
   description: "Les criminels que vous poursuivez se dirigent vers les quartiers
     hupp\xE9s. Quand vous vous approchez, ils vous rep\xE8rent imm\xE9diatement et
     une nouvelle fusillade \xE9clate. Les balles sifflent autour de vous, vous for\xE7ant

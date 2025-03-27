@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventType: 1
   eventDifficulty: 1
-  numberTurn: 15
+  numberTurn: 10
   currentTurn: 6
   conditionNumber: 45
   enemies:
@@ -25,6 +25,7 @@ MonoBehaviour:
   affectedCharacter: {fileID: 11400000, guid: 09e2d7357b7b1a74d9332b1cdac2e4f0, type: 2}
   boss: 0
   tuto: 0
+  end: 0
   description: "Vous avez \xE9chapp\xE9 de justesse \xE0 la fusillade du quartier
     riche, mais vos assaillants ne comptent pas s\u2019arr\xEAter l\xE0. Ils se dirigent
     \xE0 pr\xE9sent vers le casino, un lieu plus luxueux et imp\xE9n\xE9trable o\xF9

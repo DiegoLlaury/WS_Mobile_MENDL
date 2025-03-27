@@ -149,9 +149,15 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         
         if(enemyData.health <= 0)
         {
-            Debug.Log($"Enemy {enemyData.enemyName} defeated!");
-            EnemyManager.Instance.RemoveEnemy(this); // Suppression propre de l'ennemi
-            Destroy(gameObject); // Détruit l'objet de l'ennemi dans la scène
+            StartCoroutine(DeathAnimation());
+            // 1. Supprime l'ennemi de la liste avant de le détruire
+            EnemyManager.Instance.RemoveEnemy(this);
+
+            // 2. Désactive avant destruction pour éviter d’autres interactions
+            gameObject.SetActive(false);
+
+            // 3. Utilisation d'une Coroutine pour retarder la destruction si nécessaire
+            StartCoroutine(DestroyAfterDelay(0.1f));
             return; // Empêche l'exécution du reste de la méthode
         }
         
@@ -164,6 +170,12 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
         
         UpdateEnemyDisplay();
         player.Attack();
+    }
+
+    IEnumerator DestroyAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(gameObject);
     }
 
     private IEnumerator DamageAnimation()

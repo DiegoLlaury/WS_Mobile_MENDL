@@ -284,9 +284,16 @@ public class EnemyManager : MonoBehaviour
                 break;
 
             case 1:
-                BattleManager.Instance.player.RondeTest(enemy);
-                Debug.Log($"{enemy.enemyData.enemyName} do a check");
-                break;
+                if (GameManager.currentEvent.currentTurn <= GameManager.currentEvent.numberTurn - 3)
+                {
+                    BattleManager.Instance.player.RondeTest(enemy);
+                    Debug.Log($"{enemy.enemyData.enemyName} do a check");
+                }
+                else
+                {
+                    PerformActionInfiltration(enemy, difficulty, Random.Range(0, 1) * 2);
+                }
+                    break;
 
             case 2:
                 BattleManager.Instance.player.ApplyDebuff(Card.StatType.discretion, DebuffDiscretion);

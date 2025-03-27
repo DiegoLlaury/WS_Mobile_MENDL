@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventType: 2
   eventDifficulty: 1
-  numberTurn: 20
+  numberTurn: 4
   currentTurn: 1
   conditionNumber: 50
   enemies:
@@ -25,6 +25,7 @@ MonoBehaviour:
   affectedCharacter: {fileID: 0}
   boss: 0
   tuto: 0
+  end: 0
   description: "Vos agents ont confirm\xE9 que le Lacey\u2019s Diner cache un trafic,
     mais pire encore : ils ont d\xE9couvert que d\u2019autres policiers \xE9taient
     de m\xE8che avec les mafieux. La corruption s\u2019\xE9tend aux forces de l\u2019ordre.

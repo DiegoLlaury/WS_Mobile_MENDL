@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventType: 2
   eventDifficulty: 0
-  numberTurn: 15
+  numberTurn: 5
   currentTurn: 1
   conditionNumber: 25
   enemies:
@@ -24,6 +24,8 @@ MonoBehaviour:
   nextEventFail: {fileID: 11400000, guid: 575d0b695576b3247851cc0e0b797c0f, type: 2}
   affectedCharacter: {fileID: 11400000, guid: 0119d751a19d255408617dd4f6a6925f, type: 2}
   boss: 0
+  tuto: 0
+  end: 0
   description: "Apr\xE8s un \xE9change de tirs brutal dans un bar miteux du quartier
     mal fam\xE9, vous n\u2019avez pas d\u2019autre choix que de prendre les armes
     et partir \xE0 la poursuite des tireurs. D\xE9p\xEAchez-vous de les d\xE9busquer

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventType: 1
   eventDifficulty: 0
-  numberTurn: 15
+  numberTurn: 10
   currentTurn: 10
   conditionNumber: 30
   enemies:
@@ -25,6 +25,7 @@ MonoBehaviour:
   affectedCharacter: {fileID: 11400000, guid: 10e7a009ac4068d4d9e05456adb1ed68, type: 2}
   boss: 0
   tuto: 0
+  end: 0
   description: "Apr\xE8s la fusillade, le barman vous dit qu\u2019il a entendu dire
     qu\u2019une livraison d\u2019armes lourdes aura lieu dans l\u2019entrep\xF4t
     de la ville. Introduisez-vous discr\xE8tement afin d\u2019en savoir plus sur

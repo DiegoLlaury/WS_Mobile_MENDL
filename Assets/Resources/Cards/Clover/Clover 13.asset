@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: "Lumi\xE8re Per\xE7ante"
   cardType: 3
   statType: 04000000
-  dropType: 01000000
+  dropType: 00000000
   health: 0
   defense: 0
   damage: 0

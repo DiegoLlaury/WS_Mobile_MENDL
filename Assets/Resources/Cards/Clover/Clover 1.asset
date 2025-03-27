@@ -21,8 +21,8 @@ MonoBehaviour:
   damage: 0
   startingDamage: 0
   discretion: 0
-  perception: 10
-  energy: 3
+  perception: 7
+  energy: 2
   effect: Gagnez {perception} perception mais perdez toute votre discretion.
   cardImage: {fileID: 21300000, guid: 2e4b55637a440374a8485b7f66db33fd, type: 3}
   effects:

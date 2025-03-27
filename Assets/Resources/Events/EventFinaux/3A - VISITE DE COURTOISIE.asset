@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventType: 2
   eventDifficulty: 1
-  numberTurn: 15
+  numberTurn: 2
   currentTurn: 4
   conditionNumber: 35
   enemies:
@@ -25,6 +25,7 @@ MonoBehaviour:
   affectedCharacter: {fileID: 11400000, guid: 085cf52b5bf5eb844bf9b859d43662a4, type: 2}
   boss: 0
   tuto: 0
+  end: 0
   description: "La fusillade de l\u2019entrep\xF4t a fait de nombreux bless\xE9s,
     que ce soit dans vos rangs mais aussi chez l\u2019ennemi. C\u2019est une occasion
     pour vous de leur soutirer des informations \xE0 l\u2019h\xF4pital. Interrogez

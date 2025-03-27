@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventType: 1
   eventDifficulty: 0
-  numberTurn: 15
+  numberTurn: 10
   currentTurn: 1
   conditionNumber: 30
   enemies:
@@ -25,6 +25,7 @@ MonoBehaviour:
   affectedCharacter: {fileID: 11400000, guid: 0119d751a19d255408617dd4f6a6925f, type: 2}
   boss: 0
   tuto: 0
+  end: 0
   description: "Gr\xE2ce aux r\xE9v\xE9lations du barman, le commissaire vous confie
     la t\xEAte de l\u2019enqu\xEAte sur le trafic clandestin d\u2019alcool qui gangr\xE8ne
     la ville. Selon ses sources, un modeste restaurant en p\xE9riph\xE9rie, le Lacey\u2019s

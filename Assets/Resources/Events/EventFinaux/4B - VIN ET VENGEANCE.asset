@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventType: 1
   eventDifficulty: 1
-  numberTurn: 15
+  numberTurn: 10
   currentTurn: 1
   conditionNumber: 25
   enemies:
@@ -25,6 +25,7 @@ MonoBehaviour:
   affectedCharacter: {fileID: 11400000, guid: 0119d751a19d255408617dd4f6a6925f, type: 2}
   boss: 0
   tuto: 0
+  end: 0
   description: "La fusillade du Diner a \xE9t\xE9 un v\xE9ritable carnage, mais vous
     apprenez que la v\xE9ritable livraison se fera dans un vieil entrep\xF4t. Cette
     r\xE9v\xE9lation vous offre l'opportunit\xE9 de leur rendre la monnaie de leur

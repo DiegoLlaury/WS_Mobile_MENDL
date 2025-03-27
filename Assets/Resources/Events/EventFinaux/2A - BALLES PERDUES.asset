@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventType: 0
   eventDifficulty: 0
-  numberTurn: 20
+  numberTurn: 15
   currentTurn: 1
   conditionNumber: 999
   enemies:
@@ -24,6 +24,8 @@ MonoBehaviour:
   nextEventFail: {fileID: 11400000, guid: e080bade604583a46a706c3a451a42ac, type: 2}
   affectedCharacter: {fileID: 11400000, guid: 0119d751a19d255408617dd4f6a6925f, type: 2}
   boss: 0
+  tuto: 0
+  end: 0
   description: "Vous parvenez \xE0 rentrer dans l\u2019entrep\xF4t et \xE0 subtiliser
     une caisse contenant des preuves. Cependant, en essayant de partir, les mafieux
     vous surprennent, se pr\xE9cipitent sur les armes et d\xE9marrent une fusillade

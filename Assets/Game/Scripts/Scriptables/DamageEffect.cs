@@ -1,4 +1,5 @@
 using NUnit.Framework.Constraints;
+using System.Collections.Generic;
 using UnityEngine;
 using WS_DiegoCo;
 
@@ -46,9 +47,13 @@ using WS_DiegoCo;
                 break;
 
             case TargetDamage.AllEnemies:
-                foreach (EnemyDisplay enemyObject in enemyManager.enemies)
+                List<EnemyDisplay> enemiesCopy = new List<EnemyDisplay>(enemyManager.enemies);
+                foreach (EnemyDisplay enemyObject in enemiesCopy)
                 {
-                    enemyObject.TakeDamage(cardData.damage, ignoreShield: false);
+                    if (enemyObject != null)
+                    {
+                        enemyObject.TakeDamage(cardData.damage, ignoreShield: false);
+                    }
                 }
                 break;
 
@@ -98,14 +103,16 @@ using WS_DiegoCo;
 
             case TargetDamage.SplashDamage:
                 enemy.TakeDamage(cardData.damage);
-                foreach (EnemyDisplay otherEnemy in enemyManager.enemies)
+
+                // Même correction ici
+                List<EnemyDisplay> splashEnemiesCopy = new List<EnemyDisplay>(enemyManager.enemies);
+                foreach (EnemyDisplay otherEnemy in splashEnemiesCopy)
                 {
-                    if (otherEnemy != enemy)
+                    if (otherEnemy != enemy && otherEnemy != null)
                     {
                         otherEnemy.TakeDamage(cardData.damage / 2, ignoreShield: false);
                     }
                 }
-                Debug.Log($"Dealt {cardData.damage} to main target, {cardData.damage / 2} to others.");
                 break;
 
             case TargetDamage.MultiTargetDamage:

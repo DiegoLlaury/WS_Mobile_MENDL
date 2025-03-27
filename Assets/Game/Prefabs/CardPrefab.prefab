@@ -1355,7 +1355,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'aZUODFQBDVNKDBFVNDFKNVBNVVDNB DKVB '
+  m_text: 'aZUODFQBDVNKDBFVNDFKNV\nBNVVDNB DKVB '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 97bbfcad81086e54689efa0f50460aa2, type: 2}
   m_sharedMaterial: {fileID: -8468335865341335069, guid: 97bbfcad81086e54689efa0f50460aa2, type: 2}
@@ -1394,9 +1394,9 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -10
   m_lineSpacingMax: 0
-  m_paragraphSpacing: 25
+  m_paragraphSpacing: -10
   m_charWidthMaxAdj: 0
   m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
@@ -1500,7 +1500,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.027985, y: 1.5364}
+  m_AnchoredPosition: {x: -0.027985, y: 1.577}
   m_SizeDelta: {x: 1.71, y: 0.17}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &4351475025624782126
@@ -1576,7 +1576,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Card Name
+  m_text: "Card Name TR\xA8P LONG"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 97bbfcad81086e54689efa0f50460aa2, type: 2}
   m_sharedMaterial: {fileID: -8468335865341335069, guid: 97bbfcad81086e54689efa0f50460aa2, type: 2}
@@ -1614,10 +1614,10 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_wordSpacing: -7.37
+  m_lineSpacing: -41.12
   m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
+  m_paragraphSpacing: 3.17
   m_charWidthMaxAdj: 0
   m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4

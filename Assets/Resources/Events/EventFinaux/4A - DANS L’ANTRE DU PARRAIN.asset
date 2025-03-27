@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventType: 1
   eventDifficulty: 1
-  numberTurn: 15
+  numberTurn: 10
   currentTurn: 1
   conditionNumber: 50
   enemies:
@@ -25,6 +25,7 @@ MonoBehaviour:
   affectedCharacter: {fileID: 11400000, guid: 0119d751a19d255408617dd4f6a6925f, type: 2}
   boss: 0
   tuto: 0
+  end: 0
   description: "Apr\xE8s plusieurs heures pass\xE9es \xE0 faire parler les suspects,
     l\u2019un d\u2019eux finit par r\xE9v\xE9ler des informations importantes sur
     la localisation de la maison du chef. Cependant, vous devrez faire preuve de

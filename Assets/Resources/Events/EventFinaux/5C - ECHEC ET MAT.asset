@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventType: 1
   eventDifficulty: 2
-  numberTurn: 15
+  numberTurn: 12
   currentTurn: 5
   conditionNumber: 50
   enemies:

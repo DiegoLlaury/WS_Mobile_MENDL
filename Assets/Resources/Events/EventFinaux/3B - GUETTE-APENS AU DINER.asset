@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventType: 0
   eventDifficulty: 1
-  numberTurn: 15
+  numberTurn: 10
   currentTurn: 1
   conditionNumber: 25
   enemies:
@@ -25,6 +25,8 @@ MonoBehaviour:
   nextEventFail: {fileID: 11400000, guid: e3e2911f0ee74de4f9b0a8acdca6e6e6, type: 2}
   affectedCharacter: {fileID: 11400000, guid: 0119d751a19d255408617dd4f6a6925f, type: 2}
   boss: 0
+  tuto: 0
+  end: 0
   description: "Vous avez d\xE9masqu\xE9 les tra\xEEtres parmi vos rangs et obtenu
     des informations cruciales : une livraison de vins importante \xE9tait pr\xE9vue
     demain soir au Lacey\u2019s. En vous y rendant pour appr\xE9hender les criminels,

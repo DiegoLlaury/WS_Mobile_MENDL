@@ -76,7 +76,7 @@ public class StatChangeEffect : CardEffect
 
             case StatType.GainDiscretionButLostPerception:
 
-                    player.GainInfiltration(cardData.discretion);
+                    player.GainInfiltration(cardData.perception);
                     player.cardData.perception = 0;
                 break;
         }
