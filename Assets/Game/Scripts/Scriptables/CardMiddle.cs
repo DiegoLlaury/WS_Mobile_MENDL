@@ -34,6 +34,8 @@ namespace WS_DiegoCo_Middle
         public int skillLevel;
         public bool corruption;
 
+        public string letter;
+
         public Sprite cardImage;
 
         public enum SymbolTypes

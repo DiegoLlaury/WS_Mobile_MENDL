@@ -12,6 +12,9 @@ public class CardMiddleDisplay : MonoBehaviour
     public Image backRedImage;
     public Image backBlackImage;
 
+    public TMP_Text upLetter;
+    public TMP_Text bottomLetter;
+
     public TMP_Text heartText;
     public TMP_Text squareText;
     public TMP_Text spadeText;
@@ -186,6 +189,28 @@ public class CardMiddleDisplay : MonoBehaviour
         }
 
         cardImage.sprite = cardData.cardImage;
+        if (cardData.symbolTypes == CardMiddle.SymbolTypes.Heart || cardData.symbolTypes == CardMiddle.SymbolTypes.Square)
+        {
+            cardImage.color = new Color32(173, 3, 3, 255);
+        }
+        else
+        {
+            cardImage.color = Color.black;
+        }
+
+        upLetter.text = cardData.letter;
+        bottomLetter.text = cardData.letter;
+        if (cardData.symbolTypes == CardMiddle.SymbolTypes.Heart || cardData.symbolTypes == CardMiddle.SymbolTypes.Square)
+        {
+            upLetter.color = new Color32(173, 3, 3, 255);
+            bottomLetter.color = new Color32(173, 3, 3, 255);
+        }
+        else
+        {
+            upLetter.color = Color.black;
+            bottomLetter.color = Color.black;
+        }
+
 
         foreach (Image img in typeImages)
         {
