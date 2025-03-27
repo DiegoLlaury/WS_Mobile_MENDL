@@ -43,6 +43,15 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
 
     private int discretionStrengthIncrease;
 
+    public AudioSource damageSound;
+    public AudioSource shieldHitSound;
+    public AudioSource healSound;
+    public AudioSource buffSound;
+    public AudioSource debuffSound;
+    public AudioSource shieldGainSound;
+    public AudioSource energySound;
+    public AudioSource errorSound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -100,6 +109,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
             int absorbed = Mathf.Min(damage, currentDefense);
             currentDefense -= absorbed;
             damage -= absorbed;
+            shieldHitSound.Play();
             StartCoroutine(ScaleAnimation(PlayerDefense, 1.5f, 0.25f, 0f));
             Debug.Log($"Shield absorbed {absorbed} damage. Remaining shield: {currentDefense}");
         }
@@ -107,6 +117,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         if (damage > 0)
         {
             cardData.health  -= damage;
+            damageSound.Play();
             StartCoroutine(ScaleAnimation(PlayerHealth, 1.5f, 0.5f, 0f));
             Debug.Log($"Player took {damage} damage. Remaining health: {cardData.health}");
         }
@@ -135,6 +146,15 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
 
     public void GainHealth(int health)
     {
+        if (health > 0)
+        {
+            healSound.Play();
+        }
+        else
+        {
+            damageSound.Play();
+        }
+
         cardData.health = Mathf.Clamp(cardData.health + health, 0, cardData.maxHealth);
         StartCoroutine(ScaleAnimation(PlayerHealth, 1.5f, 0.5f, 0f));
         Debug.Log($"Player gain {health} health. Current health : {cardData.health}");
@@ -143,6 +163,7 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     public void GainShield(int defense)
     {
         currentDefense += defense;
+        shieldGainSound.Play();
         StartCoroutine(ScaleAnimation(PlayerDefense, 1.5f, 0.5f, 0f));
         UpdatePlayerEvent();
         Debug.Log($"Player gain {defense} shield. Current shield : {cardData.defense}");
@@ -152,6 +173,14 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     {
         // Ajout normal de perception, en respectant la limite max
         cardData.perception = Mathf.Clamp(cardData.perception + perception, cardData.maxPerception, 50);
+        if (perception > 0)
+        {
+            buffSound.Play();
+        }
+        else
+        {
+            debuffSound.Play();
+        }
         StartCoroutine(ScaleAnimation(PlayerPerception, 1.5f, 0.5f, 0f));
         UpdatePlayerEvent();
         EnemyManager.Instance.UpdateEnemyIntentions();
@@ -162,6 +191,14 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     {
         // Ajout normal de discrétion, en respectant la limite max
         cardData.discretion = Mathf.Clamp(cardData.discretion + infiltration, cardData.maxDiscretion, 50);
+        if (infiltration > 0)
+        {
+            buffSound.Play();
+        }
+        else
+        {
+            debuffSound.Play();
+        }
         StartCoroutine(ScaleAnimation(PlayerDiscretion, 1.5f, 0.5f, 0f));
         UpdatePlayerEvent();
         Debug.Log($"Player gained {infiltration} discretion. Current discretion: {cardData.discretion}");
@@ -181,6 +218,8 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     public void GainEnergy(int energy)
     {
         currentEnergy += energy;
+        energySound.Play();
+        StartCoroutine(ScaleAnimation(EnergyFrame, 1.25f, .5f, 0f));
         UpdatePlayerEvent();
         Debug.Log($"Player gain {energy} energy. Current Energy : {currentEnergy}");
     }
