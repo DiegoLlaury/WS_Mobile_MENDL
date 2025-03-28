@@ -83,6 +83,10 @@ public class EventDisplay : MonoBehaviour
         if (typeEventText != null)
         {
             typeEventText.text = $"{currentBattle.eventType.ToString()} / {currentBattle.eventDifficulty.ToString()}";
+            if (currentBattle.boss)
+            {
+                typeEventText.text = $"{currentBattle.eventType.ToString()} / Boss";
+            }
         }
         if (cardMiddle != null && percentagePlayerText != null)
         {
