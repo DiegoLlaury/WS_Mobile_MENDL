@@ -19,7 +19,6 @@ MonoBehaviour:
   conditionNumber: 25
   enemies:
   - {fileID: 11400000, guid: 6c983bd6a5358a04494dbaf3b7ec910a, type: 2}
-  - {fileID: 11400000, guid: e53a6d781a007a14f963ea13de072612, type: 2}
   nextEvent: {fileID: 11400000, guid: a60563e19787c44408525c86343875b3, type: 2}
   nextEventFail: {fileID: 11400000, guid: a60563e19787c44408525c86343875b3, type: 2}
   affectedCharacter: {fileID: 11400000, guid: a337094fec051574f90a07f7a7cf6ce1, type: 2}

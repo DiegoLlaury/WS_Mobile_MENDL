@@ -237,9 +237,12 @@ public class EventDisplay : MonoBehaviour
 
         if (EventManager.Instance.bossInEvent)
         {
-            textError.text = new string("Il y a un événement Boss, vous devez obligatoirement le jouer");
-            StartCoroutine(ErrorPanel());
-            return;
+            if (!currentBattle.boss) 
+            {
+                textError.text = new string("Vous devez participez à l'événement de Boss en jeu !");
+                StartCoroutine(ErrorPanel());
+                return;
+            }
         }
 
         if (cardMiddle != null)

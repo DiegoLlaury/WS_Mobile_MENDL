@@ -32,8 +32,8 @@ MonoBehaviour:
     et est d\xE9sormais vuln\xE9rable. C\u2019est le moment de frapper : menez l\u2019enqu\xEAte
     pour l'identifier parmi les patients et faites-lui avouer ses crimes."
   eventName: DERNIER PARI
-  location: Entrepot
-  background: {fileID: -995689715088803539, guid: e9567d40b4a3e764db607bb314714e1f, type: 3}
+  location: Hopital
+  background: {fileID: 995473497027029406, guid: 028cee480866e3641bbe479a61dad491, type: 3}
   remainingAttempts: 4
   MaxAttempts: 4
   isResolved: 0

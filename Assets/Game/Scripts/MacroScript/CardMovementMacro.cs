@@ -180,7 +180,12 @@ public class CardMovementMacro : MonoBehaviour, IDragHandler, IPointerDownHandle
             }
             else
             {
-                TransitionToState0();
+                currenEvent.RemoveCardFromEvent();
+                currenEvent.currentBattle.affectedCharacter = cardData;
+                currenEvent.SetPlayer(cardData);
+                deckManagerMacro.StockCard(cardData);
+                handManagerMacro.RemoveCardFromHand(gameObject);
+
             }
         }
         else
