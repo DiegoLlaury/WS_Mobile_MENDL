@@ -519,20 +519,21 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
 
     public void UpdateVictoryText()
     {
+        Debug.Log("zfizbfebgvievg");
         EventBattle eventBattle = GameManager.currentEvent;
 
         switch (eventBattle.eventType)
         {
             case EventBattle.EventType.Combat:
-                conditionWinText.text = new string($"Vous devez vaincre tous les ennemis avant {GameManager.currentEvent.numberTurn} tours");
+                conditionWinText.text = new string($"Vous devez vaincre tous les ennemis avant {GameManager.currentEvent.numberTurn} tours.");
                 break;
 
             case EventBattle.EventType.Enquete:
-                conditionWinText.text = new string($"Augmenter votre discretion pour atteindre {GameManager.currentEvent.conditionNumber} de discretion avant la fin du nombre de tour impartie");
+                conditionWinText.text = new string($"Augmenter votre discretion pour atteindre {GameManager.currentEvent.conditionNumber} de discretion avant la fin du nombre de tour imparti.");
                 break;
 
             case EventBattle.EventType.Infiltration:
-                conditionWinText.text = new string($"Votre valeur de perception doit être supérieur à la valeur de discretion des ennemis avant la fin du nombre de tour impartie.");
+                conditionWinText.text = new string($"Votre valeur de perception doit être supérieur à la valeur de discretion des ennemis avant la fin du nombre de tour imparti.");
                 break;
         }
     }
