@@ -54,6 +54,8 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
     public AudioSource shieldGainSound;
     public AudioSource energySound;
     public AudioSource errorSound;
+    public AudioSource victorySound;
+    public AudioSource defeatSound;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -433,10 +435,12 @@ public class PlayerEvent : MonoBehaviour, IStatusReceiver
         if (GameManager.WinBattle == true)
         {
             widgetWin.SetActive(true);
+            victorySound.Play();
         }
         else
         {
             widgetLost.SetActive(true);
+            defeatSound.Play();
         }
     }
 

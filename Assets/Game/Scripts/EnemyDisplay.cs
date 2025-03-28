@@ -164,6 +164,7 @@ public class EnemyDisplay : MonoBehaviour, IStatusReceiver
     private IEnumerator DeathSequence()
     {
         deathSound.Play();
+        healthText.text = "0";
 
         yield return StartCoroutine(DeathAnimation()); // Attends la fin de l'animation avant de désactiver
 
